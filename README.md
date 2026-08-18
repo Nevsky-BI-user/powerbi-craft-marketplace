@@ -7,7 +7,7 @@ data storytelling — grown and battle-tested on real Naftogaz reporting project
 ## Install
 
 ```bash
-claude plugin marketplace add <owner>/powerbi-craft-marketplace
+claude plugin marketplace add Nevsky-BI-user/powerbi-craft-marketplace
 claude plugin install pbi-visuals@powerbi-craft
 ```
 
