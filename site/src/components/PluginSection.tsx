@@ -74,7 +74,7 @@ export function PluginSection(props: {
   const { plugin, repo, mpName, openSkill, onToggle, popular } = props;
   const open = plugin.skills.find((s) => s.name === openSkill) ?? null;
   return (
-    <section className="plugin">
+    <section className="plugin" id={`p-${plugin.name}`}>
       <div className="plugin-head">
         <span className="picon" aria-hidden="true">{PLUGIN_ICONS[plugin.name] ?? "🧩"}</span>
         <h3>{plugin.name}</h3>

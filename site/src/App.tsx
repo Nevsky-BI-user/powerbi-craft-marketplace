@@ -3,7 +3,7 @@ import catalogJson from "./catalog.json";
 import inventoryJson from "./inventory.json";
 import type { Catalog, Inventory, Plugin } from "./types";
 import { CopyRow } from "./components/Copy";
-import { PluginSection, pluralSkills } from "./components/PluginSection";
+import { PluginSection, PLUGIN_ICONS, pluralSkills } from "./components/PluginSection";
 import { GroupSection, StandaloneSection, GROUP_LABELS, filterInvGroup } from "./components/InventorySection";
 import { InstallAll } from "./components/InstallAll";
 import { HowTo } from "./components/HowTo";
@@ -16,6 +16,44 @@ const inventory = inventoryJson as Inventory;
 const SECTION_IDS = [
   "powerbi-craft", "anthropic", "microsoft", "goblin", "standalone", "install-all", "how-to",
 ];
+
+const SECTION_INFO: Record<string, { icon: string; title: string; desc: string }> = {
+  "powerbi-craft": {
+    icon: "🧰",
+    title: "powerbi-craft",
+    desc: "Маркетплейс автора: ремесло звітів Power BI — візуали, UX сторінок, дизайн-мова, якість, сторітелінг, DAX, PBIP-devops.",
+  },
+  anthropic: {
+    icon: "📦",
+    title: "Бандл Anthropic",
+    desc: "Плагіни офіційного маркетплейсу Claude Code — він уже підключений у кожній інсталяції, окрема команда не потрібна.",
+  },
+  microsoft: {
+    icon: "🧱",
+    title: "Microsoft skills-for-fabric",
+    desc: "Fabric-інженерія: Spark, SQL-сховища, потоки подій, CLI-автоматизація.",
+  },
+  goblin: {
+    icon: "👺",
+    title: "Kurt Buhler (data-goblin)",
+    desc: "Agentic-розробка Power BI: семантичні моделі, PBIR-звіти, Tabular Editor, DAX.",
+  },
+  standalone: {
+    icon: "🧩",
+    title: "Окремі скіли",
+    desc: "Скіли напряму в ~/.claude/skills, згруповані за публічним джерелом.",
+  },
+  "install-all": {
+    icon: "⚡",
+    title: "Встановити все",
+    desc: "Повний комплект powerbi-craft однією командою в терміналі або промптом для агента.",
+  },
+  "how-to": {
+    icon: "📖",
+    title: "Як почати",
+    desc: "Покрокова інструкція: підключення, встановлення, перевірка, автооновлення.",
+  },
+};
 
 function matches(q: string, hay: string): boolean {
   return hay.toLowerCase().includes(q);
@@ -59,20 +97,26 @@ export default function App() {
     if (target) document.getElementById(target)?.scrollIntoView({ block: "center" });
   }, []);
 
-  // Підсвітка активного розділу в навігації
+  // Активний розділ — обчислення від прокрутки (стійкіше за IntersectionObserver
+  // у вбудованих/емульованих переглядачах): останній розділ, чий верх зайшов під навігацію
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const hit = entries.find((e) => e.isIntersecting);
-        if (hit) setActiveSection(hit.target.id);
-      },
-      { rootMargin: "-96px 0px -75% 0px" },
-    );
-    for (const id of SECTION_IDS) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-    return () => observer.disconnect();
+    const compute = () => {
+      let current = SECTION_IDS[0];
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 170) current = id;
+        else break;
+      }
+      setActiveSection((prev) => (prev === current ? prev : current));
+    };
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, []);
 
   // «/» фокусує пошук; кнопка «нагору» після прокрутки
@@ -113,22 +157,19 @@ export default function App() {
   };
 
   const goTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    setActiveSection(id);
+    const el = document.getElementById(id);
+    if (!el) return;
+    const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    window.scrollTo({
+      top: window.scrollY + el.getBoundingClientRect().top - margin,
+      behavior: "smooth",
+    });
+    if (SECTION_IDS.includes(id)) setActiveSection(id);
   };
 
   const mp = catalog.marketplace;
   const hookPlugins = catalog.plugins.filter((p) => p.hasHooks).length;
   const agentCount = catalog.plugins.reduce((n, p) => n + p.agents.length, 0);
-
-  // Загальні цифри середовища (шапка)
-  const invUnique = inventory.groups.reduce((n, g) => n + g.uniqueCount, 0);
-  const totalSkills = catalog.totals.skills + invUnique;
-  const totalPlugins =
-    catalog.totals.plugins + inventory.groups.reduce((n, g) => n + g.plugins.length, 0);
-  const standaloneGroup = inventory.groups.find((g) => g.group === "standalone");
-  const sourceRepos = standaloneGroup?.sources?.filter((s) => s.repo).length ?? 0;
-  const totalSources = 1 + inventory.groups.filter((g) => g.repo).length + sourceRepos;
 
   const groupCount = (id: string): number => {
     if (id === "powerbi-craft") return q ? pbFound : catalog.totals.skills;
@@ -143,34 +184,38 @@ export default function App() {
     { id: "standalone", label: "Окремі", cls: "g-standalone" },
   ];
 
+  // Контекст активного розділу для бічної панелі та мобільного рядка
+  const info = SECTION_INFO[activeSection] ?? SECTION_INFO["powerbi-craft"];
+  const activeGroup = inventory.groups.find((g) => g.group === activeSection);
+  const skillSection = ["powerbi-craft", "anthropic", "microsoft", "goblin", "standalone"].includes(activeSection);
+  const ctxRepo = activeSection === "powerbi-craft" ? mp.repo : activeGroup?.repo ?? null;
+  const ctxInstall =
+    activeSection === "powerbi-craft"
+      ? `claude plugin marketplace add ${mp.repo}`
+      : activeGroup?.addCmd ?? null;
+  const toc: { label: string; anchor?: string }[] =
+    activeSection === "powerbi-craft"
+      ? visible.map((p) => ({ label: `${PLUGIN_ICONS[p.name] ?? "🧩"} ${p.name}`, anchor: `p-${p.name}` }))
+      : activeSection === "standalone"
+        ? (invFiltered.find((g) => g.group === "standalone")?.sources ?? []).map((s) => ({
+            label: s.title,
+            anchor: `src-${s.id}`,
+          }))
+        : (activeGroup?.plugins ?? []).slice(0, 10).map((p) => ({ label: p.name }));
+  const tocMore =
+    skillSection && activeSection !== "powerbi-craft" && activeSection !== "standalone"
+      ? Math.max(0, (activeGroup?.plugins.length ?? 0) - 10)
+      : 0;
+
   return (
     <div className="container">
       <header className="hero" id="top">
-        <h1>{mp.name}</h1>
-        <p className="sub">{mp.description}</p>
-        <div className="metrics">
-          <div className="metric">
-            <div className="label">скілів у середовищі</div>
-            <div className="value">{totalSkills}</div>
-          </div>
-          <div className="metric">
-            <div className="label">з них powerbi-craft</div>
-            <div className="value">{catalog.totals.skills}</div>
-          </div>
-          <div className="metric">
-            <div className="label">плагінів</div>
-            <div className="value">{totalPlugins}</div>
-          </div>
-          <div className="metric">
-            <div className="label">джерел встановлення</div>
-            <div className="value">{totalSources}</div>
-          </div>
-        </div>
-        <p className="snapshot">
-          Один каталог — усе середовище Claude Code автора. Розділ powerbi-craft оновлюється
-          автоматично з кожним пушем; решта — знімок від {inventory.snapshotDate}.
+        <h1>Каталог скілів Claude Code</h1>
+        <p className="sub">
+          Усі набори скілів одного робочого середовища — рівноцінними розділами: powerbi-craft,
+          Anthropic, Microsoft, Kurt Buhler та окремі скіли. Описи скілів — у підказках і картках;
+          команди встановлення — на місці кожної групи. Знімок середовища: {inventory.snapshotDate}.
         </p>
-        <CopyRow text={`claude plugin marketplace add ${mp.repo}`} kind="marketplace" item="hero" />
       </header>
 
       <nav className="topnav" aria-label="Розділи каталогу">
@@ -216,58 +261,99 @@ export default function App() {
               : "Нічого не знайдено — спробуйте інше слово"}
           </p>
         )}
+        <div className="groupstrip" aria-hidden="true">
+          <span className="ico">{info.icon}</span>
+          <b>{info.title}</b>
+          {skillSection && <span className="cnt">· {pluralSkills(groupCount(activeSection))}</span>}
+        </div>
       </nav>
 
-      <section id="powerbi-craft">
-        <h2>powerbi-craft — плагіни та скіли</h2>
-        <p className="section-intro">
-          Маркетплейс автора: {catalog.totals.plugins} плагінів, {pluralSkills(catalog.totals.skills)},{" "}
-          {agentCount} субагенти, {hookPlugins} плагін із хуком автоперевірки.
-        </p>
-        <div className="cards-grid">
-          {visible.map((p) => (
-            <PluginSection
-              key={p.name}
-              plugin={p}
-              repo={mp.repo}
-              mpName={mp.name}
-              openSkill={openSkill}
-              onToggle={toggle}
-              popular={popular}
-            />
-          ))}
+      <div className="layout">
+        <aside className="context" aria-label="Контекст активного розділу">
+          <div className="ctx-ico">{info.icon}</div>
+          <h4>{info.title}</h4>
+          <p className="ctx-desc">{info.desc}</p>
+          {skillSection && <p className="ctx-count">{pluralSkills(groupCount(activeSection))}</p>}
+          {activeSection === "powerbi-craft" && (
+            <p className="ctx-count">
+              {agentCount} субагенти · {hookPlugins} плагін із хуком
+            </p>
+          )}
+          {ctxRepo && (
+            <p className="ctx-repo">
+              <a href={`https://github.com/${ctxRepo}`} target="_blank" rel="noreferrer">
+                github.com/{ctxRepo}
+              </a>
+            </p>
+          )}
+          {ctxInstall && <CopyRow text={ctxInstall} kind="marketplace" item={`aside:${activeSection}`} />}
+          {toc.length > 0 && (
+            <nav className="ctx-toc" aria-label="Зміст розділу">
+              {toc.map((t) =>
+                t.anchor ? (
+                  <button key={t.label} onClick={() => goTo(t.anchor!)}>{t.label}</button>
+                ) : (
+                  <span key={t.label}>{t.label}</span>
+                ),
+              )}
+              {tocMore > 0 && <span className="more">+{tocMore} ще</span>}
+            </nav>
+          )}
+        </aside>
+
+        <div className="content">
+          <section id="powerbi-craft">
+            <h2>powerbi-craft — плагіни та скіли</h2>
+            <p className="section-intro">
+              Маркетплейс автора: {catalog.totals.plugins} плагінів, {pluralSkills(catalog.totals.skills)},{" "}
+              {agentCount} субагенти, {hookPlugins} плагін із хуком автоперевірки.
+            </p>
+            <div className="cards-grid">
+              {visible.map((p) => (
+                <PluginSection
+                  key={p.name}
+                  plugin={p}
+                  repo={mp.repo}
+                  mpName={mp.name}
+                  openSkill={openSkill}
+                  onToggle={toggle}
+                  popular={popular}
+                />
+              ))}
+            </div>
+          </section>
+
+          {invFiltered
+            .filter((g) => g.group !== "standalone")
+            .map((g) => (
+              <GroupSection key={g.group} group={g} />
+            ))}
+          {(() => {
+            const st = invFiltered.find((g) => g.group === "standalone");
+            return st ? <StandaloneSection group={st} /> : null;
+          })()}
+
+          <InstallAll catalog={catalog} />
+          <HowTo catalog={catalog} />
+          <WhatsNew entries={catalog.changelog} />
+
+          <footer>
+            <p>
+              <a href={`https://github.com/${mp.repo}`} target="_blank" rel="noreferrer">
+                github.com/{mp.repo}
+              </a>{" "}
+              · MIT · зібрано автоматично з метаданих скілів
+              {telemetryOn ? " · лічильники: анонімні події копіювань і відкриттів карток скілів" : ""}
+            </p>
+          </footer>
         </div>
-      </section>
-
-      {invFiltered
-        .filter((g) => g.group !== "standalone")
-        .map((g) => (
-          <GroupSection key={g.group} group={g} />
-        ))}
-      {(() => {
-        const st = invFiltered.find((g) => g.group === "standalone");
-        return st ? <StandaloneSection group={st} /> : null;
-      })()}
-
-      <InstallAll catalog={catalog} />
-      <HowTo catalog={catalog} />
-      <WhatsNew entries={catalog.changelog} />
+      </div>
 
       {showTop && (
         <button className="totop" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           ↑ Нагору
         </button>
       )}
-
-      <footer>
-        <p>
-          <a href={`https://github.com/${mp.repo}`} target="_blank" rel="noreferrer">
-            github.com/{mp.repo}
-          </a>{" "}
-          · MIT · зібрано автоматично з метаданих скілів
-          {telemetryOn ? " · лічильники: анонімні події копіювань і відкриттів карток скілів" : ""}
-        </p>
-      </footer>
     </div>
   );
 }

@@ -77,7 +77,7 @@ body {
 /* Сітка карток: на широких екранах 2–3 колонки, на вузьких — одна */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
   gap: 14px;
   align-items: stretch;
   margin: 14px 0;
@@ -218,8 +218,49 @@ button.navchip.active { border: 1.5px solid var(--accent); font-weight: 600; }
 .topnav .search { margin: 8px 0 0; padding: 8px 12px; font-size: 14px; }
 .topnav .search-hint { margin: 4px 0 0; }
 
-.snapshot { font-size: 13px; color: var(--muted); margin: 0 0 14px; max-width: 680px; }
 .section-intro { color: var(--text2); font-size: 14px; margin: 0 0 12px; max-width: 680px; }
+
+/* Концепт C: двоколонкова розкладка з закріпленою панеллю контексту групи */
+.layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+aside.context {
+  position: sticky; top: 122px;
+  max-height: calc(100vh - 140px); overflow-y: auto; scrollbar-width: thin;
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 18px; margin-top: 40px;
+}
+aside.context .ctx-ico { font-size: 26px; line-height: 1; }
+aside.context h4 { margin: 8px 0 4px; font-size: 15.5px; }
+aside.context .ctx-desc { font-size: 13px; color: var(--text2); margin: 0 0 8px; }
+aside.context .ctx-count { font-size: 12.5px; color: var(--muted); margin: 0 0 6px; }
+aside.context .ctx-repo { font-size: 12.5px; margin: 0 0 8px; overflow-wrap: anywhere; }
+aside.context .copyrow { font-size: 12px; padding: 7px 10px; margin: 0 0 10px; }
+.ctx-toc { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--border); padding-top: 10px; }
+.ctx-toc button, .ctx-toc span {
+  text-align: left; background: none; border: none; cursor: pointer; font-family: inherit;
+  font-size: 13px; color: var(--text2); padding: 3px 6px; border-radius: 7px;
+}
+.ctx-toc span { cursor: default; }
+.ctx-toc button:hover { background: var(--card2); color: var(--text); }
+.ctx-toc .more { color: var(--muted); font-size: 12px; }
+
+/* Мобільний рядок активної групи (варіант B) — видно лише без бічної панелі */
+.groupstrip { display: none; }
+
+@media (max-width: 1099px) {
+  .layout { display: block; }
+  aside.context { display: none; }
+  .groupstrip {
+    display: flex; align-items: center; gap: 7px;
+    margin: 8px 0 0; font-size: 12.5px; color: var(--text2);
+  }
+  .groupstrip .ico { font-size: 15px; }
+  .groupstrip b { color: var(--text); font-size: 12.5px; }
+}
 
 button.totop {
   position: fixed; right: 18px; bottom: 18px; z-index: 50;
@@ -264,5 +305,5 @@ button.chip[data-tip]:focus-visible::after {
   .topnav .navrow { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .topnav .navrow::-webkit-scrollbar { display: none; }
   .topnav .navrow button { flex-shrink: 0; }
-  [id] { scroll-margin-top: 108px; }
+  [id] { scroll-margin-top: 136px; }
 }

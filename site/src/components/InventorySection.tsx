@@ -210,7 +210,7 @@ export function StandaloneSection(props: { group: InvGroup }) {
       </p>
       <div className="cards-grid">
       {sources.map((src) => (
-        <div className="plugin inv-standalone" key={src.id}>
+        <div className="plugin inv-standalone" key={src.id} id={`src-${src.id}`}>
           <div className="plugin-head">
             <h3>{src.title}</h3>
             <span className="tagline">{pluralSkills(src.skills.length)}</span>
