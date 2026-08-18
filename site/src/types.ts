@@ -32,7 +32,6 @@ export interface Catalog {
 export interface InvSkill {
   name: string;
   short: string;
-  source?: string | null;
 }
 
 export interface InvPlugin {
@@ -41,13 +40,28 @@ export interface InvPlugin {
   skills: InvSkill[];
 }
 
+/** Публічне джерело окремих скілів: репозиторій + спосіб встановлення. */
+export interface InvSource {
+  id: string;
+  title: string;
+  repo: string | null;
+  /** Префікс теки в репо, під яким лежать скіли ("" — корінь). null — джерела немає. */
+  dir: string | null;
+  /** true — репо є маркетплейсом плагінів, ставиться через claude plugin marketplace add. */
+  marketplace: boolean;
+  note: string;
+  skills: InvSkill[];
+}
+
+export type InvGroupId = "anthropic" | "microsoft" | "goblin" | "standalone";
+
 export interface InvGroup {
-  group: "anthropic" | "microsoft" | "goblin" | "standalone" | "project";
+  group: InvGroupId;
   title: string;
   repo: string | null;
   addCmd: string | null;
   plugins: InvPlugin[];
-  skills?: InvSkill[];
+  sources?: InvSource[];
   skillCount: number;
   uniqueCount: number;
 }

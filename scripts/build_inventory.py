@@ -1,14 +1,15 @@
-"""Знімок ВСІХ скілів цієї машини (не лише powerbi-craft) → site/src/inventory.json.
+"""Знімок скілів середовища цієї машини → site/src/inventory.json.
 
 Запускається ЛОКАЛЬНО на машині автора (CI цього ПК не бачить) — результат
 комітиться в репо з датою знімка. Санітизація: жодних локальних шляхів у виході.
 
-Групи (кольори на сайті):
+Групи (розділи та кольори на сайті):
   anthropic   — плагіни claude-plugins-official (бандл Anthropic)
   microsoft   — fabric-collection (microsoft/skills-for-fabric)
   goblin      — power-bi-agentic-development (data-goblin, Kurt Buhler)
-  standalone  — окремі скіли ~/.claude/skills поза маркетплейсом powerbi-craft
-  project     — проєктні скіли робочих репо (приватні, без встановлення)
+  standalone  — окремі скіли ~/.claude/skills поза маркетплейсом powerbi-craft,
+                згруповані за публічним джерелом (репозиторієм)
+Проєктні скіли приватних репо на сайт НЕ потрапляють (рішення 2026-08-18).
 """
 import datetime
 import glob
@@ -42,18 +43,118 @@ MP_META = {
     },
 }
 
-# Відомі джерела окремих скілів (звідки їх ставили)
-STANDALONE_SOURCES = {
-    "fact-checker": "daymade/claude-code-skills",
-    "grilling": "mattpocock/skills",
-    "grill-me": "mattpocock/skills",
+# Публічні джерела окремих скілів — перевірені по GitHub API 2026-08-18
+# (лістинг дерева репо або пряме посилання в SKILL.md; не вгадувались).
+# dir — префікс теки зі скілами в репо ("" = корінь; None = скіл не лежить у репо текою).
+# marketplace=True — репо містить .claude-plugin/marketplace.json.
+SOURCE_META = {
+    "anthropic-skills": {
+        "title": "Anthropic — anthropics/skills", "repo": "anthropics/skills",
+        "dir": "skills", "marketplace": True,
+        "note": "Офіційний репозиторій скілів Anthropic, опублікований і як маркетплейс плагінів.",
+    },
+    "superpowers": {
+        "title": "Superpowers (Jesse Vincent)", "repo": "obra/superpowers",
+        "dir": "skills", "marketplace": True,
+        "note": "Дисципліна розробки: TDD, планування, ревʼю, git worktree, субагенти.",
+    },
+    "threejs": {
+        "title": "Three.js game skills", "repo": "majidmanzarpour/threejs-game-skills",
+        "dir": "skills", "marketplace": False,
+        "note": "Набір для Three.js-ігор: геймплей, графіка, UI, QA, генерація ассетів.",
+    },
+    "supabase": {
+        "title": "Supabase — agent-skills", "repo": "supabase/agent-skills",
+        "dir": "skills", "marketplace": True,
+        "note": "Офіційні скіли Supabase: Postgres-практики й робота з платформою.",
+    },
+    "mattpocock": {
+        "title": "Matt Pocock / skills", "repo": "mattpocock/skills",
+        "dir": "skills/productivity", "marketplace": True,
+        "note": "Скіли Метта Покока: жорстке ревʼю коду і планів.",
+    },
+    "daymade": {
+        "title": "daymade / claude-code-skills", "repo": "daymade/claude-code-skills",
+        "dir": "", "marketplace": True,
+        "note": "Колекція прикладних скілів (fact-checker та ін.).",
+    },
+    "shadcn": {
+        "title": "shadcn/ui", "repo": "shadcn-ui/ui",
+        "dir": "skills", "marketplace": False,
+        "note": "Монорепозиторій shadcn/ui; містить власний скіл для роботи з компонентами.",
+    },
+    "awesome-copilot": {
+        "title": "GitHub — awesome-copilot", "repo": "github/awesome-copilot",
+        "dir": "skills", "marketplace": False,
+        "note": "Комʼюніті-репозиторій GitHub; серед іншого — скіл оптимізації DAX.",
+    },
+    "vercel": {
+        "title": "Vercel — web-interface-guidelines", "repo": "vercel-labs/web-interface-guidelines",
+        "dir": None, "marketplace": False,
+        "note": "Скіл-обгортка: тягне гайдлайни вебінтерфейсів Vercel із цього репо на льоту.",
+    },
+    "local": {
+        "title": "Авторські локальні", "repo": None, "dir": None, "marketplace": False,
+        "note": "Публічного канонічного джерела немає (для emil-design-eng і humanizer існують "
+                "лише дзеркала-агрегатори) — скіли живуть локально на машині автора.",
+    },
 }
 
-PROJECT_SKILL_DIRS = [
-    # (публічна назва проєкту, тека) — вміст приватний, показуємо лише назви
-    ("Rayfin Operational Monitoring (приватний)",
-     r"C:\github\Rayfin_Operational_Monitoring\.claude\skills"),
-]
+SKILL_SOURCE = {
+    "algorithmic-art": "anthropic-skills",
+    "brand-guidelines": "anthropic-skills",
+    "canvas-design": "anthropic-skills",
+    "claude-api": "anthropic-skills",
+    "doc-coauthoring": "anthropic-skills",
+    "docx": "anthropic-skills",
+    "frontend-design": "anthropic-skills",
+    "internal-comms": "anthropic-skills",
+    "mcp-builder": "anthropic-skills",
+    "pdf": "anthropic-skills",
+    "pptx": "anthropic-skills",
+    "skill-creator": "anthropic-skills",
+    "slack-gif-creator": "anthropic-skills",
+    "template-skill": "anthropic-skills",
+    "theme-factory": "anthropic-skills",
+    "web-artifacts-builder": "anthropic-skills",
+    "webapp-testing": "anthropic-skills",
+    "xlsx": "anthropic-skills",
+    "brainstorming": "superpowers",
+    "dispatching-parallel-agents": "superpowers",
+    "executing-plans": "superpowers",
+    "finishing-a-development-branch": "superpowers",
+    "receiving-code-review": "superpowers",
+    "requesting-code-review": "superpowers",
+    "subagent-driven-development": "superpowers",
+    "systematic-debugging": "superpowers",
+    "test-driven-development": "superpowers",
+    "using-git-worktrees": "superpowers",
+    "using-superpowers": "superpowers",
+    "verification-before-completion": "superpowers",
+    "writing-plans": "superpowers",
+    "writing-skills": "superpowers",
+    "threejs-3d-generator": "threejs",
+    "threejs-aaa-graphics-builder": "threejs",
+    "threejs-audio-generator": "threejs",
+    "threejs-debug-profiler": "threejs",
+    "threejs-game-director": "threejs",
+    "threejs-game-ui-designer": "threejs",
+    "threejs-gameplay-systems": "threejs",
+    "threejs-image-generator": "threejs",
+    "threejs-qa-release": "threejs",
+    "supabase": "supabase",
+    "supabase-postgres-best-practices": "supabase",
+    "grilling": "mattpocock",
+    "grill-me": "mattpocock",
+    "fact-checker": "daymade",
+    "shadcn": "shadcn",
+    "power-bi-dax-optimization": "awesome-copilot",
+    "web-design-guidelines": "vercel",
+    "graphify": "local",
+    "model-orchestration": "local",
+    "emil-design-eng": "local",
+    "humanizer": "local",
+}
 
 
 def frontmatter(path):
@@ -88,7 +189,6 @@ for p in glob.glob(os.path.join(ROOT, "plugins", "*", "skills", "*")):
 # 2. Маркетплейси з кешу плагінів
 groups = {}
 for mp_name, meta in MP_META.items():
-    plugins = []
     seen_plugins = {}
     for sk in sorted(glob.glob(os.path.join(
             CLAUDE, "plugins", "cache", mp_name, "*", "*", "skills", "*", "SKILL.md"))):
@@ -114,8 +214,9 @@ for mp_name, meta in MP_META.items():
         "uniqueCount": len(unique),
     }
 
-# 3. Окремі скіли ~/.claude/skills поза powerbi-craft
-standalone = []
+# 3. Окремі скіли ~/.claude/skills поза powerbi-craft — за джерелами
+by_source = {sid: [] for sid in SOURCE_META}
+unmapped = []
 for sk in sorted(glob.glob(os.path.join(CLAUDE, "skills", "*", "SKILL.md"))):
     name = os.path.basename(os.path.dirname(sk))
     if name in own:
@@ -123,35 +224,33 @@ for sk in sorted(glob.glob(os.path.join(CLAUDE, "skills", "*", "SKILL.md"))):
     d = frontmatter(sk)
     if d is None:
         continue
-    src = STANDALONE_SOURCES.get(name)
-    standalone.append({
-        "name": name,
-        "short": short_desc(d.get("description")),
-        "source": src,
+    sid = SKILL_SOURCE.get(name)
+    if sid is None:
+        unmapped.append(name)
+        sid = "local"
+    by_source[sid].append({"name": name, "short": short_desc(d.get("description"))})
+
+sources = []
+for sid, meta in SOURCE_META.items():
+    if not by_source[sid]:
+        continue
+    sources.append({
+        "id": sid, "title": meta["title"], "repo": meta["repo"], "dir": meta["dir"],
+        "marketplace": meta["marketplace"], "note": meta["note"],
+        "skills": by_source[sid],
     })
+# найбільші джерела спершу, «локальні» — завжди останні
+sources.sort(key=lambda s: (s["repo"] is None, -len(s["skills"]), s["id"]))
+n_standalone = sum(len(s["skills"]) for s in sources)
 groups["standalone"] = {
     "group": "standalone", "title": "Окремі скіли (поза маркетплейсами)",
     "repo": None, "addCmd": None, "plugins": [],
-    "skills": standalone, "skillCount": len(standalone),
-    "uniqueCount": len(standalone),
-}
-
-# 4. Проєктні скіли — лише назви, без описів (приватні репо)
-project = []
-for label, d in PROJECT_SKILL_DIRS:
-    for sk in sorted(glob.glob(os.path.join(d, "*", "SKILL.md"))):
-        project.append({"name": os.path.basename(os.path.dirname(sk)),
-                        "short": f"проєктний скіл — {label}", "source": None})
-groups["project"] = {
-    "group": "project", "title": "Проєктні скіли (приватні репозиторії)",
-    "repo": None, "addCmd": None, "plugins": [],
-    "skills": project, "skillCount": len(project),
-    "uniqueCount": len(project),
+    "sources": sources, "skillCount": n_standalone, "uniqueCount": n_standalone,
 }
 
 inventory = {
     "snapshotDate": datetime.date.today().isoformat(),
-    "groups": [groups[g] for g in ("anthropic", "microsoft", "goblin", "standalone", "project")],
+    "groups": [groups[g] for g in ("anthropic", "microsoft", "goblin", "standalone")],
 }
 
 blob = json.dumps(inventory, ensure_ascii=False, indent=1)
@@ -162,3 +261,5 @@ io.open(OUT, "w", encoding="utf-8", newline="\n").write(blob)
 total = sum(g["skillCount"] for g in inventory["groups"])
 print(f"inventory.json: {total} скілів у {len(inventory['groups'])} групах — " +
       ", ".join(f"{g['group']}:{g['skillCount']}" for g in inventory["groups"]))
+if unmapped:
+    print(f"без джерела ({len(unmapped)}): " + ", ".join(unmapped))

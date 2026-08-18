@@ -1057,291 +1057,322 @@
    "repo": null,
    "addCmd": null,
    "plugins": [],
-   "skills": [
+   "sources": [
     {
-     "name": "algorithmic-art",
-     "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…",
-     "source": null
+     "id": "anthropic-skills",
+     "title": "Anthropic — anthropics/skills",
+     "repo": "anthropics/skills",
+     "dir": "skills",
+     "marketplace": true,
+     "note": "Офіційний репозиторій скілів Anthropic, опублікований і як маркетплейс плагінів.",
+     "skills": [
+      {
+       "name": "algorithmic-art",
+       "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…"
+      },
+      {
+       "name": "brand-guidelines",
+       "short": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand color…"
+      },
+      {
+       "name": "canvas-design",
+       "short": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, d…"
+      },
+      {
+       "name": "claude-api",
+       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…"
+      },
+      {
+       "name": "doc-coauthoring",
+       "short": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs,…"
+      },
+      {
+       "name": "docx",
+       "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word doc…"
+      },
+      {
+       "name": "frontend-design",
+       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…"
+      },
+      {
+       "name": "internal-comms",
+       "short": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever …"
+      },
+      {
+       "name": "mcp-builder",
+       "short": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b…"
+      },
+      {
+       "name": "pdf",
+       "short": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple P…"
+      },
+      {
+       "name": "pptx",
+       "short": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea…"
+      },
+      {
+       "name": "skill-creator",
+       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…"
+      },
+      {
+       "name": "slack-gif-creator",
+       "short": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request a…"
+      },
+      {
+       "name": "template-skill",
+       "short": "Replace with description of the skill and when Claude should use it."
+      },
+      {
+       "name": "theme-factory",
+       "short": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fo…"
+      },
+      {
+       "name": "web-artifacts-builder",
+       "short": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for…"
+      },
+      {
+       "name": "webapp-testing",
+       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…"
+      },
+      {
+       "name": "xlsx",
+       "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…"
+      }
+     ]
     },
     {
-     "name": "brainstorming",
-     "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…",
-     "source": null
+     "id": "superpowers",
+     "title": "Superpowers (Jesse Vincent)",
+     "repo": "obra/superpowers",
+     "dir": "skills",
+     "marketplace": true,
+     "note": "Дисципліна розробки: TDD, планування, ревʼю, git worktree, субагенти.",
+     "skills": [
+      {
+       "name": "brainstorming",
+       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…"
+      },
+      {
+       "name": "dispatching-parallel-agents",
+       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies"
+      },
+      {
+       "name": "executing-plans",
+       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints"
+      },
+      {
+       "name": "finishing-a-development-branch",
+       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…"
+      },
+      {
+       "name": "receiving-code-review",
+       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …"
+      },
+      {
+       "name": "requesting-code-review",
+       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements"
+      },
+      {
+       "name": "subagent-driven-development",
+       "short": "Use when executing implementation plans with independent tasks in the current session"
+      },
+      {
+       "name": "systematic-debugging",
+       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+      },
+      {
+       "name": "test-driven-development",
+       "short": "Use when implementing any feature or bugfix, before writing implementation code"
+      },
+      {
+       "name": "using-git-worktrees",
+       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…"
+      },
+      {
+       "name": "using-superpowers",
+       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions"
+      },
+      {
+       "name": "verification-before-completion",
+       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…"
+      },
+      {
+       "name": "writing-plans",
+       "short": "Use when you have a spec or requirements for a multi-step task, before touching code"
+      },
+      {
+       "name": "writing-skills",
+       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment"
+      }
+     ]
     },
     {
-     "name": "brand-guidelines",
-     "short": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand color…",
-     "source": null
+     "id": "threejs",
+     "title": "Three.js game skills",
+     "repo": "majidmanzarpour/threejs-game-skills",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Набір для Three.js-ігор: геймплей, графіка, UI, QA, генерація ассетів.",
+     "skills": [
+      {
+       "name": "threejs-3d-generator",
+       "short": "Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to…"
+      },
+      {
+       "name": "threejs-aaa-graphics-builder",
+       "short": "Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, techni…"
+      },
+      {
+       "name": "threejs-audio-generator",
+       "short": "Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapo…"
+      },
+      {
+       "name": "threejs-debug-profiler",
+       "short": "Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw call…"
+      },
+      {
+       "name": "threejs-game-director",
+       "short": "Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidel…"
+      },
+      {
+       "name": "threejs-game-ui-designer",
+       "short": "Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe a…"
+      },
+      {
+       "name": "threejs-gameplay-systems",
+       "short": "Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/e…"
+      },
+      {
+       "name": "threejs-image-generator",
+       "short": "Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/backgr…"
+      },
+      {
+       "name": "threejs-qa-release",
+       "short": "Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, sta…"
+      }
+     ]
     },
     {
-     "name": "canvas-design",
-     "short": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, d…",
-     "source": null
+     "id": "mattpocock",
+     "title": "Matt Pocock / skills",
+     "repo": "mattpocock/skills",
+     "dir": "skills/productivity",
+     "marketplace": true,
+     "note": "Скіли Метта Покока: жорстке ревʼю коду і планів.",
+     "skills": [
+      {
+       "name": "grill-me",
+       "short": "A relentless interview to sharpen a plan or design."
+      },
+      {
+       "name": "grilling",
+       "short": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
+      }
+     ]
     },
     {
-     "name": "claude-api",
-     "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
-     "source": null
+     "id": "supabase",
+     "title": "Supabase — agent-skills",
+     "repo": "supabase/agent-skills",
+     "dir": "skills",
+     "marketplace": true,
+     "note": "Офіційні скіли Supabase: Postgres-практики й робота з платформою.",
+     "skills": [
+      {
+       "name": "supabase-postgres-best-practices",
+       "short": "Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or d…"
+      },
+      {
+       "name": "supabase",
+       "short": "Use when doing ANY task involving Supabase. Triggers: Supabase products (Database, Auth, Edge Functions, Realtime, Storage, Vectors, Cron, Queues); client libra…"
+      }
+     ]
     },
     {
-     "name": "dispatching-parallel-agents",
-     "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-     "source": null
+     "id": "awesome-copilot",
+     "title": "GitHub — awesome-copilot",
+     "repo": "github/awesome-copilot",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Комʼюніті-репозиторій GitHub; серед іншого — скіл оптимізації DAX.",
+     "skills": [
+      {
+       "name": "power-bi-dax-optimization",
+       "short": "Comprehensive Power BI DAX formula optimization prompt for improving performance, readability, and maintainability of DAX calculations."
+      }
+     ]
     },
     {
-     "name": "doc-coauthoring",
-     "short": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs,…",
-     "source": null
+     "id": "daymade",
+     "title": "daymade / claude-code-skills",
+     "repo": "daymade/claude-code-skills",
+     "dir": "",
+     "marketplace": true,
+     "note": "Колекція прикладних скілів (fact-checker та ін.).",
+     "skills": [
+      {
+       "name": "fact-checker",
+       "short": "Verifies factual claims in documents using web search and official sources, then proposes corrections with user confirmation. Use when the user asks to fact-che…"
+      }
+     ]
     },
     {
-     "name": "docx",
-     "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word doc…",
-     "source": null
+     "id": "shadcn",
+     "title": "shadcn/ui",
+     "repo": "shadcn-ui/ui",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Монорепозиторій shadcn/ui; містить власний скіл для роботи з компонентами.",
+     "skills": [
+      {
+       "name": "shadcn",
+       "short": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI, including chat interfaces. Provides project context, c…"
+      }
+     ]
     },
     {
-     "name": "emil-design-eng",
-     "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
-     "source": null
+     "id": "vercel",
+     "title": "Vercel — web-interface-guidelines",
+     "repo": "vercel-labs/web-interface-guidelines",
+     "dir": null,
+     "marketplace": false,
+     "note": "Скіл-обгортка: тягне гайдлайни вебінтерфейсів Vercel із цього репо на льоту.",
+     "skills": [
+      {
+       "name": "web-design-guidelines",
+       "short": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site …"
+      }
+     ]
     },
     {
-     "name": "executing-plans",
-     "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-     "source": null
-    },
-    {
-     "name": "fact-checker",
-     "short": "Verifies factual claims in documents using web search and official sources, then proposes corrections with user confirmation. Use when the user asks to fact-che…",
-     "source": "daymade/claude-code-skills"
-    },
-    {
-     "name": "finishing-a-development-branch",
-     "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…",
-     "source": null
-    },
-    {
-     "name": "frontend-design",
-     "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…",
-     "source": null
-    },
-    {
-     "name": "graphify",
-     "short": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul…",
-     "source": null
-    },
-    {
-     "name": "grill-me",
-     "short": "A relentless interview to sharpen a plan or design.",
-     "source": "mattpocock/skills"
-    },
-    {
-     "name": "grilling",
-     "short": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.",
-     "source": "mattpocock/skills"
-    },
-    {
-     "name": "humanizer",
-     "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…",
-     "source": null
-    },
-    {
-     "name": "internal-comms",
-     "short": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever …",
-     "source": null
-    },
-    {
-     "name": "mcp-builder",
-     "short": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b…",
-     "source": null
-    },
-    {
-     "name": "pdf",
-     "short": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple P…",
-     "source": null
-    },
-    {
-     "name": "power-bi-dax-optimization",
-     "short": "Comprehensive Power BI DAX formula optimization prompt for improving performance, readability, and maintainability of DAX calculations.",
-     "source": null
-    },
-    {
-     "name": "pptx",
-     "short": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea…",
-     "source": null
-    },
-    {
-     "name": "receiving-code-review",
-     "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …",
-     "source": null
-    },
-    {
-     "name": "requesting-code-review",
-     "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-     "source": null
-    },
-    {
-     "name": "shadcn",
-     "short": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI, including chat interfaces. Provides project context, c…",
-     "source": null
-    },
-    {
-     "name": "skill-creator",
-     "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…",
-     "source": null
-    },
-    {
-     "name": "slack-gif-creator",
-     "short": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request a…",
-     "source": null
-    },
-    {
-     "name": "subagent-driven-development",
-     "short": "Use when executing implementation plans with independent tasks in the current session",
-     "source": null
-    },
-    {
-     "name": "supabase-postgres-best-practices",
-     "short": "Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or d…",
-     "source": null
-    },
-    {
-     "name": "supabase",
-     "short": "Use when doing ANY task involving Supabase. Triggers: Supabase products (Database, Auth, Edge Functions, Realtime, Storage, Vectors, Cron, Queues); client libra…",
-     "source": null
-    },
-    {
-     "name": "systematic-debugging",
-     "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-     "source": null
-    },
-    {
-     "name": "template-skill",
-     "short": "Replace with description of the skill and when Claude should use it.",
-     "source": null
-    },
-    {
-     "name": "test-driven-development",
-     "short": "Use when implementing any feature or bugfix, before writing implementation code",
-     "source": null
-    },
-    {
-     "name": "theme-factory",
-     "short": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fo…",
-     "source": null
-    },
-    {
-     "name": "threejs-3d-generator",
-     "short": "Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to…",
-     "source": null
-    },
-    {
-     "name": "threejs-aaa-graphics-builder",
-     "short": "Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, techni…",
-     "source": null
-    },
-    {
-     "name": "threejs-audio-generator",
-     "short": "Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapo…",
-     "source": null
-    },
-    {
-     "name": "threejs-debug-profiler",
-     "short": "Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw call…",
-     "source": null
-    },
-    {
-     "name": "threejs-game-director",
-     "short": "Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidel…",
-     "source": null
-    },
-    {
-     "name": "threejs-game-ui-designer",
-     "short": "Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe a…",
-     "source": null
-    },
-    {
-     "name": "threejs-gameplay-systems",
-     "short": "Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/e…",
-     "source": null
-    },
-    {
-     "name": "threejs-image-generator",
-     "short": "Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/backgr…",
-     "source": null
-    },
-    {
-     "name": "threejs-qa-release",
-     "short": "Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, sta…",
-     "source": null
-    },
-    {
-     "name": "using-git-worktrees",
-     "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…",
-     "source": null
-    },
-    {
-     "name": "using-superpowers",
-     "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
-     "source": null
-    },
-    {
-     "name": "verification-before-completion",
-     "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…",
-     "source": null
-    },
-    {
-     "name": "web-artifacts-builder",
-     "short": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for…",
-     "source": null
-    },
-    {
-     "name": "web-design-guidelines",
-     "short": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site …",
-     "source": null
-    },
-    {
-     "name": "webapp-testing",
-     "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
-     "source": null
-    },
-    {
-     "name": "writing-plans",
-     "short": "Use when you have a spec or requirements for a multi-step task, before touching code",
-     "source": null
-    },
-    {
-     "name": "writing-skills",
-     "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-     "source": null
-    },
-    {
-     "name": "xlsx",
-     "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…",
-     "source": null
+     "id": "local",
+     "title": "Авторські локальні",
+     "repo": null,
+     "dir": null,
+     "marketplace": false,
+     "note": "Публічного канонічного джерела немає (для emil-design-eng і humanizer існують лише дзеркала-агрегатори) — скіли живуть локально на машині автора.",
+     "skills": [
+      {
+       "name": "emil-design-eng",
+       "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great."
+      },
+      {
+       "name": "graphify",
+       "short": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul…"
+      },
+      {
+       "name": "humanizer",
+       "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…"
+      },
+      {
+       "name": "model-orchestration",
+       "short": "Use when a multi-step task can be split so a stronger model plans and cheaper models execute — dispatching exec-haiku / exec-sonnet / exec-opus executors or a f…"
+      }
+     ]
     }
    ],
-   "skillCount": 52,
-   "uniqueCount": 52
-  },
-  {
-   "group": "project",
-   "title": "Проєктні скіли (приватні репозиторії)",
-   "repo": null,
-   "addCmd": null,
-   "plugins": [],
-   "skills": [
-    {
-     "name": "deploy-checklist",
-     "short": "проєктний скіл — Rayfin Operational Monitoring (приватний)",
-     "source": null
-    },
-    {
-     "name": "policy-review",
-     "short": "проєктний скіл — Rayfin Operational Monitoring (приватний)",
-     "source": null
-    }
-   ],
-   "skillCount": 2,
-   "uniqueCount": 2
+   "skillCount": 53,
+   "uniqueCount": 53
   }
  ]
 }
