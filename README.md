@@ -38,6 +38,22 @@ Skills cross-reference each other across plugin boundaries (123 references).
 **Installing all nine plugins is recommended.** Partial installs degrade
 gracefully — a reference to an absent skill simply does not load.
 
+## Agents and hooks
+
+Beyond skills, two plugins ship extras — disclosed here because hooks run
+automatically on your machine after installation:
+
+- `pbi-report-ux` ships a **PostToolUse hook**: after any edit inside
+  `*.Report/`, it re-parses `report.json` (outer JSON + nested config strings)
+  and checks sibling-bookmark symmetry (`targetVisualNames` counts,
+  `suppressData`). Read-only, silent when clean, feeds findings back to Claude
+  when broken. Skips silently if `python` is not on PATH.
+  Source: `plugins/pbi-report-ux/hooks/` — three small readable files.
+- `pbi-quality` ships the **`report-design-reviewer` agent** and
+  `report-storytelling` ships the **`claim-auditor` agent** — independent
+  read-only reviewers (Read/Grep/Glob, sonnet) for fresh-eyes QA that cannot
+  edit your files.
+
 ## Conventions
 
 - SKILL.md ≤ ~100 lines, depth in `reference.md` (progressive disclosure).

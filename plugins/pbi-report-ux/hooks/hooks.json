@@ -1,0 +1,18 @@
+{
+  "description": "After any Edit/Write inside *.Report/, re-parses report.json (outer JSON, nested config strings) and checks sibling-bookmark symmetry (targetVisualNames count, suppressData). Silent when clean; exits 2 with a message when broken. Skips silently if python is unavailable.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/validate-report.sh\"",
+            "timeout": 15,
+            "if": "Edit(**/*.Report/**)"
+          }
+        ]
+      }
+    ]
+  }
+}

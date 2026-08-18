@@ -14,7 +14,7 @@
       "name": "pbi-report-ux",
       "source": "./plugins/pbi-report-ux",
       "description": "Page-level UX of a Power BI report: layout, navigation, slicers and filter panels, drillthrough, tooltips, mobile — plus bookmark/visibility mechanics.",
-      "version": "0.1.1"
+      "version": "0.1.2"
     },
     {
       "name": "pbi-design-language",
@@ -26,13 +26,13 @@
       "name": "pbi-quality",
       "source": "./plugins/pbi-quality",
       "description": "Whether the report is right: chart choice strategy, evidence-gated design review, approval-gated redesign process, human-language test cases.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "report-storytelling",
       "source": "./plugins/report-storytelling",
       "description": "What a report page ASSERTS: message-first headlines, comparison bases, annotation, honesty ledger — plus Ukrainian grammar of code-assembled UI strings.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "dax-craft",
