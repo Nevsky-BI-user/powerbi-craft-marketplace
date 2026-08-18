@@ -10,6 +10,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  PYTHONUTF8: "1"
+
 concurrency:
   group: pages
   cancel-in-progress: true
