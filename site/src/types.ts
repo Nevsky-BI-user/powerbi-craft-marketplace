@@ -28,3 +28,31 @@ export interface Catalog {
   plugins: Plugin[];
   changelog: ChangelogEntry[];
 }
+
+export interface InvSkill {
+  name: string;
+  short: string;
+  source?: string | null;
+}
+
+export interface InvPlugin {
+  name: string;
+  installCmd: string;
+  skills: InvSkill[];
+}
+
+export interface InvGroup {
+  group: "anthropic" | "microsoft" | "goblin" | "standalone" | "project";
+  title: string;
+  repo: string | null;
+  addCmd: string | null;
+  plugins: InvPlugin[];
+  skills?: InvSkill[];
+  skillCount: number;
+  uniqueCount: number;
+}
+
+export interface Inventory {
+  snapshotDate: string;
+  groups: InvGroup[];
+}

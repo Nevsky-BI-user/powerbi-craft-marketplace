@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import catalogJson from "./catalog.json";
-import type { Catalog, Plugin } from "./types";
+import inventoryJson from "./inventory.json";
+import type { Catalog, Inventory, Plugin } from "./types";
 import { CopyRow } from "./components/Copy";
 import { PluginSection } from "./components/PluginSection";
+import { InventorySection } from "./components/InventorySection";
 import { InstallAll } from "./components/InstallAll";
 import { HowTo } from "./components/HowTo";
 import { WhatsNew } from "./components/WhatsNew";
 import { fetchCounts, topSkills, telemetryOn, track } from "./telemetry";
 
 const catalog = catalogJson as Catalog;
+const inventory = inventoryJson as Inventory;
 
 function matches(q: string, hay: string): boolean {
   return hay.toLowerCase().includes(q);
@@ -117,6 +120,7 @@ export default function App() {
         ))}
       </section>
 
+      <InventorySection inventory={inventory} q={q} />
       <InstallAll catalog={catalog} />
       <HowTo catalog={catalog} />
       <WhatsNew entries={catalog.changelog} />

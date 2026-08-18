@@ -16,6 +16,16 @@
   --warn-text: #633806;
   --pop-bg: #fbeaf0;
   --pop-text: #72243e;
+  --g-anthropic-bg: #f1efe8;
+  --g-anthropic-text: #444441;
+  --g-microsoft-bg: #e6f1fb;
+  --g-microsoft-text: #0c447c;
+  --g-goblin-bg: #e1f5ee;
+  --g-goblin-text: #085041;
+  --g-standalone-bg: #faece7;
+  --g-standalone-text: #712b13;
+  --g-project-bg: #fbeaf0;
+  --g-project-text: #72243e;
   --mono: ui-monospace, "Cascadia Code", Consolas, "Courier New", monospace;
 }
 
@@ -38,6 +48,16 @@
     --warn-text: #fac775;
     --pop-bg: #72243e;
     --pop-text: #f4c0d1;
+    --g-anthropic-bg: #444441;
+    --g-anthropic-text: #d3d1c7;
+    --g-microsoft-bg: #0c447c;
+    --g-microsoft-text: #b5d4f4;
+    --g-goblin-bg: #085041;
+    --g-goblin-text: #9fe1cb;
+    --g-standalone-bg: #712b13;
+    --g-standalone-text: #f5c4b3;
+    --g-project-bg: #72243e;
+    --g-project-text: #f4c0d1;
   }
 }
 
@@ -136,6 +156,26 @@ button.chip.open { border: 1.5px solid var(--accent); font-weight: 600; }
 .skillcard details { margin-top: 10px; }
 .skillcard summary { cursor: pointer; font-size: 13px; color: var(--accent); }
 .skillcard details .copyrow { margin-top: 8px; }
+
+.chip.g-anthropic { background: var(--g-anthropic-bg); color: var(--g-anthropic-text); }
+.chip.g-microsoft { background: var(--g-microsoft-bg); color: var(--g-microsoft-text); }
+.chip.g-goblin { background: var(--g-goblin-bg); color: var(--g-goblin-text); }
+.chip.g-standalone { background: var(--g-standalone-bg); color: var(--g-standalone-text); }
+.chip.g-project { background: var(--g-project-bg); color: var(--g-project-text); }
+.badge.gdot { font-weight: 600; }
+.badge.g-anthropic { background: var(--g-anthropic-bg); color: var(--g-anthropic-text); }
+.badge.g-microsoft { background: var(--g-microsoft-bg); color: var(--g-microsoft-text); }
+.badge.g-goblin { background: var(--g-goblin-bg); color: var(--g-goblin-text); }
+.badge.g-standalone { background: var(--g-standalone-bg); color: var(--g-standalone-text); }
+.badge.g-project { background: var(--g-project-bg); color: var(--g-project-text); }
+.legend { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 4px; }
+.legend-chip { cursor: default; }
+span.chip {
+  background: var(--chip-bg); color: var(--chip-text);
+  border: 1px solid transparent; border-radius: 20px;
+  padding: 4px 13px; font-size: 13.5px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
 
 .tabs { display: flex; gap: 8px; margin: 12px 0; }
 button.tab {
