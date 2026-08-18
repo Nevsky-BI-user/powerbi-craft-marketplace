@@ -38,6 +38,14 @@ Skills cross-reference each other across plugin boundaries (123 references).
 **Installing all nine plugins is recommended.** Partial installs degrade
 gracefully — a reference to an absent skill simply does not load.
 
+## Requirements
+
+Skills and agents: none — any Claude Code install. The report-validation hook
+additionally expects **bash** (on Windows: Git Bash, which Claude Code uses
+anyway) and **python 3** (`python`, `python3` or the `py` launcher — if none is
+found the hook silently does nothing). Disable hooks any time with
+`POWERBI_CRAFT_HOOKS=0`.
+
 ## Agents and hooks
 
 Beyond skills, two plugins ship extras — disclosed here because hooks run

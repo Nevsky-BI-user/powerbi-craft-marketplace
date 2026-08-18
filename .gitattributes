@@ -1,0 +1,6 @@
+# Хуки виконуються bash-ем: CRLF у *.sh ламає їх на Windows-checkout
+# з autocrlf=true («\r: command not found» на кожній правці звіту).
+*.sh text eol=lf
+*.py text eol=lf
+*.md text
+*.json text

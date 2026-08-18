@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# PostToolUse: stdin = hook JSON. Діє лише на report.json; без python — тихий пас.
+# PostToolUse: stdin = hook JSON. Діє лише на report.json.
+# Вимикач: POWERBI_CRAFT_HOOKS=0. Без python — тихий пас.
 set -u
+[ "${POWERBI_CRAFT_HOOKS:-1}" = "0" ] && exit 0
 payload=$(cat)
 f=$(printf '%s' "$payload" | { command -v jq >/dev/null 2>&1 && jq -r '.tool_input.file_path // .tool_response.filePath // empty'; } 2>/dev/null)
 if [ -z "${f:-}" ]; then
@@ -10,6 +12,13 @@ case "${f:-}" in
   *report.json) ;;
   *) exit 0 ;;
 esac
-PY=$(command -v python || command -v python3 || true)
-[ -z "$PY" ] && exit 0
-"$PY" "${CLAUDE_PLUGIN_ROOT}/hooks/check_report.py" "$f"
+# python: звичайний -> python3 -> Windows-лаунчер py -3
+# (на Windows "python" часто є заглушкою Microsoft Store)
+if command -v python >/dev/null 2>&1 && python -c "" >/dev/null 2>&1; then
+  exec python "${CLAUDE_PLUGIN_ROOT}/hooks/check_report.py" "$f"
+elif command -v python3 >/dev/null 2>&1; then
+  exec python3 "${CLAUDE_PLUGIN_ROOT}/hooks/check_report.py" "$f"
+elif command -v py >/dev/null 2>&1; then
+  exec py -3 "${CLAUDE_PLUGIN_ROOT}/hooks/check_report.py" "$f"
+fi
+exit 0

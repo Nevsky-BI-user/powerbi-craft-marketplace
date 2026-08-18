@@ -1,0 +1,44 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - run: python scripts/validate_repo.py
+      - name: pipe-test report hook (fixtures)
+        shell: bash
+        run: |
+          export CLAUDE_PLUGIN_ROOT="$PWD/plugins/pbi-report-ux"
+          mkdir -p /tmp/fx/x.Report
+          python - <<'PY'
+          import json, io
+          cfg_bad = json.dumps({"bookmarks":[{"displayName":"Tabs","children":[
+              {"displayName":"A","options":{"targetVisualNames":["v1","v2"],"suppressData":True}},
+              {"displayName":"B","options":{"targetVisualNames":["v3"]}}]}]})
+          io.open("/tmp/fx/x.Report/asym_report.json","w",encoding="utf-8").write(
+              json.dumps({"config":cfg_bad,"sections":[]}))
+          io.open("/tmp/fx/x.Report/ok_report.json","w",encoding="utf-8").write(
+              json.dumps({"config":"{}","sections":[]}))
+          PY
+          printf '{"tool_input":{"file_path":"/tmp/fx/x.Report/ok_report.json"}}' \
+            | bash plugins/pbi-report-ux/hooks/validate-report.sh
+          test $? -eq 0
+          set +e
+          printf '{"tool_input":{"file_path":"/tmp/fx/x.Report/asym_report.json"}}' \
+            | bash plugins/pbi-report-ux/hooks/validate-report.sh
+          rc=$?
+          set -e
+          test $rc -eq 2

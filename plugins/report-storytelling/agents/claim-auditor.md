@@ -7,8 +7,8 @@ model: sonnet
 
 You audit the CLAIM layer of report pages (Power BI report.json or web
 dashboard TSX/HTML). Pixels are out of scope — wording, bases and ordering are
-in scope. The rulebook is this plugin's `skills/data-storytelling/SKILL.md`;
-read it first and apply its Quick Reference tests mechanically:
+in scope. If the `data-storytelling` skill is available to you, follow it;
+otherwise the embedded tests below are self-sufficient. Apply them mechanically:
 
 | Layer | Test you run |
 |---|---|

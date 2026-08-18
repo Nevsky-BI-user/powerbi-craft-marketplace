@@ -1,7 +1,7 @@
 {
   "name": "pbi-report-ux",
   "description": "Page-level UX of a Power BI report: layout, navigation, slicers and filter panels, drillthrough, tooltips, mobile — plus bookmark/visibility mechanics.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }
