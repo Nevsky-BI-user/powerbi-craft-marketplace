@@ -1,0 +1,8 @@
+{
+  "name": "project-bootstrap",
+  "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Vitaliy Korinevskiy"
+  }
+}

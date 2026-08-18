@@ -1,0 +1,48 @@
+# .gitattributes для PBIP-репозиторію.
+#
+# Навіщо: Power BI Desktop пише файли з CRLF. Без цих правил кожен клон на іншій
+# машині дає diff на весь файл через самі лише кінці рядків — а у PBIR-Legacy,
+# де секція звіту це один рядок на 15 МБ, такий diff перетворюється на конфлікт,
+# який руками не розводиться.
+
+* text=auto
+
+# ─── Файли Power BI: фіксований CRLF, щоб Desktop не переписував їх при збереженні
+*.tmdl      text eol=crlf
+*.json      text eol=crlf
+*.pbip      text eol=crlf
+*.pbir      text eol=crlf
+*.pbism     text eol=crlf
+*.platform  text eol=crlf
+
+# ─── Супровідні файли
+*.md        text eol=lf
+*.ps1       text eol=crlf
+*.py        text eol=lf
+*.yml       text eol=lf
+
+# ─── Бінарне: не намагатись мержити й не показувати як текст
+*.abf   binary
+*.pbix  binary
+*.pbit  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ttf   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
+
+# ─── Згенеровані Desktop файли: при конфлікті беремо свою версію цілком.
+# Це автоматизує те, що інакше довелось би робити руками через
+# `git checkout --ours <file>` — Desktop однаково перегенерує ці файли.
+# Драйвер треба ввімкнути один раз на кожен клон:
+#     git config merge.ours.driver true
+**/diagramLayout.json       merge=ours
+**/cultures/*.tmdl          merge=ours
+**/.pbi/editorSettings.json merge=ours
+
+# ─── Мова для підсвітки й статистики GitHub
+*.tmdl linguist-language=TMDL
+*.dax  linguist-language=DAX

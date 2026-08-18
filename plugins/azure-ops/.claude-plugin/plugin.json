@@ -1,0 +1,8 @@
+{
+  "name": "azure-ops",
+  "description": "Azure operations adjacent to BI work: cost analysis, диагностика, RBAC.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Vitaliy Korinevskiy"
+  }
+}

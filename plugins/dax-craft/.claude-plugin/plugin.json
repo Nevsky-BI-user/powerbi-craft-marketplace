@@ -1,0 +1,8 @@
+{
+  "name": "dax-craft",
+  "description": "The calculation language and code-rendered visuals: DAX measures, SVG measures, Deneb/Vega-Lite specs, automated DAX regression tests.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Vitaliy Korinevskiy"
+  }
+}
