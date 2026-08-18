@@ -68,7 +68,17 @@ body {
   line-height: 1.55;
 }
 
-.container { max-width: 1000px; margin: 0 auto; padding: 0 20px 64px; }
+.container { max-width: 1560px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px) 64px; }
+
+/* Сітка карток: на широких екранах 2–3 колонки, на вузьких — одна */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
+  gap: 14px;
+  align-items: start;
+  margin: 14px 0;
+}
+.cards-grid .plugin { margin: 0; }
 
 a { color: var(--accent); }
 
@@ -218,4 +228,12 @@ button.totop:hover { border-color: var(--accent); color: var(--text); }
   .metrics { gap: 8px; }
   .metric { min-width: calc(50% - 8px); }
   h1 { font-size: 24px; }
+}
+
+/* Вузькі екрани: навігація — один рядок із горизонтальною прокруткою */
+@media (max-width: 700px) {
+  .topnav .navrow { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .topnav .navrow::-webkit-scrollbar { display: none; }
+  .topnav .navrow button { flex-shrink: 0; }
+  [id] { scroll-margin-top: 108px; }
 }

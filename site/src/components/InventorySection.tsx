@@ -203,6 +203,7 @@ export function StandaloneSection(props: { group: InvGroup }) {
         Більшість — із публічних репозиторіїв: нижче кожне джерело з командою підключення
         або промптом встановлення на картці скіла. Де публічного джерела немає — так і написано.
       </p>
+      <div className="cards-grid">
       {sources.map((src) => (
         <div className="plugin inv-standalone" key={src.id}>
           <div className="plugin-head">
@@ -230,6 +231,7 @@ export function StandaloneSection(props: { group: InvGroup }) {
           />
         </div>
       ))}
+      </div>
     </section>
   );
 }

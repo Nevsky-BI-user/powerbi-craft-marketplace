@@ -220,17 +220,19 @@ export default function App() {
           Маркетплейс автора: {catalog.totals.plugins} плагінів, {pluralSkills(catalog.totals.skills)},{" "}
           {agentCount} субагенти, {hookPlugins} плагін із хуком автоперевірки.
         </p>
-        {visible.map((p) => (
-          <PluginSection
-            key={p.name}
-            plugin={p}
-            repo={mp.repo}
-            mpName={mp.name}
-            openSkill={openSkill}
-            onToggle={toggle}
-            popular={popular}
-          />
-        ))}
+        <div className="cards-grid">
+          {visible.map((p) => (
+            <PluginSection
+              key={p.name}
+              plugin={p}
+              repo={mp.repo}
+              mpName={mp.name}
+              openSkill={openSkill}
+              onToggle={toggle}
+              popular={popular}
+            />
+          ))}
+        </div>
       </section>
 
       {invFiltered
