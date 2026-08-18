@@ -6,7 +6,7 @@
  },
  "totals": {
   "plugins": 9,
-  "skills": 51
+  "skills": 52
  },
  "plugins": [
   {
@@ -771,11 +771,13 @@
   },
   {
    "name": "project-bootstrap",
-   "version": "0.1.0",
-   "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint.",
+   "version": "0.1.1",
+   "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
    "tagline": "старт проєктів",
    "hasHooks": false,
-   "agents": [],
+   "agents": [
+    "ux-baseline-auditor"
+   ],
    "skills": [
     {
      "name": "claude-md-bootstrap",
@@ -818,6 +820,21 @@
       "розгорни райфін",
       "перенеси середовище розробки",
       "fabricapps.net"
+     ]
+    },
+    {
+     "name": "react-ux-mechanics",
+     "short": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame).",
+     "description": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - \"живі підказки\", \"дровер\", \"липка шапка\", \"анімації графіків\", \"оптимістичне збереження\", \"React.lazy\", \"скелетон\", \"місяць в URL\".",
+     "triggers": [
+      "живі підказки",
+      "дровер",
+      "липка шапка",
+      "анімації графіків",
+      "оптимістичне збереження",
+      "React.lazy",
+      "скелетон",
+      "місяць в URL"
      ]
     }
    ]

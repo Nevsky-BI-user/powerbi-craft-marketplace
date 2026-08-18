@@ -1,0 +1,125 @@
+/* Портована анімаційна система (react-ux-mechanics).
+   Tailwind 4: лишити @layer components. Без Tailwind — прибрати обгортку @layer.
+   Всі анімації суто декоративні: кожна має guard prefers-reduced-motion.
+   Каскад появи задається на елементі: style={{ animationDelay: `${i * 26}ms` }}. */
+
+@layer components {
+  /* Поява блоків: легкий підйом. backwards — щоб до старту (при delay)
+     блок не блимав у кінцевому стані. */
+  .anim-rise {
+    animation: rise 480ms cubic-bezier(0.22, 0.8, 0.36, 1) backwards;
+  }
+  @keyframes rise {
+    from { opacity: 0; translate: 0 10px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-rise { animation: none; }
+  }
+
+  /* Стовпчик/кільце виростає знизу вгору — значення ніби домальовується.
+     УВАГА: клас задає transform — на елементі з власним transform
+     (напр. -rotate-90 на svg кільця) вішати на ОБГОРТКУ, інакше конфлікт. */
+  .anim-grow {
+    animation: grow 520ms cubic-bezier(0.22, 0.8, 0.36, 1) backwards;
+    transform-origin: bottom;
+  }
+  @keyframes grow {
+    from { transform: scaleY(0.02); }
+    to { transform: scaleY(1); }
+  }
+
+  /* Горизонтальні смуги (план/факт, повнота) — заповнення зліва направо. */
+  .anim-fill {
+    animation: fill 520ms cubic-bezier(0.22, 0.8, 0.36, 1) backwards;
+    transform-origin: left;
+  }
+  @keyframes fill {
+    from { transform: scaleX(0.02); }
+    to { transform: scaleX(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-grow,
+    .anim-fill { animation: none; }
+  }
+
+  /* Лінія «малює себе»: працює В ПАРІ з pathLength={1} на самому SVG-елементі
+     (polyline/path/circle) — довжина нормована до 1, нічого не міряти в JS.
+     forwards — після анімації лінія повністю промальована. */
+  .anim-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-line 800ms cubic-bezier(0.4, 0.6, 0.3, 1) forwards;
+  }
+  @keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Мʼяка поява допоміжного (пунктир плану, підписи, легенда) — ПІСЛЯ
+     головної лінії/стовпчиків (базова затримка 450ms). */
+  .anim-fade {
+    animation: fade-in 420ms ease 450ms backwards;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-draw {
+      animation: none;
+      stroke-dashoffset: 0; /* без цього лінія лишилась би невидимою */
+    }
+    .anim-fade { animation: none; }
+  }
+
+  /* Дровер деталей: панель виїжджає справа, тло проступає. */
+  .drawer-in {
+    animation: drawer-in 280ms cubic-bezier(0.22, 0.8, 0.36, 1);
+  }
+  @keyframes drawer-in {
+    from { translate: 24px 0; opacity: 0; }
+    to { translate: 0 0; opacity: 1; }
+  }
+  .drawer-fade {
+    animation: drawer-fade 240ms ease;
+  }
+  @keyframes drawer-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-in,
+    .drawer-fade { animation: none; }
+  }
+
+  /* Підсвітка рядка, до якого привів deep-link (?focus=…): спалах згасає.
+     Токен --color-azure-soft — зі своєї теми; fallback — блакить Naftogaz. */
+  .row-flash {
+    animation: row-flash 2.4s ease;
+  }
+  @keyframes row-flash {
+    0%, 55% { background-color: var(--color-azure-soft, #e3f4fc); }
+    100% { background-color: transparent; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .row-flash { animation: none; }
+  }
+
+  /* Підняття картки під курсором. НЕ поєднувати з Tailwind-утилітами
+     transition-*/duration-* на тому ж елементі: шар utilities пізніший і
+     повністю перебиває transition-property, гасячи ефект без помилки. */
+  .card-lift {
+    transition:
+      translate 200ms ease,
+      box-shadow 200ms ease,
+      border-color 200ms ease;
+  }
+  .card-lift:hover {
+    translate: 0 -2px;
+    box-shadow: 0 8px 24px rgb(12 55 94 / 0.1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card-lift { transition: none; }
+    .card-lift:hover { translate: none; }
+  }
+}

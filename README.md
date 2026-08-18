@@ -29,7 +29,7 @@ claude plugin install pbi-visuals@powerbi-craft
 | `dax-craft` | 4 | DAX measures, SVG measures, Deneb/Vega-Lite, DAX regression tests |
 | `pbip-devops` | 5 | PBIP scaffold, deploy, PR review, release notes, Fabric CLI |
 | `azure-ops` | 3 | cost, diagnostics, RBAC |
-| `project-bootstrap` | 3 | CLAUDE.md bootstrap, Rayfin platform bootstrap, data-entry app blueprint |
+| `project-bootstrap` | 4 | CLAUDE.md bootstrap, Rayfin platform bootstrap, data-entry app blueprint, React SPA UX baseline |
 
 ## Це один організм / One organism
 
@@ -63,10 +63,10 @@ automatically on your machine after installation:
   `suppressData`). Read-only, silent when clean, feeds findings back to Claude
   when broken. Skips silently if `python` is not on PATH.
   Source: `plugins/pbi-report-ux/hooks/` — three small readable files.
-- `pbi-quality` ships the **`report-design-reviewer` agent** and
-  `report-storytelling` ships the **`claim-auditor` agent** — independent
-  read-only reviewers (Read/Grep/Glob, sonnet) for fresh-eyes QA that cannot
-  edit your files.
+- `pbi-quality` ships the **`report-design-reviewer` agent**,
+  `report-storytelling` ships the **`claim-auditor` agent**, and
+  `project-bootstrap` ships the **`ux-baseline-auditor` agent** — independent
+  read-only reviewers (sonnet) for fresh-eyes QA that cannot edit your files.
 
 ## Conventions
 

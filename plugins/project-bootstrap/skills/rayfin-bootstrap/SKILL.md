@@ -102,6 +102,12 @@ npx @microsoft/rayfin-cli init --template blankapp --workspace-id <ws-guid> --it
 - **Скіли-процедури** `.claude/skills/`: `policy-review` (аудит політик перед
   деплоєм), `deploy-checklist` (деструктивна зміна схеми = стоп і явне
   підтвердження користувача; порядок БД → фронт → імпорт довідника).
+- **UX-база фронтенду з першого дня** — скіл [[react-ux-mechanics]]:
+  animations.css (всі класи з guard reduced-motion), lazy-маршрути +
+  ErrorBoundary навколо Outlet, HoverTip замість `title`, скелетони,
+  демо-банер. Портовані компоненти лежать у `assets/` того скіла — копіювати
+  при скаффолді, а не «колись потім». Аудит уже наявного застосунку —
+  глобальний субагент `ux-baseline-auditor`.
 
 ## Еталонний проєкт
 

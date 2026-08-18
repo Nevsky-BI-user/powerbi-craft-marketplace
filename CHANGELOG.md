@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.5 — 2026-08-18
+
+- New skill `react-ux-mechanics` (project-bootstrap → 0.1.1): React SPA UX
+  baseline — portal tooltips, sticky table headers, entrance animations with
+  reduced-motion guards, error boundaries, lazy routes, optimistic saves,
+  URL state, skeletons, count-up numbers; ships assets/patterns.md with nine
+  ready recipes.
+- New agent `ux-baseline-auditor` (project-bootstrap): read-only audit of an
+  existing React app against that baseline; self-sufficient embedded
+  checklist.
+- Catalog site: full-environment inventory section (all skills of the
+  author's machine grouped by source with per-group colors).
+
 ## 0.1.4 — 2026-08-18
 
 Trigger coverage completed: all 51 skills now probed live.

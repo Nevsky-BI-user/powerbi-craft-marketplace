@@ -56,8 +56,8 @@
     {
       "name": "project-bootstrap",
       "source": "./plugins/project-bootstrap",
-      "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint.",
-      "version": "0.1.0"
+      "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
+      "version": "0.1.1"
     }
   ]
 }
