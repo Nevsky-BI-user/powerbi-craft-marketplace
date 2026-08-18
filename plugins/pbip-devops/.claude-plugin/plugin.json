@@ -1,7 +1,7 @@
 {
   "name": "pbip-devops",
   "description": "Git lifecycle of a PBIP project: scaffolding, deploy, PR review, release notes for business users, Fabric CLI operations.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }

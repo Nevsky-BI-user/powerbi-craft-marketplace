@@ -13,21 +13,12 @@ metadata:
 >
 > This document is the **official source** for debugging and troubleshooting Azure production issues. Follow these instructions to diagnose and resolve common Azure service problems systematically.
 
-## Triggers
+## When to Use
 
-Activate this skill when user wants to:
-- Debug or troubleshoot production issues
-- Diagnose errors in Azure services
-- Analyze application logs or metrics
-- Fix image pull, cold start, or health probe issues
-- Investigate why Azure resources are failing
-- Find root cause of application errors
-- Troubleshoot App Service issues (high CPU, deployment failures, crashes, slow responses, TLS/custom domains)
-- Respond to prompts like "troubleshoot app service", "app service high CPU", or "app service deployment failure"
-- Troubleshoot Azure Function Apps (invocation failures, timeouts, binding errors)
-- Find the App Insights or Log Analytics workspace linked to a Function App
-- Troubleshoot AKS clusters, nodes, pods, ingress, or Kubernetes networking issues
-- Troubleshoot Azure Messaging SDK issues (Event Hubs, Service Bus connection failures, AMQP errors, message lock issues)
+- Production issues in Azure: App Service, Container Apps, Function Apps, AKS,
+  Event Hubs / Service Bus — errors, logs, metrics, resource health, root cause.
+- NOT for: Azure cost analysis → `azure-cost`; roles/permissions → `azure-rbac`.
+- Full trigger-phrase list → reference.md §1.
 
 ## Rules
 
@@ -38,8 +29,6 @@ Activate this skill when user wants to:
 5. Document findings and attempted remediation steps
 6. Route AKS incidents to the dedicated AKS troubleshooting document
 
----
-
 ## Quick Diagnosis Flow
 
 1. **Identify symptoms** - What's failing?
@@ -47,8 +36,6 @@ Activate this skill when user wants to:
 3. **Review logs** - What do logs show?
 4. **Analyze metrics** - Performance patterns?
 5. **Investigate recent changes** - What changed?
-
----
 
 ## Troubleshooting Guides by Service
 
@@ -60,15 +47,11 @@ Activate this skill when user wants to:
 | **AKS** | Cluster access, nodes, `kube-system`, scheduling, crash loops, ingress, DNS, upgrades | [AKS Troubleshooting](troubleshooting/aks/aks-troubleshooting.md) |
 | **Messaging** | Event Hubs & Service Bus SDK errors, AMQP failures, message lock, connectivity | [Messaging Troubleshooting](troubleshooting/messaging/README.md) |
 
----
-
 ## Routing
 
 - Keep Container Apps and Function Apps diagnostics in this parent skill.
 - Route active AKS incidents, AKS-specific intake, evidence gathering, and remediation guidance to [AKS Troubleshooting](troubleshooting/aks/aks-troubleshooting.md).
 - Route Azure Messaging SDK troubleshooting (Event Hubs, Service Bus) to [Messaging Troubleshooting](troubleshooting/messaging/README.md).
-
----
 
 ## Quick Reference
 
@@ -86,64 +69,13 @@ az monitor app-insights query --apps APP-INSIGHTS -g RG \
   --analytics-query "traces | where timestamp > ago(1h) | order by timestamp desc | take 50"
 ```
 
-### AppLens (MCP Tools)
-
-For AI-powered diagnostics, use:
-```
-mcp_azure_mcp_applens
-  intent: "diagnose issues with <resource-name>"
-  command: "diagnose"
-  parameters:
-    resourceId: "<resource-id>"
-
-Provides:
-- Automated issue detection
-- Root cause analysis
-- Remediation recommendations
-```
-
-### Azure Monitor (MCP Tools)
-
-For querying logs and metrics:
-```
-mcp_azure_mcp_monitor
-  intent: "query logs for <resource-name>"
-  command: "logs_query"
-  parameters:
-    workspaceId: "<workspace-id>"
-    query: "<KQL-query>"
-```
-
-See [kql-queries.md](references/kql-queries.md) for common diagnostic queries.
-
----
-
-## Check Azure Resource Health
-
-### Using MCP
-
-```
-mcp_azure_mcp_resourcehealth
-  intent: "check health status of <resource-name>"
-  command: "get"
-  parameters:
-    resourceId: "<resource-id>"
-```
-
-### Using CLI
-
-```bash
-# Check specific resource health
-az resource show --ids RESOURCE_ID
-
-# Check recent activity
-az monitor activity-log list -g RG --max-events 20
-```
-
----
+MCP invocation templates: AppLens diagnose → reference.md §2, Azure Monitor
+logs_query → reference.md §3, Resource Health (MCP + CLI) → reference.md §4.
+KQL query library → [references/kql-queries.md](references/kql-queries.md).
 
 ## References
 
+- [reference.md](reference.md) — full trigger list (§1), MCP invocation templates (§2–§4)
 - [KQL Query Library](references/kql-queries.md)
 - [Azure Resource Graph Queries](references/azure-resource-graph.md)
 - [App Service Troubleshooting](references/app-service/README.md)
