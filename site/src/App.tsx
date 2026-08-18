@@ -25,7 +25,11 @@ function filterPlugin(p: Plugin, q: string): Plugin | null {
   if (!q) return p;
   if (matches(q, p.name) || matches(q, p.description)) return p;
   const skills = p.skills.filter(
-    (s) => matches(q, s.name) || matches(q, s.description) || s.triggers.some((t) => matches(q, t)),
+    (s) =>
+      matches(q, s.name) ||
+      matches(q, s.description) ||
+      (s.shortUk ? matches(q, s.shortUk) : false) ||
+      s.triggers.some((t) => matches(q, t)),
   );
   return skills.length ? { ...p, skills } : null;
 }

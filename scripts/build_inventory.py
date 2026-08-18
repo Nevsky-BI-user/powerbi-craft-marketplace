@@ -26,6 +26,10 @@ HOME = os.path.expanduser("~")
 CLAUDE = os.path.join(HOME, ".claude")
 OUT = os.path.join(ROOT, "site", "src", "inventory.json")
 
+# Українські короткі описи (спільний словник із build_catalog.py)
+UK_PATH = os.path.join(ROOT, "scripts", "uk_descriptions.json")
+UK = json.load(io.open(UK_PATH, encoding="utf-8")) if os.path.exists(UK_PATH) else {}
+
 MP_META = {
     "claude-plugins-official": {
         "group": "anthropic", "title": "Бандл Anthropic (офіційний маркетплейс)",
@@ -204,7 +208,8 @@ for mp_name, meta in MP_META.items():
         })
         if any(s["name"] == d["name"] for s in entry["skills"]):
             continue
-        entry["skills"].append({"name": d["name"], "short": short_desc(d.get("description"))})
+        entry["skills"].append({"name": d["name"], "short": short_desc(d.get("description")),
+                                "shortUk": UK.get(d["name"], "")})
     plugins = [seen_plugins[k] for k in sorted(seen_plugins)]
     unique = {s["name"] for p in plugins for s in p["skills"]}
     groups[meta["group"]] = {
@@ -228,7 +233,8 @@ for sk in sorted(glob.glob(os.path.join(CLAUDE, "skills", "*", "SKILL.md"))):
     if sid is None:
         unmapped.append(name)
         sid = "local"
-    by_source[sid].append({"name": name, "short": short_desc(d.get("description"))})
+    by_source[sid].append({"name": name, "short": short_desc(d.get("description")),
+                           "shortUk": UK.get(name, "")})
 
 sources = []
 for sid, meta in SOURCE_META.items():

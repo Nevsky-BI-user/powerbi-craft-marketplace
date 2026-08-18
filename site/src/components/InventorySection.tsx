@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import type { InvGroup, InvGroupId, InvPlugin, InvSkill, InvSource } from "../types";
 import { CopyRow } from "./Copy";
-import { pluralSkills } from "./PluginSection";
+import { pluralSkills, skillTip } from "./PluginSection";
 import { track } from "../telemetry";
 
 export const GROUP_LABELS: Record<InvGroupId, string> = {
@@ -12,7 +12,11 @@ export const GROUP_LABELS: Record<InvGroupId, string> = {
 };
 
 function skillMatches(q: string, s: InvSkill): boolean {
-  return s.name.toLowerCase().includes(q) || s.short.toLowerCase().includes(q);
+  return (
+    s.name.toLowerCase().includes(q) ||
+    s.short.toLowerCase().includes(q) ||
+    (s.shortUk ?? "").toLowerCase().includes(q)
+  );
 }
 
 /** Фільтр групи за пошуковим рядком; повертає групу лише з відповідними скілами. */
@@ -50,7 +54,7 @@ function MarketSkillCard(props: { skill: InvSkill; group: InvGroup; plugin: InvP
       <h3>
         {skill.name} <span className="meta">· плагін {plugin.name}</span>
       </h3>
-      {skill.short && <p className="desc">{skill.short}</p>}
+      {skillTip(skill) && <p className="desc">{skillTip(skill)}</p>}
       <CopyRow text={plugin.installCmd} kind="plugin" item={`${group.group}:${plugin.name}`} />
     </div>
   );
@@ -61,7 +65,7 @@ function StandaloneSkillCard(props: { skill: InvSkill; source: InvSource }) {
   return (
     <div className="skillcard">
       <h3>{skill.name}</h3>
-      {skill.short && <p className="desc">{skill.short}</p>}
+      {skillTip(skill) && <p className="desc">{skillTip(skill)}</p>}
       {source.repo ? (
         <>
           <p className="meta" style={{ margin: "0 0 8px" }}>
@@ -119,6 +123,7 @@ function ChipGrid<T>(props: {
             key={key}
             className={`chip ${groupClass}${open === key ? " open" : ""}`}
             aria-expanded={open === key}
+            data-tip={skillTip(skill) || undefined}
             onClick={() => {
               const next = open === key ? null : key;
               setOpen(next);

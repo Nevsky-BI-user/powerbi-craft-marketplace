@@ -90,6 +90,11 @@ def parse_changelog():
     return entries
 
 
+# Українські короткі описи скілів (кураторський словник, scripts/uk_descriptions.json);
+# скіли без запису чесно падають на англійський short у фронтенді
+UK_PATH = os.path.join(ROOT, "scripts", "uk_descriptions.json")
+UK = json.load(io.open(UK_PATH, encoding="utf-8")) if os.path.exists(UK_PATH) else {}
+
 # Порядок і склад плагінів — з marketplace.json (джерело істини), не з TAGLINES
 mp_manifest = json.load(io.open(
     os.path.join(ROOT, ".claude-plugin", "marketplace.json"), encoding="utf-8"))
@@ -111,6 +116,7 @@ for pname in plugin_order:
         skills.append({
             "name": d["name"],
             "short": short,
+            "shortUk": UK.get(d["name"], ""),
             "description": " ".join(str(d["description"]).split()),
             "triggers": triggers,
         })
@@ -140,7 +146,10 @@ catalog = {
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 io.open(OUT, "w", encoding="utf-8", newline="\n").write(
     json.dumps(catalog, ensure_ascii=False, indent=1))
+no_uk = [s["name"] for p in plugins for s in p["skills"] if not s["shortUk"]]
 print(f"catalog.json: {len(plugins)} плагінів, {total_skills} скілів, "
       f"{len(catalog['changelog'])} записів changelog")
+if no_uk:
+    print(f"без українського опису ({len(no_uk)}): " + ", ".join(no_uk))
 if total_skills < 40:
     sys.exit("ПІДОЗРІЛО МАЛО СКІЛІВ — перевір структуру plugins/")

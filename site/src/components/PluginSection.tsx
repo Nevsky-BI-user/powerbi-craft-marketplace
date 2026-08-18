@@ -9,6 +9,23 @@ export function pluralSkills(n: number): string {
   return `${n} скілів`;
 }
 
+export const PLUGIN_ICONS: Record<string, string> = {
+  "pbi-visuals": "📊",
+  "pbi-report-ux": "🧭",
+  "pbi-design-language": "🎨",
+  "pbi-quality": "🔍",
+  "report-storytelling": "📣",
+  "dax-craft": "🧮",
+  "pbip-devops": "🔀",
+  "azure-ops": "☁️",
+  "project-bootstrap": "🚀",
+};
+
+/** Опис для підказки/картки: український, якщо є, інакше оригінальний. */
+export function skillTip(s: { short: string; shortUk?: string }): string {
+  return s.shortUk || s.short;
+}
+
 function skillPrompt(plugin: string, skill: string, repo: string): string {
   return (
     `Встанови окремий скіл Claude Code «${skill}» з github.com/${repo}: ` +
@@ -29,7 +46,7 @@ function SkillCard(props: { plugin: Plugin; skill: Skill; repo: string; mpName: 
           <a href={`#${skill.name}`} aria-label={`Пряме посилання на ${skill.name}`}>#</a>
         </span>
       </h3>
-      <p className="desc">{skill.short}</p>
+      <p className="desc">{skillTip(skill)}</p>
       {skill.triggers.length > 0 && (
         <p className="triggers">Тригери: {skill.triggers.map((t) => `«${t}»`).join(", ")}</p>
       )}
@@ -59,6 +76,7 @@ export function PluginSection(props: {
   return (
     <section className="plugin">
       <div className="plugin-head">
+        <span className="picon" aria-hidden="true">{PLUGIN_ICONS[plugin.name] ?? "🧩"}</span>
         <h3>{plugin.name}</h3>
         <span className="badge ver">{plugin.version}</span>
         <span className="tagline">
@@ -71,7 +89,6 @@ export function PluginSection(props: {
           <span className="badge agent" title={`Субагенти: ${plugin.agents.join(", ")}`}>agent</span>
         )}
       </div>
-      <p className="plugin-desc">{plugin.description}</p>
       <CopyRow text={`claude plugin install ${plugin.name}@${mpName}`} kind="plugin" item={plugin.name} />
       <div className="chips">
         {plugin.skills.map((s) => (
@@ -80,6 +97,7 @@ export function PluginSection(props: {
             className={openSkill === s.name ? "chip open" : "chip"}
             onClick={() => onToggle(s.name)}
             aria-expanded={openSkill === s.name}
+            data-tip={skillTip(s)}
           >
             {s.name.replace(/^pbi-/, "")}
             {popular.has(s.name) && <span className="badge pop">топ</span>}

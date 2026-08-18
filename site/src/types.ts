@@ -1,6 +1,8 @@
 export interface Skill {
   name: string;
   short: string;
+  /** Український короткий опис (кураторський словник); "" — ще не перекладено. */
+  shortUk?: string;
   description: string;
   triggers: string[];
 }
@@ -32,6 +34,7 @@ export interface Catalog {
 export interface InvSkill {
   name: string;
   short: string;
+  shortUk?: string;
 }
 
 export interface InvPlugin {

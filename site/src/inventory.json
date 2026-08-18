@@ -13,7 +13,8 @@
      "skills": [
       {
        "name": "claude-automation-recommender",
-       "short": "Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills, plugins, MCP servers). Use when user asks for automation recommendations, wa…"
+       "short": "Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills, plugins, MCP servers). Use when user asks for automation recommendations, wa…",
+       "shortUk": "Аналізує кодову базу й рекомендує автоматизації Claude Code — хуки, субагенти, скіли, MCP-сервери"
       }
      ]
     },
@@ -23,7 +24,8 @@
      "skills": [
       {
        "name": "frontend-design",
-       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…"
+       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…",
+       "shortUk": "Настанови для виразного, продуманого візуального дизайну при побудові чи переробці UI — естетика, типографіка, обґрунтовані рішення"
       }
      ]
     },
@@ -33,7 +35,8 @@
      "skills": [
       {
        "name": "skill-creator",
-       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…"
+       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…",
+       "shortUk": "Створення нових скілів, редагування й оптимізація наявних, вимірювання їхньої ефективності"
       }
      ]
     },
@@ -43,59 +46,73 @@
      "skills": [
       {
        "name": "brainstorming",
-       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…"
+       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…",
+       "shortUk": "Досліджує намір користувача, вимоги й дизайн перед будь-якою творчою роботою над функціоналом"
       },
       {
        "name": "dispatching-parallel-agents",
-       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies"
+       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+       "shortUk": "Запускати кілька незалежних завдань паралельними агентами, коли між ними нема спільного стану чи послідовних залежностей"
       },
       {
        "name": "executing-plans",
-       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints"
+       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+       "shortUk": "Виконання письмового плану реалізації в окремій сесії з контрольними точками для рев'ю"
       },
       {
        "name": "finishing-a-development-branch",
-       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…"
+       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…",
+       "shortUk": "Допомагає визначитись, як інтегрувати завершену розробку, коли реалізацію зроблено й усі тести пройдено"
       },
       {
        "name": "receiving-code-review",
-       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …"
+       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …",
+       "shortUk": "Допомагає технічно оцінити фідбек код-рев'ю перед його впровадженням"
       },
       {
        "name": "requesting-code-review",
-       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements"
+       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+       "shortUk": "Перевіряє відповідність виконаної роботи вимогам перед мерджем"
       },
       {
        "name": "subagent-driven-development",
-       "short": "Use when executing implementation plans with independent tasks in the current session"
+       "short": "Use when executing implementation plans with independent tasks in the current session",
+       "shortUk": "Виконання плану реалізації з незалежними задачами в поточній сесії через субагентів"
       },
       {
        "name": "systematic-debugging",
-       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+       "shortUk": "Використовується при виявленні багів чи непередбаченої поведінки перед пропозицією виправлень"
       },
       {
        "name": "test-driven-development",
-       "short": "Use when implementing any feature or bugfix, before writing implementation code"
+       "short": "Use when implementing any feature or bugfix, before writing implementation code",
+       "shortUk": "Використовується при реалізації фічі чи фіксу бага перед написанням коду реалізації"
       },
       {
        "name": "using-git-worktrees",
-       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…"
+       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…",
+       "shortUk": "Робота з кількома git worktree одночасно — паралельні гілки в окремих теках"
       },
       {
        "name": "using-superpowers",
-       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions"
+       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+       "shortUk": "Пошук і використання скілів на початку розмови перед відповіддю"
       },
       {
        "name": "verification-before-completion",
-       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…"
+       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…",
+       "shortUk": "Перевірка результату роботи перед тим, як вважати задачу завершеною"
       },
       {
        "name": "writing-plans",
-       "short": "Use when you have a spec or requirements for a multi-step task, before touching code"
+       "short": "Use when you have a spec or requirements for a multi-step task, before touching code",
+       "shortUk": "Написання письмового плану реалізації перед виконанням"
       },
       {
        "name": "writing-skills",
-       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment"
+       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+       "shortUk": "Створення й перевірка нових скілів перед публікацією"
       }
      ]
     }
@@ -115,127 +132,158 @@
      "skills": [
       {
        "name": "activator-cli",
-       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…"
+       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…",
+       "shortUk": "Веде повний цикл Fabric Activator (Reflex): авторить правила, джерела й дії або читає готову конфігурацію ReflexEntities"
       },
       {
        "name": "azmon-mirroredcatalogs-operations-cli",
-       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …"
+       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …",
+       "shortUk": "Підключає дані Azure Monitor / Application Insights до Fabric і зіставляє телеметрію з бізнес-показниками"
       },
       {
        "name": "databricks-migration",
-       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…"
+       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…",
+       "shortUk": "Переносить ноутбуки та задачі Databricks у Microsoft Fabric з таблицею заміни dbutils на notebookutils"
       },
       {
        "name": "dataflows-cli",
-       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …"
+       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …",
+       "shortUk": "Авторить, перевіряє й апгрейдить Fabric Dataflow Gen2 — підключення, M-запити, історію оновлень"
       },
       {
        "name": "deployment-pipelines-authoring-cli",
-       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …"
+       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …",
+       "shortUk": "Автоматизує пайплайни розгортання Fabric — просування ALM між стадіями dev/test/prod через REST API"
       },
       {
        "name": "e2e-fabric-cost-estimation",
-       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…"
+       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…",
+       "shortUk": "Оцінює вартість Fabric-капасіті перед міграцією на основі аналізу навантаження Spark, SQL, Power BI, Real-Time Intelligence"
       },
       {
        "name": "e2e-medallion-architecture",
-       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…"
+       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…",
+       "shortUk": "Планування й реалізація наскрізної платформи даних Fabric і Medallion-архітектури (Bronze/Silver/Gold) на PySpark і Delta Lake"
       },
       {
        "name": "eventhouse-cli",
-       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…"
+       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…",
+       "shortUk": "Створення та запити до Fabric Eventhouse/KQL-баз: таблиці, функції, політики, матеріалізовані вʼюхи, ingestion і читання даних у реальному часі"
       },
       {
        "name": "eventschemaset-cli",
-       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…"
+       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…",
+       "shortUk": "Створення й інспекція Fabric Event Schema Sets — централізованих каталогів типів подій і схем повідомлень через REST API"
       },
       {
        "name": "eventstream-cli",
-       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…"
+       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…",
+       "shortUk": "Побудова й інспекція топологій Fabric Eventstream: джерела, оператори, приймачі, маршрутизація потоків, ретеншн і пропускна здатність"
       },
       {
        "name": "fabriciq-ontology-cli",
-       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…"
+       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…",
+       "shortUk": "Створення й дослідження елементів Fabric IQ Ontology: типи сутностей і звʼязків, привʼязки даних, схема, лінеедж, обхід графа"
       },
       {
        "name": "fabriciq",
-       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…"
+       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…",
+       "shortUk": "Відповідає на бізнес-питання природною мовою по наявних звітах і семантичних моделях Power BI через FabricIQ MCP"
       },
       {
        "name": "git-integration-operations-cli",
-       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…"
+       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…",
+       "shortUk": "Автоматизація життєвого циклу Git-інтеграції Microsoft Fabric з CLI через fab api або az rest"
       },
       {
        "name": "hdinsight-migration",
-       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…"
+       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…",
+       "shortUk": "Переносить кластери Azure HDInsight Spark і Hive-навантаження на Microsoft Fabric, замінюючи застарілі контексти Spark"
       },
       {
        "name": "pipeline-migration",
-       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…"
+       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…",
+       "shortUk": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory"
       },
       {
        "name": "search-consumption-cli",
-       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…"
+       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…",
+       "shortUk": "Шукає елементи в каталозі Microsoft Fabric за всіма воркспейсами через Catalog Search API"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "spark-cli",
-       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…"
+       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…",
+       "shortUk": "Авторинг, запуск і діагностика Fabric Spark — код у ноутбуках, Livy-сесії, SQL"
       },
       {
        "name": "sqldb-cli",
-       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…"
+       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…",
+       "shortUk": "Проєктування, читання й діагностика елемента Fabric SQL Database — схема, обмеження, індекси, sqlcmd"
       },
       {
        "name": "sqldw-cli",
-       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…"
+       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…",
+       "shortUk": "Авторинг, запити й діагностика Fabric Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "synapse-migration",
-       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…"
+       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…",
+       "shortUk": "Портування Spark-навантажень Azure Synapse Analytics на Microsoft Fabric"
       },
       {
        "name": "variable-library-cli",
-       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …"
+       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …",
+       "shortUk": "Керування бібліотекою змінних через CLI"
       },
       {
        "name": "activator-authoring-cli",
-       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…"
+       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…",
+       "shortUk": "Створює алерти, сповіщення й автоматичні дії для даних і подій Fabric через REST API та CLI `az rest`"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       },
       {
        "name": "dataflows-authoring-cli",
-       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…"
+       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…",
+       "shortUk": "Створює, оновлює й оновлює Fabric Dataflows Gen2 через REST API — будує mashup.pq і queryMetadata"
       },
       {
        "name": "dataflows-save-as-authoring-cli",
-       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…"
+       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…",
+       "shortUk": "Планує й виконує перехід Dataflow Gen1 у Gen2.1 CI/CD через Power BI та Fabric REST API"
       },
       {
        "name": "eventhouse-authoring-cli",
-       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …"
+       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …",
+       "shortUk": "Виконує KQL-команди керування (таблиці, ingestion, політики, функції, матеріалізовані вʼюхи) для Fabric Eventhouse через CLI"
       },
       {
        "name": "eventstream-authoring-cli",
-       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…"
+       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…",
+       "shortUk": "Створення й публікація топологій потокової передачі Fabric Eventstream через REST API — 25 типів джерел, приймачі, маршрутизація"
       },
       {
        "name": "fabriciq-ontology-authoring-cli",
-       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…"
+       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…",
+       "shortUk": "Створення й розвиток елементів Fabric IQ Ontology з CLI — типи сутностей, властивості, звʼязки, привʼязка до OneLake"
       },
       {
        "name": "spark-authoring-cli",
-       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…"
+       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…",
+       "shortUk": "Розробка Spark/data engineering робочих процесів Fabric і коду в комірках Notebook"
       },
       {
        "name": "sqldw-authoring-cli",
-       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…"
+       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…",
+       "shortUk": "Виконання авторингового T-SQL (DDL, DML, ingestion, транзакції) для Fabric Data Warehouse через CLI"
       }
      ]
     },
@@ -245,127 +293,158 @@
      "skills": [
       {
        "name": "activator-cli",
-       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…"
+       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…",
+       "shortUk": "Веде повний цикл Fabric Activator (Reflex): авторить правила, джерела й дії або читає готову конфігурацію ReflexEntities"
       },
       {
        "name": "azmon-mirroredcatalogs-operations-cli",
-       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …"
+       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …",
+       "shortUk": "Підключає дані Azure Monitor / Application Insights до Fabric і зіставляє телеметрію з бізнес-показниками"
       },
       {
        "name": "databricks-migration",
-       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…"
+       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…",
+       "shortUk": "Переносить ноутбуки та задачі Databricks у Microsoft Fabric з таблицею заміни dbutils на notebookutils"
       },
       {
        "name": "dataflows-cli",
-       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …"
+       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …",
+       "shortUk": "Авторить, перевіряє й апгрейдить Fabric Dataflow Gen2 — підключення, M-запити, історію оновлень"
       },
       {
        "name": "deployment-pipelines-authoring-cli",
-       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …"
+       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …",
+       "shortUk": "Автоматизує пайплайни розгортання Fabric — просування ALM між стадіями dev/test/prod через REST API"
       },
       {
        "name": "e2e-fabric-cost-estimation",
-       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…"
+       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…",
+       "shortUk": "Оцінює вартість Fabric-капасіті перед міграцією на основі аналізу навантаження Spark, SQL, Power BI, Real-Time Intelligence"
       },
       {
        "name": "e2e-medallion-architecture",
-       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…"
+       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…",
+       "shortUk": "Планування й реалізація наскрізної платформи даних Fabric і Medallion-архітектури (Bronze/Silver/Gold) на PySpark і Delta Lake"
       },
       {
        "name": "eventhouse-cli",
-       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…"
+       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…",
+       "shortUk": "Створення та запити до Fabric Eventhouse/KQL-баз: таблиці, функції, політики, матеріалізовані вʼюхи, ingestion і читання даних у реальному часі"
       },
       {
        "name": "eventschemaset-cli",
-       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…"
+       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…",
+       "shortUk": "Створення й інспекція Fabric Event Schema Sets — централізованих каталогів типів подій і схем повідомлень через REST API"
       },
       {
        "name": "eventstream-cli",
-       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…"
+       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…",
+       "shortUk": "Побудова й інспекція топологій Fabric Eventstream: джерела, оператори, приймачі, маршрутизація потоків, ретеншн і пропускна здатність"
       },
       {
        "name": "fabriciq-ontology-cli",
-       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…"
+       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…",
+       "shortUk": "Створення й дослідження елементів Fabric IQ Ontology: типи сутностей і звʼязків, привʼязки даних, схема, лінеедж, обхід графа"
       },
       {
        "name": "fabriciq",
-       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…"
+       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…",
+       "shortUk": "Відповідає на бізнес-питання природною мовою по наявних звітах і семантичних моделях Power BI через FabricIQ MCP"
       },
       {
        "name": "git-integration-operations-cli",
-       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…"
+       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…",
+       "shortUk": "Автоматизація життєвого циклу Git-інтеграції Microsoft Fabric з CLI через fab api або az rest"
       },
       {
        "name": "hdinsight-migration",
-       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…"
+       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…",
+       "shortUk": "Переносить кластери Azure HDInsight Spark і Hive-навантаження на Microsoft Fabric, замінюючи застарілі контексти Spark"
       },
       {
        "name": "pipeline-migration",
-       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…"
+       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…",
+       "shortUk": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory"
       },
       {
        "name": "search-consumption-cli",
-       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…"
+       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…",
+       "shortUk": "Шукає елементи в каталозі Microsoft Fabric за всіма воркспейсами через Catalog Search API"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "spark-cli",
-       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…"
+       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…",
+       "shortUk": "Авторинг, запуск і діагностика Fabric Spark — код у ноутбуках, Livy-сесії, SQL"
       },
       {
        "name": "sqldb-cli",
-       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…"
+       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…",
+       "shortUk": "Проєктування, читання й діагностика елемента Fabric SQL Database — схема, обмеження, індекси, sqlcmd"
       },
       {
        "name": "sqldw-cli",
-       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…"
+       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…",
+       "shortUk": "Авторинг, запити й діагностика Fabric Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "synapse-migration",
-       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…"
+       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…",
+       "shortUk": "Портування Spark-навантажень Azure Synapse Analytics на Microsoft Fabric"
       },
       {
        "name": "variable-library-cli",
-       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …"
+       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …",
+       "shortUk": "Керування бібліотекою змінних через CLI"
       },
       {
        "name": "activator-consumption-cli",
-       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…"
+       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…",
+       "shortUk": "Переглядає наявні алерти, сповіщення й автоматичні дії Fabric лише для читання через `az rest`"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       },
       {
        "name": "dataflows-consumption-cli",
-       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…"
+       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…",
+       "shortUk": "Переглядає збережені Fabric Dataflows Gen2 лише для читання — декодує mashup.pq, queryMetadata, .platform"
       },
       {
        "name": "eventhouse-consumption-cli",
-       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …"
+       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …",
+       "shortUk": "Виконує KQL-запити до Fabric Eventhouse через REST API Kusto для аналітики часових рядів у реальному часі"
       },
       {
        "name": "eventstream-consumption-cli",
-       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…"
+       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…",
+       "shortUk": "Перелік, інспекція та моніторинг конвеєрів ingestion Fabric Eventstream у реальному часі через REST API"
       },
       {
        "name": "fabriciq-ontology-consumption-cli",
-       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…"
+       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…",
+       "shortUk": "Дослідження елементів Fabric IQ Ontology (лише читання) з CLI для підготовки агента перед запитом до даних"
       },
       {
        "name": "semantic-model-consumption",
-       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …"
+       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …",
+       "shortUk": "Виконання сирих DAX-запитів і перегляд метаданих семантичних моделей Fabric через MCP ExecuteQuery"
       },
       {
        "name": "spark-consumption-cli",
-       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…"
+       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…",
+       "shortUk": "Інтерактивний аналіз даних лейкхаусу через Livy-сесії Fabric і PySpark/Spark SQL"
       },
       {
        "name": "sqldw-consumption-cli",
-       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…"
+       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…",
+       "shortUk": "Read-only T-SQL запити до Fabric Data Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       }
      ]
     },
@@ -375,107 +454,133 @@
      "skills": [
       {
        "name": "activator-cli",
-       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…"
+       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…",
+       "shortUk": "Веде повний цикл Fabric Activator (Reflex): авторить правила, джерела й дії або читає готову конфігурацію ReflexEntities"
       },
       {
        "name": "azmon-mirroredcatalogs-operations-cli",
-       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …"
+       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …",
+       "shortUk": "Підключає дані Azure Monitor / Application Insights до Fabric і зіставляє телеметрію з бізнес-показниками"
       },
       {
        "name": "databricks-migration",
-       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…"
+       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…",
+       "shortUk": "Переносить ноутбуки та задачі Databricks у Microsoft Fabric з таблицею заміни dbutils на notebookutils"
       },
       {
        "name": "dataflows-cli",
-       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …"
+       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …",
+       "shortUk": "Авторить, перевіряє й апгрейдить Fabric Dataflow Gen2 — підключення, M-запити, історію оновлень"
       },
       {
        "name": "deployment-pipelines-authoring-cli",
-       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …"
+       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …",
+       "shortUk": "Автоматизує пайплайни розгортання Fabric — просування ALM між стадіями dev/test/prod через REST API"
       },
       {
        "name": "e2e-fabric-cost-estimation",
-       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…"
+       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…",
+       "shortUk": "Оцінює вартість Fabric-капасіті перед міграцією на основі аналізу навантаження Spark, SQL, Power BI, Real-Time Intelligence"
       },
       {
        "name": "e2e-medallion-architecture",
-       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…"
+       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…",
+       "shortUk": "Планування й реалізація наскрізної платформи даних Fabric і Medallion-архітектури (Bronze/Silver/Gold) на PySpark і Delta Lake"
       },
       {
        "name": "eventhouse-cli",
-       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…"
+       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…",
+       "shortUk": "Створення та запити до Fabric Eventhouse/KQL-баз: таблиці, функції, політики, матеріалізовані вʼюхи, ingestion і читання даних у реальному часі"
       },
       {
        "name": "eventschemaset-cli",
-       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…"
+       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…",
+       "shortUk": "Створення й інспекція Fabric Event Schema Sets — централізованих каталогів типів подій і схем повідомлень через REST API"
       },
       {
        "name": "eventstream-cli",
-       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…"
+       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…",
+       "shortUk": "Побудова й інспекція топологій Fabric Eventstream: джерела, оператори, приймачі, маршрутизація потоків, ретеншн і пропускна здатність"
       },
       {
        "name": "fabriciq-ontology-cli",
-       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…"
+       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…",
+       "shortUk": "Створення й дослідження елементів Fabric IQ Ontology: типи сутностей і звʼязків, привʼязки даних, схема, лінеедж, обхід графа"
       },
       {
        "name": "fabriciq",
-       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…"
+       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…",
+       "shortUk": "Відповідає на бізнес-питання природною мовою по наявних звітах і семантичних моделях Power BI через FabricIQ MCP"
       },
       {
        "name": "git-integration-operations-cli",
-       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…"
+       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…",
+       "shortUk": "Автоматизація життєвого циклу Git-інтеграції Microsoft Fabric з CLI через fab api або az rest"
       },
       {
        "name": "hdinsight-migration",
-       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…"
+       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…",
+       "shortUk": "Переносить кластери Azure HDInsight Spark і Hive-навантаження на Microsoft Fabric, замінюючи застарілі контексти Spark"
       },
       {
        "name": "pipeline-migration",
-       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…"
+       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…",
+       "shortUk": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory"
       },
       {
        "name": "search-consumption-cli",
-       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…"
+       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…",
+       "shortUk": "Шукає елементи в каталозі Microsoft Fabric за всіма воркспейсами через Catalog Search API"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "spark-cli",
-       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…"
+       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…",
+       "shortUk": "Авторинг, запуск і діагностика Fabric Spark — код у ноутбуках, Livy-сесії, SQL"
       },
       {
        "name": "sqldb-cli",
-       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…"
+       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…",
+       "shortUk": "Проєктування, читання й діагностика елемента Fabric SQL Database — схема, обмеження, індекси, sqlcmd"
       },
       {
        "name": "sqldw-cli",
-       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…"
+       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…",
+       "shortUk": "Авторинг, запити й діагностика Fabric Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "synapse-migration",
-       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…"
+       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…",
+       "shortUk": "Портування Spark-навантажень Azure Synapse Analytics на Microsoft Fabric"
       },
       {
        "name": "variable-library-cli",
-       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …"
+       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …",
+       "shortUk": "Керування бібліотекою змінних через CLI"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       },
       {
        "name": "mlv-operations-cli",
-       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…"
+       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…",
+       "shortUk": "Керує розкладами оновлення та виконанням Materialized Lake View у Microsoft Fabric через REST API"
       },
       {
        "name": "spark-operations-cli",
-       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…"
+       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…",
+       "shortUk": "Діагностика збійних Spark-завдань, нездорових Livy-сесій і вузьких місць продуктивності в Fabric"
       },
       {
        "name": "sqldw-operations-cli",
-       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …"
+       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …",
+       "shortUk": "Аналіз продуктивності Fabric Data Warehouse через sqlcmd і подання queryinsights"
       }
      ]
     },
@@ -485,171 +590,213 @@
      "skills": [
       {
        "name": "activator-cli",
-       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…"
+       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…",
+       "shortUk": "Веде повний цикл Fabric Activator (Reflex): авторить правила, джерела й дії або читає готову конфігурацію ReflexEntities"
       },
       {
        "name": "azmon-mirroredcatalogs-operations-cli",
-       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …"
+       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …",
+       "shortUk": "Підключає дані Azure Monitor / Application Insights до Fabric і зіставляє телеметрію з бізнес-показниками"
       },
       {
        "name": "databricks-migration",
-       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…"
+       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…",
+       "shortUk": "Переносить ноутбуки та задачі Databricks у Microsoft Fabric з таблицею заміни dbutils на notebookutils"
       },
       {
        "name": "dataflows-cli",
-       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …"
+       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …",
+       "shortUk": "Авторить, перевіряє й апгрейдить Fabric Dataflow Gen2 — підключення, M-запити, історію оновлень"
       },
       {
        "name": "deployment-pipelines-authoring-cli",
-       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …"
+       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …",
+       "shortUk": "Автоматизує пайплайни розгортання Fabric — просування ALM між стадіями dev/test/prod через REST API"
       },
       {
        "name": "e2e-fabric-cost-estimation",
-       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…"
+       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…",
+       "shortUk": "Оцінює вартість Fabric-капасіті перед міграцією на основі аналізу навантаження Spark, SQL, Power BI, Real-Time Intelligence"
       },
       {
        "name": "e2e-medallion-architecture",
-       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…"
+       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…",
+       "shortUk": "Планування й реалізація наскрізної платформи даних Fabric і Medallion-архітектури (Bronze/Silver/Gold) на PySpark і Delta Lake"
       },
       {
        "name": "eventhouse-cli",
-       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…"
+       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…",
+       "shortUk": "Створення та запити до Fabric Eventhouse/KQL-баз: таблиці, функції, політики, матеріалізовані вʼюхи, ingestion і читання даних у реальному часі"
       },
       {
        "name": "eventschemaset-cli",
-       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…"
+       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…",
+       "shortUk": "Створення й інспекція Fabric Event Schema Sets — централізованих каталогів типів подій і схем повідомлень через REST API"
       },
       {
        "name": "eventstream-cli",
-       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…"
+       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…",
+       "shortUk": "Побудова й інспекція топологій Fabric Eventstream: джерела, оператори, приймачі, маршрутизація потоків, ретеншн і пропускна здатність"
       },
       {
        "name": "fabriciq-ontology-cli",
-       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…"
+       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…",
+       "shortUk": "Створення й дослідження елементів Fabric IQ Ontology: типи сутностей і звʼязків, привʼязки даних, схема, лінеедж, обхід графа"
       },
       {
        "name": "fabriciq",
-       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…"
+       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…",
+       "shortUk": "Відповідає на бізнес-питання природною мовою по наявних звітах і семантичних моделях Power BI через FabricIQ MCP"
       },
       {
        "name": "git-integration-operations-cli",
-       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…"
+       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…",
+       "shortUk": "Автоматизація життєвого циклу Git-інтеграції Microsoft Fabric з CLI через fab api або az rest"
       },
       {
        "name": "hdinsight-migration",
-       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…"
+       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…",
+       "shortUk": "Переносить кластери Azure HDInsight Spark і Hive-навантаження на Microsoft Fabric, замінюючи застарілі контексти Spark"
       },
       {
        "name": "pipeline-migration",
-       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…"
+       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…",
+       "shortUk": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory"
       },
       {
        "name": "search-consumption-cli",
-       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…"
+       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…",
+       "shortUk": "Шукає елементи в каталозі Microsoft Fabric за всіма воркспейсами через Catalog Search API"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "spark-cli",
-       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…"
+       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…",
+       "shortUk": "Авторинг, запуск і діагностика Fabric Spark — код у ноутбуках, Livy-сесії, SQL"
       },
       {
        "name": "sqldb-cli",
-       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…"
+       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…",
+       "shortUk": "Проєктування, читання й діагностика елемента Fabric SQL Database — схема, обмеження, індекси, sqlcmd"
       },
       {
        "name": "sqldw-cli",
-       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…"
+       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…",
+       "shortUk": "Авторинг, запити й діагностика Fabric Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "synapse-migration",
-       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…"
+       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…",
+       "shortUk": "Портування Spark-навантажень Azure Synapse Analytics на Microsoft Fabric"
       },
       {
        "name": "variable-library-cli",
-       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …"
+       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …",
+       "shortUk": "Керування бібліотекою змінних через CLI"
       },
       {
        "name": "activator-authoring-cli",
-       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…"
+       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…",
+       "shortUk": "Створює алерти, сповіщення й автоматичні дії для даних і подій Fabric через REST API та CLI `az rest`"
       },
       {
        "name": "activator-consumption-cli",
-       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…"
+       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…",
+       "shortUk": "Переглядає наявні алерти, сповіщення й автоматичні дії Fabric лише для читання через `az rest`"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       },
       {
        "name": "dataflows-authoring-cli",
-       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…"
+       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…",
+       "shortUk": "Створює, оновлює й оновлює Fabric Dataflows Gen2 через REST API — будує mashup.pq і queryMetadata"
       },
       {
        "name": "dataflows-consumption-cli",
-       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…"
+       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…",
+       "shortUk": "Переглядає збережені Fabric Dataflows Gen2 лише для читання — декодує mashup.pq, queryMetadata, .platform"
       },
       {
        "name": "dataflows-save-as-authoring-cli",
-       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…"
+       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…",
+       "shortUk": "Планує й виконує перехід Dataflow Gen1 у Gen2.1 CI/CD через Power BI та Fabric REST API"
       },
       {
        "name": "eventhouse-authoring-cli",
-       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …"
+       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …",
+       "shortUk": "Виконує KQL-команди керування (таблиці, ingestion, політики, функції, матеріалізовані вʼюхи) для Fabric Eventhouse через CLI"
       },
       {
        "name": "eventhouse-consumption-cli",
-       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …"
+       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …",
+       "shortUk": "Виконує KQL-запити до Fabric Eventhouse через REST API Kusto для аналітики часових рядів у реальному часі"
       },
       {
        "name": "eventstream-authoring-cli",
-       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…"
+       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…",
+       "shortUk": "Створення й публікація топологій потокової передачі Fabric Eventstream через REST API — 25 типів джерел, приймачі, маршрутизація"
       },
       {
        "name": "eventstream-consumption-cli",
-       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…"
+       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…",
+       "shortUk": "Перелік, інспекція та моніторинг конвеєрів ingestion Fabric Eventstream у реальному часі через REST API"
       },
       {
        "name": "fabriciq-ontology-authoring-cli",
-       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…"
+       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…",
+       "shortUk": "Створення й розвиток елементів Fabric IQ Ontology з CLI — типи сутностей, властивості, звʼязки, привʼязка до OneLake"
       },
       {
        "name": "fabriciq-ontology-consumption-cli",
-       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…"
+       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…",
+       "shortUk": "Дослідження елементів Fabric IQ Ontology (лише читання) з CLI для підготовки агента перед запитом до даних"
       },
       {
        "name": "mlv-operations-cli",
-       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…"
+       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…",
+       "shortUk": "Керує розкладами оновлення та виконанням Materialized Lake View у Microsoft Fabric через REST API"
       },
       {
        "name": "semantic-model-consumption",
-       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …"
+       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …",
+       "shortUk": "Виконання сирих DAX-запитів і перегляд метаданих семантичних моделей Fabric через MCP ExecuteQuery"
       },
       {
        "name": "spark-authoring-cli",
-       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…"
+       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…",
+       "shortUk": "Розробка Spark/data engineering робочих процесів Fabric і коду в комірках Notebook"
       },
       {
        "name": "spark-consumption-cli",
-       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…"
+       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…",
+       "shortUk": "Інтерактивний аналіз даних лейкхаусу через Livy-сесії Fabric і PySpark/Spark SQL"
       },
       {
        "name": "spark-operations-cli",
-       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…"
+       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…",
+       "shortUk": "Діагностика збійних Spark-завдань, нездорових Livy-сесій і вузьких місць продуктивності в Fabric"
       },
       {
        "name": "sqldw-authoring-cli",
-       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…"
+       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…",
+       "shortUk": "Виконання авторингового T-SQL (DDL, DML, ingestion, транзакції) для Fabric Data Warehouse через CLI"
       },
       {
        "name": "sqldw-consumption-cli",
-       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…"
+       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…",
+       "shortUk": "Read-only T-SQL запити до Fabric Data Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "sqldw-operations-cli",
-       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …"
+       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …",
+       "shortUk": "Аналіз продуктивності Fabric Data Warehouse через sqlcmd і подання queryinsights"
       }
      ]
     },
@@ -659,27 +806,33 @@
      "skills": [
       {
        "name": "powerbi-report-authoring",
-       "short": "Create and modify Power BI report files in PBIR/PBIP format using the `powerbi-report-author` and `powerbi-desktop` CLIs. Use when the user wants to: (1) implem…"
+       "short": "Create and modify Power BI report files in PBIR/PBIP format using the `powerbi-report-author` and `powerbi-desktop` CLIs. Use when the user wants to: (1) implem…",
+       "shortUk": "Створює й змінює файли звітів Power BI у форматі PBIR/PBIP через CLI"
       },
       {
        "name": "powerbi-report-design",
-       "short": "Generate Power BI report visual design guidance before PBIR files are written. Use when the user wants to: (1) choose tone, signature, page archetypes, chart ty…"
+       "short": "Generate Power BI report visual design guidance before PBIR files are written. Use when the user wants to: (1) choose tone, signature, page archetypes, chart ty…",
+       "shortUk": "Формує гайд візуального дизайну звіту Power BI перед написанням файлів PBIR"
       },
       {
        "name": "powerbi-report-management",
-       "short": "Manage Power BI report workspace items and PBIR definitions in Microsoft Fabric via `az rest` CLI against the Fabric REST API. Use when the user wants to: (1) u…"
+       "short": "Manage Power BI report workspace items and PBIR definitions in Microsoft Fabric via `az rest` CLI against the Fabric REST API. Use when the user wants to: (1) u…",
+       "shortUk": "Керує елементами воркспейсу звітів Power BI та визначеннями PBIR у Fabric через REST API"
       },
       {
        "name": "powerbi-report-planning",
-       "short": "Build a guided requirements-to-implementation workflow for new Power BI reports and dashboards from semantic models, datasets, or PBIP projects. Use when the us…"
+       "short": "Build a guided requirements-to-implementation workflow for new Power BI reports and dashboards from semantic models, datasets, or PBIP projects. Use when the us…",
+       "shortUk": "Веде керований процес від вимог до реалізації для нових звітів Power BI"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       }
      ]
     },
@@ -689,171 +842,213 @@
      "skills": [
       {
        "name": "activator-cli",
-       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…"
+       "short": "Create and inspect Fabric Activator (Reflex) alerts end to end: author rules, sources and actions, or decode an existing ReflexEntities definition read-only. St…",
+       "shortUk": "Веде повний цикл Fabric Activator (Reflex): авторить правила, джерела й дії або читає готову конфігурацію ReflexEntities"
       },
       {
        "name": "azmon-mirroredcatalogs-operations-cli",
-       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …"
+       "short": "Onboard Azure Monitor / Application Insights observability data into Microsoft Fabric and guide business-impact insights by correlating telemetry with business …",
+       "shortUk": "Підключає дані Azure Monitor / Application Insights до Fabric і зіставляє телеметрію з бізнес-показниками"
       },
       {
        "name": "databricks-migration",
-       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…"
+       "short": "Port Databricks notebooks and jobs to Microsoft Fabric. Provides an exhaustive dbutils to notebookutils substitution table: fs operations (runtime mounts or One…",
+       "shortUk": "Переносить ноутбуки та задачі Databricks у Microsoft Fabric з таблицею заміни dbutils на notebookutils"
       },
       {
        "name": "dataflows-cli",
-       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …"
+       "short": "Author, inspect and upgrade Fabric Dataflow Gen2: connection and output setup, M preview via executeQuery, saved definition and refresh-history inspection, and …",
+       "shortUk": "Авторить, перевіряє й апгрейдить Fabric Dataflow Gen2 — підключення, M-запити, історію оновлень"
       },
       {
        "name": "deployment-pipelines-authoring-cli",
-       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …"
+       "short": "Automate Microsoft Fabric deployment pipelines (ALM promotion across dev/test/prod stages) via the Fabric core REST API from agentic CLI environments. Use when …",
+       "shortUk": "Автоматизує пайплайни розгортання Fabric — просування ALM між стадіями dev/test/prod через REST API"
       },
       {
        "name": "e2e-fabric-cost-estimation",
-       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…"
+       "short": "Estimate Microsoft Fabric capacity costs before migration by analyzing existing workload profiles (Spark, SQL, Power BI, Real-Time Intelligence) and recommendin…",
+       "shortUk": "Оцінює вартість Fabric-капасіті перед міграцією на основі аналізу навантаження Spark, SQL, Power BI, Real-Time Intelligence"
       },
       {
        "name": "e2e-medallion-architecture",
-       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…"
+       "short": "Plan and implement end-to-end Microsoft Fabric data platforms and Medallion Architecture (Bronze/Silver/Gold) lakehouse patterns using PySpark, Delta Lake, Lake…",
+       "shortUk": "Планування й реалізація наскрізної платформи даних Fabric і Medallion-архітектури (Bronze/Silver/Gold) на PySpark і Delta Lake"
       },
       {
        "name": "eventhouse-cli",
-       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…"
+       "short": "Author and query Fabric Eventhouse / KQL databases: create tables, functions, policies, materialized views and ingestion, or run read-only KQL for real-time and…",
+       "shortUk": "Створення та запити до Fabric Eventhouse/KQL-баз: таблиці, функції, політики, матеріалізовані вʼюхи, ingestion і читання даних у реальному часі"
       },
       {
        "name": "eventschemaset-cli",
-       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…"
+       "short": "Author and inspect Microsoft Fabric Event Schema Sets (centralized catalogs of event types and message schemas) via the Fabric Items REST API with az rest: crea…",
+       "shortUk": "Створення й інспекція Fabric Event Schema Sets — централізованих каталогів типів подій і схем повідомлень через REST API"
       },
       {
        "name": "eventstream-cli",
-       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…"
+       "short": "Build and inspect Fabric Eventstream topologies: sources, operators, destinations and stream routing, plus read-only topology, retention, throughput and connect…",
+       "shortUk": "Побудова й інспекція топологій Fabric Eventstream: джерела, оператори, приймачі, маршрутизація потоків, ретеншн і пропускна здатність"
       },
       {
        "name": "fabriciq-ontology-cli",
-       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…"
+       "short": "Author and explore Fabric IQ Ontology items: entity and relationship types, data bindings and definition updates, or schema, lineage, grounding and graph-walk e…",
+       "shortUk": "Створення й дослідження елементів Fabric IQ Ontology: типи сутностей і звʼязків, привʼязки даних, схема, лінеедж, обхід графа"
       },
       {
        "name": "fabriciq",
-       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…"
+       "short": "Answer natural-language business questions over existing Power BI reports and semantic models through the FabricIQ MCP endpoint. Orchestrates artifact discovery…",
+       "shortUk": "Відповідає на бізнес-питання природною мовою по наявних звітах і семантичних моделях Power BI через FabricIQ MCP"
       },
       {
        "name": "git-integration-operations-cli",
-       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…"
+       "short": "Automate the Microsoft Fabric Git integration lifecycle from CLI environments using the Fabric CLI (fab api), with az rest as a fallback. Use when the user want…",
+       "shortUk": "Автоматизація життєвого циклу Git-інтеграції Microsoft Fabric з CLI через fab api або az rest"
       },
       {
        "name": "hdinsight-migration",
-       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…"
+       "short": "Port Azure HDInsight Spark clusters and Hive workloads to Microsoft Fabric. Replaces legacy HiveContext and standalone SparkContext constructors with the pre-in…",
+       "shortUk": "Переносить кластери Azure HDInsight Spark і Hive-навантаження на Microsoft Fabric, замінюючи застарілі контексти Spark"
       },
       {
        "name": "pipeline-migration",
-       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…"
+       "short": "Migrate Synapse Data Factory pipeline artifacts to Microsoft Fabric Data Factory. Handles: linked services → Fabric connections, dataset definitions inlined int…",
+       "shortUk": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory"
       },
       {
        "name": "search-consumption-cli",
-       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…"
+       "short": "Search the Microsoft Fabric catalog across workspaces using the Fabric Catalog Search API. Use when the user wants to: (1) find an item by display name when the…",
+       "shortUk": "Шукає елементи в каталозі Microsoft Fabric за всіма воркспейсами через Catalog Search API"
       },
       {
        "name": "semantic-model-authoring",
-       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…"
+       "short": "Author and inspect Power BI semantic models and their metadata: list tables, columns, measures, relationships; create, edit, deploy, refresh, and manage models;…",
+       "shortUk": "Створення, редагування, деплой і керування семантичними моделями Power BI та їх метаданими"
       },
       {
        "name": "spark-cli",
-       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…"
+       "short": "Author, run and diagnose Fabric Spark: notebook cell code (%%configure, %%sql, PySpark, notebookutils), named notebook runs, Livy-session ad-hoc calculations, S…",
+       "shortUk": "Авторинг, запуск і діагностика Fabric Spark — код у ноутбуках, Livy-сесії, SQL"
       },
       {
        "name": "sqldb-cli",
-       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…"
+       "short": "Design, read and troubleshoot a Fabric SQL database item (OLTP, SQL Server engine): schema with constraints, indexes and vector columns; sqlcmd lookups includin…",
+       "shortUk": "Проєктування, читання й діагностика елемента Fabric SQL Database — схема, обмеження, індекси, sqlcmd"
       },
       {
        "name": "sqldw-cli",
-       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…"
+       "short": "Author, query and diagnose Fabric Warehouse, Lakehouse SQL endpoints and Mirrored Databases: DDL/DML and COPY INTO ingestion, read-only T-SQL SELECT and row cou…",
+       "shortUk": "Авторинг, запити й діагностика Fabric Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "synapse-migration",
-       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…"
+       "short": "Port Azure Synapse Analytics Spark workloads to Microsoft Fabric. Translates mssparkutils calls to notebookutils (including the env→runtime namespace change), r…",
+       "shortUk": "Портування Spark-навантажень Azure Synapse Analytics на Microsoft Fabric"
       },
       {
        "name": "variable-library-cli",
-       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …"
+       "short": "Create, wire and operate Microsoft Fabric Variable Library items via Fabric REST API, az rest, curl, and jq. Use when the user wants to: (1) create or update a …",
+       "shortUk": "Керування бібліотекою змінних через CLI"
       },
       {
        "name": "activator-authoring-cli",
-       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…"
+       "short": "Create alerts, notifications, and automated actions on Fabric data and events via Fabric REST API and `az rest` CLI. **Invoke this skill** whenever the user wan…",
+       "shortUk": "Створює алерти, сповіщення й автоматичні дії для даних і подій Fabric через REST API та CLI `az rest`"
       },
       {
        "name": "activator-consumption-cli",
-       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…"
+       "short": "Inspect existing alerts, notifications, and automated actions in Fabric via read-only REST API calls using `az rest` CLI. **Invoke this skill** whenever the use…",
+       "shortUk": "Переглядає наявні алерти, сповіщення й автоматичні дії Fabric лише для читання через `az rest`"
       },
       {
        "name": "check-updates",
-       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…"
+       "short": "Check for skills-for-fabric marketplace updates at session start. Compares local version against GitHub releases and shows changelog if updates are available. U…",
+       "shortUk": "Перевіряє оновлення маркетплейсу skills-for-fabric на старті сесії й показує список змін"
       },
       {
        "name": "dataflows-authoring-cli",
-       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…"
+       "short": "Create, update, delete, and refresh Fabric Dataflows Gen2 via write-side CLI against Fabric Items and Connections APIs. Builds mashup.pq + queryMetadata definit…",
+       "shortUk": "Створює, оновлює й оновлює Fabric Dataflows Gen2 через REST API — будує mashup.pq і queryMetadata"
       },
       {
        "name": "dataflows-consumption-cli",
-       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…"
+       "short": "Monitor, inspect, and query saved Fabric Dataflows Gen2 via read-only CLI. List dataflows, decode base64 definitions (mashup.pq, queryMetadata.json, .platform),…",
+       "shortUk": "Переглядає збережені Fabric Dataflows Gen2 лише для читання — декодує mashup.pq, queryMetadata, .platform"
       },
       {
        "name": "dataflows-save-as-authoring-cli",
-       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…"
+       "short": "Assess, plan, and execute dataflow Gen1 → Gen2.1 CI/CD save-as operations via CLI (az rest / curl) against Power BI REST and Fabric REST APIs. Scan workspaces o…",
+       "shortUk": "Планує й виконує перехід Dataflow Gen1 у Gen2.1 CI/CD через Power BI та Fabric REST API"
       },
       {
        "name": "eventhouse-authoring-cli",
-       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …"
+       "short": "Execute KQL management commands (table management, ingestion, policies, functions, materialized views) against Fabric Eventhouse and KQL Databases via CLI. Use …",
+       "shortUk": "Виконує KQL-команди керування (таблиці, ingestion, політики, функції, матеріалізовані вʼюхи) для Fabric Eventhouse через CLI"
       },
       {
        "name": "eventhouse-consumption-cli",
-       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …"
+       "short": "Run KQL queries against Fabric Eventhouse for real-time intelligence and time-series analytics using `az rest` against the Kusto REST API. Covers KQL operators …",
+       "shortUk": "Виконує KQL-запити до Fabric Eventhouse через REST API Kusto для аналітики часових рядів у реальному часі"
       },
       {
        "name": "eventstream-authoring-cli",
-       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…"
+       "short": "Create, wire, and publish Fabric Eventstream real-time streaming topologies via the Items REST API. Build definitions with 25 source types (Event Hubs, IoT Hub,…",
+       "shortUk": "Створення й публікація топологій потокової передачі Fabric Eventstream через REST API — 25 типів джерел, приймачі, маршрутизація"
       },
       {
        "name": "eventstream-consumption-cli",
-       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…"
+       "short": "List, inspect, and monitor Fabric Eventstream real-time ingestion pipelines via the Items REST API. Discover Eventstreams across workspaces, decode base64 graph…",
+       "shortUk": "Перелік, інспекція та моніторинг конвеєрів ingestion Fabric Eventstream у реальному часі через REST API"
       },
       {
        "name": "fabriciq-ontology-authoring-cli",
-       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…"
+       "short": "Create and evolve Fabric IQ Ontology (preview) items from CLI — define entity types, properties (including timeseries), relationship types, and bind them to One…",
+       "shortUk": "Створення й розвиток елементів Fabric IQ Ontology з CLI — типи сутностей, властивості, звʼязки, привʼязка до OneLake"
       },
       {
        "name": "fabriciq-ontology-consumption-cli",
-       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…"
+       "short": "Explore Fabric IQ Ontology (preview) items (read-only) from the CLI to ground an agent before it queries data. Explore, describe, and summarize what an ontology…",
+       "shortUk": "Дослідження елементів Fabric IQ Ontology (лише читання) з CLI для підготовки агента перед запитом до даних"
       },
       {
        "name": "mlv-operations-cli",
-       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…"
+       "short": "Manage Microsoft Fabric Materialized Lake View (MLV) refresh schedules and job execution via REST APIs. Create, update, and delete refresh schedules (interval-b…",
+       "shortUk": "Керує розкладами оновлення та виконанням Materialized Lake View у Microsoft Fabric через REST API"
       },
       {
        "name": "semantic-model-consumption",
-       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …"
+       "short": "Execute raw DAX queries and inspect metadata of Microsoft Fabric Power BI semantic models via the MCP server ExecuteQuery tool. Use when the user already knows …",
+       "shortUk": "Виконання сирих DAX-запитів і перегляд метаданих семантичних моделей Fabric через MCP ExecuteQuery"
       },
       {
        "name": "spark-authoring-cli",
-       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…"
+       "short": "Develop Microsoft Fabric Spark/data engineering workflows and write code in Fabric Notebook cells with intelligent routing to specialized resources. Provides wo…",
+       "shortUk": "Розробка Spark/data engineering робочих процесів Fabric і коду в комірках Notebook"
       },
       {
        "name": "spark-consumption-cli",
-       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…"
+       "short": "Analyze lakehouse data interactively using Fabric Lakehouse Livy API sessions and PySpark/Spark SQL for advanced analytics, DataFrames, cross-lakehouse joins, D…",
+       "shortUk": "Інтерактивний аналіз даних лейкхаусу через Livy-сесії Fabric і PySpark/Spark SQL"
       },
       {
        "name": "spark-operations-cli",
-       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…"
+       "short": "Diagnose failed Spark jobs, unhealthy Livy sessions, and performance bottlenecks in Microsoft Fabric via read-only CLI triage. Use when the user wants to: (1) d…",
+       "shortUk": "Діагностика збійних Spark-завдань, нездорових Livy-сесій і вузьких місць продуктивності в Fabric"
       },
       {
        "name": "sqldw-authoring-cli",
-       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…"
+       "short": "Execute authoring T-SQL (DDL, DML, data ingestion, transactions, schema changes) against Microsoft Fabric Data Warehouse and SQL endpoints from agentic CLI envi…",
+       "shortUk": "Виконання авторингового T-SQL (DDL, DML, ingestion, транзакції) для Fabric Data Warehouse через CLI"
       },
       {
        "name": "sqldw-consumption-cli",
-       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…"
+       "short": "Execute read-only T-SQL queries against Fabric Data Warehouse, Lakehouse SQL Endpoints, and Mirrored Databases via CLI. Default skill for any lakehouse data que…",
+       "shortUk": "Read-only T-SQL запити до Fabric Data Warehouse, SQL-ендпоінтів лейкхаусу й дзеркальних баз"
       },
       {
        "name": "sqldw-operations-cli",
-       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …"
+       "short": "Analyze Fabric Data Warehouse performance via CLI using sqlcmd and queryinsights views. Diagnose slow queries, SQL pool pressure, cache coldness, and recommend …",
+       "shortUk": "Аналіз продуктивності Fabric Data Warehouse через sqlcmd і подання queryinsights"
       }
      ]
     }
@@ -873,23 +1068,28 @@
      "skills": [
       {
        "name": "deneb-visuals",
-       "short": "Deneb visual creation, Vega/Vega-Lite spec authoring, and Deneb best practices for PBIR reports. Automatically invoke whenever the user mentions \"Deneb\" in any …"
+       "short": "Deneb visual creation, Vega/Vega-Lite spec authoring, and Deneb best practices for PBIR reports. Automatically invoke whenever the user mentions \"Deneb\" in any …",
+       "shortUk": "Авторить Vega/Vega-Lite специфікації та найкращі практики Deneb для PBIR-звітів"
       },
       {
        "name": "powerbi-custom-visuals",
-       "short": "Power BI custom visual (.pbiviz) development with the pbiviz toolchain and its MCP server. Automatically invoke when the user mentions \"custom visual\", \"pbiviz\"…"
+       "short": "Power BI custom visual (.pbiviz) development with the pbiviz toolchain and its MCP server. Automatically invoke when the user mentions \"custom visual\", \"pbiviz\"…",
+       "shortUk": "Розробка кастомних візуалів Power BI (.pbiviz) через тулчейн pbiviz та його MCP-сервер"
       },
       {
        "name": "python-visuals",
-       "short": "Python visual creation and matplotlib/seaborn patterns for PBIR reports. Automatically invoke when the user mentions \"Python visual\", \"matplotlib in Power BI\", …"
+       "short": "Python visual creation and matplotlib/seaborn patterns for PBIR reports. Automatically invoke when the user mentions \"Python visual\", \"matplotlib in Power BI\", …",
+       "shortUk": "Створює Python-візуали з matplotlib/seaborn для звітів PBIR"
       },
       {
        "name": "r-visuals",
-       "short": "R visual creation and ggplot2 patterns for PBIR reports. Automatically invoke when the user mentions \"R visual\", \"ggplot2\", \"ggplot in Power BI\", or asks to \"cr…"
+       "short": "R visual creation and ggplot2 patterns for PBIR reports. Automatically invoke when the user mentions \"R visual\", \"ggplot2\", \"ggplot in Power BI\", or asks to \"cr…",
+       "shortUk": "Створює R-візуали з ggplot2 для звітів PBIR"
       },
       {
        "name": "svg-visuals",
-       "short": "SVG generation via DAX measures and extension measures with ImageUrl data category for inline visualizations in PBIR reports. Automatically invoke when the user…"
+       "short": "SVG generation via DAX measures and extension measures with ImageUrl data category for inline visualizations in PBIR reports. Automatically invoke when the user…",
+       "shortUk": "Генерація SVG через DAX-міри й extension measures для вбудованих візуалів у звітах PBIR"
       }
      ]
     },
@@ -899,11 +1099,13 @@
      "skills": [
       {
        "name": "executing-spark",
-       "short": "Execute arbitrary Python or PySpark code on Fabric Spark compute without creating a notebook artifact; ephemeral Livy sessions with full Delta table access. Aut…"
+       "short": "Execute arbitrary Python or PySpark code on Fabric Spark compute without creating a notebook artifact; ephemeral Livy sessions with full Delta table access. Aut…",
+       "shortUk": "Виконання довільного Python/PySpark коду на Fabric Spark без створення ноутбука — ефемерні Livy-сесії з доступом до Delta-таблиць"
       },
       {
        "name": "using-duckdb",
-       "short": "Query Fabric lakehouse and warehouse data using DuckDB, either locally or inside a Fabric notebook. Automatically invoke when the user mentions \"DuckDB\", \"query…"
+       "short": "Query Fabric lakehouse and warehouse data using DuckDB, either locally or inside a Fabric notebook. Automatically invoke when the user mentions \"DuckDB\", \"query…",
+       "shortUk": "Аналіз даних через DuckDB — SQL-запити до файлів CSV/Parquet без окремої бази"
       }
      ]
     },
@@ -913,7 +1115,8 @@
      "skills": [
       {
        "name": "audit-tenant-settings",
-       "short": "Automatically invoke this skill whenever the user asks about Fabric tenant settings or Power BI tenant settings or auditing tenant settings. You can use this sk…"
+       "short": "Automatically invoke this skill whenever the user asks about Fabric tenant settings or Power BI tenant settings or auditing tenant settings. You can use this sk…",
+       "shortUk": "Аудит налаштувань тенанта Fabric або Power BI"
       }
      ]
     },
@@ -923,7 +1126,8 @@
      "skills": [
       {
        "name": "fabric-cli",
-       "short": "Expert guidance for using the Fabric CLI (`fab`) to fully interact with Fabric workspaces, items, and configuration. Automatically invoke this skill whenever th…"
+       "short": "Expert guidance for using the Fabric CLI (`fab`) to fully interact with Fabric workspaces, items, and configuration. Automatically invoke this skill whenever th…",
+       "shortUk": "Експертний супровід роботи з Fabric CLI (fab) для взаємодії з воркспейсами, елементами й конфігурацією"
       }
      ]
     },
@@ -933,7 +1137,8 @@
      "skills": [
       {
        "name": "paginated-report",
-       "short": "Author, validate, publish, and test Power BI paginated reports in the RDL format. Automatically invoke when the user mentions \"paginated report\", \"RDL\", \".rdl\",…"
+       "short": "Author, validate, publish, and test Power BI paginated reports in the RDL format. Automatically invoke when the user mentions \"paginated report\", \"RDL\", \".rdl\",…",
+       "shortUk": "Створення, перевірка, публікація й тестування пейджинованих звітів Power BI у форматі RDL"
       }
      ]
     },
@@ -943,7 +1148,8 @@
      "skills": [
       {
        "name": "connect-pbid",
-       "short": "TOM and ADOMD.NET guidance via PowerShell for connecting to Power BI Desktop's local Analysis Services instance. Covers model enumeration, DAX queries, metadata…"
+       "short": "TOM and ADOMD.NET guidance via PowerShell for connecting to Power BI Desktop's local Analysis Services instance. Covers model enumeration, DAX queries, metadata…",
+       "shortUk": "Підключається до локального інстансу Analysis Services Power BI Desktop через TOM і ADOMD.NET у PowerShell"
       }
      ]
     },
@@ -953,15 +1159,18 @@
      "skills": [
       {
        "name": "pbip",
-       "short": "Expert guidance for the Power BI Project (PBIP) file format; project structure, cross-cutting operations (renames, forking), and PBIX extraction/conversion. Aut…"
+       "short": "Expert guidance for the Power BI Project (PBIP) file format; project structure, cross-cutting operations (renames, forking), and PBIX extraction/conversion. Aut…",
+       "shortUk": "Експертний гід із формату проєкту Power BI (PBIP) — структура, перейменування, форкінг, конвертація з PBIX"
       },
       {
        "name": "pbir-format",
-       "short": "Format reference for Power BI Enhanced Report (PBIR) JSON schemas and patterns. Automatically invoke when the user asks about PBIR JSON structure, visual.json p…"
+       "short": "Format reference for Power BI Enhanced Report (PBIR) JSON schemas and patterns. Automatically invoke when the user asks about PBIR JSON structure, visual.json p…",
+       "shortUk": "Довідник формату PBIR — схеми JSON для visual.json, expressions, тем, умовного форматування, bookmarks"
       },
       {
        "name": "tmdl",
-       "short": "Direct TMDL file authoring and BIM-to-TMDL conversion for semantic models in PBIP projects. Automatically invoke when the user asks to \"edit TMDL\", \"add a measu…"
+       "short": "Direct TMDL file authoring and BIM-to-TMDL conversion for semantic models in PBIP projects. Automatically invoke when the user asks to \"edit TMDL\", \"add a measu…",
+       "shortUk": "Робота з форматом TMDL семантичних моделей Power BI — таблиці, міри, звʼязки як текстові файли"
       }
      ]
     },
@@ -971,23 +1180,28 @@
      "skills": [
       {
        "name": "create-pbi-report",
-       "short": "Step-by-step workflow for creating complete Power BI reports from scratch using pbir CLI. Covers model discovery, report creation, page layout, theme setup, vis…"
+       "short": "Step-by-step workflow for creating complete Power BI reports from scratch using pbir CLI. Covers model discovery, report creation, page layout, theme setup, vis…",
+       "shortUk": "Покроково створює повний звіт Power BI з нуля через CLI pbir — модель, сторінки, тема, візуали"
       },
       {
        "name": "modifying-theme-json",
-       "short": "Design, enforce, audit, and validate Power BI report themes. This skill MUST be invoked when a report uses the default or built-in theme, has a minimal custom t…"
+       "short": "Design, enforce, audit, and validate Power BI report themes. This skill MUST be invoked when a report uses the default or built-in theme, has a minimal custom t…",
+       "shortUk": "Проєктування, впровадження й аудит тем звітів Power BI, коли звіт використовує стандартну або мінімально кастомізовану тему"
       },
       {
        "name": "pbi-report-design",
-       "short": "The Power BI report design canon covering design identity, visual hierarchy and the 3-30-300 rule, layout/spacing/alignment, color discipline, chart selection, …"
+       "short": "The Power BI report design canon covering design identity, visual hierarchy and the 3-30-300 rule, layout/spacing/alignment, color discipline, chart selection, …",
+       "shortUk": "Канон дизайну звітів Power BI — ідентичність, ієрархія, правило 3-30-300, розкладка, кольорова дисципліна, вибір діаграм"
       },
       {
        "name": "pbir-cli",
-       "short": "This skill should be used whenever the user mentions \"pbir\", \"pbir-cli\", \"Power BI reports\", or \"PBI reports\", works with .pbir, .pbip, or .pbix files, or wants…"
+       "short": "This skill should be used whenever the user mentions \"pbir\", \"pbir-cli\", \"Power BI reports\", or \"PBI reports\", works with .pbir, .pbip, or .pbix files, or wants…",
+       "shortUk": "Робота з файлами .pbir, .pbip, .pbix Power BI звітів через CLI"
       },
       {
        "name": "review-report",
-       "short": "Actionable feedback on the quality, usage, and effectiveness of Power BI reports. Automatically invoke when the user asks to \"review a report\", \"audit a report\"…"
+       "short": "Actionable feedback on the quality, usage, and effectiveness of Power BI reports. Automatically invoke when the user asks to \"review a report\", \"audit a report\"…",
+       "shortUk": "Дає предметний фідбек щодо якості, використання й ефективності звітів Power BI"
       }
      ]
     },
@@ -997,27 +1211,33 @@
      "skills": [
       {
        "name": "dax",
-       "short": "DAX performance optimization for semantic models. Automatically invoke when the user asks to \"optimize DAX\", \"fix slow DAX\", \"DAX performance\", \"tune a measure\"…"
+       "short": "DAX performance optimization for semantic models. Automatically invoke when the user asks to \"optimize DAX\", \"fix slow DAX\", \"DAX performance\", \"tune a measure\"…",
+       "shortUk": "Оптимізує продуктивність DAX у семантичних моделях — пришвидшення повільних мір"
       },
       {
        "name": "lineage-analysis",
-       "short": "Trace relationships between semantic models and downstream reports across Fabric workspaces. Automatically invoke when the user asks to \"find downstream reports…"
+       "short": "Trace relationships between semantic models and downstream reports across Fabric workspaces. Automatically invoke when the user asks to \"find downstream reports…",
+       "shortUk": "Простежує звʼязки між семантичними моделями й похідними звітами по воркспейсах Fabric"
       },
       {
        "name": "power-query",
-       "short": "Author, validate, and test Power Query M expressions in semantic model partitions. Automatically invoke when the user mentions \"Power Query\", \"M code\", \"M expre…"
+       "short": "Author, validate, and test Power Query M expressions in semantic model partitions. Automatically invoke when the user mentions \"Power Query\", \"M code\", \"M expre…",
+       "shortUk": "Створює, перевіряє й тестує вирази Power Query M у партиціях семантичної моделі"
       },
       {
        "name": "refresh-semantic-model",
-       "short": "Automatically invoke this skill whenever the user asks to refresh a semantic model or a dataset. Can also be used to manage, optimize, troubleshoot, or configur…"
+       "short": "Automatically invoke this skill whenever the user asks to refresh a semantic model or a dataset. Can also be used to manage, optimize, troubleshoot, or configur…",
+       "shortUk": "Оновлює, керує й діагностує оновлення семантичної моделі чи датасету Power BI"
       },
       {
        "name": "semantic-model",
-       "short": "This skill should be used whenever the user mentions a \"semantic model\", \"data model\", or \"dataset\", or asks to \"build\", \"model\", \"design\", \"optimize\", \"review\"…"
+       "short": "This skill should be used whenever the user mentions a \"semantic model\", \"data model\", or \"dataset\", or asks to \"build\", \"model\", \"design\", \"optimize\", \"review\"…",
+       "shortUk": "Побудова, моделювання, оптимізація й рев'ю семантичних моделей і датасетів"
       },
       {
        "name": "standardize-naming-conventions",
-       "short": "Interactive naming convention standardization for TMDL-based Power BI semantic models. Automatically invoke when the user asks to \"standardize naming convention…"
+       "short": "Interactive naming convention standardization for TMDL-based Power BI semantic models. Automatically invoke when the user asks to \"standardize naming convention…",
+       "shortUk": "Інтерактивна стандартизація конвенцій найменування для TMDL-семантичних моделей Power BI"
       }
      ]
     },
@@ -1027,23 +1247,28 @@
      "skills": [
       {
        "name": "bpa-rules",
-       "short": "Interactive BPA rule generation for Power BI semantic models; guided discovery, model investigation, and expert rule authoring. Automatically invoke when the us…"
+       "short": "Interactive BPA rule generation for Power BI semantic models; guided discovery, model investigation, and expert rule authoring. Automatically invoke when the us…",
+       "shortUk": "Інтерактивно генерує правила BPA для семантичних моделей Power BI на основі дослідження моделі"
       },
       {
        "name": "c-sharp-scripting",
-       "short": "Writing and executing C# scripts and macros against Power BI semantic models using Tabular Editor 2/3. Automatically invoke when the user mentions \"C# script\", …"
+       "short": "Writing and executing C# scripts and macros against Power BI semantic models using Tabular Editor 2/3. Automatically invoke when the user mentions \"C# script\", …",
+       "shortUk": "Пише й виконує C#-скрипти та макроси над семантичними моделями Power BI через Tabular Editor 2/3"
       },
       {
        "name": "te-cli",
-       "short": "Expert guidance for the cross-platform Tabular Editor CLI (the `te` binary, currently in preview) that manages Power BI / Analysis Services semantic models from…"
+       "short": "Expert guidance for the cross-platform Tabular Editor CLI (the `te` binary, currently in preview) that manages Power BI / Analysis Services semantic models from…",
+       "shortUk": "Керування семантичними моделями Power BI/Analysis Services через крос-платформний CLI Tabular Editor"
       },
       {
        "name": "te-docs",
-       "short": "Tabular Editor documentation search and configuration file guidance (.tmuo, Preferences.json, UiPreferences.json, Layouts.json). Automatically invoke when the u…"
+       "short": "Tabular Editor documentation search and configuration file guidance (.tmuo, Preferences.json, UiPreferences.json, Layouts.json). Automatically invoke when the u…",
+       "shortUk": "Пошук документації Tabular Editor й довідка щодо файлів конфігурації"
       },
       {
        "name": "te2-cli",
-       "short": "CLI syntax reference for Tabular Editor 2 (TabularEditor.exe); deployment, scripting, BPA analysis, and CI/CD integration. Automatically invoke when the user me…"
+       "short": "CLI syntax reference for Tabular Editor 2 (TabularEditor.exe); deployment, scripting, BPA analysis, and CI/CD integration. Automatically invoke when the user me…",
+       "shortUk": "Довідник синтаксису CLI Tabular Editor 2 — деплой, скриптинг, аналіз BPA, інтеграція CI/CD"
       }
      ]
     }
@@ -1068,75 +1293,93 @@
      "skills": [
       {
        "name": "algorithmic-art",
-       "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…"
+       "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…",
+       "shortUk": "Створює алгоритмічне мистецтво на p5.js із детермінованою випадковістю та інтерактивними параметрами"
       },
       {
        "name": "brand-guidelines",
-       "short": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand color…"
+       "short": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand color…",
+       "shortUk": "Застосовує офіційні кольори й типографіку бренду Anthropic до артефактів"
       },
       {
        "name": "canvas-design",
-       "short": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, d…"
+       "short": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, d…",
+       "shortUk": "Створює візуальне мистецтво у PNG і PDF за принципами дизайну — постери, ілюстрації, документи"
       },
       {
        "name": "claude-api",
-       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…"
+       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
+       "shortUk": "Будує, налагоджує й оптимізує застосунки на Claude API/Anthropic SDK, включно з кешуванням підказок"
       },
       {
        "name": "doc-coauthoring",
-       "short": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs,…"
+       "short": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs,…",
+       "shortUk": "Проводить користувача через структурований процес спільного написання документації, пропозицій, технічних специфікацій"
       },
       {
        "name": "docx",
-       "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word doc…"
+       "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word doc…",
+       "shortUk": "Створення, читання та редагування документів Word (.docx)"
       },
       {
        "name": "frontend-design",
-       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…"
+       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…",
+       "shortUk": "Настанови для виразного, продуманого візуального дизайну при побудові чи переробці UI — естетика, типографіка, обґрунтовані рішення"
       },
       {
        "name": "internal-comms",
-       "short": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever …"
+       "short": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever …",
+       "shortUk": "Набір ресурсів для написання внутрішньої комунікації компанії у прийнятих форматах"
       },
       {
        "name": "mcp-builder",
-       "short": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b…"
+       "short": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when b…",
+       "shortUk": "Настанови для створення якісних MCP-серверів, що дають LLM доступ до зовнішніх сервісів через продумані інструменти"
       },
       {
        "name": "pdf",
-       "short": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple P…"
+       "short": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple P…",
+       "shortUk": "Читає, витягує текст/таблиці, об'єднує чи інакше опрацьовує PDF-файли"
       },
       {
        "name": "pptx",
-       "short": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea…"
+       "short": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea…",
+       "shortUk": "Створює, читає й редагує презентації PowerPoint (.pptx)"
       },
       {
        "name": "skill-creator",
-       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…"
+       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…",
+       "shortUk": "Створення нових скілів, редагування й оптимізація наявних, вимірювання їхньої ефективності"
       },
       {
        "name": "slack-gif-creator",
-       "short": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request a…"
+       "short": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request a…",
+       "shortUk": "Створення анімованих GIF, оптимізованих для Slack"
       },
       {
        "name": "template-skill",
-       "short": "Replace with description of the skill and when Claude should use it."
+       "short": "Replace with description of the skill and when Claude should use it.",
+       "shortUk": "Шаблон-заготовка для нового скіла — замінити описом і умовами використання"
       },
       {
        "name": "theme-factory",
-       "short": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fo…"
+       "short": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fo…",
+       "shortUk": "Інструментарій стилізації артефактів темою — слайди, документи, звіти, HTML-сторінки"
       },
       {
        "name": "web-artifacts-builder",
-       "short": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for…"
+       "short": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for…",
+       "shortUk": "Побудова веб-артефактів — самодостатніх HTML-сторінок для показу користувачу"
       },
       {
        "name": "webapp-testing",
-       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…"
+       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
+       "shortUk": "Тестування вебзастосунку — сценарії, перевірка поведінки в браузері"
       },
       {
        "name": "xlsx",
-       "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…"
+       "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…",
+       "shortUk": "Створення, читання та редагування файлів Excel (.xlsx)"
       }
      ]
     },
@@ -1150,59 +1393,73 @@
      "skills": [
       {
        "name": "brainstorming",
-       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…"
+       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…",
+       "shortUk": "Досліджує намір користувача, вимоги й дизайн перед будь-якою творчою роботою над функціоналом"
       },
       {
        "name": "dispatching-parallel-agents",
-       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies"
+       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+       "shortUk": "Запускати кілька незалежних завдань паралельними агентами, коли між ними нема спільного стану чи послідовних залежностей"
       },
       {
        "name": "executing-plans",
-       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints"
+       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+       "shortUk": "Виконання письмового плану реалізації в окремій сесії з контрольними точками для рев'ю"
       },
       {
        "name": "finishing-a-development-branch",
-       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…"
+       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…",
+       "shortUk": "Допомагає визначитись, як інтегрувати завершену розробку, коли реалізацію зроблено й усі тести пройдено"
       },
       {
        "name": "receiving-code-review",
-       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …"
+       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …",
+       "shortUk": "Допомагає технічно оцінити фідбек код-рев'ю перед його впровадженням"
       },
       {
        "name": "requesting-code-review",
-       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements"
+       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+       "shortUk": "Перевіряє відповідність виконаної роботи вимогам перед мерджем"
       },
       {
        "name": "subagent-driven-development",
-       "short": "Use when executing implementation plans with independent tasks in the current session"
+       "short": "Use when executing implementation plans with independent tasks in the current session",
+       "shortUk": "Виконання плану реалізації з незалежними задачами в поточній сесії через субагентів"
       },
       {
        "name": "systematic-debugging",
-       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+       "shortUk": "Використовується при виявленні багів чи непередбаченої поведінки перед пропозицією виправлень"
       },
       {
        "name": "test-driven-development",
-       "short": "Use when implementing any feature or bugfix, before writing implementation code"
+       "short": "Use when implementing any feature or bugfix, before writing implementation code",
+       "shortUk": "Використовується при реалізації фічі чи фіксу бага перед написанням коду реалізації"
       },
       {
        "name": "using-git-worktrees",
-       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…"
+       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…",
+       "shortUk": "Робота з кількома git worktree одночасно — паралельні гілки в окремих теках"
       },
       {
        "name": "using-superpowers",
-       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions"
+       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+       "shortUk": "Пошук і використання скілів на початку розмови перед відповіддю"
       },
       {
        "name": "verification-before-completion",
-       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…"
+       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…",
+       "shortUk": "Перевірка результату роботи перед тим, як вважати задачу завершеною"
       },
       {
        "name": "writing-plans",
-       "short": "Use when you have a spec or requirements for a multi-step task, before touching code"
+       "short": "Use when you have a spec or requirements for a multi-step task, before touching code",
+       "shortUk": "Написання письмового плану реалізації перед виконанням"
       },
       {
        "name": "writing-skills",
-       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment"
+       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+       "shortUk": "Створення й перевірка нових скілів перед публікацією"
       }
      ]
     },
@@ -1216,39 +1473,48 @@
      "skills": [
       {
        "name": "threejs-3d-generator",
-       "short": "Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to…"
+       "short": "Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to…",
+       "shortUk": "Генерація, текстурування й анімація 3D-асетів для ігор Three.js через Tripo API"
       },
       {
        "name": "threejs-aaa-graphics-builder",
-       "short": "Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, techni…"
+       "short": "Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, techni…",
+       "shortUk": "Підняття графіки ігор Three.js від прототипу до преміум-рівня AAA"
       },
       {
        "name": "threejs-audio-generator",
-       "short": "Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapo…"
+       "short": "Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapo…",
+       "shortUk": "Генерація й підготовка звукових асетів для браузерних ігор Three.js через ElevenLabs"
       },
       {
        "name": "threejs-debug-profiler",
-       "short": "Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw call…"
+       "short": "Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw call…",
+       "shortUk": "Дебаг і профілювання ігор Three.js — рендер, продуктивність, draw calls"
       },
       {
        "name": "threejs-game-director",
-       "short": "Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidel…"
+       "short": "Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidel…",
+       "shortUk": "Головна точка входу для повного створення й преміум-ітерації браузерних ігор Three.js"
       },
       {
        "name": "threejs-game-ui-designer",
-       "short": "Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe a…"
+       "short": "Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe a…",
+       "shortUk": "Проєктування ігрового UI на Three.js — HUD, меню, інвентар, індикатори прогресу"
       },
       {
        "name": "threejs-gameplay-systems",
-       "short": "Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/e…"
+       "short": "Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/e…",
+       "shortUk": "Розробка ігрових систем на Three.js — фізика, взаємодії, контролери персонажа, стан гри"
       },
       {
        "name": "threejs-image-generator",
-       "short": "Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/backgr…"
+       "short": "Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/backgr…",
+       "shortUk": "Генерація зображень і текстур для сцен Three.js"
       },
       {
        "name": "threejs-qa-release",
-       "short": "Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, sta…"
+       "short": "Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, sta…",
+       "shortUk": "QA й підготовка релізу Three.js-проєкту — перевірка продуктивності, багів, збірки перед випуском"
       }
      ]
     },
@@ -1262,11 +1528,13 @@
      "skills": [
       {
        "name": "grill-me",
-       "short": "A relentless interview to sharpen a plan or design."
+       "short": "A relentless interview to sharpen a plan or design.",
+       "shortUk": "Безкомпромісне інтерв'ю для загострення плану чи дизайну"
       },
       {
        "name": "grilling",
-       "short": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases."
+       "short": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.",
+       "shortUk": "Прискіпливо допитує користувача про план, рішення чи ідею для стрес-тесту мислення"
       }
      ]
     },
@@ -1280,11 +1548,13 @@
      "skills": [
       {
        "name": "supabase-postgres-best-practices",
-       "short": "Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or d…"
+       "short": "Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or optimizing Postgres queries, schema designs, or d…",
+       "shortUk": "Оптимізація продуктивності й найкращі практики Postgres від Supabase для запитів і схем"
       },
       {
        "name": "supabase",
-       "short": "Use when doing ANY task involving Supabase. Triggers: Supabase products (Database, Auth, Edge Functions, Realtime, Storage, Vectors, Cron, Queues); client libra…"
+       "short": "Use when doing ANY task involving Supabase. Triggers: Supabase products (Database, Auth, Edge Functions, Realtime, Storage, Vectors, Cron, Queues); client libra…",
+       "shortUk": "Робота з будь-якою задачею щодо Supabase — БД, Auth, Edge Functions, Realtime, Storage"
       }
      ]
     },
@@ -1298,7 +1568,8 @@
      "skills": [
       {
        "name": "power-bi-dax-optimization",
-       "short": "Comprehensive Power BI DAX formula optimization prompt for improving performance, readability, and maintainability of DAX calculations."
+       "short": "Comprehensive Power BI DAX formula optimization prompt for improving performance, readability, and maintainability of DAX calculations.",
+       "shortUk": "Оптимізує DAX-формули Power BI за продуктивністю, читабельністю й супроводжуваністю"
       }
      ]
     },
@@ -1312,7 +1583,8 @@
      "skills": [
       {
        "name": "fact-checker",
-       "short": "Verifies factual claims in documents using web search and official sources, then proposes corrections with user confirmation. Use when the user asks to fact-che…"
+       "short": "Verifies factual claims in documents using web search and official sources, then proposes corrections with user confirmation. Use when the user asks to fact-che…",
+       "shortUk": "Перевіряє фактичні твердження в документах через веб-пошук і офіційні джерела, пропонує виправлення із підтвердженням користувача"
       }
      ]
     },
@@ -1326,7 +1598,8 @@
      "skills": [
       {
        "name": "shadcn",
-       "short": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI, including chat interfaces. Provides project context, c…"
+       "short": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI, including chat interfaces. Provides project context, c…",
+       "shortUk": "Керування компонентами й проєктами shadcn — додавання, пошук, стилізація, компонування UI"
       }
      ]
     },
@@ -1340,7 +1613,8 @@
      "skills": [
       {
        "name": "web-design-guidelines",
-       "short": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site …"
+       "short": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site …",
+       "shortUk": "Настанови веб-дизайну — типографіка, розкладка, доступність для сайтів і застосунків"
       }
      ]
     },
@@ -1354,19 +1628,23 @@
      "skills": [
       {
        "name": "emil-design-eng",
-       "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great."
+       "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
+       "shortUk": "Філософія Еміла Ковальскі щодо полірування UI, дизайну компонентів, анімацій і непомітних деталей якісного софту"
       },
       {
        "name": "graphify",
-       "short": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul…"
+       "short": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul…",
+       "shortUk": "Перетворює будь-який вхід (код, документи, статті) на персистентний граф знань із god nodes і виявленням спільнот"
       },
       {
        "name": "humanizer",
-       "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…"
+       "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…",
+       "shortUk": "Прибирає ознаки тексту, згенерованого ШІ, роблячи текст природнішим і людянішим"
       },
       {
        "name": "model-orchestration",
-       "short": "Use when a multi-step task can be split so a stronger model plans and cheaper models execute — dispatching exec-haiku / exec-sonnet / exec-opus executors or a f…"
+       "short": "Use when a multi-step task can be split so a stronger model plans and cheaper models execute — dispatching exec-haiku / exec-sonnet / exec-opus executors or a f…",
+       "shortUk": "Розбиває багатокрокову задачу так, щоб сильна модель планувала, а дешевші моделі виконували — виконавці haiku/sonnet/opus"
       }
      ]
     }

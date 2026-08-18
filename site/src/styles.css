@@ -24,6 +24,8 @@
   --g-goblin-text: #085041;
   --g-standalone-bg: #faece7;
   --g-standalone-text: #712b13;
+  --tip-bg: #26263a;
+  --tip-text: #f2f2fa;
   --mono: ui-monospace, "Cascadia Code", Consolas, "Courier New", monospace;
 }
 
@@ -54,6 +56,8 @@
     --g-goblin-text: #9fe1cb;
     --g-standalone-bg: #712b13;
     --g-standalone-text: #f5c4b3;
+    --tip-bg: #ececf4;
+    --tip-text: #1c1c26;
   }
 }
 
@@ -75,10 +79,12 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
   gap: 14px;
-  align-items: start;
+  align-items: stretch;
   margin: 14px 0;
 }
-.cards-grid .plugin { margin: 0; }
+.cards-grid .plugin { margin: 0; display: flex; flex-direction: column; }
+.cards-grid .plugin .chips { align-content: flex-start; }
+.picon { font-size: 18px; line-height: 1; }
 
 a { color: var(--accent); }
 
@@ -102,7 +108,7 @@ h3 { font-size: 16px; font-weight: 600; margin: 0; }
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: 9px 12px; font-family: var(--mono); font-size: 13.5px;
 }
-.copyrow code { flex: 1; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
+.copyrow code { flex: 1; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .copyrow.block { align-items: flex-start; }
 .copyrow.block pre { flex: 1; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.6; }
 
@@ -223,6 +229,29 @@ button.totop {
   box-shadow: 0 4px 14px rgb(0 0 0 / 12%);
 }
 button.totop:hover { border-color: var(--accent); color: var(--text); }
+
+/* Підказка з українським описом скіла при наведенні на чіп */
+button.chip[data-tip] { position: relative; }
+button.chip[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 60;
+  width: max-content; max-width: min(320px, calc(100vw - 48px));
+  background: var(--tip-bg); color: var(--tip-text);
+  padding: 8px 11px; border-radius: 9px;
+  font-size: 12.5px; line-height: 1.45; font-weight: 400; text-align: left;
+  white-space: normal; pointer-events: none;
+  opacity: 0; visibility: hidden; transform: translateY(4px);
+  transition: opacity 0.15s ease 0.25s, transform 0.15s ease 0.25s, visibility 0s linear 0.4s;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 18%);
+}
+button.chip[data-tip]:hover::after,
+button.chip[data-tip]:focus-visible::after {
+  opacity: 1; visibility: visible; transform: none;
+  transition-delay: 0.25s, 0.25s, 0.25s;
+}
+@media (prefers-reduced-motion: reduce) {
+  button.chip[data-tip]::after { transition: none; transform: none; }
+}
 
 @media (max-width: 560px) {
   .metrics { gap: 8px; }
