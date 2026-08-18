@@ -40,6 +40,8 @@ export interface InvSkill {
 export interface InvPlugin {
   name: string;
   installCmd: string;
+  short?: string;
+  shortUk?: string;
   skills: InvSkill[];
 }
 

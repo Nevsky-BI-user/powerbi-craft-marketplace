@@ -38,6 +38,17 @@ export function filterInvGroup(group: InvGroup, q: string): InvGroup {
   return { ...group, plugins, sources, skillCount: count, uniqueCount: unique.size };
 }
 
+function noSourcePrompt(name: string, desc: string): string {
+  return (
+    `Встанови скіл Claude Code «${name}» (${desc}). Канонічного репозиторію немає: ` +
+    `пошукай на GitHub теку ${name} зі SKILL.md у публічних колекціях скілів і перевір, ` +
+    `що опис збігається; знайшов — зроби sparse checkout у ~/.claude/skills/${name}/. ` +
+    `Не знайшов — створи скіл сам: тека ~/.claude/skills/${name}/ зі SKILL.md ` +
+    `(frontmatter name і description + інструкції), що реалізує описане. ` +
+    `Наприкінці покажи name та description.`
+  );
+}
+
 function standalonePrompt(name: string, repo: string, dir: string | null): string {
   const path = dir ? `${dir}/${name}` : name;
   return (
@@ -82,8 +93,8 @@ function StandaloneSkillCard(props: { skill: InvSkill; source: InvSource }) {
                 item={`standalone:${source.id}`}
               />
               <p className="meta" style={{ margin: "8px 0 0" }}>
-                Репозиторій є маркетплейсом: після підключення наберіть <code>/plugin</code> і
-                встановіть плагін, що містить цей скіл.
+                Цей репозиторій — теж маркетплейс: підключіть його, наберіть <code>/plugin</code> і
+                виберіть плагін із цим скілом.
               </p>
             </>
           ) : source.dir !== null ? (
@@ -98,9 +109,14 @@ function StandaloneSkillCard(props: { skill: InvSkill; source: InvSource }) {
           ) : null}
         </>
       ) : (
-        <p className="meta" style={{ margin: "8px 0 0" }}>
-          Публічного джерела немає — скіл живе локально на машині автора.
-        </p>
+        <details open>
+          <summary>Промпт для Claude Code — знайти або відтворити цей скіл</summary>
+          <CopyRow
+            text={noSourcePrompt(skill.name, skillTip(skill))}
+            kind="skill-prompt"
+            item={`standalone:${skill.name}`}
+          />
+        </details>
       )}
     </div>
   );
@@ -139,54 +155,66 @@ function ChipGrid<T>(props: {
   );
 }
 
-/** Розділ маркетплейс-групи (Anthropic / Microsoft / Kurt Buhler) — уже відфільтрованої. */
+/** Розділ маркетплейс-групи (Anthropic / Microsoft / Kurt Buhler) — уже відфільтрованої.
+ *  Кожен плагін — окрема картка з описом, командою і власним якорем mp-<група>-<плагін>. */
 export function GroupSection(props: { group: InvGroup }) {
   const { group } = props;
   if (group.skillCount === 0) return null;
   const counts =
     group.uniqueCount !== group.skillCount
-      ? `${pluralSkills(group.skillCount)} (${group.uniqueCount} унікальних — плагіни-набори перекриваються)`
-      : pluralSkills(group.skillCount);
+      ? `${pluralSkills(group.skillCount)} у ${group.plugins.length} плагінах (${group.uniqueCount} унікальних: набори перекриваються)`
+      : `${pluralSkills(group.skillCount)} у ${group.plugins.length} плагінах`;
   return (
     <section id={group.group}>
       <h2>
         {group.title}{" "}
         <span className={`badge gdot g-${group.group}`}>{GROUP_LABELS[group.group]}</span>
       </h2>
-      <div className={`plugin inv-${group.group}`}>
-        <div className="plugin-head">
-          <span className="tagline">{counts}</span>
-          {group.repo && (
+      <p className="section-intro">
+        {counts}
+        {group.repo && (
+          <>
+            {" · "}
             <a href={`https://github.com/${group.repo}`} target="_blank" rel="noreferrer">
               github.com/{group.repo}
             </a>
-          )}
-        </div>
-        {group.group === "anthropic" && (
-          <p className="plugin-desc">
-            Офіційний маркетплейс уже підключений у кожному Claude Code — плагіни ставляться
-            командою з картки скіла, окреме підключення не потрібне. Вбудовані скіли застосунку
-            (docx, pptx, xlsx тощо) сюди не входять: вони — частина самого Claude.
-          </p>
-        )}
-        {group.addCmd && (
-          <>
-            <p className="plugin-desc">
-              Підключення маркетплейсу (раз), далі — команда встановлення з картки скіла:
-            </p>
-            <CopyRow text={group.addCmd} kind="marketplace" item={group.group} />
           </>
         )}
-        <ChipGrid
-          entries={group.plugins.flatMap((p) =>
-            p.skills.map((s) => ({ key: `${p.name}/${s.name}`, skill: s, payload: p })),
-          )}
-          groupClass={`g-${group.group}`}
-          trackPrefix={group.group}
-          renderCard={(plugin, skill) => (
-            <MarketSkillCard skill={skill} group={group} plugin={plugin} />
-          )}
-        />
+      </p>
+      {group.group === "anthropic" && (
+        <p className="section-intro">
+          Це офіційний маркетплейс, він уже підключений у кожному Claude Code, тож досить
+          команди з картки плагіна. Вбудованих скілів застосунку (docx, pptx, xlsx) тут немає:
+          вони і так частина Claude.
+        </p>
+      )}
+      {group.addCmd && (
+        <>
+          <p className="section-intro">
+            Спершу підключіть маркетплейс (один раз), далі беріть команди з карток плагінів:
+          </p>
+          <CopyRow text={group.addCmd} kind="marketplace" item={group.group} />
+        </>
+      )}
+      <div className="cards-grid">
+        {group.plugins.map((p) => (
+          <div className={`plugin inv-${group.group}`} id={`mp-${group.group}-${p.name}`} key={p.name}>
+            <div className="plugin-head">
+              <h3>{p.name}</h3>
+              <span className="tagline">{pluralSkills(p.skills.length)}</span>
+            </div>
+            {p.short && <p className="plugin-desc">{p.short}</p>}
+            <CopyRow text={p.installCmd} kind="plugin" item={`${group.group}:${p.name}`} />
+            <ChipGrid
+              entries={p.skills.map((s) => ({ key: s.name, skill: s, payload: p }))}
+              groupClass={`g-${group.group}`}
+              trackPrefix={group.group}
+              renderCard={(plugin, skill) => (
+                <MarketSkillCard skill={skill} group={group} plugin={plugin} />
+              )}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -204,9 +232,10 @@ export function StandaloneSection(props: { group: InvGroup }) {
         <span className="badge gdot g-standalone">{GROUP_LABELS.standalone}</span>
       </h2>
       <p className="section-intro">
-        Скіли, що лежать напряму в <code>~/.claude/skills</code>, без плагінів і маркетплейсів.
-        Більшість — із публічних репозиторіїв: нижче кожне джерело з командою підключення
-        або промптом встановлення на картці скіла. Де публічного джерела немає — так і написано.
+        Ці скіли не належать жодному плагіну, вони просто лежать у <code>~/.claude/skills</code>.
+        Більшість походить із публічних репозиторіїв, тож поруч із кожним є спосіб поставити
+        його й собі. Де канонічного репозиторію немає, на картці лежить промпт: скопіюйте
+        його в Claude Code, і той знайде або відтворить скіл сам.
       </p>
       <div className="cards-grid">
       {sources.map((src) => (

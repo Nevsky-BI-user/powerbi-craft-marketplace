@@ -21,39 +21,49 @@ const SECTION_INFO: Record<string, { icon: string; title: string; desc: string }
   "powerbi-craft": {
     icon: "🧰",
     title: "powerbi-craft",
-    desc: "Маркетплейс автора: ремесло звітів Power BI — візуали, UX сторінок, дизайн-мова, якість, сторітелінг, DAX, PBIP-devops.",
+    desc: "Power BI / Fabric report-craft skills: visuals, report UX, design language, quality gates, DAX, PBIP devops, data storytelling.",
   },
   anthropic: {
     icon: "📦",
     title: "Бандл Anthropic",
-    desc: "Плагіни офіційного маркетплейсу Claude Code — він уже підключений у кожній інсталяції, окрема команда не потрібна.",
+    desc: "Plugins from the official Claude Code marketplace: setup, skill authoring, frontend design, superpowers.",
   },
   microsoft: {
     icon: "🧱",
     title: "Microsoft skills-for-fabric",
-    desc: "Fabric-інженерія: Spark, SQL-сховища, потоки подій, CLI-автоматизація.",
+    desc: "Microsoft Skills for Fabric: Spark, warehouses, event streams, real-time intelligence, CLI automation.",
   },
   goblin: {
     icon: "👺",
     title: "Kurt Buhler (data-goblin)",
-    desc: "Agentic-розробка Power BI: семантичні моделі, PBIR-звіти, Tabular Editor, DAX.",
+    desc: "Agentic Power BI development: semantic models, PBIR reports, Tabular Editor, DAX.",
   },
   standalone: {
     icon: "🧩",
     title: "Окремі скіли",
-    desc: "Скіли напряму в ~/.claude/skills, згруповані за публічним джерелом.",
+    desc: "Скіли, що живуть просто в ~/.claude/skills. Згруповані за репозиторіями, з яких їх можна поставити й собі.",
   },
   "install-all": {
     icon: "⚡",
     title: "Встановити все",
-    desc: "Повний комплект powerbi-craft однією командою в терміналі або промптом для агента.",
+    desc: "Скрипт для термінала або промпт для агента, і весь powerbi-craft ставиться за раз.",
   },
   "how-to": {
     icon: "📖",
     title: "Як почати",
-    desc: "Покрокова інструкція: підключення, встановлення, перевірка, автооновлення.",
+    desc: "Пʼять кроків від чистого Claude Code до робочого набору, включно з автооновленням.",
   },
 };
+
+const UK_MONTHS = [
+  "січня", "лютого", "березня", "квітня", "травня", "червня",
+  "липня", "серпня", "вересня", "жовтня", "листопада", "грудня",
+];
+
+function ukDate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${UK_MONTHS[m - 1]} ${y}`;
+}
 
 function matches(q: string, hay: string): boolean {
   return hay.toLowerCase().includes(q);
@@ -193,28 +203,26 @@ export default function App() {
     activeSection === "powerbi-craft"
       ? `claude plugin marketplace add ${mp.repo}`
       : activeGroup?.addCmd ?? null;
+  const filteredGroup = invFiltered.find((g) => g.group === activeSection);
   const toc: { label: string; anchor?: string }[] =
     activeSection === "powerbi-craft"
       ? visible.map((p) => ({ label: `${PLUGIN_ICONS[p.name] ?? "🧩"} ${p.name}`, anchor: `p-${p.name}` }))
       : activeSection === "standalone"
-        ? (invFiltered.find((g) => g.group === "standalone")?.sources ?? []).map((s) => ({
-            label: s.title,
-            anchor: `src-${s.id}`,
-          }))
-        : (activeGroup?.plugins ?? []).slice(0, 10).map((p) => ({ label: p.name }));
-  const tocMore =
-    skillSection && activeSection !== "powerbi-craft" && activeSection !== "standalone"
-      ? Math.max(0, (activeGroup?.plugins.length ?? 0) - 10)
-      : 0;
+        ? (filteredGroup?.sources ?? []).map((s) => ({ label: s.title, anchor: `src-${s.id}` }))
+        : (filteredGroup?.plugins ?? []).map((p) => ({
+            label: p.name,
+            anchor: `mp-${activeSection}-${p.name}`,
+          }));
 
   return (
     <div className="container">
       <header className="hero" id="top">
         <h1>Каталог скілів Claude Code</h1>
         <p className="sub">
-          Усі набори скілів одного робочого середовища — рівноцінними розділами: powerbi-craft,
-          Anthropic, Microsoft, Kurt Buhler та окремі скіли. Описи скілів — у підказках і картках;
-          команди встановлення — на місці кожної групи. Знімок середовища: {inventory.snapshotDate}.
+          Тут зібрано ціле робоче середовище Claude Code: powerbi-craft, набори Anthropic,
+          Microsoft і Kurt Buhler та півсотні окремих скілів. Наведіть курсор на скіл, щоб
+          побачити, що він робить; команда чи промпт встановлення лежить поруч. Знімок
+          від {ukDate(inventory.snapshotDate)}.
         </p>
       </header>
 
@@ -296,7 +304,6 @@ export default function App() {
                   <span key={t.label}>{t.label}</span>
                 ),
               )}
-              {tocMore > 0 && <span className="more">+{tocMore} ще</span>}
             </nav>
           )}
         </aside>
@@ -305,8 +312,8 @@ export default function App() {
           <section id="powerbi-craft">
             <h2>powerbi-craft — плагіни та скіли</h2>
             <p className="section-intro">
-              Маркетплейс автора: {catalog.totals.plugins} плагінів, {pluralSkills(catalog.totals.skills)},{" "}
-              {agentCount} субагенти, {hookPlugins} плагін із хуком автоперевірки.
+              Девʼять плагінів і {pluralSkills(catalog.totals.skills)}, а з ними {agentCount} субагенти-ревʼюери
+              та хук автоперевірки звіту. Найкраще ставити все разом: скіли посилаються один на одного.
             </p>
             <div className="cards-grid">
               {visible.map((p) => (

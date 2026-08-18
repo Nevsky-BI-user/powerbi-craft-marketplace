@@ -208,9 +208,6 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border
   padding: 10px 0 8px; margin: 12px 0 4px;
   border-bottom: 1px solid var(--border);
 }
-@supports (backdrop-filter: blur(8px)) {
-  .topnav { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(8px); }
-}
 .topnav .navrow { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
 button.navchip.quiet { background: var(--card2); color: var(--text2); }
 button.navchip.dim { opacity: 0.45; }

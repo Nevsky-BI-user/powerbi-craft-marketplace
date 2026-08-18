@@ -29,6 +29,7 @@ OUT = os.path.join(ROOT, "site", "src", "inventory.json")
 # Українські короткі описи (спільний словник із build_catalog.py)
 UK_PATH = os.path.join(ROOT, "scripts", "uk_descriptions.json")
 UK = json.load(io.open(UK_PATH, encoding="utf-8")) if os.path.exists(UK_PATH) else {}
+# Описи ПЛАГІНІВ лишаються англійською — мовою їхніх авторів (рішення 2026-08-18)
 
 MP_META = {
     "claude-plugins-official": {
@@ -98,9 +99,10 @@ SOURCE_META = {
         "note": "Скіл-обгортка: тягне гайдлайни вебінтерфейсів Vercel із цього репо на льоту.",
     },
     "local": {
-        "title": "Авторські локальні", "repo": None, "dir": None, "marketplace": False,
-        "note": "Публічного канонічного джерела немає (для emil-design-eng і humanizer існують "
-                "лише дзеркала-агрегатори) — скіли живуть локально на машині автора.",
+        "title": "Без канонічного джерела", "repo": None, "dir": None, "marketplace": False,
+        "note": "У цих скілів немає канонічного репозиторію (для emil-design-eng і humanizer "
+                "у мережі лише дзеркала без явного автора). На картці кожного є промпт: "
+                "скопіюйте його в Claude Code, і той знайде або відтворить скіл сам.",
     },
 }
 
@@ -201,11 +203,22 @@ for mp_name, meta in MP_META.items():
         d = frontmatter(sk)
         if d is None:
             continue
-        entry = seen_plugins.setdefault(plugin_name, {
-            "name": plugin_name,
-            "installCmd": f"claude plugin install {plugin_name}@{mp_name}",
-            "skills": [],
-        })
+        if plugin_name not in seen_plugins:
+            pj_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(sk))),
+                                   ".claude-plugin", "plugin.json")
+            p_desc = ""
+            if os.path.exists(pj_path):
+                try:
+                    p_desc = json.load(io.open(pj_path, encoding="utf-8")).get("description", "")
+                except Exception:
+                    p_desc = ""
+            seen_plugins[plugin_name] = {
+                "name": plugin_name,
+                "installCmd": f"claude plugin install {plugin_name}@{mp_name}",
+                "short": short_desc(p_desc),
+                "skills": [],
+            }
+        entry = seen_plugins[plugin_name]
         if any(s["name"] == d["name"] for s in entry["skills"]):
             continue
         entry["skills"].append({"name": d["name"], "short": short_desc(d.get("description")),

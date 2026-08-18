@@ -20,7 +20,7 @@
     {
      "name": "pbi-ai-visuals",
      "short": "Use when adding, theming, or scoping Power BI AI visuals - Decomposition tree, Key influencers, Smart narrative, Q&A visual, anomaly detection. Flags correlation-vs-causation, Copilot licensing.",
-     "shortUk": "Додавання й налаштування AI-візуалів Power BI: дерево декомпозиції, ключові фактори, розумна розповідь, Q&A, аномалії",
+     "shortUk": "Додає й налаштовує AI-візуали Power BI: дерево декомпозиції, ключові фактори, розумна розповідь, Q&A, аномалії",
      "description": "Use when adding, theming, or scoping Power BI AI visuals - Decomposition tree, Key influencers, Smart narrative, Q&A visual, anomaly detection. Flags correlation-vs-causation, Copilot licensing. Do NOT trigger for chart choice (pbi-visualization-strategy), visual JSON (powerbi-visuals), driver measures (dax-measures). Triggers - 'decomposition tree', 'key influencers', 'smart narrative', 'Q&A visual', 'anomaly detection', 'дерево декомпозиції', 'ключові фактори впливу', 'розумна розповідь'.",
      "triggers": [
       "decomposition tree",
@@ -36,7 +36,7 @@
     {
      "name": "pbi-bar-column-charts",
      "short": "Use when creating, restyling, sorting, or decluttering bar/column charts in Power BI PBIP reports (PBIR-Legacy or enhanced) — ranking, top-N, data labels vs axis, gridlines, category colors, small multiples.",
-     "shortUk": "Створення й стилізація стовпчикових/пруткових діаграм Power BI — рейтинги, підписи даних, кольори категорій",
+     "shortUk": "Створює й стилізує стовпчикові діаграми Power BI — рейтинги, підписи даних, кольори категорій",
      "description": "Use when creating, restyling, sorting, or decluttering bar/column charts in Power BI PBIP reports (PBIR-Legacy or enhanced) — ranking, top-N, data labels vs axis, gridlines, category colors, small multiples. Do NOT trigger for chart-type selection (use pbi-visualization-strategy), trends (pbi-line-area-charts), or raw JSON mechanics (powerbi-visuals). Triggers - 'bar chart', 'column chart', 'sort bars', 'стовпчикова діаграма', 'лінійчаста діаграма', 'рейтинг', 'сортування стовпців'.",
      "triggers": [
       "bar chart",
@@ -51,7 +51,7 @@
     {
      "name": "pbi-combo-charts",
      "short": "Use when deciding if a line+column combo chart is justified, styling lineClusteredColumnComboChart/lineStackedColumnComboChart, syncing primary/secondary value axes, or building a plan-vs-actual+variance visual.",
-     "shortUk": "Стилізація комбінованих лінійно-стовпчикових діаграм Power BI із синхронізацією осей і візуалом план-факт",
+     "shortUk": "Стилізує комбіновані лінійно-стовпчикові діаграми Power BI із синхронізацією осей і візуалом план-факт",
      "description": "Use when deciding if a line+column combo chart is justified, styling lineClusteredColumnComboChart/lineStackedColumnComboChart, syncing primary/secondary value axes, or building a plan-vs-actual+variance visual. Do NOT trigger for single-series bars (pbi-bar-column-charts), pure trend lines (pbi-line-area-charts), or chart-choice triage (pbi-visualization-strategy). Triggers - 'комбо діаграма', 'лінія і стовпці', 'подвійна вісь', 'план факт відхилення', 'dual axis'.",
      "triggers": [
       "комбо діаграма",
@@ -64,7 +64,7 @@
     {
      "name": "pbi-gauges-progress",
      "short": "Use when a gauge, speedometer, dial, or progress bar/ring is requested for a Power BI PBIP report - native gauge vs bullet chart vs linear progress vs cardVisual reference label vs kpi choice.",
-     "shortUk": "Вибір і побудова індикатора/спідометра/прогрес-бару в Power BI — gauge, bullet chart, лінійний прогрес чи KPI",
+     "shortUk": "Обирає й будує індикатор чи прогрес-бар у Power BI — gauge, bullet chart, лінійний прогрес чи KPI",
      "description": "Use when a gauge, speedometer, dial, or progress bar/ring is requested for a Power BI PBIP report - native gauge vs bullet chart vs linear progress vs cardVisual reference label vs kpi choice. Do NOT trigger for chart choice (pbi-visualization-strategy), SVG rendering (dax-svg), or JSON mechanics (powerbi-visuals). Triggers - 'gauge', 'speedometer', 'progress bar', '% of goal', 'спідометр', 'індикатор прогресу', 'прогрес-бар', 'ціль виконання'.",
      "triggers": [
       "gauge",
@@ -80,7 +80,7 @@
     {
      "name": "pbi-kpi-cards",
      "short": "Use when creating or restyling KPI/scorecard cards in Power BI PBIP reports (Legacy or enhanced) - card vs cardVisual vs multiRowCard vs kpi choice, title/value/delta anatomy, good/bad delta color, showBlankAs, card grids.",
-     "shortUk": "Створення й стилізація KPI-карток у Power BI — вибір типу картки, анатомія заголовок/значення/дельта, сітка карток",
+     "shortUk": "Створює й стилізує KPI-картки в Power BI — тип картки, заголовок/значення/дельта, сітка карток",
      "description": "Use when creating or restyling KPI/scorecard cards in Power BI PBIP reports (Legacy or enhanced) - card vs cardVisual vs multiRowCard vs kpi choice, title/value/delta anatomy, good/bad delta color, showBlankAs, card grids. Do NOT trigger for chart choice (pbi-visualization-strategy), delta DAX/SVG (dax-measures/dax-svg), visual JSON mechanics (powerbi-visuals), or what the card should SAY - naming its comparison base so a bare number becomes a finding (data-storytelling). Triggers - 'KPI картка', 'скорборд', 'delta колір', 'сітка карток', 'multi-row card'.",
      "triggers": [
       "KPI картка",
@@ -93,7 +93,7 @@
     {
      "name": "pbi-line-area-charts",
      "short": "Use when creating or restyling Power BI line/area trend charts — series count, markers, interpolation, end-of-line labels, trendlines, forecast bands, area transparency, date-axis format.",
-     "shortUk": "Створення лінійних і площинних трендових діаграм Power BI — маркери, підписи, лінії тренду, прогнозні смуги",
+     "shortUk": "Створює лінійні й площинні трендові діаграми Power BI — маркери, підписи, лінії тренду, прогнозні смуги",
      "description": "Use when creating or restyling Power BI line/area trend charts — series count, markers, interpolation, end-of-line labels, trendlines, forecast bands, area transparency, date-axis format. Do NOT trigger for ranking (pbi-bar-column-charts), dual-axis combo (pbi-combo-charts), chart choice (pbi-visualization-strategy), or JSON mechanics (powerbi-visuals). Triggers - 'line chart', 'area chart', 'trend line', 'forecast', 'лінійна діаграма', 'діаграма з областями', 'тренд', 'прогноз', 'часовий ряд'.",
      "triggers": [
       "line chart",
@@ -110,7 +110,7 @@
     {
      "name": "pbi-maps-geo",
      "short": "Use when creating, choosing, or restyling map/filledMap/shapeMap/Azure Maps visuals in Power BI reports: choropleth vs bubble choice, color-scale design, Ukraine oblast geocoding pitfalls, or whether a map is the right visual.",
-     "shortUk": "Вибір і стилізація картографічних візуалів Power BI — хороплет vs бульбашкова карта, геокодування областей України",
+     "shortUk": "Обирає й стилізує картографічні візуали Power BI — хороплет чи бульбашкова карта, геокодування областей України",
      "description": "Use when creating, choosing, or restyling map/filledMap/shapeMap/Azure Maps visuals in Power BI reports: choropleth vs bubble choice, color-scale design, Ukraine oblast geocoding pitfalls, or whether a map is the right visual. Do NOT trigger for non-geo chart choice (pbi-visualization-strategy), topojson-in-Deneb (deneb-vegalite), or visual JSON mechanics (powerbi-visuals). Triggers - 'мапа', 'карта України', 'область', 'choropleth', 'filled map', 'shape map', 'Azure Maps', 'геовізуалізація'.",
      "triggers": [
       "мапа",
@@ -126,7 +126,7 @@
     {
      "name": "pbi-matrix",
      "short": "Use when creating or restyling Matrix (pivotTable) visuals in Power BI PBIP reports (PBIR-Legacy or enhanced) - hierarchies, stepped/outline/tabular layout, drill-expand icons, subtotal vs grand-total styling, heatmap CF, sparklines.",
-     "shortUk": "Створення й стилізація матриць Power BI — ієрархії, ступінчаста розкладка, стилі проміжних і загальних підсумків",
+     "shortUk": "Створює й стилізує матриці Power BI — ієрархії, ступінчаста розкладка, стилі підсумків",
      "description": "Use when creating or restyling Matrix (pivotTable) visuals in Power BI PBIP reports (PBIR-Legacy or enhanced) - hierarchies, stepped/outline/tabular layout, drill-expand icons, subtotal vs grand-total styling, heatmap CF, sparklines. Do NOT trigger for flat tables (pbi-tables), CF semantics (pbi-conditional-formatting), drill-through pages (pbi-drillthrough), JSON mechanics (powerbi-visuals). Triggers - 'матриця', 'зведена таблиця', 'ієрархія', 'проміжні підсумки', 'теплова карта'.",
      "triggers": [
       "матриця",
@@ -139,7 +139,7 @@
     {
      "name": "pbi-part-to-whole",
      "short": "Use when choosing or designing a part-to-whole visual in Power BI PBIP: pie, donut, treemap, stacked/100% stacked, or waffle. Covers category limits and the \"Other\" bucket.",
-     "shortUk": "Вибір і дизайн візуалу «частина від цілого» в Power BI — коло, пончик, treemap, стовпчик 100%, waffle",
+     "shortUk": "Обирає й оформлює візуал «частина від цілого» в Power BI — коло, пончик, treemap, стовпчик 100%, waffle",
      "description": "Use when choosing or designing a part-to-whole visual in Power BI PBIP: pie, donut, treemap, stacked/100% stacked, or waffle. Covers category limits and the \"Other\" bucket. Do NOT trigger for chart selection (pbi-visualization-strategy), bar/column craft (pbi-bar-column-charts), JSON mechanics (powerbi-visuals), or Deneb builds (deneb-vegalite). Triggers - 'pie chart', 'donut chart', 'кругова діаграма', 'донат діаграма', 'treemap', 'waffle chart', '100% stacked', 'частка від цілого'.",
      "triggers": [
       "pie chart",
@@ -155,7 +155,7 @@
     {
      "name": "pbi-scatter-bubble",
      "short": "Use when creating or restyling a Power BI PBIP scatter/bubble chart for correlation analysis - bubble-size encoding, quadrants via constant lines, or labeling only outlier points.",
-     "shortUk": "Створення й стилізація точкової/бульбашкової діаграми Power BI для кореляційного аналізу — квадранти, підписи викидів",
+     "shortUk": "Створює й стилізує точкову чи бульбашкову діаграму Power BI для кореляційного аналізу — квадранти, підписи викидів",
      "description": "Use when creating or restyling a Power BI PBIP scatter/bubble chart for correlation analysis - bubble-size encoding, quadrants via constant lines, or labeling only outlier points. Do NOT trigger for chart-type choice (pbi-visualization-strategy), Deneb scatter/quadrant/density (deneb-vegalite), or JSON mechanics (powerbi-visuals). Triggers - 'scatter chart', 'bubble chart', 'quadrant chart', 'діаграма розсіювання', 'бульбашкова діаграма', 'квадранти', 'кореляція'.",
      "triggers": [
       "scatter chart",
@@ -170,7 +170,7 @@
     {
      "name": "pbi-tables",
      "short": "Use when creating, restyling, or tidying Table (tableEx) visuals in Power BI PBIP reports — column widths, alignment, header style, gridlines, zebra rows, applying number formats to table columns, adding data bars/icons, sort order. Trigger for everyday Power BI asks like 'наведи лад у таблиці' or 'таблиця виглядає погано' even when tableEx is not named.",
-     "shortUk": "Створення й приведення до ладу таблиць Power BI — ширина колонок, заголовки, зебра-рядки, формати чисел, сортування",
+     "shortUk": "Створює й приводить до ладу таблиці Power BI — ширина колонок, заголовки, зебра-рядки, формати чисел, сортування",
      "description": "Use when creating, restyling, or tidying Table (tableEx) visuals in Power BI PBIP reports — column widths, alignment, header style, gridlines, zebra rows, applying number formats to table columns, adding data bars/icons, sort order. Trigger for everyday Power BI asks like 'наведи лад у таблиці' or 'таблиця виглядає погано' even when tableEx is not named. Do NOT trigger for matrix incl. 'зведена таблиця' (pbi-matrix), CF mode choice — rules vs gradient vs data bars — and rule semantics (pbi-conditional-formatting), number format RULES like тис./млн (pbi-typography), in-cell SVG bars (dax-svg), raw JSON mechanics (powerbi-visuals), or PBIP project structure/renames (pbip skill). Triggers - 'таблиця у звіті', 'наведи лад у таблиці', 'ширини колонок', 'вирівнювання чисел', 'зебра', 'сортування таблиці', 'data bars у таблиці', 'шапка таблиці', 'table visual', 'tableEx', 'format table'.",
      "triggers": [
       "таблиця у звіті",
@@ -204,7 +204,7 @@
     {
      "name": "powerbi-visuals",
      "short": "Owns the report.json MECHANICS of Power BI PBIR-Legacy visuals — add/clone a visual container from code, rebind columns/measures (projections, queryRef), set colors/axes/labels in config JSON, wire drill-through plumbing, embed a measure-driven SVG. This skill is HOW the JSON is edited; WHAT a visual should look like belongs to its design skill.",
-     "shortUk": "Відповідає за механіку report.json PBIR-Legacy — додавання, прив'язку полів, кольори, drill-through",
+     "shortUk": "Керує механікою report.json PBIR-Legacy — додає візуали, привʼязує поля, кольори, drill-through",
      "description": "Owns the report.json MECHANICS of Power BI PBIR-Legacy visuals — add/clone a visual container from code, rebind columns/measures (projections, queryRef), set colors/axes/labels in config JSON, wire drill-through plumbing, embed a measure-driven SVG. This skill is HOW the JSON is edited; WHAT a visual should look like belongs to its design skill. Do NOT trigger for bookmark/visibility mechanics (powerbi-bookmarks); design/styling of a visual type — tables (pbi-tables), matrix (pbi-matrix), KPI cards (pbi-kpi-cards), slicers (pbi-slicers-filter-panel), charts (pbi-bar-column-charts etc.); arrangement on canvas (pbi-page-layout); authoring SVG measures (dax-svg); PBIP folder structure/renames (pbip skill). Triggers - 'додай візуал у report.json', 'клонуй візуал', 'привʼяжи міру до візуала', 'зміни кольори графіка в json', 'add visual to report.json', 'clone visual', 'visualType', 'projections', 'queryRef', 'byte-faithful report.json edit'.",
      "triggers": [
       "додай візуал у report.json",
@@ -232,7 +232,7 @@
     {
      "name": "pbi-drillthrough",
      "short": "Use when designing or reviewing a Power BI drill-through detail page — back button, context header with the drilled value, keep-all-filters decision, linking source visuals.",
-     "shortUk": "Проєктування сторінок деталізації drill-through у Power BI — кнопка назад, контекстний заголовок, фільтри",
+     "shortUk": "Проєктує сторінки деталізації drill-through у Power BI — кнопка назад, контекстний заголовок, фільтри",
      "description": "Use when designing or reviewing a Power BI drill-through detail page — back button, context header with the drilled value, keep-all-filters decision, linking source visuals. Do NOT trigger for tooltip pages (use pbi-tooltips), tab navigation (use pbi-navigation-tabs), JSON mechanics (use powerbi-visuals). Triggers - 'drill through', 'drillthrough', 'detail page', 'back button', 'деталізація', 'сторінка деталізації', 'кнопка назад', 'дрілтру'",
      "triggers": [
       "drill through",
@@ -265,7 +265,7 @@
     {
      "name": "pbi-headers-icons-imagery",
      "short": "Use when composing or fixing a Power BI page header - title, logo, last-refreshed stamp, filter-status cue, divider, or background/watermark imagery.",
-     "shortUk": "Компонування шапки сторінки Power BI — заголовок, лого, дата оновлення, статус фільтрів, розділювач, фон",
+     "shortUk": "Компонує шапку сторінки Power BI — заголовок, лого, дата оновлення, статус фільтрів, розділювач, фон",
      "description": "Use when composing or fixing a Power BI page header - title, logo, last-refreshed stamp, filter-status cue, divider, or background/watermark imagery. Do NOT trigger for icon fetch (icon-set-manager), nav tabs (pbi-navigation-tabs), filter badge (pbi-slicers-filter-panel), drill-through header (pbi-drillthrough), or JSON mechanics (powerbi-visuals). Triggers - 'header', 'page header', 'logo', 'last refreshed', 'watermark', 'заголовок сторінки', 'хедер', 'лого', 'дата оновлення', 'розділювач'.",
      "triggers": [
       "header",
@@ -283,7 +283,7 @@
     {
      "name": "pbi-mobile-layout",
      "short": "Use when designing a Power BI report's Mobile layout (phone canvas) - which visuals to include, touch-target sizing, vertical flow, hiding desktop-only visuals.",
-     "shortUk": "Проєктування мобільної розкладки звіту Power BI — вибір візуалів, розмір тап-зон, вертикальний потік",
+     "shortUk": "Проєктує мобільну розкладку звіту Power BI — які візуали лишити, розмір тап-зон, вертикальний потік",
      "description": "Use when designing a Power BI report's Mobile layout (phone canvas) - which visuals to include, touch-target sizing, vertical flow, hiding desktop-only visuals. Do NOT trigger for desktop layout (pbi-page-layout) or visual JSON mechanics (powerbi-visuals). Triggers - 'mobile layout', 'phone view', 'мобільна версія', 'мобільний вигляд', 'адаптація під телефон', 'мобільна розкладка'",
      "triggers": [
       "mobile layout",
@@ -297,7 +297,7 @@
     {
      "name": "pbi-navigation-tabs",
      "short": "Use when designing or building in-report navigation for Power BI reports: tab bars, page vs bookmark navigation choice, button states (default/hover/selected), breadcrumbs.",
-     "shortUk": "Проєктування навігації в звіті Power BI — вкладки, вибір сторінка/букмарк, стани кнопок, хлібні крихти",
+     "shortUk": "Проєктує навігацію в звіті Power BI — вкладки, сторінка чи букмарк, стани кнопок, хлібні крихти",
      "description": "Use when designing or building in-report navigation for Power BI reports: tab bars, page vs bookmark navigation choice, button states (default/hover/selected), breadcrumbs. Do NOT trigger for bookmark/visibility JSON mechanics (powerbi-bookmarks) or drill-through back button (pbi-drillthrough). Triggers - 'navigation', 'tab bar', 'tabs', 'page navigator', 'bookmark navigator', 'breadcrumb', 'навігація', 'таби', 'вкладки', 'меню звіту', 'перемикання сторінок', 'хлібні крихти'.",
      "triggers": [
       "navigation",
@@ -333,7 +333,7 @@
     {
      "name": "pbi-page-layout",
      "short": "Use when placing or rearranging visuals on a Power BI report page - canvas size, x/y/width/height math, 8px grid snapping, header/KPI/chart/filter zones, gaps, overlaps, z-order, tab order.",
-     "shortUk": "Розміщення й розкладка візуалів на сторінці Power BI — розмір канвасу, координати, сітка 8px, зони, z-порядок",
+     "shortUk": "Розміщує й розкладає візуали на сторінці Power BI — розмір канвасу, координати, сітка 8px, зони, z-порядок",
      "description": "Use when placing or rearranging visuals on a Power BI report page - canvas size, x/y/width/height math, 8px grid snapping, header/KPI/chart/filter zones, gaps, overlaps, z-order, tab order. Do NOT trigger for visual JSON mechanics (powerbi-visuals), bookmark/tab visibility (powerbi-bookmarks), phone canvas (pbi-mobile-layout). Triggers - 'розкладка сторінки', 'сітка 8px', 'вирівняй візуали', 'канвас', 'макет сторінки', 'зони дашборду'",
      "triggers": [
       "розкладка сторінки",
@@ -347,7 +347,7 @@
     {
      "name": "pbi-slicers-filter-panel",
      "short": "Use when adding or restyling Power BI slicers or building a filter panel - choosing slicer type (dropdown/list/button-tile/between/text), unifying sizes and styles, a bookmark-toggled panel, clear-all button, or showing applied filters.",
-     "shortUk": "Додавання й стилізація слайсерів Power BI чи побудова панелі фільтрів із кнопкою очищення",
+     "shortUk": "Додає й стилізує слайсери Power BI або будує панель фільтрів із кнопкою очищення",
      "description": "Use when adding or restyling Power BI slicers or building a filter panel - choosing slicer type (dropdown/list/button-tile/between/text), unifying sizes and styles, a bookmark-toggled panel, clear-all button, or showing applied filters. Do NOT trigger for bookmark mechanics (powerbi-bookmarks), visual JSON edits (powerbi-visuals), or theme generation (pbi-theme-json). Triggers - 'slicer', 'filter panel', 'зріз', 'слайсер', 'панель фільтрів', 'скинути фільтри', 'застосовані фільтри'",
      "triggers": [
       "slicer",
@@ -395,7 +395,7 @@
     {
      "name": "icon-set-manager",
      "short": "Use whenever user asks to create, search, find, list, or manage PNG icons for Power BI reports stored in a GitHub icon library. Unified find-or-fetch flow - if requested icon exists in manifest.json, return raw URL and DAX snippet; if not, fetch from external sources (Iconify aggregator with 200+ sets, SVG Repo, optional Flaticon/Icons8), commit to GitHub, return URL.",
-     "shortUk": "Пошук, створення й керування PNG-іконками для звітів Power BI в бібліотеці GitHub",
+     "shortUk": "Шукає, створює й веде PNG-іконки для звітів Power BI в бібліотеці на GitHub",
      "description": "Use whenever user asks to create, search, find, list, or manage PNG icons for Power BI reports stored in a GitHub icon library. Unified find-or-fetch flow - if requested icon exists in manifest.json, return raw URL and DAX snippet; if not, fetch from external sources (Iconify aggregator with 200+ sets, SVG Repo, optional Flaticon/Icons8), commit to GitHub, return URL. Triggers - 'іконка', 'icon', 'набір іконок', 'знайди іконку', 'find icon', 'create icons', 'PNG для звіту', 'Power BI icon', 'додай іконки', 'потрібні іконки', 'icon library'. Defaults - transparent PNG, color 063E61, size 64px (128px for hero/header), naming category_name.png snake_case ASCII. Repo - icons-png-powerbi. Prefers permissive licenses (MIT/Apache/CC0). Do NOT trigger for DAX measures (use dax-measures), SVG measures (use dax-svg), or Deneb specs (use deneb-vegalite).",
      "triggers": [
       "іконка",
@@ -414,7 +414,7 @@
     {
      "name": "pbi-color-accessibility",
      "short": "Use when assigning or auditing colors in a Power BI report - semantic roles (good/bad/warning), WCAG contrast for text/data pairs, colorblind-safe palettes, sequential/diverging heatmap or choropleth scales, PBIR-Legacy/enhanced.",
-     "shortUk": "Призначення й аудит кольорів у звіті Power BI — семантичні ролі, контраст WCAG, дальтонік-безпечні палітри",
+     "shortUk": "Призначає й перевіряє кольори звіту Power BI — семантичні ролі, контраст WCAG, дальтонік-безпечні палітри",
      "description": "Use when assigning or auditing colors in a Power BI report - semantic roles (good/bad/warning), WCAG contrast for text/data pairs, colorblind-safe palettes, sequential/diverging heatmap or choropleth scales, PBIR-Legacy/enhanced. Do NOT trigger for CF thresholds (pbi-conditional-formatting), theme.json (pbi-theme-json), visual JSON mechanics (powerbi-visuals). Triggers - 'color contrast', 'WCAG', 'colorblind', 'heatmap colors', 'доступність кольору', 'контраст', 'дальтонізм', 'кольорова шкала'.",
      "triggers": [
       "color contrast",
@@ -430,7 +430,7 @@
     {
      "name": "pbi-conditional-formatting",
      "short": "Use when deciding CF for a Power BI visual — table/matrix cells, KPI status, heat maps: rules vs gradient vs field value, semantic colors/icons.",
-     "shortUk": "Вибір умовного форматування для візуалів Power BI — правила, градієнт, теплові карти, семантичні кольори/іконки",
+     "shortUk": "Підбирає умовне форматування для візуалів Power BI — правила, градієнт, теплові карти, кольори чи іконки",
      "description": "Use when deciding CF for a Power BI visual — table/matrix cells, KPI status, heat maps: rules vs gradient vs field value, semantic colors/icons. Do NOT trigger for CF JSON mechanics (powerbi-visuals), status measures (dax-measures), contrast (pbi-color-accessibility), table layout (pbi-tables). Triggers - 'умовне форматування', 'conditional formatting', 'градієнт', 'теплова карта', 'світлофор', 'RAG', 'field value color'.",
      "triggers": [
       "умовне форматування",
@@ -445,7 +445,7 @@
     {
      "name": "pbi-design-system",
      "short": "Use when choosing any design value for a Power BI report element in a PBIP project - colors, typography, spacing, grid, radius, interactive states, WCAG contrast - or when auditing a page/report for design-system compliance.",
-     "shortUk": "Вибір дизайн-токенів для елементів звіту Power BI — кольори, типографіка, відступи, сітка, контраст WCAG",
+     "shortUk": "Підбирає дизайн-токени для елементів звіту Power BI — кольори, типографіка, відступи, сітка, контраст WCAG",
      "description": "Use when choosing any design value for a Power BI report element in a PBIP project - colors, typography, spacing, grid, radius, interactive states, WCAG contrast - or when auditing a page/report for design-system compliance. Do NOT trigger for visual JSON mechanics (powerbi-visuals) or theme.json generation (pbi-theme-json). Triggers - 'design system', 'design tokens', 'дизайн-система', 'токени дизайну', 'кольори звіту', 'сітка', 'відступи', 'типографіка', 'єдиний стиль', 'чек-лист дизайну'.",
      "triggers": [
       "design system",
@@ -463,7 +463,7 @@
     {
      "name": "pbi-naftogaz-theme",
      "short": "Use when застосування бренд-теми Нафтогаз до Power BI звіту (PBIP, PBIR enhanced) або коли потрібні логотипи Нафтогазу у звіті.",
-     "shortUk": "Застосування брендової теми Нафтогазу до звіту Power BI, включно з логотипами",
+     "shortUk": "Застосовує брендову тему Нафтогазу до звіту Power BI, включно з логотипами",
      "description": "Use when застосування бренд-теми Нафтогаз до Power BI звіту (PBIP, PBIR enhanced) або коли потрібні логотипи Нафтогазу у звіті. Triggers - 'тема Нафтогаз', 'Naftogaz theme', 'ребренд під Нафтогаз', 'нафтогазівські кольори', 'логотип Нафтогазу'. NOT for авторства тем з нуля (pbi-theme-json), інших брендів (theme-factory), піктограм даних (icon-set-manager).",
      "triggers": [
       "тема Нафтогаз",
@@ -538,7 +538,7 @@
     {
      "name": "pbi-redesign-approval",
      "short": "Use when redesigning a whole Power BI report or page set with user approval gates - the five-gate process (copy, audit, theme, mockup, page-by-page build) with a DECISIONS.md ledger, verdict grammar, and mandatory stops after every screenshot. Orchestrates other skills; owns only process and artifact formats.",
-     "shortUk": "П'ятиетапний процес редизайну звіту Power BI з погодженням користувача — копія, аудит, тема, макет, побудова",
+     "shortUk": "Веде редизайн звіту Power BI в п'ять етапів із погодженням користувача — копія, аудит, тема, макет, побудова",
      "description": "Use when redesigning a whole Power BI report or page set with user approval gates - the five-gate process (copy, audit, theme, mockup, page-by-page build) with a DECISIONS.md ledger, verdict grammar, and mandatory stops after every screenshot. Orchestrates other skills; owns only process and artifact formats. Do NOT trigger for single-visual tweaks or one-off formatting (use the specific pbi-* skill) or for design audits alone (use pbi-report-review). Triggers - 'редизайн', 'переробити дизайн', 'жахливий дизайн', 'новий дизайн звіту', 'затвердження дизайну', 'затверджую', 'redesign report', 'design approval', 'rework ugly report'.",
      "triggers": [
       "редизайн",
@@ -555,7 +555,7 @@
     {
      "name": "pbi-report-review",
      "short": "Use when auditing a Power BI report page's design before reporting a redesign as done, or verifying a bookmark fix holds page-wide. Symptoms - self-graded acceptance criteria, a narrow diff claimed as a \"deep\" redesign, a bookmark fix touching only one sibling.",
-     "shortUk": "Аудит дизайну сторінки звіту Power BI перед здачею редизайну чи перевірка, що фікс букмарки тримається на всіх сторінках",
+     "shortUk": "Перевіряє дизайн сторінки Power BI перед здачею редизайну або чи тримається фікс букмарки на всіх сторінках",
      "description": "Use when auditing a Power BI report page's design before reporting a redesign as done, or verifying a bookmark fix holds page-wide. Symptoms - self-graded acceptance criteria, a narrow diff claimed as a \"deep\" redesign, a bookmark fix touching only one sibling. Do NOT trigger for diff/code review (pbip-pr-reviewer) or usage/perf audits (reports:review-report). Triggers - 'дизайн рев'ю', 'перевір дизайн', 'аудит сторінки', 'акцептанс', 'симетрія букмарок', 'це дійсно готово?'.",
      "triggers": [
       "дизайн рев",
@@ -595,7 +595,7 @@
     {
      "name": "data-storytelling",
      "short": "Use when deciding or auditing what a report or dashboard page ASSERTS - headline wording (finding vs subject), the comparison base behind every number, annotation, page order, audience, the 'so what'. Power BI and web dashboards.",
-     "shortUk": "Формує й перевіряє, що саме стверджує сторінка звіту — заголовок, база порівняння, висновок",
+     "shortUk": "Перевіряє, що саме стверджує сторінка звіту — заголовок, база порівняння, висновок",
      "description": "Use when deciding or auditing what a report or dashboard page ASSERTS - headline wording (finding vs subject), the comparison base behind every number, annotation, page order, audience, the 'so what'. Power BI and web dashboards. Do NOT trigger for chart choice (pbi-visualization-strategy), fonts/number formats (pbi-typography), colour roles (pbi-color-accessibility), grid math (pbi-page-layout), design QA scoring (pbi-report-review). Triggers - 'сторітелінг', 'наратив звіту', 'висновок сторінки', 'що каже ця сторінка', 'заголовок не про те', 'число без бази', 'so what', 'data storytelling', 'action title'.",
      "triggers": [
       "сторітелінг",
@@ -638,7 +638,7 @@
     {
      "name": "dax-measures",
      "short": "Use this skill whenever the user asks to create, edit, debug, or optimize DAX measures in Power BI. Covers: CALCULATE, time intelligence (YTD, PY, YoY), dynamic format strings (\"\"\"\"&FORMAT pattern), KPI, ranking, running totals, % of total, semi-additive measures, TREATAS, Top N, ABC analysis, moving averages, iterators (SUMX, AVERAGEX, COUNTX), SWITCH logic, context transition, filter manipulation.",
-     "shortUk": "Створює, редагує й оптимізує DAX-міри Power BI — CALCULATE, часовий інтелект, KPI, ранжування, ітератори",
+     "shortUk": "Пише, редагує й оптимізує DAX-міри Power BI — CALCULATE, часовий інтелект, KPI, ранжування, ітератори",
      "description": "Use this skill whenever the user asks to create, edit, debug, or optimize DAX measures in Power BI. Covers: CALCULATE, time intelligence (YTD, PY, YoY), dynamic format strings (\"\"\"\"&FORMAT pattern), KPI, ranking, running totals, % of total, semi-additive measures, TREATAS, Top N, ABC analysis, moving averages, iterators (SUMX, AVERAGEX, COUNTX), SWITCH logic, context transition, filter manipulation. Trigger on: \"DAX\", \"міра\", \"measure\", \"CALCULATE\", \"format string\", \"динамічне форматування\", \"напиши міру\", \"зроби розрахунок\", \"порахуй в DAX\", \"додай KPI\", or any DAX code shown with issues. Do NOT trigger for SVG visuals (use dax-svg) or Deneb specs (use deneb-vegalite). Always output FULL measure — never abbreviate or use \"...\".",
      "triggers": [
       "DAX",
@@ -657,7 +657,7 @@
     {
      "name": "dax-regression-tests",
      "short": "Use when the user wants automated regression tests for DAX measures of a semantic model - a suite that proves key measures still compute correctly after model changes, runnable against Power BI Desktop's local instance or a Fabric/Power BI workspace. Covers test taxonomy (invariants over golden values), frozen-slice golden discipline, diff-driven test selection, and honest generated-vs-executed reporting.",
-     "shortUk": "Будує автоматизовані регресійні тести DAX-мір, що підтверджують коректність розрахунків після змін моделі",
+     "shortUk": "Будує автотести DAX-мір, які підтверджують, що розрахунки лишились коректними після зміни моделі",
      "description": "Use when the user wants automated regression tests for DAX measures of a semantic model - a suite that proves key measures still compute correctly after model changes, runnable against Power BI Desktop's local instance or a Fabric/Power BI workspace. Covers test taxonomy (invariants over golden values), frozen-slice golden discipline, diff-driven test selection, and honest generated-vs-executed reporting. Do NOT trigger for authoring measures (use dax-measures), human-language QA checklists (use manual-test-cases), one-off post-deploy verification (use pbip-deploy), or DAX performance tuning (use power-bi-dax-optimization). Defaults - tests/dax/*.dax + baseline/golden_values.json committed, results git-ignored. Triggers - 'DAX regression tests', 'measure regression', 'golden values', 'регресійні тести мір', 'регресія DAX', 'тести для мір', 'перевірити що міри не поламались', 'автотести моделі'.",
      "triggers": [
       "DAX regression tests",
@@ -673,14 +673,14 @@
     {
      "name": "dax-svg",
      "short": "Use this skill whenever the user asks to create, edit, debug, or optimize SVG visualizations written as DAX measures in Power BI. This includes: SVG bar charts, radar/spider charts, badge/indicator measures, Gaussian overlays, heatmaps, sparklines, progress rings, bullet charts, lollipop charts, waffle charts, or any other SVG-based visual element rendered via DAX CONCATENATE/CONCATENATEX inside an Image measure in Power BI. Also trigger when the user asks about SVG viewBox, coordinate systems, scaling, color encoding, conditional formatting via SVG, or when they mention \"SVG measure\", \"SVG міра\", \"SVG в DAX\", \"Image measure\", or want a visual element that Power BI native visuals cannot produce. Trigger even if the user just says \"намалюй\", \"візуалізуй\", \"зроби chart в DAX\", or shows existing SVG DAX code with issues. Always output the FULL measure text — never abbreviate, never use \"...\" or \"// rest unchanged\".",
-     "shortUk": "Створює й налагоджує SVG-візуалізації як DAX-міри Power BI — бар-чарти, радари, індикатори, спарклайни",
+     "shortUk": "Пише й лагодить SVG-візуалізації як DAX-міри Power BI — бар-чарти, радари, індикатори, спарклайни",
      "description": "Use this skill whenever the user asks to create, edit, debug, or optimize SVG visualizations written as DAX measures in Power BI. This includes: SVG bar charts, radar/spider charts, badge/indicator measures, Gaussian overlays, heatmaps, sparklines, progress rings, bullet charts, lollipop charts, waffle charts, or any other SVG-based visual element rendered via DAX CONCATENATE/CONCATENATEX inside an Image measure in Power BI. Also trigger when the user asks about SVG viewBox, coordinate systems, scaling, color encoding, conditional formatting via SVG, or when they mention \"SVG measure\", \"SVG міра\", \"SVG в DAX\", \"Image measure\", or want a visual element that Power BI native visuals cannot produce. Trigger even if the user just says \"намалюй\", \"візуалізуй\", \"зроби chart в DAX\", or shows existing SVG DAX code with issues. Always output the FULL measure text — never abbreviate, never use \"...\" or \"// rest unchanged\".",
      "triggers": []
     },
     {
      "name": "deneb-vegalite",
      "short": "Use this skill whenever the user asks to create, edit, debug, or optimize Deneb visuals in Power BI using Vega-Lite or Vega JSON specifications. This includes bar charts, column charts, line charts, area charts, scatter plots, heatmaps, bullet charts, waterfall charts, KPI cards, small multiples, layered visuals, faceted views, conditional formatting, cross-filtering, tooltip configuration, or any Vega-Lite/Vega JSON code for the Deneb custom visual. Also trigger when the user mentions \"Deneb\", \"Vega-Lite\", \"Vega\", \"Deneb spec\", __selected__, pbiFormat, config tab, params, transforms, encoding channels, mark types, or shows existing Deneb JSON with issues. Trigger even for \"зроби Deneb chart\", \"напиши Vega-Lite spec\", \"Deneb візуал\". Always output FULL JSON — never abbreviate. Output Specification and Config as separate blocks.",
-     "shortUk": "Створює й налагоджує візуали Deneb у Power BI на специфікаціях Vega-Lite/Vega",
+     "shortUk": "Пише й лагодить візуали Deneb у Power BI на специфікаціях Vega-Lite/Vega",
      "description": "Use this skill whenever the user asks to create, edit, debug, or optimize Deneb visuals in Power BI using Vega-Lite or Vega JSON specifications. This includes bar charts, column charts, line charts, area charts, scatter plots, heatmaps, bullet charts, waterfall charts, KPI cards, small multiples, layered visuals, faceted views, conditional formatting, cross-filtering, tooltip configuration, or any Vega-Lite/Vega JSON code for the Deneb custom visual. Also trigger when the user mentions \"Deneb\", \"Vega-Lite\", \"Vega\", \"Deneb spec\", __selected__, pbiFormat, config tab, params, transforms, encoding channels, mark types, or shows existing Deneb JSON with issues. Trigger even for \"зроби Deneb chart\", \"напиши Vega-Lite spec\", \"Deneb візуал\". Always output FULL JSON — never abbreviate. Output Specification and Config as separate blocks.",
      "triggers": []
     }
@@ -697,7 +697,7 @@
     {
      "name": "fabric-cli-powerbi",
      "short": "Use Fabric CLI for Power BI operations — semantic models, reports, DAX queries, refresh, gateways. Activate when users work with Power BI items, need to refresh datasets, execute DAX, manage reports, or troubleshoot refresh failures.",
-     "shortUk": "Fabric CLI для Power BI: семантичні моделі, звіти, DAX-запити, оновлення даних, шлюзи",
+     "shortUk": "Керує Power BI через Fabric CLI — семантичні моделі, звіти, DAX-запити, оновлення даних, шлюзи",
      "description": "Use Fabric CLI for Power BI operations — semantic models, reports, DAX queries, refresh, gateways. Activate when users work with Power BI items, need to refresh datasets, execute DAX, manage reports, or troubleshoot refresh failures.",
      "triggers": []
     },
@@ -727,7 +727,7 @@
     {
      "name": "pbip-pr-reviewer",
      "short": "Виконує детальний review pull request'у у Power BI PBIP-репозиторії. Використовувати, коли користувач: - просить \"review PR\", \"ревью пул-реквесту\", \"проаналізуй зміни\" - має зачекаутений PR-branch у поточній директорії - хоче перевірку diff між гілкою і main Skill категоризує зміни (model / DAX / visuals / config / noise), виконує deep review DAX-мір на anti-patterns і performance, перевіряє структурні зміни моделі (relationships, RLS, calc groups), і генерує structured markdown report з recommended vote.",
-     "shortUk": "Виконує детальний review pull request'у в PBIP-репозиторії з категоризацією змін та рекомендованим голосом",
+     "shortUk": "Виконує детальний review pull request'у в PBIP-репозиторії з категоризацією змін і рекомендованим вердиктом",
      "description": "Виконує детальний review pull request'у у Power BI PBIP-репозиторії. Використовувати, коли користувач: - просить \"review PR\", \"ревью пул-реквесту\", \"проаналізуй зміни\" - має зачекаутений PR-branch у поточній директорії - хоче перевірку diff між гілкою і main Skill категоризує зміни (model / DAX / visuals / config / noise), виконує deep review DAX-мір на anti-patterns і performance, перевіряє структурні зміни моделі (relationships, RLS, calc groups), і генерує structured markdown report з recommended vote.",
      "triggers": []
     },
@@ -760,7 +760,7 @@
     {
      "name": "azure-cost",
      "short": "Azure cost management: query costs, forecast spending, optimize to reduce waste.",
-     "shortUk": "Керує витратами Azure: запити на вартість, прогноз витрат, оптимізація ресурсів",
+     "shortUk": "Показує витрати Azure, прогнозує їх і допомагає оптимізувати, щоб менше витрачати даремно",
      "description": "Azure cost management: query costs, forecast spending, optimize to reduce waste. WHEN: \"Azure costs\", \"Azure bill\", \"cost breakdown\", \"how much am I spending\", \"forecast spending\", \"optimize costs\", \"reduce spending\", \"orphaned resources\", \"rightsize VMs\", \"cost spike\", \"reduce storage costs\", \"AKS cost\". DO NOT USE FOR: deploying resources, provisioning, diagnostics, or security audits.",
      "triggers": [
       "Azure costs",
@@ -780,7 +780,7 @@
     {
      "name": "azure-diagnostics",
      "short": "Debug Azure production issues on Azure using AppLens, Azure Monitor, resource health, and safe triage.",
-     "shortUk": "Діагностує проблеми в продакшн Azure через AppLens, Azure Monitor, стан ресурсів і безпечний тріаж",
+     "shortUk": "Лагодить продакшн-проблеми в Azure через AppLens, Azure Monitor, стан ресурсів і безпечний тріаж",
      "description": "Debug Azure production issues on Azure using AppLens, Azure Monitor, resource health, and safe triage. WHEN: debug production issues, troubleshoot app service, app service high CPU, app service deployment failure, troubleshoot container apps, troubleshoot functions, troubleshoot AKS, kubectl cannot connect, kube-system/CoreDNS failures, pod pending, crashloop, node not ready, upgrade failures, analyze logs, KQL, insights, image pull failures, cold start issues, health probe failures, resource health, root cause of errors, troubleshoot event hubs, troubleshoot service bus, messaging SDK error, AMQP connection failure, message lock lost, service bus dead letter.",
      "triggers": [
       "debug production issues",
@@ -800,7 +800,7 @@
     {
      "name": "azure-rbac",
      "short": "Helps users find the right Azure RBAC role for an identity with least privilege access, then generate CLI commands and Bicep code to assign it. Also provides guidance on permissions required to grant roles.",
-     "shortUk": "Підбирає роль Azure RBAC із мінімальними правами та генерує CLI-команди й Bicep-код для її призначення",
+     "shortUk": "Підбирає роль Azure RBAC із мінімальними правами і генерує CLI-команди та Bicep-код для її призначення",
      "description": "Helps users find the right Azure RBAC role for an identity with least privilege access, then generate CLI commands and Bicep code to assign it. Also provides guidance on permissions required to grant roles. WHEN: bicep for role assignment, what role should I assign, least privilege role, RBAC role for, role to read blobs, role for managed identity, custom role definition, assign role to identity, what role do I need to grant access, permissions to assign roles.",
      "triggers": [
       "bicep for role assignment",
@@ -848,7 +848,7 @@
     {
      "name": "naftogaz-data-entry-app",
      "short": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with Naftogaz branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model.",
-     "shortUk": "Побудова застосунку внесення показників план/факт/прогноз під брендом Нафтогаз на Rayfin/Fabric чи React",
+     "shortUk": "Будує застосунок внесення показників план/факт/прогноз під брендом Нафтогаз на Rayfin/Fabric чи React",
      "description": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with Naftogaz branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - \"система внесення даних\", \"внесення показників\", \"план факт прогноз\", \"операційний моніторинг\", \"data entry app Naftogaz\", \"довідник показників з Excel\".",
      "triggers": [
       "система внесення даних",
@@ -876,7 +876,7 @@
     {
      "name": "react-ux-mechanics",
      "short": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame).",
-     "shortUk": "UX-механіки для React SPA — підказки, дровери, липкі шапки, анімації, оптимістичні збереження",
+     "shortUk": "Додає UX-механіки в React SPA — підказки, дровери, липкі шапки, анімації входу, оптимістичні збереження",
      "description": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - \"живі підказки\", \"дровер\", \"липка шапка\", \"анімації графіків\", \"оптимістичне збереження\", \"React.lazy\", \"скелетон\", \"місяць в URL\".",
      "triggers": [
       "живі підказки",
