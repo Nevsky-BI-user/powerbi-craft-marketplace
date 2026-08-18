@@ -50,7 +50,7 @@
     {
       "name": "azure-ops",
       "source": "./plugins/azure-ops",
-      "description": "Azure operations adjacent to BI work: cost analysis, диагностика, RBAC.",
+      "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC.",
       "version": "0.1.1"
     },
     {

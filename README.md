@@ -4,6 +4,12 @@ Craft skills for building Power BI / Fabric reports with Claude Code: per-visual
 recipes, report UX, design language, quality gates, DAX, PBIP git lifecycle,
 data storytelling — grown and battle-tested on real Naftogaz reporting projects.
 
+**Catalog site**: https://nevsky-bi-user.github.io/powerbi-craft-marketplace/ —
+browse every skill with copy-ready install commands, install-everything blocks
+(terminal or agent prompt), and setup instructions incl. auto-update. Rebuilt
+automatically from skill frontmatters on every push (see `site/`,
+`scripts/build_catalog.py`, `docs/site-design.md`).
+
 ## Install
 
 ```bash
