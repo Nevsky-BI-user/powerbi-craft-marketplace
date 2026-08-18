@@ -3,12 +3,13 @@
   "owner": {
     "name": "Vitaliy Korinevskiy"
   },
+  "description": "Power BI / Fabric report-craft skills: visuals, report UX, design language, quality gates, DAX, PBIP devops, data storytelling. Ukrainian + English.",
   "plugins": [
     {
       "name": "pbi-visuals",
       "source": "./plugins/pbi-visuals",
       "description": "Per-visual craft for Power BI PBIP reports: charts, tables, cards, maps, AI visuals — plus the shared report.json mechanics (powerbi-visuals).",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "pbi-report-ux",
@@ -58,6 +59,5 @@
       "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint.",
       "version": "0.1.0"
     }
-  ],
-  "description": "Power BI / Fabric report-craft skills: visuals, report UX, design language, quality gates, DAX, PBIP devops, data storytelling. Ukrainian + English."
+  ]
 }

@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.4 — 2026-08-18
+
+Trigger coverage completed: all 51 skills now probed live.
+
+- 39 previously untested skills probed with real `claude -p` router runs
+  (PBIP repo cwd for report skills, clean Node repo for bootstrap/azure):
+  37/39 hit on the first pass; azure-ops and project-bootstrap 6/6.
+- The two systematic losers were rewritten and adversarially reviewed:
+  `powerbi-visuals` (old prose description had no "Use when", no trigger list
+  and no Ukrainian vocabulary — the router never picked it) and `pbi-tables`.
+  Both now carry explicit trigger lists and reciprocal Do-NOT boundaries
+  (tables ↔ typography/CF/matrix; visuals ↔ every design-skill sibling).
+- Coexistence note: with power-bi-agentic-development installed alongside,
+  generic report.json / PBIP-table wording may route to its broader
+  `pbip`/`pbir-format` skills. In a powerbi-craft-only install,
+  `powerbi-visuals` is the sole report.json-mechanics owner.
+- `pbi-visuals` → 0.1.1; build script now preserves the marketplace-level
+  description field on rebuild.
+
 ## 0.1.3 — 2026-08-18
 
 Cross-platform hardening.

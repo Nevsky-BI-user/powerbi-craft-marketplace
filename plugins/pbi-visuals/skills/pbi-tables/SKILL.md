@@ -1,6 +1,6 @@
 ---
 name: pbi-tables
-description: Use when creating, restyling, or formatting Table (tableEx) visuals in Power BI PBIP reports — column widths, alignment, header style, gridlines, zebra rows, number formats, data bars/icons/CF, sort order. Do NOT trigger for matrix (pbi-matrix), CF rule semantics (pbi-conditional-formatting), in-cell SVG bars (dax-svg), or JSON mechanics (powerbi-visuals). Triggers - 'таблиця', 'ширини колонок', 'вирівнювання чисел', 'зебра', 'сортування таблиці'.
+description: "Use when creating, restyling, or tidying Table (tableEx) visuals in Power BI PBIP reports — column widths, alignment, header style, gridlines, zebra rows, applying number formats to table columns, adding data bars/icons, sort order. Trigger for everyday Power BI asks like 'наведи лад у таблиці' or 'таблиця виглядає погано' even when tableEx is not named. Do NOT trigger for matrix incl. 'зведена таблиця' (pbi-matrix), CF mode choice — rules vs gradient vs data bars — and rule semantics (pbi-conditional-formatting), number format RULES like тис./млн (pbi-typography), in-cell SVG bars (dax-svg), raw JSON mechanics (powerbi-visuals), or PBIP project structure/renames (pbip skill). Triggers - 'таблиця у звіті', 'наведи лад у таблиці', 'ширини колонок', 'вирівнювання чисел', 'зебра', 'сортування таблиці', 'data bars у таблиці', 'шапка таблиці', 'table visual', 'tableEx', 'format table'."
 ---
 
 # Power BI Tables (tableEx)

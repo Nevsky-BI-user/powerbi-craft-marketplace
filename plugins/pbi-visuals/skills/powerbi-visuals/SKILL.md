@@ -1,6 +1,6 @@
 ---
 name: powerbi-visuals
-description: Create and edit Power BI PBIR-Legacy report.json visuals from code — add/clone/restyle charts, tables, cards, shapes, buttons, slicers, matrices; bind columns/measures; format (colors, axes, labels, data-point colors); build drill-through pages and measure-driven SVG visuals. Use when adding or modifying any visual in a .pbip report.json, cloning a visual type, wiring drill-through, styling a chart, or rendering a DAX-measure SVG. Companion to powerbi-bookmarks (which handles visibility/tab isolation).
+description: "Owns the report.json MECHANICS of Power BI PBIR-Legacy visuals — add/clone a visual container from code, rebind columns/measures (projections, queryRef), set colors/axes/labels in config JSON, wire drill-through plumbing, embed a measure-driven SVG. This skill is HOW the JSON is edited; WHAT a visual should look like belongs to its design skill. Do NOT trigger for bookmark/visibility mechanics (powerbi-bookmarks); design/styling of a visual type — tables (pbi-tables), matrix (pbi-matrix), KPI cards (pbi-kpi-cards), slicers (pbi-slicers-filter-panel), charts (pbi-bar-column-charts etc.); arrangement on canvas (pbi-page-layout); authoring SVG measures (dax-svg); PBIP folder structure/renames (pbip skill). Triggers - 'додай візуал у report.json', 'клонуй візуал', 'привʼяжи міру до візуала', 'зміни кольори графіка в json', 'add visual to report.json', 'clone visual', 'visualType', 'projections', 'queryRef', 'byte-faithful report.json edit'."
 ---
 
 # Power BI visuals (PBIR-Legacy report.json)
