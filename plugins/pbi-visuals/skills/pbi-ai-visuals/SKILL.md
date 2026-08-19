@@ -43,7 +43,7 @@ Full tables and design notes → **reference.md**.
 
 ## Styling under theme
 
-All five inherit the global `"*"` defaults (DESIGN-TOKENS §6) plus their own cards; reference
+All five inherit the global `"*"` defaults (`pbi-design-system` §6) plus their own cards; reference
 colors via `ThemeDataColor`/named theme colors (§1.7), never hex literals.
 
 ```json
@@ -73,4 +73,3 @@ File parses as JSON; theme validates against `reportThemeSchema-2.1xx`; keys/car
 bound fields exist in the TMDL model. Narrative text, Q&A phrasing, and AI-split/anomaly
 results depend on live data — flag these as unverifiable headless.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.

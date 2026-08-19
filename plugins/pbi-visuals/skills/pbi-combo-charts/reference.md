@@ -1,9 +1,9 @@
 # Combo Charts — Reference
 
 Companion to `SKILL.md`. All names below are extracted directly from
-`docs/research/reportThemeSchema-2.155.json` (`definitions.visual-lineClusteredColumnComboChart`
-/ `visual-lineStackedColumnComboChart`) — never recalled from memory (BRIEF F2).
-Tokens (`color/*`, `type/*`, `ramp/*`) resolve in `docs/DESIGN-TOKENS.md`.
+`reportThemeSchema-2.155.json` (`definitions.visual-lineClusteredColumnComboChart`
+/ `visual-lineStackedColumnComboChart`) — never recalled from memory.
+Tokens (`color/*`, `type/*`, `ramp/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys and cards
 
@@ -54,7 +54,7 @@ type tags, not user-facing options — do not treat them as a series-swap contro
 
 Per SKILL.md: columns take `color/brand` (or `color/neutral-data` for a context series like
 Plan), the line takes `color/accent` — resolved via `ThemeDataColor` against the target
-report's theme (DESIGN-TOKENS §1.7), never a bare hex.
+report's theme (`pbi-design-system` §1.7), never a bare hex.
 
 ## 4. Native error bars (`error` card) — no-second-axis alternative
 
@@ -67,7 +67,7 @@ mechanics → `powerbi-visuals`.
 ## 5. Ready-to-adapt theme fragment
 
 Re-resolve `ThemeDataColor` `ColorId`s against the target theme before emitting
-(DESIGN-TOKENS §1.7: in a THEME file `ColorId` 0–7 = `dataColors[0..7]` directly).
+(`pbi-design-system` §1.7: in a THEME file `ColorId` 0–7 = `dataColors[0..7]` directly).
 
 ```json
 "lineClusteredColumnComboChart": {
@@ -101,7 +101,7 @@ never invent the formula in this skill). **Axis:** `secShow: true` (percent vs c
 cannot share a scale), `alignZeros: true` so 0% on the line lines up with 0 on the columns,
 `secTitleText: "Variance %"`. **Color of the line:** `ramp/diverging` — red below plan,
 green above, midpoint fixed at 0% (the meaningful center), not at the series' own mean
-(DESIGN-TOKENS §1.3). **Labels:** Actual gets direct data labels (`labelPosition: OutsideEnd`);
+(`pbi-design-system` §1.3). **Labels:** Actual gets direct data labels (`labelPosition: OutsideEnd`);
 Variance line gets endpoint label only (`seriesLabels`) to avoid clutter over N categories.
 **Rejected alternative noted in `pbi-visualization-strategy`:** if Plan and Actual were the
 only two series (same unit), this would NOT be a combo — clustered bars alone win; the combo

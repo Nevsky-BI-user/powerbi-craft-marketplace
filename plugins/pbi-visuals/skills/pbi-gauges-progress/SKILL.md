@@ -33,7 +33,7 @@ REQUIRED SUB-SKILL: `dax-svg` (bullet/progress SVG measures); also `deneb-vegali
 | Reject `gauge` | >1 per page; no min/max/target; trend matters → `kpi`; comparing categories |
 | Linear progress ("X% done") | `dax-svg` filled rect, or `cardVisual` `referenceLabel` |
 | Zone bands (backdrop) | Neutral tints, 2–3 bands — never `ramp/rag` (status color; reference.md §3–4) |
-| Performance-bar / needle status | `ramp/rag` (DESIGN-TOKENS §1.3) or `good`/`bad` |
+| Performance-bar / needle status | `ramp/rag` (`pbi-design-system` §1.3) or `good`/`bad` |
 
 No native `progressBar`/`progressRing` key exists (theme-visuals.md §5) — build progress via
 `dax-svg` or `cardVisual`. Bullet anatomy + the `cardVisual.referenceLabel` fragment:
@@ -48,7 +48,7 @@ No native `progressBar`/`progressRing` key exists (theme-visuals.md §5) — bui
 | 3D/skeuomorphic dial styling | Zero data-ink gain | Flat 2D, theme-consistent |
 | Speedometer for a KPI needing history | Gauge shows only "now" | Native `kpi`, or line + reference line |
 | Backdrop bands colored/hardcoded | Pre-judges the reading | Neutral tints (`color/border`/`surface-alt`), 2–3 bands only |
-| Status/target-zone color as arbitrary hex | Theme drift | `ramp/rag` or `good`/`bad` from DESIGN-TOKENS |
+| Status/target-zone color as arbitrary hex | Theme drift | `ramp/rag` or `good`/`bad` from `pbi-design-system` |
 | Inventing a `progressBar` key | Doesn't exist; silent no-op | `dax-svg` measure or `cardVisual`, real keys |
 | Hand-authoring `error`/`errorRange` for a target tick | Valid property, invented value *structure* → Desktop refuses to open the whole report | SVG tick (reference.md §3), `gauge` target, or combo reference line — never error bars |
 
@@ -58,4 +58,3 @@ File written → JSON parses → visual key is real (`gauge`/`kpi`/`cardVisual`)
 target bindings exist → SVG measures return valid markup → `git
 diff` matches intent. Needle angle / SVG rendering can't be verified headless — say so.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.

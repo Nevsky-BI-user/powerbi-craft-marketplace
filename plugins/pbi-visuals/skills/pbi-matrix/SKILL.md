@@ -9,7 +9,7 @@ description: Use when creating or restyling Matrix (pivotTable) visuals in Power
 
 A matrix packs several grains — detail, subtotal, grand total — into one grid. The design job:
 stepped indentation, a clear strength order values → subtotal → grand total, a heatmap layer
-that adds signal, not noise. Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.
+that adds signal, not noise.
 
 ## When to Use
 
@@ -19,7 +19,7 @@ that adds signal, not noise. Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.
   drill-through pages → `pbi-drillthrough`.
 
 REQUIRED SUB-SKILL: `powerbi-visuals` (JSON mechanics, `$id` selectors, CF wiring). Missing
-measures → `dax-measures`; tokens → `DESIGN-TOKENS.md`.
+measures → `dax-measures`; tokens → `pbi-design-system`.
 
 ## Quick Reference
 
@@ -27,7 +27,7 @@ measures → `dax-measures`; tokens → `DESIGN-TOKENS.md`.
 |---|---|
 | Layout | `Compact` (default, stepped) · `Outline` (subtotal own row) · `Tabular` (every level own column, export only) |
 | Stepped rows | `rowHeaders.stepped`+`showExpandCollapseButtons`; icon `color/text-secondary`; `repeatRowHeaders` on tall matrices |
-| Header fill | Brand fill on `columnHeaders` only; `rowHeaders` = `color/surface` — separate levels by weight/indent, not extra color (DESIGN-TOKENS §3.4) |
+| Header fill | Brand fill on `columnHeaders` only; `rowHeaders` = `color/surface` — separate levels by weight/indent, not extra color (`pbi-design-system` §3.4) |
 | Subtotals & totals | `subTotals` (`$id: "Row"`/`"Column"`, axis-scoped) bold + `color/surface-alt`; `total`/`rowTotal`/`columnTotal` bold+underline, firmer tint; **neither has `border`** |
 | Drill icons | Keep `visualHeader.show: true`, tint `foreground` |
 | Heatmap | CF `backColor` rule, `ramp/brand-seq` (magnitude) or `ramp/diverging` (vs. target); never with `values.bandedRowHeaders` |

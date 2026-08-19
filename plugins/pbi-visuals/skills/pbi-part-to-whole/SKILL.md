@@ -42,10 +42,9 @@ Exact visual keys, treemap/waffle detail, worked example: [reference.md](referen
 | "Other" sorted by value into the middle | Always last, regardless of its value |
 | Treemap with 3+ hierarchy levels | Cap at 2; deeper → decomposition tree |
 | Untracked custom waffle visual from AppSource | Prefer `deneb-vegalite` unit-chart spec |
-| Inventing `dataPoint`/`legend` card names for donut/treemap | Confirm against ground truth or schema first (BRIEF F2) |
+| Inventing `dataPoint`/`legend` card names for donut/treemap | Confirm against ground truth or schema first |
 
 ## Verify before done
 
 File written → JSON parses → category count within the shape's limit → "Other" present, sorted last, when exceeded → bindings exist in model → `git diff` matches intent. Rendering (slice angles, treemap areas) can't be verified headless — say so.
 
-Closes BRIEF F1, F2, F5, F6, F7, F10.

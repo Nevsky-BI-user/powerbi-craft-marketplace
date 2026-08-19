@@ -11,7 +11,7 @@
  "plugins": [
   {
    "name": "pbi-visuals",
-   "version": "0.1.2",
+   "version": "0.1.3",
    "description": "Per-visual craft for Power BI PBIP reports: charts, tables, cards, maps, AI visuals — plus the shared report.json mechanics (powerbi-visuals).",
    "tagline": "що малюємо",
    "hasHooks": false,
@@ -223,7 +223,7 @@
   },
   {
    "name": "pbi-report-ux",
-   "version": "0.1.5",
+   "version": "0.1.6",
    "description": "Page-level UX of a Power BI report: layout, navigation, slicers and filter panels, drillthrough, tooltips, mobile — plus bookmark/visibility mechanics.",
    "tagline": "як сторінка працює",
    "hasHooks": true,
@@ -386,7 +386,7 @@
   },
   {
    "name": "pbi-design-language",
-   "version": "0.1.2",
+   "version": "0.1.3",
    "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
    "tagline": "як виглядає",
    "hasHooks": false,
@@ -507,7 +507,7 @@
   },
   {
    "name": "pbi-quality",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "description": "Whether the report is right: chart choice strategy, evidence-gated design review, approval-gated redesign process, human-language test cases.",
    "tagline": "чи правильно",
    "hasHooks": false,
@@ -629,7 +629,7 @@
   },
   {
    "name": "dax-craft",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "description": "The calculation language and code-rendered visuals: DAX measures, SVG measures, Deneb/Vega-Lite specs, automated DAX regression tests.",
    "tagline": "обчислення й кодові візуали",
    "hasHooks": false,
@@ -893,6 +893,16 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.9",
+   "date": "2026-08-19",
+   "title": "",
+   "items": [
+    "Took the project specifics out of the skills. Every skill was written against one production report and carried its internal name (`PDP`, 42 mentions across 19 files) plus internal task codes (`BRIEF F1–F12`). The measurements stay — they are what makes the guidance credible — but they are now attributed to \"a production report\" / \"an audited report\" instead of a named one.",
+    "Fixed 27 dead references. Skills pointed at `docs/research/theme-visuals.md` and `docs/research/pdp-design-audit.md`, which are not part of the package — anyone installing the plugin followed a link to nothing. They now name the source in prose, and `DESIGN-TOKENS.md` resolves to the shipped `pbi-design-system` skill.",
+    "Versions: dax-craft 0.1.2, pbi-design-language 0.1.3, pbi-quality 0.1.2, pbi-report-ux 0.1.6, pbi-visuals 0.1.3."
+   ]
+  },
   {
    "version": "0.1.8",
    "date": "2026-08-19",

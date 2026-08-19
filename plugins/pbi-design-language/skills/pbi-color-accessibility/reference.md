@@ -1,9 +1,9 @@
 # pbi-color-accessibility — Reference
 
 > All ratios below were **computed** with the WCAG 2.x relative-luminance formula (§1), not
-> copied from memory or from DESIGN-TOKENS.md prose. Where a computed value differs from a
-> rounded annotation elsewhere, the number here wins — cite it as evidence (BRIEF F10/F11).
-> Token hex values are `pbi-design-system` / DESIGN-TOKENS.md; this file only adds contrast
+> copied from memory or from `pbi-design-system` prose. Where a computed value differs from a
+> rounded annotation elsewhere, the number here wins — cite it as evidence.
+> Token hex values are `pbi-design-system` / `pbi-design-system`; this file only adds contrast
 > math, colorblind checks, and gradient text-safety zones on top of them.
 
 ---
@@ -46,13 +46,13 @@ reimplementation before trusting its output.
 
 ---
 
-## 2. Verified pairs — semantic tokens (DESIGN-TOKENS.md §1)
+## 2. Verified pairs — semantic tokens (`pbi-design-system` §1)
 
 | Pair | Ratio | Verdict |
 |---|---|---|
 | `color/text-title` `#063E61` on white | 11.23:1 | Normal text |
 | `color/text-body` `#333333` on white | 12.63:1 | Normal text |
-| `color/text-secondary` `#605E5C` on white | **6.46:1** | Normal text (higher than the 4.6:1 noted in DESIGN-TOKENS.md §1.4 — that figure looks based on the generic `#767676` AA-gray benchmark, not this exact hex; both pass, cite 6.46:1) |
+| `color/text-secondary` `#605E5C` on white | **6.46:1** | Normal text (higher than the 4.6:1 noted in `pbi-design-system` §1.4 — that figure looks based on the generic `#767676` AA-gray benchmark, not this exact hex; both pass, cite 6.46:1) |
 | `color/text-disabled` `#9E9F9F` on white | 2.65:1 | Fails AA — disabled/inactive only, never body text |
 | White on `color/brand` `#063E61` | 11.23:1 | Normal text |
 | White on `color/good` `#2B9348` | 3.91:1 | Large text / marks only |

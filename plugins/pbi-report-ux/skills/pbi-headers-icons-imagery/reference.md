@@ -1,8 +1,8 @@
 # Page Headers, Icons & Imagery — Reference
 
-Companion to `SKILL.md`. Names verified against `docs/research/theme-visuals.md`
+Companion to `SKILL.md`. Names verified against the theme-schema introspection notes
 (reportThemeSchema 2.143 = 2.155) or a real report file — never recalled from memory.
-Tokens (`color/*`, `type/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Tokens (`color/*`, `type/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys involved
 
@@ -10,7 +10,7 @@ Tokens (`color/*`, `type/*`) resolve in `docs/DESIGN-TOKENS.md`.
 |---|---|---|
 | `textbox` | Title, context line, filter-status text | Beyond the 16 common cards (§2), schema adds `text` (`color`/`fontFamily`/`fontSize`) and `values` cards |
 | `shape` | Divider line, header band | Cards `fill`/`outline`/`text` are single-element arrays — **no `$id` states** (schema 2.155); the `$id`-stated `icon` card belongs to `actionButton`, not `shape` (§3) |
-| `image` | Logo/brand mark, background/watermark | Theme-settable too: `image` card (`sourceType`/`sourceUrl`/`fit`) and `imageScaling` card (`imageScalingType`: Normal→"Fit"/Fit→"Stretch"/Fill) exist in `visualStyles.image`; per-visual `objects` override per instance — verify the exact property against ground truth before writing (BRIEF F2) |
+| `image` | Logo/brand mark, background/watermark | Theme-settable too: `image` card (`sourceType`/`sourceUrl`/`fit`) and `imageScaling` card (`imageScalingType`: Normal→"Fit"/Fit→"Stretch"/Fill) exist in `visualStyles.image`; per-visual `objects` override per instance — verify the exact property against ground truth before writing |
 
 Pseudo-entries (page-level, not visuals): `page` scope carries `pageInformation`,
 `pageRefresh`, `filterCard`, `outspace` (wallpaper), `displayArea`. Property names inside
@@ -33,7 +33,7 @@ Verified property names:
 | `border` | `color` (fill obj), `radius`, `show`, `width` |
 | `divider` | draws a rule at an edge of the visual — use for a title textbox's bottom rule instead of stacking a separate `shape`; exact property names (side/color/width) — read from schema/ground truth before use |
 | `title` | `alignment`, `background`, `bold`, `fontColor`, `fontFamily`, `fontSize`, `heading`, `italic`, `show`, `text`, `titleWrap`, `underline` |
-| `dropShadow` | `angle`, `color`, `position`, `preset`, `shadowBlur`, `shadowDistance`, `shadowSpread`, `show`, `transparency` — keep `show: false` (flat design, DESIGN-TOKENS §4) |
+| `dropShadow` | `angle`, `color`, `position`, `preset`, `shadowBlur`, `shadowDistance`, `shadowSpread`, `show`, `transparency` — keep `show: false` (flat design, `pbi-design-system` §4) |
 | `visualHeader` | `show`, `background`, `border`, `foreground`, `show*Button…` — hide on title/logo/stamp elements (`visualHeader.show: false`) |
 | `padding` | `top`, `bottom`, `left`, `right` |
 
@@ -141,7 +141,7 @@ placeholder**. The logo/icon PNG must be *registered inside the report*. The mec
 are executed by `powerbi-visuals` (report JSON) and `icon-set-manager` (PNG fetch/recolor);
 this skill's job is to hand them the correct target, not an external link.
 
-Canonical chain (ground truth: PDP report saved by Desktop):
+Canonical chain (ground truth: a production report saved by Desktop):
 
 1. **File** — PNG at `<Report>.Report/StaticResources/RegisteredResources/<name>.png`.
 2. **Package entry** — an item of type `Image` in `report.json` `resourcePackages`

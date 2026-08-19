@@ -1,9 +1,9 @@
 # KPI Cards — Reference
 
 Companion to `SKILL.md`. Card/property names verified against `reportThemeSchema-2.155.json`
-(schema introspection) and `docs/research/pdp-design-audit.md` (real PDP report.json, card
+(schema introspection) and an audit of a real report.json (card
 `e27a80bd6af9b1c61380`, Group Profile). Tokens (`color/*`, `type/*`, `shape/*`) resolve in
-`docs/DESIGN-TOKENS.md`.
+`pbi-design-system`.
 
 ## 1. Visual-type keys and their cards (schema-verified)
 
@@ -31,13 +31,12 @@ Companion to `SKILL.md`. Card/property names verified against `reportThemeSchema
 | `multiRowCard.card` | `barColor`, `barShow`, `barWeight`, `cardBackground`, `cardPadding`, `outlineColor`, `outlineStyle`, `outlineWeight` |
 | common `title`/`border`/`background`/`padding` (`card`/`multiRowCard`/`kpi`) | `title`: `show`, `text`, `fontSize`, `fontColor`, `bold`, `alignment`, `titleWrap`; `border`: `show`, `color`, `radius`, `width`; `background`: `show`, `color`, `transparency`; `padding`: `top`/`left`/`right`/`bottom`. **`cardVisual` OVERRIDES these**: its `border` = `color`/`show`/`style`/`transparency`/`width` (NO `radius` — radius via `layout.rectangleRoundedCurve`), its `padding` = `$id`/`*Margin`/`paddingIndividual`/`paddingSelection`/`paddingUniform` |
 
-Any property not in this table: read the schema file or a ground-truth visual — never guess
-(BRIEF F2).
+Any property not in this table: read the schema file or a ground-truth visual — never guess.
 
-## 3. Reference recipe — the etalon card (`e27a80bd6af9b1c61380`, PDP Group Profile)
+## 3. Reference recipe — the etalon card
 
 Empirically confirmed pattern across all 514 `cardVisual` in the production report
-(`pdp-design-audit.md §2`) — use as the structural AND parity template for new/restyled cards.
+(from that audit) — use as the structural AND parity template for new/restyled cards.
 Shown as annotated pseudo-JSON (card → array of style objects, per the real
 `config.singleVisual.vcObjects`/`.objects` shape); exact value-expression wrapping
 (`{"expr":{"Literal": {...}}}`) and the GUID `name`/container fields are mechanics →
@@ -79,7 +78,7 @@ Token mapping (report.json `objects` scope): `ColorId 2` = `dataColors[0]` = `co
 `ColorId 0` = background/white; `ColorId 1 @ Percent 0.2` = `color/text-body` `#333333`. This
 mapping is the *report.json* one (`0`=background, `1`=foreground, `N≥2`=`dataColors[N−2]`) —
 different from the *theme file* mapping where `ColorId` indexes `dataColors` directly
-(DESIGN-TOKENS §1.7). Verify against the target report before emitting.
+(`pbi-design-system` §1.7). Verify against the target report before emitting.
 
 ## 4. Delta / good-bad coloring
 
@@ -88,16 +87,16 @@ different from the *theme file* mapping where `ColorId` indexes `dataColors` dir
   applies to every KPI visual at once. No per-card CF needed.
 - `cardVisual`: no native sentiment card. Either (a) `accentBar` colored via a CF measure
   returning a named theme color (`good`/`bad` — a mark, so the 3.9–4.3:1 contrast of those
-  raw theme colors is fine, DESIGN-TOKENS §1.1), or (b) CF on `value.fontColor` /
+  raw theme colors is fine, `pbi-design-system` §1.1), or (b) CF on `value.fontColor` /
   `referenceLabelValue.valueFontColor` bound to a sign-of-delta measure. CF wiring →
   `powerbi-visuals`; measure → `dax-measures`.
 - **Text vs mark color, don't conflate them.** `good`/`bad` are calibrated for marks/large
-  text only (DESIGN-TOKENS §1.1). Option (b) colors small TEXT (`value`/`referenceLabelValue`
+  text only (`pbi-design-system` §1.1). Option (b) colors small TEXT (`value`/`referenceLabelValue`
   default to `type/value` 12pt regular — below the 18pt/14pt-bold "large text" floor), so it
   must use the AA-safe `color/good-text` (`#107C10`) / `color/bad-text` (`#D13438`) instead of
   the raw named `good`/`bad` strings, or fails 4.5:1. Neither has a named theme-color string
   (theme only defines `good`/`bad`/`neutral`) — this is one of the "colors genuinely absent
-  from the theme" cases DESIGN-TOKENS §1.7 allows as literal hex.
+  from the theme" cases `pbi-design-system` §1.7 allows as literal hex.
 - Icon pairing (never color alone, F9): ▲▼ via `icon-set-manager`, or the native
   `kpi.indicator.showIcon: true`.
 
@@ -107,14 +106,14 @@ Verified on `cardVisual.value` and `cardVisual.referenceLabelValue`. Left unset,
 renders nothing on a filtered-to-empty slice — reads as broken, not "no data". Always set
 explicitly (e.g. `'0'` or a dash literal), matching the model's own blank-handling convention.
 
-## 6. Grid (DESIGN-TOKENS §3.2; Σ = 1232 on the 1280 canvas, 1300 on the PDP 1440 canvas)
+## 6. Grid (`pbi-design-system` §3.2; Σ = 1232 on the 1280 canvas, 1300 on a 1440 canvas)
 
 | Layout | Card size | Math |
 |---|---|---|
 | 6-up row | 192×104 | 6·192+5·16 = 1232 |
 | 4-up row | 296×136 | 4·296+3·16 = 1232 |
 | Hero (max 1 per page) | 296×176 | span 3, tall |
-| PDP 5-col (existing report only) | ≈248×106/140/178 | 5·248+4·15 = 1300 (§7 profile) |
+| 5-col on 1440 (existing report only) | ≈248×106/140/178 | 5·248+4·15 = 1300 (§7 profile) |
 
 ## 7. Parity-diff method (closes the task5-audit D4/D5 incident)
 
@@ -133,5 +132,4 @@ dictionary (never rendered). Full record: `docs/audits/task5-audit.md` D4/D5; ev
 3. Diff candidate vs etalon: any key present in the etalon but `<MISSING>` or different in the
    candidate is an open defect — including keys that carry no visible color (`padding`,
    `layout`, `shapeCustomRectangle`) since those fail silently and are easy to skip by eye.
-4. Only report the restyle done when the diff is empty for every card (BRIEF F11: no
-   self-graded "looks right" — cite the diff, not an impression).
+4. Only report the restyle done when the diff is empty for every card.

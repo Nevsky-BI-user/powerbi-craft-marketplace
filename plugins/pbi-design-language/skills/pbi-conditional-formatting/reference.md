@@ -1,7 +1,7 @@
 # Power BI Conditional Formatting — Reference
 
-Companion to `SKILL.md`. Names below are verified against `docs/research/theme-visuals.md`
-(reportThemeSchema 2.143 = 2.155) or `docs/DESIGN-TOKENS.md` — never recalled from memory.
+Companion to `SKILL.md`. Names below are verified against the theme-schema introspection notes
+(reportThemeSchema 2.143 = 2.155) or `pbi-design-system` — never recalled from memory.
 
 ## 1. What is actually verified vs. what to read from ground truth
 
@@ -31,13 +31,13 @@ Companion to `SKILL.md`. Names below are verified against `docs/research/theme-v
 visual in the target report or delegate to `powerbi-visuals`:** the exact placement and
 key names of stepped "rules" thresholds inside `visual.json`/`report.json` `objects`
 (e.g. rule case list, operator enums, per-step color/value pairs), and any per-visual
-icon-set property names. BRIEF F2: exact names come only from theme-visuals.md, a real
+icon-set property names. exact names come only from theme-visuals.md, a real
 file, or the schema.
 
 ## 2. The one verified JSON fragment (theme-level CF color sources)
 
 Real, schema-backed shape — the sentiment + divergent keys a theme exposes for every CF
-dialog in the report (values = DESIGN-TOKENS §1.1/§1.3 canonical tokens):
+dialog in the report (values = `pbi-design-system` §1.1/§1.3 canonical tokens):
 
 ```json
 {
@@ -116,7 +116,7 @@ ignores an unknown property *name*, but an invalid *value structure* on a *known
 (here `dataBars`) **crashes the entire report** — "Failed to load report", no details.
 Hand-authored data bars are a frequent trigger, so treat this as ground-truth-only.
 
-**Verified canonical shape** (PDP report saved by Desktop): `dataBars` lives under the
+**Verified canonical shape** (a production report saved by Desktop): `dataBars` lives under the
 `columnFormatting` object, keyed to one measure by a `metadata` selector, and has **exactly
 six sub-keys** — three colors and three literals:
 
@@ -158,4 +158,4 @@ six sub-keys** — three colors and three literals:
   `columnFormatting` home, and the `metadata` selector. The color `expr` internals are the
   standard CF color expr (§1 / `powerbi-visuals`); the `Literal` payloads and the
   array/`properties` envelope are not fully documented — **copy them verbatim from a column
-  you styled in Desktop and saved**, never hand-invent (BRIEF F2).
+  you styled in Desktop and saved**, never hand-invent.

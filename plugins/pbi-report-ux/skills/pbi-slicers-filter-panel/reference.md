@@ -13,7 +13,7 @@ A theme meant to "restyle slicers" must cover all four keys, or three of four vi
 
 ### §1a. Hand-authoring a button/tile slicer — use classic `slicer`, NOT `advancedSlicerVisual`
 
-Verified empirically (Desktop 2.155): a hand-authored `advancedSlicerVisual` renders **empty tiles** — `fillCustom`/`value`/`layout` set correctly per capabilities, yet the field values never display. This is a rendering failure of the new visual under hand-authored PBIR, independent of theming. The reliable canon (ground truth: the PDP report ships `slicer` with `data.mode`) is the **classic `slicer`** in `HorizontalList` mode, which gives the same chip/button look and renders on the first load.
+Verified empirically (Desktop 2.155): a hand-authored `advancedSlicerVisual` renders **empty tiles** — `fillCustom`/`value`/`layout` set correctly per capabilities, yet the field values never display. This is a rendering failure of the new visual under hand-authored PBIR, independent of theming. The reliable canon (ground truth: an audited production report ships `slicer` with `data.mode`) is the **classic `slicer`** in `HorizontalList` mode, which gives the same chip/button look and renders on the first load.
 
 - **Visual JSON** (clone a ground-truth classic slicer of that mode): set `data.mode: 'HorizontalList'` for buttons; `'Dropdown'` for a compact picker; `'Between'` for date/numeric. Single-select buttons: `selection.singleSelect: true`.
 - **Dark theme is mandatory per mode** — an unstyled classic slicer is dark-text-on-white, i.e. white-on-white on a dark canvas. Style each mode's card:
@@ -54,7 +54,7 @@ Chrome: `color/surface` fill, 1 px `color/border` inner edge, **no radius** (it 
 
 ## §3. Theme JSON — classic slicer + filter-pane cards
 
-Verified against `docs/research/theme-visuals.md` §6.4 and the `filterCard` example (schema 2.155). Hexes shown resolve to `color/brand` / `color/text-body` / `color/border` — use the report's own theme file, not literal hex, when editing an existing theme (tokens §1.7).
+Verified against the theme-schema introspection notes §6.4 and the `filterCard` example (schema 2.155). Hexes shown resolve to `color/brand` / `color/text-body` / `color/border` — use the report's own theme file, not literal hex, when editing an existing theme (tokens §1.7).
 
 ```json
 "visualStyles": {
@@ -77,8 +77,8 @@ Verified against `docs/research/theme-visuals.md` §6.4 and the `filterCard` exa
 
 `filterCard` is a **page-level** card (nested under `"*": {"*": {...}}}`, i.e. every visual type / every page — it drives the built-in Filters pane, not a specific visual). `$id` is a fixed two-value enum: `Applied` | `Available` — no others exist.
 
-## §4. Sizes & tokens (DESIGN-TOKENS.md §3.2/§5)
+## §4. Sizes & tokens (`pbi-design-system` §3.2/§5)
 
-Dropdown slicer 192×48 w/ header, 192×32 headerless; grid gutter 16; filter left rail 200 px wide; slicer width inside rail = 200 − 2×16 margin = 168; hit target ≥ 24 px (standard 32). Header text 10 pt bold `color/brand` (as shipped in master-theme `slicer.header`); item text `type/small` 9 pt / `color/text-secondary` (master-theme `slicer.items`: textSize 9, #605E5C). Selected state = `color/selection-tint` fill **plus** bold or a check mark — never color alone (colorblind-safe, BRIEF F9). Hover = `color/hover-tint`. One radius (`shape/radius` 8 px) across all slicers on a page; no shadow.
+Dropdown slicer 192×48 w/ header, 192×32 headerless; grid gutter 16; filter left rail 200 px wide; slicer width inside rail = 200 − 2×16 margin = 168; hit target ≥ 24 px (standard 32). Header text 10 pt bold `color/brand` (as shipped in master-theme `slicer.header`); item text `type/small` 9 pt / `color/text-secondary` (master-theme `slicer.items`: textSize 9, #605E5C). Selected state = `color/selection-tint` fill **plus** bold or a check mark — never color alone (colorblind-safe). Hover = `color/hover-tint`. One radius (`shape/radius` 8 px) across all slicers on a page; no shadow.
 
 **Between/relative-date/numeric-range height:** a `Between`-mode slicer draws two input boxes plus a slider track, not one control. Calibrated by render bisection on this project: at 280×64 it collapsed to the label plus a bare funnel glyph (no inputs, no track); at 280×96 the inputs rendered but the slider track was **silently dropped**; at 280×120 everything rendered; at 280×144 there was visible dead space below the track. Budget **120 px** — roughly a dropdown's 64 (24 header + 32 control + 8 slack) plus a track row. The failure ladder is the important part, and it is silent at every rung: master-theme `slicer.general.responsive` is `true` (§3), and a responsive slicer that does not fit its container does not clip or scroll — it sheds its parts, largest first. On screen that reads as broken/unbound and invites a data-binding investigation that won't find anything. Read it correctly instead: **a funnel glyph (or a missing track) where a control should be means the container is too small, not that the slicer is broken.** Give it height, or set `responsive: false` on that instance for an honest clip.

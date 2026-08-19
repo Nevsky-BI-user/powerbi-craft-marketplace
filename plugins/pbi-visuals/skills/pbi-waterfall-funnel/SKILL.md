@@ -15,7 +15,7 @@ description: Use when creating, restyling, or reviewing a Power BI waterfall or 
 - Funnel: an ordered process, non-increasing counts per stage (leads → MQL → SQL → won); conversion % is the point.
 - NOT for: chart choice itself (`pbi-visualization-strategy`); unordered part-to-whole (`pbi-part-to-whole`); a plain variance bar often tells it better (`pbi-bar-column-charts`).
 
-REQUIRED SUB-SKILL: `powerbi-visuals` (JSON, fields); `dax-measures`; `deneb-vegalite` (native gaps); DESIGN-TOKENS.md (`pbi-design-system`); `icon-set-manager`.
+REQUIRED SUB-SKILL: `powerbi-visuals` (JSON, fields); `dax-measures`; `deneb-vegalite` (native gaps); `pbi-design-system` (`pbi-design-system`); `icon-set-manager`.
 
 Pre-flight: detect PBIR format; read a real `waterfallChart`/`funnel` visual as ground truth; confirm fields exist in the TMDL model.
 
@@ -49,4 +49,3 @@ Card/property names, native-vs-Deneb decision: [reference.md](reference.md).
 
 JSON parses → visual keys exactly `waterfallChart`/`funnel` → bindings exist in TMDL → theme `good`/`neutral`/`bad` referenced, not hardcoded → `git diff` matches intent. Rendering cannot be verified headless.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.

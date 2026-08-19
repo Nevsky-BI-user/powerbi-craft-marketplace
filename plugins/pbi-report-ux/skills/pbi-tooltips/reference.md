@@ -8,7 +8,7 @@ detail, or the rest of the mistake list — not on every invocation.
 - **PBIR-Legacy**: single `report.json`, pages as `sections[]`. A tooltip section carries
   **integer** flags: `"visibility": 1` (hidden from nav) and `displayOption: 3` (ActualSize —
   do not confuse with `1` = FitToPage, used by normal pages). Confirmed against this project's
-  own audited reports (`docs/research/pdp-design-audit.md`).
+  own audited reports.
 - **PBIR enhanced**: `definition.pbir` + `definition/pages/<page>/page.json`. The same two
   concepts are **STRING** properties instead — `visibility: "HiddenInViewMode"`,
   `displayOption: "ActualSize"` — plus a dedicated `type: "Tooltip"` page property that Legacy
@@ -18,7 +18,7 @@ detail, or the rest of the mistake list — not on every invocation.
   re-save crash are below under **Report-page tooltip binding**; general wiring mechanics stay
   in `powerbi-visuals`.
 - Either format: resolve the theme's `ThemeDataColor` mapping before choosing colors (see
-  DESIGN-TOKENS.md §1.7) — never hardcode a hex the theme already exposes.
+  `pbi-design-system` §1.7) — never hardcode a hex the theme already exposes.
 
 ## Report-page tooltip binding (per-visual)
 
@@ -57,28 +57,28 @@ serializes exactly this, so it can be hand-authored:
 8+8  gap + bottom margin
 ```
 
-Grid: 8-px snapped; 8 px edge margin; internal gaps 4/8 only (DESIGN-TOKENS.md §3.1 spacing
+Grid: 8-px snapped; 8 px edge margin; internal gaps 4/8 only (`pbi-design-system` §3.1 spacing
 scale). Delta color: `good`/`bad` theme sentiment colors + a ▲▼ icon — never color alone
-(WCAG non-text contrast, BRIEF F9).
+(WCAG non-text contrast).
 
-### PDP compatibility profile
+### Legacy compatibility profile
 
-The existing production PDP report uses a wider tooltip-canvas range than the 320×240 default:
+One audited production report uses a wider tooltip-canvas range than the 320×240 default:
 observed sizes 320×200, 400×150, and 400/450/550 × 200–500, always with `displayOption: 3`
-(ActualSize). When editing a PDP tooltip page, keep its existing canvas size rather than
-resizing to 320×240 — match the report's established profile (DESIGN-TOKENS.md §7 for the
-rest of the PDP grid).
+(ActualSize). When editing such a report's tooltip page, keep its existing canvas size rather than
+resizing to 320×240 — match the report's established profile (`pbi-design-system` §7 for the
+rest of that report's grid).
 
 ## Default vs custom vs off — full rationale
 
 | Hover need | Choice | Why |
 |---|---|---|
-| Confirm the value + up to ~3 extra fields | **Default tooltip** | No custom page to maintain; style ONCE via the theme's `visualTooltip` common card — never per-visual (avoids theme drift, DESIGN-TOKENS.md antipatterns A1/A7) |
+| Confirm the value + up to ~3 extra fields | **Default tooltip** | No custom page to maintain; style ONCE via the theme's `visualTooltip` common card — never per-visual (avoids theme drift, `pbi-design-system` antipatterns A1/A7) |
 | Context + detail: mini-trend, composition, plan vs fact; labels moved off the chart to declutter | **Custom tooltip page** | Needs its own visuals/measures; budget against the performance rule below |
 | Decorative shapes, images, spacer rectangles | Tooltip **off** | Nothing meaningful to show; an empty/default tooltip on a decorative shape is noise |
 
 Tooltips are hover-only: invisible on touch devices and to keyboard-only users. Never make a
-tooltip the sole carrier of a decision-critical number (BRIEF F9) — duplicate that number on
+tooltip the sole carrier of a decision-critical number — duplicate that number on
 the page itself, or expose it via a drill-through (`pbi-drillthrough`).
 
 ## Common Mistakes — full list
@@ -86,13 +86,13 @@ the page itself, or expose it via a drill-through (`pbi-drillthrough`).
 | Mistake | Why bad | Fix |
 |---|---|---|
 | FitToPage left on | Tooltip rescales to fit the hover popup, text blurs | ActualSize (Legacy int `3` / enhanced string `"ActualSize"`) |
-| Full 1280×720 page reused as a tooltip | Covers the source chart entirely | 320×240 … 550×500 (or PDP's established profile) |
+| Full 1280×720 page reused as a tooltip | Covers the source chart entirely | 320×240 … 550×500 (or the report's established profile) |
 | Critical info only in tooltip | Touch/keyboard users never see it | Duplicate on page, or `pbi-drillthrough` |
 | 4+ visuals, heavy measures on the tooltip page | Every hover fires all queries — laggy report | ≤3 visuals; `power-bi-dax-optimization` |
 | Slicers/buttons on tooltip page | A tooltip cannot be interacted with | Remove — read-only content only |
 | Tooltip page visible in nav | Users land on a broken mini page | Hide (Legacy `"visibility": 1` / enhanced `"HiddenInViewMode"`) |
 | Text under 8 pt to cram in content | Unreadable at hover size | Cut content — one question per tooltip |
-| Per-tooltip ad-hoc styling (colors/fonts set per visual) | Theme drift across the report (DESIGN-TOKENS.md antipatterns A1/A7) | Tokens + theme's `visualTooltip` defaults, set once |
+| Per-tooltip ad-hoc styling (colors/fonts set per visual) | Theme drift across the report (`pbi-design-system` antipatterns A1/A7) | Tokens + theme's `visualTooltip` defaults, set once |
 | Multi-field `cardVisual` (2 fields) | Renders as two narrow stubs | One single-field card per number, 148×64 |
 | 8-pt label + 16-pt value crammed into h=44 | Text clips — doesn't fit | h=64 (heights from I-12 table) |
 | Trend with 24-month categorical axis in a narrow chart | Horizontal scrollbar ("white rectangle") | TopN-12 filter on the month field: `filterConfig` `In` + `Subquery` `Top:12`, `OrderBy` Aggregation Max on the sort column |

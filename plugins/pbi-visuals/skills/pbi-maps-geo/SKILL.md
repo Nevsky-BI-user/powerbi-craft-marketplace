@@ -48,4 +48,3 @@ Color: `linearGradient2` (min/max, `ramp/brand-seq`, dark = more, never rainbow)
 
 File written → JSON parses → visual/card names match reference.md → bindings exist in model → `git diff` matches intent. Rendering/geocoding can't be verified headless — say so.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F9, F10.

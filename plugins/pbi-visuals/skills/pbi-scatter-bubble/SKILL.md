@@ -16,7 +16,7 @@ Scatter encodes two continuous measures as position — the strongest encoding; 
 
 **NOT for:** chart-type choice (`pbi-visualization-strategy`); 4-quadrant fill, selective labels, >1k-pt density (`deneb-vegalite`); JSON mechanics (`powerbi-visuals`); flag/rollup measures (`dax-measures`).
 
-REQUIRED SUB-SKILL: `powerbi-visuals` (JSON mechanics). Tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+REQUIRED SUB-SKILL: `powerbi-visuals` (JSON mechanics). Tokens → `pbi-design-system` (`pbi-design-system`).
 
 ## Pre-flight (mandatory)
 
@@ -52,4 +52,3 @@ Exact card/property names, quadrant recipe JSON, outlier-label technique: [refer
 
 File written → JSON parses → visual key/card names match reference.md → bindings exist in the model → constant-line values justified → `git diff` matches intent. Rendering/overplotting can't be judged headless — say so.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F10.

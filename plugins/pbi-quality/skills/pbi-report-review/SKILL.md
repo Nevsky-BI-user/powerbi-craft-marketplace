@@ -8,7 +8,7 @@ description: Use when auditing a Power BI report page's design before reporting 
 ## Overview
 
 Independent, evidence-gated design QA — never a self-grade. Incident: an agent restyled 7
-cards, self-closed 9 invented criteria (`reference.md` §3). Closes BRIEF F10–F12; routes F1–F9
+cards, self-closed 9 invented criteria (`reference.md` §3). Routes every finding to the checks
 below. Covers PBIP (PBIR-Legacy/enhanced) and TMDL.
 
 ## When to Use
@@ -43,7 +43,7 @@ below. Covers PBIP (PBIR-Legacy/enhanced) and TMDL.
 |A11y|`tabOrder`, alt text, hit ≥24px|`pbi-design-system`|
 
 Score each category with per-visual evidence, not impression — tokens/thresholds are defined
-in `DESIGN-TOKENS.md` (e.g. 8-px grid §3, contrast ≥4.5:1 §8 rule 11), never restated with
+in `pbi-design-system` (e.g. 8-px grid §3, contrast ≥4.5:1 §8 rule 11), never restated with
 different values.
 
 ## Bookmark symmetry (mandatory whenever bookmarks are touched)
@@ -59,7 +59,7 @@ Compare siblings as a SET, not one at a time: `isHidden` fixed alone while a pee
 
 Any mismatch is a bug, even outside scope (script: `reference.md` §2).
 
-## Evidence & acceptance discipline (BRIEF F11 — binding)
+## Evidence & acceptance discipline
 
 - Criteria come from the task/user/`ACCEPTANCE.md` — never self-authored and self-closed.
 - Every "done" line cites the artifact: command + literal output; "looks fine" isn't evidence.

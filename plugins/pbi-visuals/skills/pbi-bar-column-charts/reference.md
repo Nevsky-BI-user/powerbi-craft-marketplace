@@ -1,8 +1,8 @@
 # Bar & Column Charts — Reference
 
-Companion to `SKILL.md`. All names below are verified against `docs/research/theme-visuals.md`
+Companion to `SKILL.md`. All names below are verified against the theme-schema introspection notes
 (reportThemeSchema 2.143 = 2.155) or a real report file — never recalled from memory.
-Tokens (`color/*`, `type/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Tokens (`color/*`, `type/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys (case-sensitive, theme `visualStyles`)
 
@@ -45,8 +45,7 @@ Properties verified in theme-visuals §6.2:
 | `dataPoint` | `defaultColor` (fill obj, supports `ThemeDataColor`) |
 
 Any property not in this table: read it from the schema file
-(`reportThemeSchema-2.1xx.json`) or copy from a ground-truth visual — do not guess
-(BRIEF F2). Card values are always **arrays** of objects.
+(`reportThemeSchema-2.1xx.json`) or copy from a ground-truth visual — do not guess. Card values are always **arrays** of objects.
 
 ## 3. Ready-to-adapt theme fragment (the one example)
 
@@ -79,7 +78,7 @@ of labels (dense charts, small multiples): `labels.show: false`, `valueAxis.show
 **ColorId dual mapping (trap).** Inside a THEME file `ColorId` 0–7 map straight to
 `dataColors[0..7]`. Inside report.json/visual.json `objects`, the verified mapping is
 `0` = background, `1` = foreground, `N≥2` = `dataColors[N−2]`. Always verify against the
-target report before emitting (DESIGN-TOKENS §1.7).
+target report before emitting (`pbi-design-system` §1.7).
 
 **Pre-emission check (apply it, don't just cite it).** Before writing any per-visual
 `objects.dataPoint` block: write down which mapping applies to THIS file, then assign brand
@@ -131,7 +130,7 @@ where the answer quoted this very trap and still emitted `ColorId: 0` for the fi
   DAX measure returning a named theme color (`"good"`, `"bad"`) or a `ThemeDataColor`-safe
   value; all other points `color/neutral-data`. Measure → `dax-measures`, CF mechanics →
   `powerbi-visuals`, rule semantics → `pbi-conditional-formatting`.
-- Plan/fact deviation coloring: `ramp/diverging` semantics from DESIGN-TOKENS §1.3 —
+- Plan/fact deviation coloring: `ramp/diverging` semantics from `pbi-design-system` §1.3 —
   midpoint at the meaningful center (0 or 100% of plan), never the data mean.
 - Reference targets: `xAxisReferenceLine` / `y1AxisReferenceLine` cards (line + label),
   instead of a second bar series for a static target.

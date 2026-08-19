@@ -6,7 +6,7 @@ Ground-truth details and extended patterns that don't fit SKILL.md's word budget
 
 These are structural `report.json`/`page.json` facts, not theme properties, so they are not
 in `theme-visuals.md`. Confirm them against an existing drill-through page of the target
-report before writing anything (BRIEF F1/F2) — Power BI's exact encoding has shifted across
+report before writing anything — Power BI's exact encoding has shifted across
 versions, so treat the numbers below as a starting hypothesis, not a literal to copy blind.
 
 - **PBIR-Legacy** (`report.json`): a hidden page is a `section` object carrying a

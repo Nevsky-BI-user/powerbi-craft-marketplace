@@ -9,7 +9,7 @@ description: Use when composing or fixing a Power BI page header - title, logo, 
 
 The header is the one row every page shares — title, whose data, how current, what's filtered — without competing with the hero KPI below. Owns composition: zones, sizing, placement, refresh-stamp source, divider restraint, image contrast. Writes no JSON, fetches no PNGs. Title **text** (subject vs finding) → `data-storytelling`. Required: `icon-set-manager` (icon/logo, `#063E61`, 64/128 px); JSON → `powerbi-visuals`.
 
-Formats: PBIP (PBIR-Legacy or enhanced); TMDL. Closes BRIEF F1–F3, F6–F10.
+Formats: PBIP (PBIR-Legacy or enhanced); TMDL.
 
 ## When to Use
 
@@ -18,7 +18,7 @@ Title+logo row, "data as of" stamp, filter-status cue, divider/band, or backgrou
 ## Pre-flight (mandatory)
 
 1. Detect format; read an existing `textbox`/`shape`/`image` as ground truth — never from memory.
-2. Read actual page `width/height` (PDP 1440-wide → tokens §7); resolve theme palette.
+2. Read actual page `width/height` (legacy 1440-wide → tokens §7); resolve theme palette.
 3. Inventory header elements across pages — one shared recipe, not per-page drift.
 
 ## Quick Reference

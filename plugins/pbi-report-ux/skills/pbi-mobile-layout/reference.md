@@ -29,7 +29,7 @@ Every `visualContainer.config` (a JSON string) carries a `layouts` array. The de
 ]
 ```
 
-**What is NOT verified in this repo's research:** the `id` value Desktop assigns to a phone-layout position when a Mobile layout is authored for that visual. No scanned report (including the production reference report) has an authored Mobile layout, so no second `layouts[]` entry has ever been observed here. Do not invent this number (BRIEF F2). Resolution order:
+**What is NOT verified in this repo's research:** the `id` value Desktop assigns to a phone-layout position when a Mobile layout is authored for that visual. No scanned report (including the production reference report) has an authored Mobile layout, so no second `layouts[]` entry has ever been observed here. Do not invent this number. Resolution order:
 
 1. Grep the target report for a visual whose `config` contains `"layouts":[{"id":0,...},{"id":<N>,...}]` (two entries) — reuse the observed `<N>` and the same JSON shape for other visuals on that page.
 2. If no page in the target report has one, open the report in Power BI Desktop, use **View → Mobile layout** to drag the curated visuals onto the phone canvas, save, then read back the generated `id` — now it is ground truth for this repo.
@@ -39,7 +39,7 @@ A visual intentionally excluded from mobile simply keeps its single `id: 0` entr
 
 ## 3. Touch-target standard, sourced
 
-DESIGN-TOKENS §3.2 sets the Power BI desktop hit-target floor at 24 px (WCAG 2.2 minimum) with a 32 px standard — sized for mouse/trackpad precision. Phone canvases need more: **Apple Human Interface Guidelines** recommend a 44×44 pt minimum tap target; **Material Design** recommends 48×48 dp. This skill's 44 px floor sits at the intersection of both and comfortably clears WCAG's AAA 44×44 target-size guidance. Apply it to every interactive control placed on the mobile canvas (buttons, in-canvas slicer chips) — cards and charts that are view-only don't need it.
+`pbi-design-system` §3.2 sets the Power BI desktop hit-target floor at 24 px (WCAG 2.2 minimum) with a 32 px standard — sized for mouse/trackpad precision. Phone canvases need more: **Apple Human Interface Guidelines** recommend a 44×44 pt minimum tap target; **Material Design** recommends 48×48 dp. This skill's 44 px floor sits at the intersection of both and comfortably clears WCAG's AAA 44×44 target-size guidance. Apply it to every interactive control placed on the mobile canvas (buttons, in-canvas slicer chips) — cards and charts that are view-only don't need it.
 
 ## 4. Filters on the phone canvas
 
@@ -59,7 +59,7 @@ Canvas width, margin behavior, spacing floor, and minimum visual sizes above are
 - Minimum recommended visual sizes (pt): XL 323×270, L 323×180, M 323×100, S 158×100.
 - Space visuals "at least six to eight points" apart; portrait, top-to-bottom flow; heights vary by device (page scrolls) — no fixed canvas height.
 
-The phone canvas is a **distinct coordinate space** (pt, max 323 wide), NOT the 1280×720 px desktop grid in `DESIGN-TOKENS.md` / `theme-visuals.md` (neither documents a phone dimension). Do not reuse desktop px canvas figures here. This §6 corrects a prior unsourced `360×640 / 328 px` figure.
+The phone canvas is a **distinct coordinate space** (pt, max 323 wide), NOT the 1280×720 px desktop grid in `pbi-design-system` / `theme-visuals.md` (neither documents a phone dimension). Do not reuse desktop px canvas figures here. This §6 corrects a prior unsourced `360×640 / 328 px` figure.
 
 ## 7. Mobile layout is a SECOND view state, not a resized page
 
@@ -88,4 +88,4 @@ Rules verified empirically (Power BI Desktop 2.155, **View → Mobile layout →
 - A visual with **no** `mobile.json` sibling is **hidden** on the phone. Excluding a visual from mobile = not writing its `mobile.json` (there is no separate hide flag).
 - The earlier "no mobile properties at all" claim came from inspecting the wrong schemas: `page/2.1.0` and `visualContainer/2.9.0` genuinely have none, but the phone state lives in its own `visualContainerMobileState` file beside the visual.
 
-Even though it is hand-authorable, **prefer to generate it in Desktop** (View → Mobile layout → Auto-create), save, and read the files back (BRIEF F2): Desktop assigns `x`/`y`/`z`/`tabOrder` sensibly, so reading back gives ground-truth coordinates instead of invented ones. In **PBIR-Legacy** the phone position is instead a second `layouts[]` entry (`id` ≠ 0) per §2 — the same "generate and read back" rule applies.
+Even though it is hand-authorable, **prefer to generate it in Desktop** (View → Mobile layout → Auto-create), save, and read the files back: Desktop assigns `x`/`y`/`z`/`tabOrder` sensibly, so reading back gives ground-truth coordinates instead of invented ones. In **PBIR-Legacy** the phone position is instead a second `layouts[]` entry (`id` ≠ 0) per §2 — the same "generate and read back" rule applies.

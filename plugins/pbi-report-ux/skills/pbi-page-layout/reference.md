@@ -49,7 +49,7 @@ effective left margin becomes `24 + 200 + 16 = 240`; usable content width
 `1280 − 240 − 24 = 1016`. Recompute column starts and KPI/chart widths against 1016, not 1232
 — do not reuse the top-strip numbers from §1 unchanged.
 
-## 4. PDP 1440 compatibility profile (existing production report ONLY — DESIGN-TOKENS §7)
+## 4. Legacy 1440 compatibility profile (existing production report ONLY — `pbi-design-system` §7)
 
 | Parameter | Value |
 |---|---|

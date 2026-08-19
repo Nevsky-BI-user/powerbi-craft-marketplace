@@ -1,8 +1,8 @@
 # Gauges & Progress Indicators — Reference
 
 Companion to `SKILL.md`. Visual-type keys and card names below are verified against
-`docs/research/theme-visuals.md` (reportThemeSchema 2.143 = 2.155) — never recalled from
-memory (BRIEF F2). Tokens (`color/*`, `ramp/*`) resolve in `docs/DESIGN-TOKENS.md`.
+the theme-schema introspection notes (reportThemeSchema 2.143 = 2.155) — never recalled from
+memory. Tokens (`color/*`, `ramp/*`) resolve in `pbi-design-system`.
 
 ## 1. Verified visual-type keys in this space
 
@@ -85,7 +85,7 @@ this sketch only fixes the *design* (band tints, bar height ratio, tick style).
 - Qualitative background bands: neutral tints (`ramp/brand-seq` steps 100–300, or plain
   `color/border`/`color/surface-alt`), never `ramp/rag` — bands are context, not judgment.
 - Performance-bar / needle-arc status color (on-track vs at-risk vs off-track): `ramp/rag`
-  (DESIGN-TOKENS §1.3), referenced from the theme, never re-hardcoded per visual.
+  (`pbi-design-system` §1.3), referenced from the theme, never re-hardcoded per visual.
 - Binary on/off-target: prefer `good`/`bad` theme sentiment keys over a 6-step ramp.
 
 ## 5. When a gauge is the deliberate choice
@@ -98,7 +98,7 @@ Checklist before emitting a `gauge` (all must hold):
 - [ ] No trend requirement — if the user also wants "how did we get here", route to `kpi`
       or a line chart with a reference line instead.
 - [ ] Styled flat (no 3D/skeuomorphic preset), theme-consistent border/background per
-      DESIGN-TOKENS §4, arc color from `ramp/rag` or `good`/`bad`.
+      `pbi-design-system` §4, arc color from `ramp/rag` or `good`/`bad`.
 
 ## 6. Verified `cardVisual` fragment to extend for reference-label progress
 
@@ -123,12 +123,12 @@ line once its exact sub-properties are confirmed from a ground-truth visual or s
 `referenceLabel*` cards exist on `cardVisual` (confirmed by name in theme-visuals §6.6) for
 showing the target/goal alongside the value — read their exact sub-properties from a
 ground-truth `cardVisual` with a reference label already configured, or from the schema
-file, before emitting JSON (BRIEF F1/F2). JSON mechanics (adding/binding the card) →
+file, before emitting JSON. JSON mechanics (adding/binding the card) →
 `powerbi-visuals`.
 
 **Caveat on the base-card fragment above:** it is copied verbatim from an observed
 production report (theme-visuals §6.6) to prove the JSON *shape* — its `fontFamily: "DIN"`
-and `value.fontSize: 24` are that report's drift, not canonical tokens (DESIGN-TOKENS §2:
+and `value.fontSize: 24` are that report's drift, not canonical tokens (`pbi-design-system` §2:
 Segoe UI only, never an external font stack; the pt ramp is 28/18/14/12/10/9, so 24 isn't
 on it). In new work, swap `fontFamily` to `"Segoe UI"`/`"Segoe UI Semibold"` and
 `value.fontSize` to `type/value` (12 pt) or, for a hero gauge-replacement card,

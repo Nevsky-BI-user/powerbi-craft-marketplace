@@ -20,7 +20,7 @@ NOT for: bookmark JSON (powerbi-bookmarks), drill-through back button (pbi-drill
 
 Detect format; read the nav group or an `actionButton` as ground truth, never from memory. Read page `width/height`; resolve `ThemeDataColor`; list every nav target.
 
-## Quick Reference (tokens from DESIGN-TOKENS.md)
+## Quick Reference (tokens from `pbi-design-system`)
 
 | Element | Spec |
 |---|---|
@@ -29,7 +29,7 @@ Detect format; read the nav group or an `actionButton` as ground truth, never fr
 | States | default transparent + `color/text-secondary`; hover `color/hover-tint`; selected `color/brand` fill + `color/text-inverse` + Semibold; disabled `color/text-disabled` |
 | a11y | Nav first in `tabOrder`; alt text; contrast ≥ 4.5:1 |
 
-Icon sizing, left-rail variant, breadcrumb spec, PDP grid → [reference.md](reference.md).
+Icon sizing, left-rail variant, breadcrumb spec, legacy grid → [reference.md](reference.md).
 
 ## Choosing the Pattern (F7)
 

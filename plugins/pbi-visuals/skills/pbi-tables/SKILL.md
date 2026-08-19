@@ -14,7 +14,7 @@ Alignment, consistent number formats, and restrained ink decide scan speed in a 
 - Detail rows, ranked lists with exact values, many measures per entity.
 - NOT for: hierarchies/subtotals → `pbi-matrix`; table-or-chart choice → `pbi-visualization-strategy`; one number → `pbi-kpi-cards`.
 
-REQUIRED SUB-SKILL: `powerbi-visuals` for JSON mechanics (selectors, sort shape). CF semantics → `pbi-conditional-formatting`; in-cell SVG/sparklines → `dax-svg`; missing measures → `dax-measures`. Tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+REQUIRED SUB-SKILL: `powerbi-visuals` for JSON mechanics (selectors, sort shape). CF semantics → `pbi-conditional-formatting`; in-cell SVG/sparklines → `dax-svg`; missing measures → `dax-measures`. Tokens → `pbi-design-system` (`pbi-design-system`).
 
 ## Pre-flight (mandatory)
 
@@ -52,4 +52,3 @@ Exact card/property names and a ready theme fragment: [reference.md](reference.m
 
 JSON parses, key is `tableEx`, card values are ARRAYS → bindings exist in model → `altTextColumns` set, contrast ≥ 4.5:1 → `git diff` matches intent. Rendered widths/wrapping can't be verified headless — say so.
 
-Closes BRIEF F1–F3, F5–F7, F9–F10.

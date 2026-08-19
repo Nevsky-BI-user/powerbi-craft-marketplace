@@ -1,9 +1,9 @@
 # Waterfall & Funnel — Reference
 
-Companion to `SKILL.md`. Names below are verified against `docs/research/theme-visuals.md`
+Companion to `SKILL.md`. Names below are verified against the theme-schema introspection notes
 (reportThemeSchema 2.143 = 2.155) or must be read from a real report file before use — never
-recalled from memory (BRIEF F2). Tokens (`color/*`, `ramp/*`, `type/*`) resolve in
-`docs/DESIGN-TOKENS.md`.
+recalled from memory. Tokens (`color/*`, `ramp/*`, `type/*`) resolve in
+`pbi-design-system`.
 
 ## 1. Visual-type keys (verified, theme-visuals.md §5)
 
@@ -17,7 +17,7 @@ Both keys go under `visualStyles` like any other chart (theme-visuals.md §4); s
 
 ## 2. Sentiment colors — the verified mechanism
 
-`docs/research/theme-visuals.md` §2.1 confirms: **`good`, `neutral`, `bad` are top-level
+the theme-schema introspection notes §2.1 confirms: **`good`, `neutral`, `bad` are top-level
 theme keys documented as "status colors for waterfall and KPI visuals."** This is the
 primary, verified lever for waterfall increase/decrease/total coloring — set once in the
 theme, not per visual:
@@ -34,12 +34,12 @@ theme, not per visual:
 ```
 
 Mapping to the bridge: `good` → increase bars, `bad` → decrease bars, `neutral` → total/
-start/end bars. DESIGN-TOKENS §1.5 fixes the theme sentiment values at `good = #2B9348`,
+start/end bars. `pbi-design-system` §1.5 fixes the theme sentiment values at `good = #2B9348`,
 `neutral = #FFC107`, `bad = #D64550` — the same `neutral` key also serves warning/watchlist
 states elsewhere in the theme, so accept `#FFC107` as the report-wide total/start/end color
 by default; do not invent a second "neutral" hex just for the bridge (anti-drift, one theme
 = one meaning per key). A DAX "field value" conditional-formatting measure can reference
-these same names directly as strings (`"good"`, `"bad"`) per DESIGN-TOKENS §1.7 — useful
+these same names directly as strings (`"good"`, `"bad"`) per `pbi-design-system` §1.7 — useful
 when a Breakdown sub-driver needs an exception color; write the measure via `dax-measures`,
 wire the CF via `powerbi-visuals`.
 
@@ -50,7 +50,7 @@ Only the visual-type keys and the top-level `good`/`neutral`/`bad` mechanism abo
 confirmed against research; everything else is native, documented Power BI UI vocabulary,
 not a verified JSON shape — do not hand-write it from recall. If a ground-truth report
 already styles such a card, copy its exact shape. Per-visual `objects` overrides reference
-sentiment colors via `ThemeDataColor` expr where the ground truth does (DESIGN-TOKENS §1.7,
+sentiment colors via `ThemeDataColor` expr where the ground truth does (`pbi-design-system` §1.7,
 "objects" row); the named-token fill form `{"solid": {"color": "good"}}` is verified only
 for theme-level `visualStyles` cards — never re-hardcode either as raw hex.
 
@@ -61,7 +61,7 @@ for theme-level `visualStyles` cards — never re-hardcode either as raw hex.
   turns "Revenue changed +12%" into "+8% price, +5% volume, −1% mix."
 - **Cap the bar count.** ≤ 8 bars including start/end; a Breakdown that explodes past that
   needs a "other drivers" bucket (helper measure → `dax-measures`), same discipline as any
-  categorical chart (DESIGN-TOKENS §1.5 "max 6–8 categories before grouping").
+  categorical chart (`pbi-design-system` §1.5 "max 6–8 categories before grouping").
 - **Connectors** default on; they are the thin lines tracing the running total between bars —
   the reason a waterfall reads as a bridge instead of a disconnected bar chart. Turn off only
   in dense multi-page bridges where they become visual noise.
@@ -85,7 +85,7 @@ for theme-level `visualStyles` cards — never re-hardcode either as raw hex.
   stage," and "percent of previous stage." Percent-of-first tells the audience the overall
   yield; percent-of-previous tells them where the leak is. Pick (or show both) based on the
   question the page is answering — don't default to raw counts alone.
-- **Critical review (BRIEF F7).** Funnel width/area is a weak perceptual encoding
+- **Critical review.** Funnel width/area is a weak perceptual encoding
   (Cleveland–McGill: area ranks below position/length). Beyond ~5–6 stages, or whenever the
   reader must compare two similar-sized stages precisely, replace the funnel with sorted
   stage bars (natural process order, not value-sorted) plus conversion-% data labels —
@@ -107,6 +107,6 @@ Reach for `deneb-vegalite` only when the native visual has a real gap, not by de
 
 ## 6. Sizing
 
-Standard "Chart row height" sizing applies (240/280/320 px, DESIGN-TOKENS §3.2). Waterfalls
+Standard "Chart row height" sizing applies (240/280/320 px, `pbi-design-system` §3.2). Waterfalls
 with many Breakdown bars need the wider end of that range or a half/third-width block (§3.2)
 rather than shrinking bar labels below `type/small` (9 pt).

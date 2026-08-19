@@ -8,7 +8,7 @@ description: Use when placing or rearranging visuals on a Power BI report page -
 ## Overview
 
 Layout is arithmetic, not eyeballing: `x/y/width/height` comes from the 8px grid and a
-deliberate F-pattern zone (DESIGN-TOKENS §3; BRIEF F1, F4, F6, F9, F12). Formats:
+deliberate F-pattern zone (`pbi-design-system` §3). Formats:
 PBIR-Legacy/enhanced. JSON writing → REQUIRED SUB-SKILL `powerbi-visuals`.
 
 ## When to Use
@@ -23,7 +23,7 @@ order.
 1. Detect format: Legacy `report.json` → `sections[].visualContainers[]`; enhanced →
    `definition.pbir` + per-visual `visual.json`.
 2. Read the ACTUAL page `width/height/displayOption` — never assume 1280×720 (1440-wide →
-   PDP profile, ref. §4).
+   legacy profile, ref. §4).
 3. Inventory existing visuals' positions (count by type) first.
 
 ## Quick Reference (1280×720; tokens §3)
@@ -54,13 +54,13 @@ group origin.
 Editor (semantic model only, a different PBIP artifact).
 
 Worked stack: `24+40 header+16+104 KPI+16+280 charts+16+200 table+24=720`. Coordinate maps,
-JSON snippets, left-rail variant, PDP profile → **reference.md**.
+JSON snippets, left-rail variant, legacy profile → **reference.md**.
 
 ## Common Mistakes
 
 | Mistake | Why bad | Fix |
 |---|---|---|
-| Assume 1280×720 canvas | Real canvas differs (PDP 1440) | Read `width/height` |
+| Assume 1280×720 canvas | Real canvas differs (legacy reports are often 1440) | Read `width/height` |
 | Eyeballed coords (242.2…) | Reads as sloppy jitter | Snap to column starts, multiples of 8 |
 | Filling every pixel | No whitespace = no hierarchy | 16px gutters, 24–32 section gaps |
 | Divider shapes for grouping | Ink instead of space | Widen gap 8px; group visuals |

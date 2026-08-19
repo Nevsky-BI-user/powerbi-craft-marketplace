@@ -1,7 +1,7 @@
 {
   "name": "pbi-quality",
   "description": "Whether the report is right: chart choice strategy, evidence-gated design review, approval-gated redesign process, human-language test cases.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }

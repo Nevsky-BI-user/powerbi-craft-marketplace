@@ -7,7 +7,7 @@ description: Use when designing or reviewing a Power BI drill-through detail pag
 
 ## Overview
 
-A drill-through page is a hidden detail view from one data point: **what entity, what filters, how back**. This skill owns the design; JSON mechanics → powerbi-visuals (BRIEF §4). Formats: PBIP; **PBIR-Legacy** (`report.json`) or **PBIR enhanced** (`definition/pages/**`); TMDL model.
+A drill-through page is a hidden detail view from one data point: **what entity, what filters, how back**. This skill owns the design; JSON mechanics → powerbi-visuals. Formats: PBIP; **PBIR-Legacy** (`report.json`) or **PBIR enhanced** (`definition/pages/**`); TMDL model.
 
 ## When to Use
 
@@ -18,10 +18,10 @@ Creating/redesigning a Drill-through page (entity 360°, transaction detail), or
 ## Pre-flight (mandatory)
 
 1. Detect format; read an existing drill-through page as ground truth, never from memory (markers: reference.md §1).
-2. Read the actual `width/height` (PDP: 1440×720, DESIGN-TOKENS §7); resolve `ThemeDataColor`.
+2. Read the actual `width/height` (legacy profile: 1440×720, `pbi-design-system` §7); resolve `ThemeDataColor`.
 3. Verify every drill field exists in the model; missing measures → `dax-measures`.
 
-## Quick Reference (tokens from DESIGN-TOKENS.md)
+## Quick Reference (tokens from `pbi-design-system`)
 
 | Element | Spec |
 |---|---|

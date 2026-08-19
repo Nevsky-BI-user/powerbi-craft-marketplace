@@ -1,9 +1,9 @@
 # Scatter & Bubble Charts — Reference
 
 Companion to `SKILL.md`. All names below are verified against
-`docs/research/theme-visuals.md` / `reportThemeSchema-2.155.json`
+the theme-schema introspection notes / `reportThemeSchema-2.155.json`
 (`definitions/visual-scatterChart`) — never recalled from memory.
-Tokens (`color/*`, `ramp/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Tokens (`color/*`, `ramp/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type key
 
@@ -52,7 +52,7 @@ ordinal buckets and breaks position encoding.
 | `plotArea` | `image`, `transparency` — set `transparency` high/background none to let an overlay `shape` visual show through for the quadrant-fill workaround (§4) |
 
 Any property not in this table: read it from `reportThemeSchema-2.1xx.json` or copy
-from a ground-truth visual in the target report — never guess (BRIEF F2).
+from a ground-truth visual in the target report — never guess.
 
 ## 3. Ready-to-adapt theme fragment
 
@@ -85,7 +85,7 @@ Token mapping used below (re-resolve against the *target* theme before emitting)
 file `ColorId` 0–7 map straight to `dataColors[0..7]`. Inside report.json/visual.json
 `objects`, the verified mapping is `0` = background, `1` = foreground, `N≥2` =
 `dataColors[N−2]`. Always verify against the target report before emitting
-(DESIGN-TOKENS §1.7).
+(`pbi-design-system` §1.7).
 
 ## 4. Quadrant recipe (constant lines + shape overlay)
 
@@ -128,7 +128,7 @@ schema.
    the target report/Desktop version's Format pane. If it does, bind it to the flag
    measure — rule semantics → `pbi-conditional-formatting`, binding mechanics →
    `powerbi-visuals`. This is version/report-specific; verify against the actual file
-   before assuming the capability exists (BRIEF F1).
+   before assuming the capability exists.
 3. If fx is not available on this property, do not fake it with all-labels-on.
    Route to `deneb-vegalite`, which supports a labels layer filtered by exactly
    this condition.

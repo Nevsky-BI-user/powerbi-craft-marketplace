@@ -1,15 +1,15 @@
 # pbi-ai-visuals — Theme Property Reference
 
 > Every card/property below was extracted programmatically from
-> `docs/research/reportThemeSchema-2.155.json` (`definitions/visual-*`) — titles and
+> `reportThemeSchema-2.155.json` (`definitions/visual-*`) — titles and
 > descriptions are the schema's own UI strings, not invented. Verify against the actual
 > `reportThemeSchema-2.1xx` shipped with the target Power BI version before writing values;
 > if it differs, the schema wins. All five features also inherit the global `"*"` defaults
-> (background/border/title/dropShadow/visualHeader — DESIGN-TOKENS.md §6) — do not
+> (background/border/title/dropShadow/visualHeader — `pbi-design-system` §6) — do not
 > re-declare those per visual (antipattern A7).
 >
 > Color/font properties omit `type` in the schema (they resolve to fill/font-size union
-> types) — encode them per DESIGN-TOKENS §1.7 (`ThemeDataColor` preferred, plain hex only for
+> types) — encode them per `pbi-design-system` §1.7 (`ThemeDataColor` preferred, plain hex only for
 > colors genuinely absent from the theme).
 
 ---
@@ -48,7 +48,7 @@
 | `keyDrivers` | `allowKeyDriversCounting` | Enable counts | Estimated data-point counts per influencer |
 | `keyDrivers` | `countType` | Count type | Counts relative to max influencer vs absolute |
 | `keyDrivers` | `allowProfiles` | Enable segments | Toggles the "Find segments" analysis |
-| `keyDrivers` | `selectedAnalysis`, `selectedNumericAnalysis`, `selectedSort`, `targetValue`, `numericTargetSelectedKind` | — | Analysis/target state; exact enum literals not documented in schema — capture from a real saved visual rather than inventing string values (BRIEF F2) |
+| `keyDrivers` | `selectedAnalysis`, `selectedNumericAnalysis`, `selectedSort`, `targetValue`, `numericTargetSelectedKind` | — | Analysis/target state; exact enum literals not documented in schema — capture from a real saved visual rather than inventing string values |
 | `keyDriversDrillVisual` | `defaultColor`, `referenceLineColor` | — | Drill-in detail scatter (per-influencer breakdown view) |
 | `keyInfluencersVisual` | `canvasColor` | Background color | Whole-visual canvas |
 | `keyInfluencersVisual` | `primaryColor`, `primaryFontColor` | Primary accent / text | The dominant influencer bar + its label |
@@ -108,7 +108,7 @@ phrasing as unverifiable headless.
 regular-interval series (sparse or irregular series degrade detection); sensitivity is a
 detection-quality trade-off (fewer false positives ↔ more missed anomalies), tune per series,
 don't leave at default without checking results. Pair `markerShape` with color — never flag
-anomalies by color alone (DESIGN-TOKENS §1.3, WCAG non-text contrast).
+anomalies by color alone (`pbi-design-system` §1.3, WCAG non-text contrast).
 
 ---
 

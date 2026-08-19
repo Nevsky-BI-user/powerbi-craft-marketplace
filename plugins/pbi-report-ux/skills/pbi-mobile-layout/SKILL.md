@@ -34,17 +34,17 @@ Phone-canvas visual selection, order/size, touch targets, filters.
 | Layout | Single column, full width, portrait only — no side-by-side/landscape |
 | Gaps | ≥ 6–8 pt between visuals (MS floor) |
 | Touch target | ≥ 44×44 px (HIG/Material floor) |
-| Typography | DESIGN-TOKENS §2; hero → `type/callout-hero` 28 pt |
+| Typography | `pbi-design-system` §2; hero → `type/callout-hero` 28 pt |
 | Filters | Native app Filter pane; ≤ 1 full-width slicer |
 
 ## Content, flow and the `layouts[]` id
 
-Rank by hero-KPI hierarchy (DESIGN-TOKENS §3.4): the most decision-relevant number is hero,
+Rank by hero-KPI hierarchy (`pbi-design-system` §3.4): the most decision-relevant number is hero,
 plus 1–2 supporting visuals. Dense tables, decorative shapes, wide multi-series charts — leave
 off, don't shrink illegibly. Order = priority (hero first); `tabOrder` mirrors the stack.
 Enhanced PBIR stores the phone state as a per-visual `mobile.json` sibling (schema
 `visualContainerMobileState/2.5.0`); Legacy keeps a 2nd `layouts[]` entry. Either way generate
-it in Desktop and read back — never invent coords/`id` (BRIEF F2). Shapes → reference.md.
+it in Desktop and read back — never invent coords/`id`. Shapes → reference.md.
 
 ## Common Mistakes
 

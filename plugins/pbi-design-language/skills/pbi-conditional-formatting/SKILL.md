@@ -57,4 +57,3 @@ JSON parses → CF binds to a real measure/column → theme keys resolved (not i
 CF text contrast ≥ 4.5:1 → red/green paired with icon/label → `git diff` matches intent.
 Rendered gradient/rule preview can't be verified headless — say so.
 
-Closes BRIEF F2, F3, F5–F7, F9, F10.

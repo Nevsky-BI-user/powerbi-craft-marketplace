@@ -1,8 +1,8 @@
 # pbi-theme-json — Reference
 
 > Companion to [`SKILL.md`](SKILL.md) and the shipped artifact [`assets/master-theme.json`](assets/master-theme.json).
-> Every value below is either a verbatim `docs/DESIGN-TOKENS.md` token or a shape demonstrated in
-> `docs/research/theme-visuals.md`. Where a value is *derived* (no direct token) or the schema is
+> Every value below is either a verbatim `pbi-design-system` token or a shape demonstrated in
+> the theme-schema introspection notes. Where a value is *derived* (no direct token) or the schema is
 > *undocumented*, it is flagged explicitly — never presented as verified fact.
 
 ## 1. What's in `master-theme.json`
@@ -10,7 +10,7 @@
 | Block | Content |
 |---|---|
 | `name` | `"pbi-design-system-063E61"` — rename per report/brand |
-| `dataColors` | 8 colors, brand-first (DESIGN-TOKENS §1.5, verbatim) |
+| `dataColors` | 8 colors, brand-first (`pbi-design-system` §1.5, verbatim) |
 | `good`/`neutral`/`bad` | `#2B9348`/`#FFC107`/`#D64550` (§1.5, verbatim) |
 | `maximum`/`center`/`minimum` | `#107C10`/`#F3F2F1`/`#D13438` (§1.5 divergent stops, verbatim) |
 | `null` | `#9E9F9F` (`color/null`, §1.3 — same value as `color/text-disabled`) |
@@ -23,13 +23,13 @@
 | `textClasses` | All 14 schema keys — see §2 |
 | `visualStyles` | `"*"` global + `page` + all 48 visual-type keys + `report`/`filter`/`group` pseudo-entries — see §3 |
 
-**Deliberately omitted:** `foregroundSelected`, `foregroundButton`, `foregroundDark`, `foregroundNeutralLight/Dark`, `foregroundNeutralSecondaryAlt(2)`, `foregroundNeutralTertiaryAlt`, `backgroundDark`, `mapPushpin` — none has a corresponding DESIGN-TOKENS entry; adding hex values for them would be invention (BRIEF F2). Add manually, sourced from an actual brand need, if a dark-theme variant requires them.
+**Deliberately omitted:** `foregroundSelected`, `foregroundButton`, `foregroundDark`, `foregroundNeutralLight/Dark`, `foregroundNeutralSecondaryAlt(2)`, `foregroundNeutralTertiaryAlt`, `backgroundDark`, `mapPushpin` — none has a corresponding `pbi-design-system` entry; adding hex values for them would be invention. Add manually, sourced from an actual brand need, if a dark-theme variant requires them.
 
 ## 2. `textClasses` — all 14 keys, verbatim vs. derived
 
 | Class | fontFace | pt | color | Source |
 |---|---|---|---|---|
-| `callout` | Segoe UI | 28 | `#333333` | DESIGN-TOKENS §2.1, verbatim |
+| `callout` | Segoe UI | 28 | `#333333` | `pbi-design-system` §2.1, verbatim |
 | `title` | Segoe UI Semibold | 12 | `#063E61` | verbatim |
 | `header` | Segoe UI Semibold | 14 | `#063E61` | verbatim |
 | `label` | Segoe UI | 10 | `#333333` | verbatim |
@@ -57,19 +57,19 @@ All 48 keys get the **4 universal cards** (verified on every regular visual type
 | Part-to-whole w/o legend (2) | `funnel`, `gauge` | — (mandatory only) | No verified extra card names for these two |
 | Maps (4) | `map`, `filledMap`, `shapeMap`, `azureMap` | — (mandatory only) | No verified extra card names |
 | Tables (2) | `tableEx`, `pivotTable` | `columnHeaders`, `grid`, `values`, `total`; `pivotTable` also gets `rowHeaders`, `subTotals` | Worked example §6.3. `values` ships the full banding quartet `backColorPrimary`/`fontColorPrimary` + `backColorSecondary`/`fontColorSecondary`; `total`/`subTotals` ship `backColor`+`fontColor`+`bold` (all needed for the §7 dark conversion). `rowHeaders`/`subTotals` card **names** are verified; their **properties** mirror `columnHeaders`/`total` by symmetry (Format pane exposes identical options) — confirm in Desktop before relying on them in production |
-| Classic cards/KPI (3) | `card`, `multiRowCard`, `kpi` | — (mandatory only) | Legacy visuals; prefer `cardVisual` for new work (DESIGN-TOKENS §6) |
+| Classic cards/KPI (3) | `card`, `multiRowCard`, `kpi` | — (mandatory only) | Legacy visuals; prefer `cardVisual` for new work (`pbi-design-system` §6) |
 | New card (1) | `cardVisual` | `value`, `label`, `layout` | Worked example §6.6, verbatim. `value.fontSize` set to `type/value` (12 pt, dense-grid default) — override to `type/callout-hero` (28 pt) per-instance for the one hero KPI on a page |
 | Classic slicer (1) | `slicer` | `header`, `items`, `general` | Worked example §6.4, verbatim |
 | Modern slicers (3) | `advancedSlicerVisual`, `listSlicer`, `textSlicer` | — (mandatory only) | Card *names* exist (`accentBar`, `actionState`, `icon`, `image`, `label`, `layout`, `outline`, `overFlow`, `selection`, `shapeCustomRectangle`, `value` for `advancedSlicerVisual`) but no property shapes are demonstrated in theme-visuals.md — adding them here would be invention. Confirm exact fields in the Format pane before authoring |
 | AI/analytics (6) | `decompositionTreeVisual`, `keyDriversVisual`, `aiNarratives`, `qnaVisual`, `scriptVisual`, `pythonVisual` | — (mandatory only) | No verified extra cards; these are routed to `pbi-ai-visuals`/`dax-measures` for content, not theme, decisions |
-| Buttons/shapes (2) | `actionButton`, `shape` | `fill`, `text`, `outline` with `$id` states (`default`/`hover`/`selected`/`disabled`); `border` forced off | Worked example §6.5, verbatim shape. Colors mapped to DESIGN-TOKENS §5 interactive-states table (**neutral default**, not the brand-filled "primary button" look of the raw schema example) so every button/tab instance — including nav tabs — starts from the quiet default state |
-| Nav visuals (2) | `bookmarkNavigator`, `pageNavigator` | — (mandatory only) | Built-in selected-state styling per DESIGN-TOKENS §5; no extra card properties verified |
+| Buttons/shapes (2) | `actionButton`, `shape` | `fill`, `text`, `outline` with `$id` states (`default`/`hover`/`selected`/`disabled`); `border` forced off | Worked example §6.5, verbatim shape. Colors mapped to `pbi-design-system` §5 interactive-states table (**neutral default**, not the brand-filled "primary button" look of the raw schema example) so every button/tab instance — including nav tabs — starts from the quiet default state |
+| Nav visuals (2) | `bookmarkNavigator`, `pageNavigator` | — (mandatory only) | Built-in selected-state styling per `pbi-design-system` §5; no extra card properties verified |
 | Elements (4) | `textbox`, `image`, `rdlVisual`, `scorecard` | — (mandatory only) | No verified extra cards |
 
 **Pseudo-entries** (theme-visuals.md §5 explicitly labels these "not visuals, styled the same way"):
 
-- `page` — **included**, `background` + `outspace` (worked example §6.7, verbatim); `outspace` = `color/page-bg` (kills the PDP page-background drift, DESIGN-TOKENS §1.4/§8).
-- `report`, `filter`, `group` — **included** in `master-theme.json` with minimal, non-token defaults (no DESIGN-TOKENS entry drives them, since none has a corresponding token): `report.outspacePane` (`expanded: false`, `visible: true`) + `report.section` (`verticalAlignment: Top`); `filter.general` (`isInvertedSelectionMode: false`, `requireSingleSelect: false`); `group.background` (hidden, `#FFFFFF`) + `group.lockAspect` (off). Card *names* match theme-visuals.md (`outspacePane`/`section`; `general`; `background`/`general`/`lockAspect`). Override any of these per-report if a canvas-level filter-pane or group-container need arises — these defaults are conservative placeholders, not tokenized values.
+- `page` — **included**, `background` + `outspace` (worked example §6.7, verbatim); `outspace` = `color/page-bg` (kills the legacy page-background drift, `pbi-design-system` §1.4/§8).
+- `report`, `filter`, `group` — **included** in `master-theme.json` with minimal, non-token defaults (no `pbi-design-system` entry drives them, since none has a corresponding token): `report.outspacePane` (`expanded: false`, `visible: true`) + `report.section` (`verticalAlignment: Top`); `filter.general` (`isInvertedSelectionMode: false`, `requireSingleSelect: false`); `group.background` (hidden, `#FFFFFF`) + `group.lockAspect` (off). Card *names* match theme-visuals.md (`outspacePane`/`section`; `general`; `background`/`general`/`lockAspect`). Override any of these per-report if a canvas-level filter-pane or group-container need arises — these defaults are conservative placeholders, not tokenized values.
 
 ### 3.1 Precedence: per-visual beats type beats `*`
 

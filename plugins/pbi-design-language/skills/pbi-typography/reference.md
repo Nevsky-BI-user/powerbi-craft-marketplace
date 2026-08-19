@@ -1,7 +1,7 @@
 # pbi-typography — Reference
 
-Detail moved out of SKILL.md to keep it scannable. Sources: `docs/research/theme-visuals.md`
-(schema 2.143–2.155, verified) and `docs/DESIGN-TOKENS.md` §2.
+Detail moved out of SKILL.md to keep it scannable. Sources: the theme-schema introspection notes
+(schema 2.143–2.155, verified) and `pbi-design-system` §2.
 
 ## 1. Full `textClasses` map (14 keys)
 
@@ -32,7 +32,7 @@ Detail moved out of SKILL.md to keep it scannable. Sources: `docs/research/theme
 | `smallLightLabel` | label | `#605E5C`, 9 pt | Data labels, value-axis labels |
 | `smallDataLabel` | — | schema-valid, undocumented | — |
 
-Project convention: use the DESIGN-TOKENS.md §2.1 canonical block (4 primary + `largeTitle` pinned +
+Project convention: use the `pbi-design-system` §2.1 canonical block (4 primary + `largeTitle` pinned +
 `smallLabel`/`lightLabel` where a report needs them) rather than writing all 14.
 
 ## 2. Per-visual-type font property names (verified, schema 2.155)
@@ -73,7 +73,7 @@ and prefer `dax-measures` for the underlying calculation.
 
 ## 4. Worked example — hardcoded fill → theme reference (report.json/visual.json `objects`)
 
-The verified fill shape (DESIGN-TOKENS §1.7) has NO `solidColor` key — a frequent invention.
+The verified fill shape (`pbi-design-system` §1.7) has NO `solidColor` key — a frequent invention.
 Confirm the enclosing card/property names against a ground-truth visual of the same type in
 the target report; only the fill shape below is schema-verified:
 

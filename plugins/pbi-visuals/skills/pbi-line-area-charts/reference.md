@@ -1,9 +1,9 @@
 # Line & Area Charts — Reference
 
 Companion to `SKILL.md`. All card/property names below are extracted directly from
-`docs/research/reportThemeSchema-2.155.json` (`definitions.visual-lineChart` /
+`reportThemeSchema-2.155.json` (`definitions.visual-lineChart` /
 `visual-areaChart` / `visual-stackedAreaChart` / …) — never recalled from memory.
-Tokens (`color/*`, `type/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Tokens (`color/*`, `type/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys (case-sensitive, theme `visualStyles`)
 
@@ -42,7 +42,7 @@ them on an area or combo visual key; the property will silently do nothing.
 | `referenceLine` | `show`, `value`, `lineColor`, `style`, `position` (`back`\|`front`), `shadeShow`/`shadeColor` (tolerance band), `dataLabelShow`/`dataLabelText` |
 
 Any property not in this table: read it from `reportThemeSchema-2.155.json` or copy from
-a ground-truth visual — do not guess (BRIEF F2). Card values are always **arrays** of
+a ground-truth visual — do not guess. Card values are always **arrays** of
 objects, matching the bar/column convention.
 
 ## 3. Ready-to-adapt theme fragment (the one example)
@@ -82,7 +82,7 @@ never 0% transparency on a fill sitting under a legible line/marker).
 **ColorId dual mapping (trap, same as bar/column):** inside a THEME file `ColorId` 0–7
 map straight to `dataColors[0..7]`; inside report.json/visual.json `objects`, `0` =
 background, `1` = foreground, `N≥2` = `dataColors[N−2]`. Always verify against the target
-report before emitting (DESIGN-TOKENS §1.7).
+report before emitting (`pbi-design-system` §1.7).
 
 ## 4. Series-count and emphasis guidance
 
@@ -96,7 +96,7 @@ report before emitting (DESIGN-TOKENS §1.7).
   `color/neutral-data` at a lighter weight (e.g. 1.5) — weight AND color both drop for
   context series so the answer is unambiguous even in grayscale.
 - Binary comparison (actual vs prior period): blue vs orange
-  (`color/brand` vs `color/warning`/`#E69F00`) — colorblind-safe per DESIGN-TOKENS §1.3.
+  (`color/brand` vs `color/warning`/`#E69F00`) — colorblind-safe per `pbi-design-system` §1.3.
 
 ## 5. Trendlines vs forecast vs reference line — when each applies
 
@@ -117,7 +117,7 @@ that skill's documented use case.
   visually proportional); `"Categorical"` only when periods must be evenly spaced
   regardless of calendar gaps (e.g. comparing non-contiguous fiscal periods).
 - Display units and precision on data labels come from `labels.labelDisplayUnits` /
-  `labelPrecision` — K/M with 0–1 decimals, never raw thousands (DESIGN-TOKENS anti-drift
+  `labelPrecision` — K/M with 0–1 decimals, never raw thousands (`pbi-design-system` anti-drift
   rule, same as bar/column).
 - Date formatting itself (e.g. `"MMM yyyy"`) is a column/measure format-string concern in
   the TMDL model, not a theme property — route format-string changes through the model,

@@ -16,7 +16,7 @@ Bars encode value as position/length — the most accurately read encoding (Clev
 
 Before writing JSON: detect PBIR-Legacy vs enhanced format, read a ground-truth visual as template, and verify every `queryRef` exists in the TMDL model (missing → `dax-measures`).
 
-REQUIRED SUB-SKILL: `powerbi-visuals` (report.json/visual.json mechanics). Tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+REQUIRED SUB-SKILL: `powerbi-visuals` (report.json/visual.json mechanics). Tokens → `pbi-design-system` (`pbi-design-system`).
 
 ## Quick Reference
 
@@ -46,4 +46,3 @@ Exact property names, sorting locations, and a theme fragment: [reference.md](re
 
 File written → JSON parses → visual keys match reference.md, card values are ARRAYS → bindings exist in model → `git diff` matches intent. Rendering cannot be verified headless.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F10.

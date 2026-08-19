@@ -10,10 +10,10 @@ description: Use when deciding if a line+column combo chart is justified, stylin
 A combo chart overlays a line on clustered/stacked columns to read two measures of
 **different unit or scale** on one shared category axis. Per Cleveland–McGill, columns
 (position) outrank the line (slope): column = magnitude, line = rate, never inverted
-(DESIGN-TOKENS §3.4). Verified visual-type keys:
+(`pbi-design-system` §3.4). Verified visual-type keys:
 `lineClusteredColumnComboChart`, `lineStackedColumnComboChart`. Column → `pbi-bar-column-charts`;
 line → `pbi-line-area-charts`; combo-or-not → `pbi-visualization-strategy`; JSON →
-`powerbi-visuals`; variance DAX → `dax-measures`; tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+`powerbi-visuals`; variance DAX → `dax-measures`; tokens → `pbi-design-system` (`pbi-design-system`).
 
 ## When to Use
 
@@ -69,4 +69,3 @@ JSON parses → keys/cards match reference.md → bindings exist in the model �
 `alignZeros`/`sharedAxis` deliberate → `git diff` matches intent. Rendering cannot be verified
 headless — say so.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F10.

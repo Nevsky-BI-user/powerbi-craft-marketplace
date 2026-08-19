@@ -37,7 +37,7 @@ Exact property names, the `e27a80` recipe, and the parity-diff method: [referenc
 | Mistake | Why bad | Correct |
 |---|---|---|
 | Restyle cards by eye, no diff | Properties silently diverge or land in wrong dictionary | Diff every card vs etalon (reference.md §7) first |
-| `card` for new work | Legacy (7 of 514 in PDP); fewer features | `cardVisual` |
+| `card` for new work | Legacy (7 of 514 in one audited report); fewer features | `cardVisual` |
 | Delta by color only | Fails colorblind/grayscale readers | Pair with ▲▼ icon or label |
 | `showBlankAs` unset | Renders empty on a filtered-to-empty slice | Set on `value`/`referenceLabelValue` |
 | Mixed title sizes in one row | Broken hierarchy (A4) | One `type/title` per tier |
@@ -49,4 +49,3 @@ Exact property names, the `e27a80` recipe, and the parity-diff method: [referenc
 
 JSON parses, card values are ARRAYS → bindings exist in model → **full parity table** vs the reference card (reference.md §7) → delta never color-alone, contrast ≥ 4.5:1 → `git diff` matches intent. Layout can't be verified headless — say so.
 
-Closes BRIEF F1, F2, F3, F4, F5, F6, F7, F9, F10, F11.

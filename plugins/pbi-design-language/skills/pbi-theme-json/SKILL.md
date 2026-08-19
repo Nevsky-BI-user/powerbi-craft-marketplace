@@ -7,7 +7,7 @@ description: Use when creating, generating, or rebranding a Power BI report them
 
 ## Overview
 
-A theme sets **defaults only** — one file styles every visual (DESIGN-TOKENS.md §8). Ships [`assets/master-theme.json`](assets/master-theme.json): a full `reportThemeSchema` theme — `dataColors`, structural+text classes, all 48 visual-type keys (`theme-visuals.md` §5), plus `"*"`/`page`/pseudo-entries. Every hex/pt is a DESIGN-TOKENS.md token.
+A theme sets **defaults only** — one file styles every visual (`pbi-design-system` §8). Ships [`assets/master-theme.json`](assets/master-theme.json): a full `reportThemeSchema` theme — `dataColors`, structural+text classes, all 48 visual-type keys (`theme-visuals.md` §5), plus `"*"`/`page`/pseudo-entries. Every hex/pt is a `pbi-design-system` token.
 
 ## When to Use
 
@@ -46,4 +46,3 @@ Token-hex map, per-type coverage, pseudo-entries → [reference.md](reference.md
 
 File written → `json.load` parses → **schema-validate** (`jsonschema` vs `reportThemeSchema-2.155.json`, 0 errors) → every `visualStyles.<type>` key matches §5 → every card value an array → colors follow §1.7 → if wired, config parses + file exists in `RegisteredResources`. Rendering can't be verified headless.
 
-Closes BRIEF F1, F2, F3, F4, F6, F7, F10.

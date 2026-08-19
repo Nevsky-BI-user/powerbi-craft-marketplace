@@ -70,7 +70,7 @@ Example — object `510 × 140` → `width='449' height='123' viewBox='0 0 449 1
 
 This is the fix for the common "scrollbar + clipped bottom labels" symptom.
 
-## §4. HTML Content host: wrapper margins + card inset (verified in PDP, 2026-07-28)
+## §4. HTML Content host: wrapper margins + card inset (verified on a production report, 2026-07-28)
 
 The `htmlContent…` custom visual wraps the raw SVG in its own HTML container with **~16px of
 extra chrome (body margins/padding)**. Sizing the SVG to the naive 0.88 ratio of the object can

@@ -1,11 +1,11 @@
 # pbi-design-system — Token Reference
 
-> **Synced copy of `docs/DESIGN-TOKENS.md`** (the single source of truth in the skills repo).
-> If values ever differ, DESIGN-TOKENS.md wins — re-sync this file.
+> **Design tokens live in `pbi-design-system`** — this file is the synced copy.
+> If values ever differ, `pbi-design-system` wins — re-sync this file.
 > Units: **typography in pt** (Power BI native), **layout in px** (report JSON coordinates).
 > Formats: PBIP; report **PBIR-Legacy (single report.json) OR PBIR enhanced**; model TMDL.
 > Exact theme property/visual-type names come from the verified schema reference
-> (`docs/research/theme-visuals.md`) — never from memory.
+> (the theme-schema introspection notes) — never from memory.
 
 ---
 
@@ -26,13 +26,13 @@
 | `color/neutral-data` | `#3C648A` | Context series, "other", non-focus data |
 
 **Brand navy drift (MUST READ).** Canonical brand = **`#063E61`** (icon library, all NEW
-themes/reports). The existing PDP report uses `#003A5D` as `dataColors[0]`
+themes/reports). One audited production report uses `#003A5D` as `dataColors[0]`
 (= `ThemeDataColor ColorId 2` in its report.json).
 
 - New theme / new report → `dataColors[0] = #063E61`.
 - Editing an existing report → resolve `color/brand` to the *report's own theme* via
   `ThemeDataColor`; never introduce a second navy hex. One report = one navy.
-- PDP near-navies (`#0C3350 #0B4467 #0A3D91 #002C46 #001D2F #1B3A5C`) are drift, not tokens.
+- Those near-navies (`#0C3350 #0B4467 #0A3D91 #002C46 #001D2F #1B3A5C`) are drift, not tokens.
 
 ### 1.2 Sequential brand ramp (`ramp/brand-seq`)
 
@@ -113,7 +113,7 @@ Never mix with legacy aliases (`foreground`, `backgroundLight`, …) in one them
 | report.json / visual.json `objects` | `ThemeDataColor` expr **preferred** | `{"expr":{"ThemeDataColor":{"ColorId":2,"Percent":0}}}` |
 | DAX field-value CF | named theme color string | `"good"`, `"bad"`, `"maxColor"`, `"midColor"`, `"minColor"`, `"nullColor"` |
 
-`ColorId` mapping (verified on PDP): `0` = background (white), `1` = foreground (black;
+`ColorId` mapping (verified on a production report): `0` = background (white), `1` = foreground (black;
 `Percent 0.2` renders `#333333`), `N≥2` = `dataColors[N−2]`. **Verify against the target
 report's actual theme before emitting.** Hex literals only for colors genuinely absent
 from the theme (e.g. `ramp/rag` steps).
@@ -306,7 +306,7 @@ order; decorative shapes at low `z`.
 
 | Token | Value | Rule |
 |---|---|---|
-| `shape/radius` | **8 px** | ONE radius per report. cardVisual in THEME: `layout.rectangleRoundedCurve: 8` (master-theme + theme-visuals §6.6); in per-visual report.json `objects` PDP uses `shapeCustomRectangle.rectangleRoundedCurve`; others: `border.radius: 8` |
+| `shape/radius` | **8 px** | ONE radius per report. cardVisual in THEME: `layout.rectangleRoundedCurve: 8` (master-theme + theme-visuals §6.6); in per-visual report.json `objects` that report uses `shapeCustomRectangle.rectangleRoundedCurve`; others: `border.radius: 8` |
 | `shape/border` | 1 px `color/border` | Default card delimiter |
 | `shape/shadow` | **none** | Flat design. Border OR shadow, never both |
 | `shape/shadow-optional` | outer, `#000000` @ 88 % transparency, blur 10, distance 2, angle 90° | Only when card sits on a white page and border is insufficient |
@@ -414,7 +414,7 @@ hand-made buttons; mechanics → `powerbi-bookmarks`.
 
 ---
 
-## 7. PDP compatibility profile (existing 1440-wide report ONLY)
+## 7. Legacy 1440 compatibility profile (existing wide report ONLY)
 
 | Parameter | Value |
 |---|---|
@@ -427,10 +427,10 @@ hand-made buttons; mechanics → `powerbi-bookmarks`.
 
 Everything else (typography, states, shape, semantic colors) follows canonical tokens.
 
-**ColorId worked example — new report vs PDP.** The same expr resolves differently per host
+**ColorId worked example — new report vs a legacy one.** The same expr resolves differently per host
 theme: in a NEW report on `master-theme.json`, brand `#063E61` = `dataColors[0]` →
 `ThemeDataColor { ColorId: 2 }` (objects mapping: `0`=background, `1`=foreground,
-`N≥2`=`dataColors[N−2]`, §1.7); in PDP the same `ColorId: 2` resolves to ITS navy `#003A5D`.
+`N≥2`=`dataColors[N−2]`, §1.7); in that legacy report the same `ColorId: 2` resolves to ITS navy `#003A5D`.
 The expr is portable, the rendered color follows the host theme — verify the mapping against
 the actual theme before emitting.
 

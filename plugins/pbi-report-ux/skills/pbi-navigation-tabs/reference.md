@@ -1,8 +1,8 @@
 # Navigation & Tab Bar — Reference
 
-Companion to `SKILL.md`. Card/property names verified against `docs/research/theme-visuals.md`
-(schema §5–6) and `docs/research/pdp-design-audit.md` (real PDP `report.json` nav group).
-Tokens (`color/*`, `type/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Companion to `SKILL.md`. Card/property names verified against the theme-schema introspection notes
+(schema §5–6) and an audit of a real `report.json` nav group.
+Tokens (`color/*`, `type/*`) resolve in `pbi-design-system`.
 
 ## 1. Full theme block — all four states
 
@@ -31,7 +31,7 @@ card against a real file or the theme schema before relying on it (don't assume 
 }
 ```
 
-Card values are ARRAYS. Row-by-row mapping to tokens (DESIGN-TOKENS.md §5): default = transparent
+Card values are ARRAYS. Row-by-row mapping to tokens (`pbi-design-system` §5): default = transparent
 fill + `color/text-secondary` text; hover = `color/hover-tint` fill + `color/text-body` text;
 selected = `color/brand` fill + `color/text-inverse` text + Semibold; disabled = transparent fill
 + `color/text-disabled` text. A per-visual `pressed` state exists (`color/pressed-tint`
@@ -54,19 +54,19 @@ full page height, one button per row (same states as the horizontal strip).
 - Parents render as clickable page/bookmark-nav buttons; separate each with a "›" separator glyph.
 - Current level: plain text in `color/text-body`, NOT clickable (it's "you are here", not a link).
 - Do not fake a breadcrumb as one textbox with tab-character spacing — that's antipattern A10
-  (`docs/research/pdp-design-audit.md`); it isn't clickable and drifts under font-size changes.
+  (seen in an audited report); it isn't clickable and drifts under font-size changes.
   Use separate button/text visuals per crumb.
 
-## 5. PDP report compatibility (existing 1440-wide report only)
+## 5. Legacy report compatibility (existing 1440-wide report only)
 
 Keep the report's established nav footprint instead of inventing new coordinates
-(`docs/research/pdp-design-audit.md` §"Navigation bar"):
+(audited report, navigation bar):
 
 | Parameter | Value |
 |---|---|
 | Nav group | ≈ 590 × 38 px at x≈104, y≈3–4 — identical on every page (top strip) |
 | Nav buttons | ≈ 197–223 × 31–38 px, 10 pt label |
-| Canvas | 1440 × 675 (dashboards) / 1440 × 720 (drill-through) — DESIGN-TOKENS.md §7 |
+| Canvas | 1440 × 675 (dashboards) / 1440 × 720 (drill-through) — `pbi-design-system` §7 |
 | Brand navy | theme `ColorId 2` (`#003A5D`) via `ThemeDataColor` — this report's own navy, not the icon-library `#063E61` |
 
-Everything else (typography, states, a11y) follows the canonical tokens in `DESIGN-TOKENS.md`.
+Everything else (typography, states, a11y) follows the canonical tokens in `pbi-design-system`.

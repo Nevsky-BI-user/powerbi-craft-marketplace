@@ -8,7 +8,7 @@ description: Use when assigning or auditing colors in a Power BI report - semant
 ## Overview
 
 A color is a semantic role first, a hex second — it must clear a computed WCAG ratio
-before shipping (BRIEF F3/F6/F9/F10). Detect the format (`report.json` PBIR-Legacy vs
+before shipping. Detect the format (`report.json` PBIR-Legacy vs
 `visual.json` enhanced), resolve theme colors (`dataColors` via `ColorId`; named keys
 `good`/`neutral`/`bad`/`maximum`/`center`/`minimum`/`null` by name, not `ColorId`),
 then classify each pair STATIC (once) or DYNAMIC (full range, not endpoints).
@@ -20,7 +20,7 @@ then classify each pair STATIC (once) or DYNAMIC (full range, not endpoints).
 - Building a sequential/diverging scale (`filledMap`/`shapeMap`, CF gradient).
 
 Also NOT for: icons (`icon-set-manager`); a11y (`web-design-guidelines`); non-PBI palettes
-(`theme-factory`); hex values (`pbi-design-system`/DESIGN-TOKENS.md).
+(`theme-factory`); hex values (`pbi-design-system`).
 
 ## Quick Reference
 

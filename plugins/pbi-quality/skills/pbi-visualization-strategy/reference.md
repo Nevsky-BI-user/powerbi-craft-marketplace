@@ -1,7 +1,7 @@
 # Power BI Visualization Strategy — Reference
 
 Deep-dive companion to SKILL.md. Visual-type keys verified against
-`docs/research/theme-visuals.md` §5 — 48 native visual-type keys (52 total `visualStyles`
+the theme-schema introspection notes §5 — 48 native visual-type keys (52 total `visualStyles`
 schema keys once the `page`/`report`/`filter`/`group` pseudo-entries are counted too, schema
 2.143–2.155); this skill only routes chart-choice for the 48 real visual types, matching the
 count `pbi-theme-json` covers.

@@ -1,10 +1,10 @@
 # Part-to-Whole Composition — Reference
 
-Companion to `SKILL.md`. Visual keys below are verified against `docs/research/theme-visuals.md`
+Companion to `SKILL.md`. Visual keys below are verified against the theme-schema introspection notes
 (reportThemeSchema 2.143 = 2.155). Where a card/property name is **not** in that file, this
-document says so explicitly instead of inventing one (BRIEF F2) — confirm such names against
+document says so explicitly instead of inventing one — confirm such names against
 the schema or a real ground-truth visual before writing JSON. Tokens (`color/*`, `ramp/*`)
-resolve in `docs/DESIGN-TOKENS.md`.
+resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys (case-sensitive, theme `visualStyles`)
 
@@ -36,7 +36,7 @@ It is **NOT** a per-category override mechanism for `dataPoint` (no `$id` field 
 `master-theme.json` ships a `legend` entry for each. Other format-pane concepts (detail labels
 showing category/value/percent, per-slice options) remain **unconfirmed** here — read their
 exact card/property names from a ground-truth visual or the schema before emitting any
-`objects`/`visualStyles` JSON (BRIEF F2). The global `"*"` defaults (background, border, title,
+`objects`/`visualStyles` JSON. The global `"*"` defaults (background, border, title,
 dropShadow — theme-visuals §6.1) apply to these three keys like any other visual.
 
 ## 2. Category limit and the "Other" bucket
@@ -46,7 +46,7 @@ dropShadow — theme-visuals §6.1) apply to these three keys like any other vis
 - **Treemap: ≤2 hierarchy levels.** A third level shrinks rectangles past legibility; deeper
   breakdowns belong to `decompositionTreeVisual` (`pbi-ai-visuals`) or a drill-through page
   (`pbi-drillthrough`).
-- **Theme `dataColors`: max 6–8 before grouping** (DESIGN-TOKENS §1.5) — this is the hard
+- **Theme `dataColors`: max 6–8 before grouping** (`pbi-design-system` §1.5) — this is the hard
   ceiling even for shapes without their own slice limit (stacked charts, treemap leaves).
 - **"Other" is always last**, regardless of its summed value — it is a residual category, not
   a ranked one. Never alphabetize or value-sort it into the middle of the sequence.
@@ -69,13 +69,13 @@ dropShadow — theme-visuals §6.1) apply to these three keys like any other vis
 ## 3. Treemap specifics
 
 - Two levels max (category → subcategory). Color the top level categorically
-  (`dataColors` order, DESIGN-TOKENS §1.5); shade subcategories with `ramp/brand-seq`
-  (DESIGN-TOKENS §1.2) so the eye reads "family of X" rather than unrelated hues.
+  (`dataColors` order, `pbi-design-system` §1.5); shade subcategories with `ramp/brand-seq`
+  (`pbi-design-system` §1.2) so the eye reads "family of X" rather than unrelated hues.
 - Area is a weaker encoding than length — never use a treemap where a sorted bar would answer
   the same question with one shape only (single flat category list). Treemap earns its keep
   only when the *nesting* itself is the message (this category rolls up into that one).
 - Label overflow (small leaves show no text) is expected — do not fight it with tiny fonts
-  below `type/small` (9 pt, DESIGN-TOKENS §2); rely on tooltips (`pbi-tooltips`) and color
+  below `type/small` (9 pt, `pbi-design-system` §2); rely on tooltips (`pbi-tooltips`) and color
   instead of forcing every leaf to carry a visible label.
 
 ## 4. Stacked and 100% stacked — disambiguation
@@ -107,7 +107,7 @@ it here. This skill's job is only the *upstream* decision:
 - **When to reach for it:** the audience needs to read an exact share as a count-out-of-100
   (e.g. "73 of 100 customers"), which pie/donut's angle encoding communicates only
   approximately. Flag the AppSource-vs-Deneb tradeoff explicitly if the user insists on a
-  packaged custom visual instead (BRIEF F7 — name the gap, don't endorse silently).
+  packaged custom visual instead.
 - Do not reach for waffle as a default part-to-whole shape — it earns its keep only for that
   specific "precise share, small N" reading; for everything else in §Quick Reference it adds
   complexity without a perceptual win.
@@ -122,7 +122,7 @@ Choice:   Top-4 product lines + "Other" → donutChart (5 slices total);
 Rejected: pieChart with 8 raw slices (unreadable angles);
           treemap (no hierarchy — flat category list, bar/donut already answers it);
           waffleChart as a literal key (not native; would need deneb-vegalite)
-Route:    JSON → powerbi-visuals; grouping DAX → dax-measures; tokens → DESIGN-TOKENS.md §6
+Route:    JSON → powerbi-visuals; grouping DAX → dax-measures; tokens → `pbi-design-system` §6
 ```
 
 ## 7. Verification ladder

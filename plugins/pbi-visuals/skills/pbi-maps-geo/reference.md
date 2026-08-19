@@ -1,9 +1,9 @@
 # Maps & Geo — Reference
 
 Companion to `SKILL.md`. Card and property names verified against
-`docs/research/reportThemeSchema-2.155.json` (`visual-map`, `visual-filledMap`,
+`reportThemeSchema-2.155.json` (`visual-map`, `visual-filledMap`,
 `visual-shapeMap`, `visual-azureMap` definitions) — never recalled from memory.
-Tokens (`color/*`, `ramp/*`) resolve in `docs/DESIGN-TOKENS.md`.
+Tokens (`color/*`, `ramp/*`) resolve in `pbi-design-system`.
 
 ## 1. Visual-type keys & cards (theme `visualStyles`)
 
@@ -45,7 +45,7 @@ unaffected, but remains officially "(preview)". Sources:
 - Requires an **Azure Maps account key** — an external Azure resource, not a report/model setting. Confirm the user has one before building; if not, prefer `filledMap`/`shapeMap`.
 - Layers are separate cards (`bubbleLayer`, `heatMapLayer`, `pathLayer`, `referenceLayer`, `tileLayer`) — style each independently; unset layers fall back to `dataPoint`/`general` defaults.
 
-Any property not listed here: read it from `reportThemeSchema-2.1xx.json` or copy from a ground-truth visual in the target report — do not guess (BRIEF F2). Card values are always **arrays** of objects.
+Any property not listed here: read it from `reportThemeSchema-2.1xx.json` or copy from a ground-truth visual in the target report — do not guess. Card values are always **arrays** of objects.
 
 ## 3. `fillRule` — the choropleth/bubble color-scale shape
 
@@ -62,10 +62,10 @@ Schema `oneOf`: `linearGradient2` (2-stop) or `linearGradient3` (3-stop). Each s
 ```
 
 - **Sequential** (magnitude — e.g. revenue by region): `linearGradient2`, min/max only.
-  Endpoints from `ramp/brand-seq` (DESIGN-TOKENS §1.2); dark = more, never rainbow.
+  Endpoints from `ramp/brand-seq` (`pbi-design-system` §1.2); dark = more, never rainbow.
 - **Diverging** (deviation around a meaningful zero/target — e.g. YoY %, plan vs actual):
   `linearGradient3` (`min`/`mid`/`max`). `mid.value` is pinned at the meaningful center
-  (0, or 100% of plan) — **never the data mean** (DESIGN-TOKENS §1.3). Endpoints from
+  (0, or 100% of plan) — **never the data mean** (`pbi-design-system` §1.3). Endpoints from
   `ramp/diverging`.
 - `nullColoringStrategy` (either variant): `{ "strategy": <string>, "color": <colorOrThemeColor> }`
   controls how blank values render. Always set an explicit `color` (e.g. `color/border`)
@@ -120,5 +120,5 @@ Choice:   shapeMap (Bing named-region geocoding unreliable for oblasts);
 Rejected: filledMap (Bing oblast geocoding drift -- silent mis-plots);
           bar chart alone (adjacency across regions matters for this report)
 Route:    JSON -> powerbi-visuals; TopoJSON hosting -> user provides/verifies;
-          tokens -> DESIGN-TOKENS.md §1.2/1.3
+          tokens -> `pbi-design-system` §1.2/1.3
 ```

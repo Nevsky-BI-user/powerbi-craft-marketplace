@@ -1,7 +1,7 @@
 {
   "name": "pbi-visuals",
   "description": "Per-visual craft for Power BI PBIP reports: charts, tables, cards, maps, AI visuals — plus the shared report.json mechanics (powerbi-visuals).",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }

@@ -7,13 +7,13 @@ description: Use when choosing or fixing fonts, sizes, title/label styling, call
 
 ## Overview
 
-One family, one ramp, few weights. Every text property resolves to a `type/*` token (DESIGN-TOKENS.md §2): Segoe UI only, floor 8 pt; emphasis = family switch to `Segoe UI Semibold`, never combined with `bold`. The ramp lives once in theme `textClasses` — per-visual overrides are exceptions.
+One family, one ramp, few weights. Every text property resolves to a `type/*` token (`pbi-design-system` §2): Segoe UI only, floor 8 pt; emphasis = family switch to `Segoe UI Semibold`, never combined with `bold`. The ramp lives once in theme `textClasses` — per-visual overrides are exceptions.
 
 ## When to Use
 
 Setting or reviewing fonts, sizes, text hierarchy, or number formats in a PBIP report (Legacy or enhanced; model TMDL).
 
-NOT for: theme.json generation (`pbi-theme-json`), visual/report JSON mechanics (`powerbi-visuals`), display-measure DAX (`dax-measures`), hierarchy theory (`frontend-design`), title/label **wording** (`data-storytelling`). Tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+NOT for: theme.json generation (`pbi-theme-json`), visual/report JSON mechanics (`powerbi-visuals`), display-measure DAX (`dax-measures`), hierarchy theory (`frontend-design`), title/label **wording** (`data-storytelling`). Tokens → `pbi-design-system` (`pbi-design-system`).
 
 Before writing: detect Legacy vs enhanced; read the theme's `textClasses` and a same-type visual first — never from memory; check the measure's `formatString` in TMDL.
 
@@ -59,4 +59,3 @@ Full 14-class textClasses map, per-visual-type font property names, Ukrainian fo
 
 File written → JSON parses (`fontSize` 6–45 pt), sizes ≥ 8 pt, contrast via tokens (≥ 4.5:1; ≥ 3:1 for ≥ 18 pt), no textbox shows an overflow scrollbar → `git diff` matches intent. Font fallback can't be verified headless — say so.
 
-Closes BRIEF F1, F2, F3, F6, F9, F10.

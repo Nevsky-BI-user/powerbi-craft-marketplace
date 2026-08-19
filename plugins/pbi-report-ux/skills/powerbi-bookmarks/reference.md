@@ -25,13 +25,13 @@ explorationState
 A LIVE `visualContainer.filters` is a compact JSON **string** holding a `[cards]` array.
 Inside a bookmark's `explorationState`, the captured `visualContainers.<id>.filters` is a
 **native dict**: `{"byExpr": [cards...], "byName": {"<cardName>": {card+state}}}`. A scrubber
-that only handles the list form silently skips every bookmark (verified PDP, 2026-07-28).
+that only handles the list form silently skips every bookmark (verified on a production report, 2026-07-28).
 
 Renamed/deleted-measure "ghosts" in captured states (filters.byExpr entries, orderBy,
 projections) are inert when the bookmark has `suppressData:true` OR the container id is not
 in `targetVisualNames` — safe to scrub. Deleting a captured `orderBy`/`projections` key is
 schema-normal (most captured singleVisuals lack them: 12805/15853 no orderBy, 15845/15853
-no projections in PDP).
+no projections in the audited report).
 
 ### ⚠️ A new filter on a visual dies on the first tab click unless you also patch the captures
 
@@ -44,7 +44,7 @@ that lists that visual in `targetVisualNames` **replays its captured filter stat
 | card present, **no** `filter` body | value is **cleared** (card exists, no selection) |
 | card **absent** (capture older than the card) | nothing guarantees your value survives — patch it too |
 
-Real incident (PDP «Утримання», 2026-07-30): `STATUS_KEY IN {'1'}` was set on the
+Real incident (production report, 2026-07-30): `STATUS_KEY IN {'1'}` was set on the
 "Працюючі" table to exclude mobilized employees. The card `3b7d2f1a…` already existed as an
 empty placeholder, so both tab bookmarks had captured it **empty** — the fix worked on load
 and evaporated the moment the user clicked a tab. Verifying the live visual only ("filter is
@@ -161,7 +161,7 @@ Rules:
 
 Power BI Desktop's save-time linter silently DELETES properties placed at the wrong
 level of the container config. The diff looks fine, a reload even renders it — until
-the next Desktop save wipes it. Verified placements (PDP, 2026-07-28):
+the next Desktop save wipes it. Verified placements (production report, 2026-07-28):
 
 | Property | Correct location | Wrong location (stripped on save) |
 |---|---|---|

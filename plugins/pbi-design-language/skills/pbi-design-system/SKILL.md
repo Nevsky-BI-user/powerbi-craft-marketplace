@@ -7,7 +7,7 @@ description: Use when choosing any design value for a Power BI report element in
 
 ## Overview
 
-Root pbi-* skill: every property maps to a `reference.md` token (`docs/DESIGN-TOKENS.md`);
+Root pbi-* skill: every property maps to a `reference.md` token (`pbi-design-system`);
 siblings apply per element.
 
 ## When to Use
@@ -30,7 +30,7 @@ narrative/claim wording (`data-storytelling`), web design (`frontend-design`).
 | Shape | §4 | One radius (8); never two edges; shadow = elevation, never default; style shadow draws INSIDE (grow container by its margins), container shadow outside |
 | States | §5 | default/hover/selected/disabled; selected = brand fill + white text |
 | Components | §6 | `cardVisual`/`tableEx`/`pivotTable`/`advancedSlicerVisual` — modern only |
-| PDP edits | §7 | Keep its 1440 grid; navy via `ThemeDataColor ColorId 2` |
+| Legacy 1440 report edits | §7 | Keep its grid; navy via `ThemeDataColor ColorId 2` |
 | Theme inversion | §1.9 | Neutrals mirror; accents DEEPEN (−400→−600/700, never mirror); audit luminance after sweep |
 
 ## Workflow
@@ -51,7 +51,7 @@ narrative/claim wording (`data-storytelling`), web design (`frontend-design`).
 
 | Mistake | Why bad | Correct |
 |---|---|---|
-| Hardcoding theme hex per visual | Drift (PDP: 173×) | `ThemeDataColor` / named color |
+| Hardcoding theme hex per visual | Drift (one audited report: 173×) | `ThemeDataColor` / named color |
 | Second navy in new work | Two brands, one page | One navy; `#063E61` for new |
 | Eyeballed coordinates | Ragged grid, jitter | Integers, multiples of 8 |
 | Mixed title sizes 10–13 pt | Broken hierarchy | `type/title` = 12 pt everywhere |

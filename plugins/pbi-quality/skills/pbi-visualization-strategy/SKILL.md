@@ -9,7 +9,7 @@ Chart-selection judgment for PBIP reports (report.json PBIR-Legacy or PBIR enhan
 
 ## Overview
 
-Choose the visual from the reader's question, not the gallery. Perception ranking (Cleveland–McGill): position > length > slope > angle > area > color — use the highest the data allows; saturate one series (`color/brand`, DESIGN-TOKENS.md §6).
+Choose the visual from the reader's question, not the gallery. Perception ranking (Cleveland–McGill): position > length > slope > angle > area > color — use the highest the data allows; saturate one series (`color/brand`, `pbi-design-system` §6).
 
 ## When to Use
 
@@ -45,7 +45,7 @@ Question: план/факт продажів по 12 категоріях
 Choice:   clusteredBarChart, sorted by variance; % labels (dax-measures);
           bullet targets → dax-svg
 Rejected: gauge ×12 (no comparison); pieChart (not part-to-whole)
-Route:    JSON → powerbi-visuals; tokens → DESIGN-TOKENS.md §6
+Route:    JSON → powerbi-visuals; tokens → `pbi-design-system` §6
 ```
 
 ## Common Mistakes

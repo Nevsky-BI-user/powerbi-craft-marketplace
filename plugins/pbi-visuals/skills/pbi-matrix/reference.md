@@ -1,10 +1,10 @@
 # Matrix (pivotTable) — Reference
 
 Companion to `SKILL.md`. All names below are verified against
-`docs/research/reportThemeSchema-2.155.json` (`definitions.visual-pivotTable`) and
-`docs/research/theme-visuals.md` §6.3 — never recalled from memory (BRIEF F2). PDP audit:
+`reportThemeSchema-2.155.json` (`definitions.visual-pivotTable`) and
+the theme-schema introspection notes §6.3 — never recalled from memory. Production-report audit:
 83 real `pivotTable` instances. Tokens (`color/*`, `type/*`, `ramp/*`) resolve in
-`docs/DESIGN-TOKENS.md`.
+`pbi-design-system`.
 
 ## 1. Visual-type key
 
@@ -49,7 +49,7 @@ from the visual's own header icons. The header-icon properties, verified in
 | `foreground` | Icon color (fill object) |
 | `show` | Master visibility for the whole header icon row |
 
-DESIGN-TOKENS §6 says new visuals are born with `visualHeader.show: false` — **matrices with
+`pbi-design-system` §6 says new visuals are born with `visualHeader.show: false` — **matrices with
 row/column hierarchies are the deliberate exception**: these five icons are the only drill
 affordance a reader has, so keep `show: true` and set `foreground` to `color/text-secondary`
 (quiet, not competing with `color/brand` data).
@@ -62,7 +62,7 @@ removes the whole header row.
 
 `ColorId` mapping used below is the THEME-file mapping (0-based straight into `dataColors`):
 `ColorId 0` = `color/brand`. Re-verify against the target theme before emitting
-(DESIGN-TOKENS §1.7).
+(`pbi-design-system` §1.7).
 
 ```json
 "pivotTable": {

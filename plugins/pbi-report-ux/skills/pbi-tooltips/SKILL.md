@@ -22,7 +22,7 @@ Detect format: Legacy `report.json` uses integer flags (`"visibility": 1`, `disp
 
 ## Quick Reference
 
-| Element | Spec (tokens: DESIGN-TOKENS.md) |
+| Element | Spec (tokens: `pbi-design-system`) |
 |---|---|
 | Default vs custom vs off | ≤3 confirm fields → **default tooltip** via theme `visualTooltip` card; context+detail (trend, composition, plan vs fact) → **custom page**; decorative → **off** |
 | Canvas | `grid/canvas-tooltip` 320×240, up to 550×500; ActualSize mandatory (syntax per format: Pre-flight) |

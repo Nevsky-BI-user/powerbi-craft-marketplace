@@ -23,7 +23,7 @@ visual as template, confirm a true date/continuous axis, and verify every
 `queryRef` exists in the TMDL model.
 
 REQUIRED SUB-SKILL: `powerbi-visuals` (JSON mechanics). Measures → `dax-measures`.
-Tokens → DESIGN-TOKENS.md (`pbi-design-system`).
+Tokens → `pbi-design-system` (`pbi-design-system`).
 
 ## Quick Reference
 
@@ -56,4 +56,3 @@ Exact card/property names, enums, theme fragment: [reference.md](reference.md).
 JSON parses, keys/card names match reference.md, values are ARRAYS, bindings exist
 in model, `git diff` matches intent. Rendering clarity can't be verified headless.
 
-Closes BRIEF F1, F2, F3, F5, F6, F7, F10.

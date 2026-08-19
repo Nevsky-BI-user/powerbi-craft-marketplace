@@ -7,7 +7,7 @@ description: Use when adding or restyling Power BI slicers or building a filter 
 
 ## Overview
 
-Filters are chrome, not data: quiet, uniform, predictable, unmistakable selection, clear applied-filter feedback. Closes BRIEF F1–F3, F6–F10, F12.
+Filters are chrome, not data: quiet, uniform, predictable, unmistakable selection, clear applied-filter feedback.
 
 Formats: PBIP, PBIR-Legacy or PBIR enhanced; TMDL model. Sub-skills: powerbi-visuals (slicer/button JSON), powerbi-bookmarks (show/hide), icon-set-manager (filter icon), dax-measures.
 
@@ -19,7 +19,7 @@ NOT for: bookmark/visibility JSON (powerbi-bookmarks), visual JSON (powerbi-visu
 ## Pre-flight (mandatory)
 
 1. Detect format; read an existing slicer of THIS report as ground truth, not memory.
-2. Read page `width/height` (PDP 1440-wide → tokens §7); resolve theme palette.
+2. Read page `width/height` (legacy 1440-wide → tokens §7); resolve theme palette.
 3. Verify slicer fields exist in the TMDL model.
 
 ## Quick Reference
