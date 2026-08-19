@@ -83,10 +83,10 @@ export function coverPlugins(
  *  <тема>-<роль>-cli, тож роль читається з імені й ділить довгий список на
  *  осмислені купки. Порожній рядок = категорії немає. */
 const CATEGORY_LABELS: Record<string, string> = {
-  authoring: "Авторинг",
-  consumption: "Споживання",
-  operations: "Операції",
-  migration: "Міграції",
+  authoring: "Authoring",
+  consumption: "Consumption",
+  operations: "Operations",
+  migration: "Migration",
 };
 
 function categoryOf(name: string): string {
@@ -117,7 +117,7 @@ export function clusterSkills(skills: InvSkill[]): Cluster[] {
   const clusters: Cluster[] = named
     .sort((a, b) => b[1].length - a[1].length)
     .map(([label, list]) => ({ label, skills: list }));
-  if (rest.length) clusters.push({ label: "Решта", skills: rest });
+  if (rest.length) clusters.push({ label: "Other", skills: rest });
   return clusters;
 }
 

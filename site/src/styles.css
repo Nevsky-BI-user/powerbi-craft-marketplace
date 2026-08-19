@@ -87,24 +87,32 @@ body {
   margin: 10px 0;
 }
 .cards-grid .plugin { margin: 0; display: flex; flex-direction: column; flex: 1 1 min(400px, 100%); min-width: 0; }
-/* Плагін від 10 скілів займає рядок цілком: чіпи лягають у 2–3 ряди замість десяти.
-   Усередині широкої картки опис і команда стають поруч: інакше короткий опис
-   лишав пів рядка порожнім, а команда — ще один. */
-.cards-grid .plugin.wide {
-  flex-basis: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 480px);
-  column-gap: 16px;
-  row-gap: 6px;
-  align-items: start;
+/* Плагін від 10 скілів займає рядок цілком: чіпи лягають у 2–3 ряди замість десяти. */
+.cards-grid .plugin.wide { flex-basis: 100%; }
+
+/* Широка картка на просторому екрані: команда стає в один рядок і йде у правий
+   верхній кут, на одну лінію з назвою плагіна; опис лягає під ними на всю ширину.
+   Найдовша команда широкої картки — 560px разом із кнопкою, тож нижче 1200px
+   вона в рядок не влізе і картка лишається звичайним стовпчиком. */
+@media (min-width: 1200px) {
+  .cards-grid .plugin.wide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 18px;
+    row-gap: 6px;
+    align-content: start;
+  }
+  .cards-grid .plugin.wide > .plugin-head { grid-column: 1; grid-row: 1; align-self: center; }
+  .cards-grid .plugin.wide > .copyrow {
+    grid-column: 2; grid-row: 1; margin: 0; align-self: center; white-space: nowrap;
+  }
+  .cards-grid .plugin.wide > .copyrow code { white-space: nowrap; }
+  .cards-grid .plugin.wide > .plugin-desc { grid-column: 1 / -1; grid-row: 2; margin: 0 0 2px; }
+  .cards-grid .plugin.wide > .chips,
+  .cards-grid .plugin.wide > .subgroup,
+  .cards-grid .plugin.wide > .skillcard,
+  .cards-grid .plugin.wide > details { grid-column: 1 / -1; }
 }
-.cards-grid .plugin.wide > .plugin-head,
-.cards-grid .plugin.wide > .chips,
-.cards-grid .plugin.wide > .subgroup,
-.cards-grid .plugin.wide > .skillcard,
-.cards-grid .plugin.wide > details { grid-column: 1 / -1; }
-.cards-grid .plugin.wide > .plugin-desc { grid-column: 1; grid-row: 2; margin: 0; align-self: center; }
-.cards-grid .plugin.wide > .copyrow { grid-column: 2; grid-row: 2; margin: 0; }
 .cards-grid .plugin .chips { align-content: flex-start; margin-top: auto; }
 .picon { font-size: 18px; line-height: 1; }
 
@@ -294,11 +302,6 @@ button.chip.bandchip { padding: 2px 10px; font-size: 12.5px; }
 /* Вузькі екрани: смуга розділу лишається, але без опису й команди —
    на телефоні цінні саме назва групи та перелік плагінів. */
 @media (max-width: 900px) {
-  /* на вузькому екрані широка картка знову стає стовпчиком:
-     колонка під команду (мін. 300px) поруч з описом просто не влізе */
-  .cards-grid .plugin.wide { display: flex; flex-direction: column; }
-  .cards-grid .plugin.wide > .plugin-desc { margin: 4px 0 8px; }
-  .cards-grid .plugin.wide > .copyrow { margin: 8px 0; }
   .topnav .search { flex: 1 1 100%; }
   .sectionband { padding: 8px 10px; gap: 9px; }
   .sectionband .band-desc { display: none; }
