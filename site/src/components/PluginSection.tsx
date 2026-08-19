@@ -1,5 +1,6 @@
 import type { Plugin, Skill } from "../types";
 import { CopyRow } from "./Copy";
+import { WIDE_FROM } from "./InventorySection";
 
 export function pluralSkills(n: number): string {
   const mod10 = n % 10;
@@ -69,7 +70,10 @@ export function PluginSection(props: {
   const { plugin, repo, mpName, openSkill, onToggle, popular } = props;
   const open = plugin.skills.find((s) => s.name === openSkill) ?? null;
   return (
-    <section className="plugin" id={`p-${plugin.name}`}>
+    <section
+      className={`plugin${plugin.skills.length >= WIDE_FROM ? " wide" : ""}`}
+      id={`p-${plugin.name}`}
+    >
       <div className="plugin-head">
         <span className="picon" aria-hidden="true">{PLUGIN_ICONS[plugin.name] ?? "🧩"}</span>
         <h3>{plugin.name}</h3>

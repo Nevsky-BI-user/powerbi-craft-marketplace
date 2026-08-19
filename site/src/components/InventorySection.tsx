@@ -11,6 +11,11 @@ export const GROUP_LABELS: Record<InvGroupId, string> = {
   standalone: "окремі",
 };
 
+/** Від скількох скілів картка займає всю ширину рядка: довгий список чіпів
+ *  у вузькій колонці розтягується на десяток рядів, а поруч лишається
+ *  порожнеча. Менші картки спокійно стоять по кілька в ряд. */
+export const WIDE_FROM = 10;
+
 function skillMatches(q: string, s: InvSkill): boolean {
   return (
     s.name.toLowerCase().includes(q) ||
@@ -273,7 +278,11 @@ export function GroupSection(props: { group: InvGroup }) {
       )}
       <div className="cards-grid">
         {chosen.map((p) => (
-          <div className={`plugin inv-${group.group}`} id={`mp-${group.group}-${p.name}`} key={p.name}>
+          <div
+            className={`plugin inv-${group.group}${p.skills.length >= WIDE_FROM ? " wide" : ""}`}
+            id={`mp-${group.group}-${p.name}`}
+            key={p.name}
+          >
             <div className="plugin-head">
               <h3>{p.name}</h3>
               <span className="tagline">{pluralSkills(p.skills.length)}</span>
@@ -331,7 +340,11 @@ export function StandaloneSection(props: { group: InvGroup }) {
       </p>
       <div className="cards-grid">
         {sources.map((src) => (
-          <div className="plugin inv-standalone" key={src.id} id={`src-${src.id}`}>
+          <div
+            className={`plugin inv-standalone${src.skills.length >= WIDE_FROM ? " wide" : ""}`}
+            key={src.id}
+            id={`src-${src.id}`}
+          >
             <div className="plugin-head">
               <h3>{src.title}</h3>
               <span className="tagline">{pluralSkills(src.skills.length)}</span>

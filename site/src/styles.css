@@ -74,15 +74,21 @@ body {
 
 .container { max-width: 1560px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px) 64px; }
 
-/* Сітка карток: на широких екранах 2–3 колонки, на вузьких — одна */
+/* Розкладка карток: гнучкі рядки замість фіксованих колонок.
+   Сітка auto-fill лишала порожню колонку, коли карток у рядку менше, ніж
+   треків (два блоки Microsoft на три колонки — третина екрана порожня).
+   Тут картки розтягуються на всю доступну ширину, а рядок рівняється по
+   верхньому краю, щоб коротка картка не роздувалась до висоти сусідньої. */
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
-  align-items: stretch;
+  align-items: flex-start;
   margin: 14px 0;
 }
-.cards-grid .plugin { margin: 0; display: flex; flex-direction: column; }
+.cards-grid .plugin { margin: 0; display: flex; flex-direction: column; flex: 1 1 min(400px, 100%); min-width: 0; }
+/* Плагін від 10 скілів займає рядок цілком: чіпи лягають у 2–3 ряди замість десяти */
+.cards-grid .plugin.wide { flex-basis: 100%; }
 .cards-grid .plugin .chips { align-content: flex-start; }
 .picon { font-size: 18px; line-height: 1; }
 
