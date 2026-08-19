@@ -105,6 +105,15 @@
     .row-flash { animation: none; }
   }
 
+  /* Scroll-reveal (пара до assets/Reveal.tsx): reveal-wait ставить entrance-
+     анімації на паузу — завдяки fill:backwards вміст чекає у from-стані,
+     зняття класу програє появу в момент прокрутки до блока. */
+  .reveal-wait .anim-rise, .reveal-wait .anim-grow, .reveal-wait .anim-fill,
+  .reveal-wait .anim-draw, .reveal-wait .anim-fade,
+  .reveal-wait.anim-rise, .reveal-wait.anim-grow, .reveal-wait.anim-fill {
+    animation-play-state: paused;
+  }
+
   /* Підняття картки під курсором. НЕ поєднувати з Tailwind-утилітами
      transition-*/duration-* на тому ж елементі: шар utilities пізніший і
      повністю перебиває transition-property, гасячи ефект без помилки. */
@@ -121,5 +130,18 @@
   @media (prefers-reduced-motion: reduce) {
     .card-lift { transition: none; }
     .card-lift:hover { translate: none; }
+  }
+}
+
+/* Друк: сторінка рендериться цілком без прокрутки — нерозкриті reveal-блоки
+   пішли б у PDF порожніми плямами. Правило поза @layer, тож перебиває шар
+   components без !important. */
+@media print {
+  .reveal-wait *,
+  .reveal-wait {
+    animation: none;
+  }
+  .reveal-wait .anim-draw {
+    stroke-dashoffset: 0; /* інакше лінія лишиться невидимою */
   }
 }

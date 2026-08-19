@@ -89,6 +89,7 @@ export function PluginSection(props: {
           <span className="badge agent" title={`Субагенти: ${plugin.agents.join(", ")}`}>agent</span>
         )}
       </div>
+      {plugin.description && <p className="plugin-desc">{plugin.description}</p>}
       <CopyRow text={`claude plugin install ${plugin.name}@${mpName}`} kind="plugin" item={plugin.name} />
       <div className="chips">
         {plugin.skills.map((s) => (

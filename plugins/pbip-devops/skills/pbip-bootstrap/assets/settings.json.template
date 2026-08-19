@@ -13,7 +13,7 @@
       "Bash(git rev-parse:*)",
       "Bash(git stash list)",
       "Bash(python *pbir.py*)",
-      "Bash(powershell *check-gates.ps1*)",
+      "Bash(python *check_gates.py*)",
       "Bash(powershell *pbi-desktop-bridge.ps1 -Action state*)",
       "PowerShell(git status:*)",
       "PowerShell(git diff:*)",

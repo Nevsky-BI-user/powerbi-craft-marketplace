@@ -84,6 +84,8 @@ the shape, not the gallery. No comparison word → the visual is decoration.
 | Invented composite as the hero | «точність до плану» is not a business quantity | A real quantity, or define it inline |
 | Causal verb over correlational evidence | "driven by" asserts a design you don't have | Hedge, or show the decomposition |
 | "Tell a story" as acceptance criterion | Unfalsifiable — five incompatible meanings in the literature | Claim + evidence + ordering + how much the reader may re-cut |
+| Tooltip/annotation repeats the visible label or value | Duplication asserts nothing — reader hovers and learns nothing («ніякої цінності») | Tooltip only adds what the page does NOT show (comparison, full truncated name, why-good/bad); else no tooltip |
+| Same top-N shown twice side by side (chips above the very table) | Two encodings of one claim compete for attention | One encoding per claim per viewport; the second becomes navigation or dies |
 
 ## Verify before done
 

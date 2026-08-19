@@ -57,9 +57,15 @@ description: Розгортає новий Power BI PBIP-репозиторій 
 | `settings.json.template` | `.claude/settings.json` | allowlist read-only команд |
 | `README.md.template` | `README.md` | що це, як відкрити, куди дивитись |
 | `pull_request_template.md` | `.github/pull_request_template.md` | чекбокси гейтів G3/G4 |
-| `../scripts/check-gates.ps1` | `scripts/check-gates.ps1` | автоперевірка гейтів (пер-типова матриця) |
+| `../scripts/check_gates.py` | `scripts/check_gates.py` | автоперевірка гейтів (пер-типова матриця) |
 | `../scripts/bpa-rules.json` | `scripts/bpa-rules.json` | правила BPA: Microsoft-набір (34) + хаус-правила (3) |
 | `../scripts/check-model-refs.py` | `scripts/check-model-refs.py` | биті посилання DAX→таблиці (клас дефектів поза BPA) |
+
+`check_gates.py` працює на Windows, macOS і Linux (python 3.9+, лише stdlib);
+Windows-залежним лишається тільки крок BPA, бо Tabular Editor виходить лише під
+Windows — без нього гейт показує WARN і не валить прогін. Старий
+`scripts/check-gates.ps1` лишається в скілі для тих, хто вже повісив його на хук;
+нові налаштування роблять на python.
 
 `.claude/settings.json` комітиться свідомо: `.gitignore` виключає `.claude/`, але
 `settings.json` — це проєктні дозволи для команди, тому в шаблоні `.gitignore`
@@ -88,7 +94,7 @@ description: Розгортає новий Power BI PBIP-репозиторій 
 - [ ] `git status --short` — чисто, локальні файли не в індексі.
 - [ ] `git log -1 --stat` — у комі ті файли, що очікувались.
 - [ ] Якщо створювався remote — `git status -sb` показує трекінг.
-- [ ] `powershell -File scripts/check-gates.ps1` відпрацьовує без помилок
+- [ ] `python scripts/check_gates.py` відпрацьовує без помилок
       (на порожньому проєкті частина перевірок пропускається — це очікувано).
 - [ ] Якщо модель уже існує: BPA-гейт або пройшов, або його провал показано
       користувачу як беклог якості моделі (на легасі-моделі перший прогін

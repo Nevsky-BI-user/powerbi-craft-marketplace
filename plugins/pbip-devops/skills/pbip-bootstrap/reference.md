@@ -173,7 +173,7 @@ gh repo create <owner>/<name> --private --source=. --remote=origin --push
 
 ## §7. Опційно: блокуючий хук на коміт
 
-`scripts/check-gates.ps1` можна повісити на `PreToolUse` для `Bash(git commit*)`,
+`scripts/check_gates.py` можна повісити на `PreToolUse` для `Bash(git commit*)`,
 щоб гейти не залежали від того, чи агент про них згадав. За замовчуванням **не**
 вмикати: хибне спрацювання блокує роботу користувача, і це має бути його свідомий
 вибір. Якщо просить — додати в `.claude/settings.json`:
@@ -187,7 +187,7 @@ gh repo create <owner>/<name> --private --source=. --remote=origin --push
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File scripts/check-gates.ps1 -Quiet"
+            "command": "python scripts/check_gates.py --quiet"
           }
         ]
       }
@@ -195,3 +195,7 @@ gh repo create <owner>/<name> --private --source=. --remote=origin --push
   }
 }
 ```
+
+Команда однакова на трьох системах. Якщо в проєкті вже прописаний старий
+`powershell -File scripts/check-gates.ps1`, він далі працює на Windows, але
+новий хук ставлять на python-варіант.

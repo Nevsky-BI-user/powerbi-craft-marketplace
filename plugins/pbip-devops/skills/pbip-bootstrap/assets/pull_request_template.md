@@ -26,7 +26,7 @@
 
 - [ ] Гілка не інтеграційна
 - [ ] Тестові кейси записані в `.claude/TEST_CASES.md`, без персональних даних
-- [ ] `powershell -File scripts/check-gates.ps1` — без помилок
+- [ ] `python scripts/check_gates.py` — без помилок
 
 ### G4 — перед мержем
 

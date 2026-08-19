@@ -1,6 +1,6 @@
 ---
 name: react-ux-mechanics
-description: Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - "живі підказки", "дровер", "липка шапка", "анімації графіків", "оптимістичне збереження", "React.lazy", "скелетон", "місяць в URL".
+description: Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; підказки дублюють видимі підписи («ніякої цінності»); hover/кольори «ріжуть очі»; анімації «зникли» бо reveal розкрив усю сітку одразу; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - "живі підказки", "дровер", "липка шапка", "анімації графіків", "оптимістичне збереження", "React.lazy", "скелетон", "місяць в URL".
 ---
 
 # UX-механіки React-застосунку
@@ -28,10 +28,14 @@ sticky-шапка `z-10` < тло дровера `z-40` < дровер `z-50` < 
 ## База нового застосунку — підключати з першого дня
 
 1. `assets/animations.css` → у головний CSS (всі класи мають guard
-   `prefers-reduced-motion`).
+   `prefers-reduced-motion`) + `assets/Reveal.tsx`: блоки з entrance-анімацією
+   нижче згину екрана — в `<Reveal>`, інакше анімація відіграє невидимо до
+   прокрутки.
 2. Маршрути через `lazyPage` + `Suspense` + `ErrorBoundary key={pathname}`
    навколо `<Outlet/>` — [patterns.md](assets/patterns.md) §1.
-3. `HoverTip` замість атрибута `title` — скрізь і одразу (портал у body).
+3. `HoverTip` замість атрибута `title` — скрізь і одразу (портал у body), але
+   за правилом доданої цінності (patterns §11): підказка, що повторює видимий
+   підпис чи число, не вішається взагалі.
 4. `ErrorBoundary` на кожен обчислювальний блок дешборда (падає блок, не сторінка).
 5. Скелетони на місцях завантаження таблиць і форм (§7).
 6. Демо-банер, якщо застосунок має демо-режим із згенерованими даними.
@@ -46,11 +50,14 @@ sticky-шапка `z-10` < тло дровера `z-40` < дровер `z-50` < 
 | Механіка | Де | Навіщо |
 |---|---|---|
 | Жива підказка | `assets/HoverTip.tsx` | миттєва, у стилі бренду, не ріжеться overflow |
+| Компактна rich-підказка чисел | patterns §10 + HoverTip.rich | «До плану: 271,9 проти 286,4 · −5,1%»: одиниця в заголовку, пари абсолютів, тонована дельта окремо |
+| Правило цінності підказок + живий бокс | patterns §11 | дублі видимого — геть; біля лінії — рухомий readout замість підказок на точках |
 | Сегментований перемикач | `assets/Segmented.tsx` | пари/трійки режимів замість select |
 | Кнопка «Скопіювати ✓» | `assets/CopyButton.tsx` | посилання/зведення з видимим підтвердженням |
 | Огорожа помилок | `assets/ErrorBoundary.tsx` | блок падає сам, сторінка живе |
 | Докрут цифр | `assets/useCountUp.ts` | лише перша поява; фонова вкладка ок |
 | Анімації появи | `assets/animations.css` | rise/grow/fill/draw/fade/drawer/row-flash/card-lift; лінії — лише в парі з `pathLength={1}` |
+| Scroll-reveal | `assets/Reveal.tsx` + `.reveal-wait` в animations.css | анімація стартує при появі блока у вʼюпорті; спрацьовує раз; «пізній» reveal обнуляє каскадну затримку |
 | Розріз бандла | patterns §1 | перший вхід без адмінки й довідки |
 | Липка шапка таблиці | patterns §2 | шапка на місці, фільтри завжди видно |
 | Дровер деталей | patterns §3 | клік по рядку → все про показник |
@@ -80,6 +87,12 @@ sticky-шапка `z-10` < тло дровера `z-40` < дровер `z-50` < 
 | «Failed to fetch dynamically imported module» | після редеплою хешовані чанки зникли, а вкладка стара → у фолбеку огорожі маршруту давати кнопку перезавантаження сторінки, не лише скидання стану |
 | докрут не зіграв узагалі | KPI-компонент змонтовано до приходу даних (target=null зʼїв єдиний запуск) → тримати скелетон і монтувати KPI лише з готовими даними |
 | reduced-motion → порожній графік | наївний guard `animation:none` для `.anim-draw` лишає dashoffset=1 → guard мусить ставити `stroke-dashoffset: 0` (в assets/animations.css уже так) |
+| анімацію під згином ніхто не бачив | entrance-анімації грають при монтуванні → `Reveal` + `.reveal-wait` (пауза до появи в кадрі) |
+| «анімації зникли/занадто швидкі» | Reveal на всій високій сітці — все розкривається одним рухом, щойно верхній край у кадрі → Reveal на кожному grid-елементі з каскадом (§6-доповнення) |
+| «дублювання в підказках, ніякої цінності» | tooltip повторює видимий підпис/число (водоспад, виноски, лічильники) → правило §11: додає або видаляється |
+| «підсвітка ріже очі» | hover = яскрава акцентна рамка + перефарбована назва + кольорова тінь → card-lift (підйом 2px, мʼяка тінь) + border-акцент на /40 прозорості; кольорові акценти лише там, де є ОЦІНКА |
+| бокс значень «мертвий» при наведенні | readout біля графіка привʼязаний до крайньої точки → shown = hovered ?? last, весь бокс/маркер/легенда від shown (§11) |
+| порожні плями в PDF | друк рендерить сторінку без прокрутки, reveal-блоки застигли у from-стані → guard у `@media print` знімає анімації і ставить dashoffset 0 (в assets уже є) |
 
 Заборона сирого `title=` в JSX (замість HoverTip) — механічна перевірка, не
 память ревʼюера. ESLint, лише для своїх компонентів (нативні кнопки-іконки

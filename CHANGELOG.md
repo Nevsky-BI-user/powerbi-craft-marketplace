@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.6 — 2026-08-19
+
+- `pbip-bootstrap` (pbip-devops → 0.1.2): gate checker ported from PowerShell to
+  python (`scripts/check_gates.py`, stdlib only, python 3.9+), so gates run on
+  macOS and Linux too. Output was compared line by line with the PowerShell
+  version on a live PBIP repo; exit codes match. Only the BPA step stays
+  Windows-bound (Tabular Editor) and now degrades to a WARN instead of failing.
+  `check-gates.ps1` stays in place for projects that already hook it.
+- `react-ux-mechanics` (project-bootstrap → 0.1.2): tooltip value rule, reveal
+  granularity, calmer hover, rich tooltips with explicit comparisons.
+- `data-storytelling` (report-storytelling → 0.1.2): sharper trigger boundary.
+- Site: section band replaces the sticky sidebar, per-plugin descriptions on
+  every card, plugin picks highlight their card, new "Що потрібно системі"
+  section covering Windows / macOS / Linux.
+
 ## 0.1.5 — 2026-08-18
 
 - New skill `react-ux-mechanics` (project-bootstrap → 0.1.1): React SPA UX

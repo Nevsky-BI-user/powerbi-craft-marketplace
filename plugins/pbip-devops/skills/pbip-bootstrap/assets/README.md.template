@@ -32,7 +32,7 @@ Power BI звіт у форматі **PBIP**. Джерело правди — т
 {{PROJECT_NAME}}.pbip                 точка входу для Power BI Desktop
 {{PROJECT_NAME}}.SemanticModel/       модель даних у TMDL
 {{PROJECT_NAME}}.Report/              визначення звіту (JSON)
-scripts/check-gates.ps1               автоперевірка правил перед комітом
+scripts/check_gates.py                автоперевірка правил перед комітом
 CLAUDE.md                             правила роботи, гейти, довідник заборон
 ```
 
@@ -46,7 +46,7 @@ CLAUDE.md                             правила роботи, гейти, �
 - Перед комітом:
 
   ```bash
-  powershell -ExecutionPolicy Bypass -File scripts/check-gates.ps1
+  python scripts/check_gates.py
   ```
 
 - Незакомічені зміни в дереві — це чиясь робота з Desktop. Спершу окремий
