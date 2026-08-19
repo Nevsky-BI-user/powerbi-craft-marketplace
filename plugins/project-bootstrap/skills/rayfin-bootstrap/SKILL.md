@@ -114,4 +114,4 @@ npx @microsoft/rayfin-cli init --template blankapp --workspace-id <ws-guid> --it
 `<еталонний репозиторій>` — робочий приклад: schema.ts (9 сутностей),
 bootstrap.ts (ctid-фікс), demo-режим, AdminPage-імпорт довідника, CLAUDE.md з процесом,
 `.claude/` з правилами/агентами/скілами/запобіжником (структура вище).
-Для системи внесення показників — скіл [[naftogaz-data-entry-app]].
+Для системи внесення показників — скіл [[kpi-data-entry-app]].

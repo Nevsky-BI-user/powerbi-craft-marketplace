@@ -11,7 +11,7 @@
  "plugins": [
   {
    "name": "pbi-visuals",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "description": "Per-visual craft for Power BI PBIP reports: charts, tables, cards, maps, AI visuals — plus the shared report.json mechanics (powerbi-visuals).",
    "tagline": "що малюємо",
    "hasHooks": false,
@@ -223,7 +223,7 @@
   },
   {
    "name": "pbi-report-ux",
-   "version": "0.1.3",
+   "version": "0.1.4",
    "description": "Page-level UX of a Power BI report: layout, navigation, slicers and filter panels, drillthrough, tooltips, mobile — plus bookmark/visibility mechanics.",
    "tagline": "як сторінка працює",
    "hasHooks": true,
@@ -386,8 +386,8 @@
   },
   {
    "name": "pbi-design-language",
-   "version": "0.1.1",
-   "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, Naftogaz brand theme.",
+   "version": "0.1.2",
+   "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
    "tagline": "як виглядає",
    "hasHooks": false,
    "agents": [],
@@ -443,6 +443,19 @@
      ]
     },
     {
+     "name": "pbi-corporate-theme",
+     "short": "Use when застосування готової корпоративної теми до Power BI звіту (PBIP, PBIR enhanced) або коли у звіт треба вбудувати логотипи.",
+     "shortUk": "Застосовує готову корпоративну тему до звіту Power BI, включно з реєстрацією логотипів",
+     "description": "Use when застосування готової корпоративної теми до Power BI звіту (PBIP, PBIR enhanced) або коли у звіт треба вбудувати логотипи. Triggers - 'корпоративна тема', 'corporate theme', 'фірмова тема звіту', 'логотип у звіті', 'перемкни палітру звіту'. NOT for авторства тем з нуля (pbi-theme-json), генерації теми під довільний бренд (theme-factory), піктограм даних (icon-set-manager).",
+     "triggers": [
+      "корпоративна тема",
+      "corporate theme",
+      "фірмова тема звіту",
+      "логотип у звіті",
+      "перемкни палітру звіту"
+     ]
+    },
+    {
      "name": "pbi-design-system",
      "short": "Use when choosing any design value for a Power BI report element in a PBIP project - colors, typography, spacing, grid, radius, interactive states, WCAG contrast - or when auditing a page/report for design-system compliance.",
      "shortUk": "Підбирає дизайн-токени для елементів звіту Power BI — кольори, типографіка, відступи, сітка, контраст WCAG",
@@ -458,19 +471,6 @@
       "типографіка",
       "єдиний стиль",
       "чек-лист дизайну"
-     ]
-    },
-    {
-     "name": "pbi-naftogaz-theme",
-     "short": "Use when застосування бренд-теми Нафтогаз до Power BI звіту (PBIP, PBIR enhanced) або коли потрібні логотипи Нафтогазу у звіті.",
-     "shortUk": "Застосовує брендову тему Нафтогазу до звіту Power BI, включно з логотипами",
-     "description": "Use when застосування бренд-теми Нафтогаз до Power BI звіту (PBIP, PBIR enhanced) або коли потрібні логотипи Нафтогазу у звіті. Triggers - 'тема Нафтогаз', 'Naftogaz theme', 'ребренд під Нафтогаз', 'нафтогазівські кольори', 'логотип Нафтогазу'. NOT for авторства тем з нуля (pbi-theme-json), інших брендів (theme-factory), піктограм даних (icon-set-manager).",
-     "triggers": [
-      "тема Нафтогаз",
-      "Naftogaz theme",
-      "ребренд під Нафтогаз",
-      "нафтогазівські кольори",
-      "логотип Нафтогазу"
      ]
     },
     {
@@ -584,7 +584,7 @@
   },
   {
    "name": "report-storytelling",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "description": "What a report page ASSERTS: message-first headlines, comparison bases, annotation, honesty ledger — plus Ukrainian grammar of code-assembled UI strings.",
    "tagline": "що стверджує",
    "hasHooks": false,
@@ -688,7 +688,7 @@
   },
   {
    "name": "pbip-devops",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "description": "Git lifecycle of a PBIP project: scaffolding, deploy, PR review, release notes for business users, Fabric CLI operations.",
    "tagline": "git-цикл PBIP",
    "hasHooks": false,
@@ -819,8 +819,8 @@
   },
   {
    "name": "project-bootstrap",
-   "version": "0.1.1",
-   "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
+   "version": "0.1.3",
+   "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
    "tagline": "старт проєктів",
    "hasHooks": false,
    "agents": [
@@ -846,16 +846,16 @@
      ]
     },
     {
-     "name": "naftogaz-data-entry-app",
-     "short": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with Naftogaz branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model.",
-     "shortUk": "Будує застосунок внесення показників план/факт/прогноз під брендом Нафтогаз на Rayfin/Fabric чи React",
-     "description": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with Naftogaz branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - \"система внесення даних\", \"внесення показників\", \"план факт прогноз\", \"операційний моніторинг\", \"data entry app Naftogaz\", \"довідник показників з Excel\".",
+     "name": "kpi-data-entry-app",
+     "short": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with corporate branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model.",
+     "shortUk": "Будує застосунок внесення показників план/факт/прогноз у корпоративному оформленні на Rayfin/Fabric чи React",
+     "description": "Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with corporate branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - \"система внесення даних\", \"внесення показників\", \"план факт прогноз\", \"операційний моніторинг\", \"data entry app\", \"довідник показників з Excel\".",
      "triggers": [
       "система внесення даних",
       "внесення показників",
       "план факт прогноз",
       "операційний моніторинг",
-      "data entry app Naftogaz",
+      "data entry app",
       "довідник показників з Excel"
      ]
     },
@@ -875,9 +875,9 @@
     },
     {
      "name": "react-ux-mechanics",
-     "short": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame).",
+     "short": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; підказки дублюють видимі підписи («ніякої цінності»); hover/кольори «ріжуть очі»; анімації «зникли» бо reveal розкрив усю сітку одразу; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame).",
      "shortUk": "Додає UX-механіки в React SPA — підказки, дровери, липкі шапки, анімації входу, оптимістичні збереження",
-     "description": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - \"живі підказки\", \"дровер\", \"липка шапка\", \"анімації графіків\", \"оптимістичне збереження\", \"React.lazy\", \"скелетон\", \"місяць в URL\".",
+     "description": "Use when building or polishing a React SPA (дешборд, звіт, форма внесення) and adding tooltips, side drawers, sticky table headers, chart entrance animations, optimistic saves, route code splitting, error boundaries, URL state, count-up numbers, skeletons — or when hitting symptoms - sticky th не липне в overflow-x-auto; підказку обрізає overflow; підказки дублюють видимі підписи («ніякої цінності»); hover/кольори «ріжуть очі»; анімації «зникли» бо reveal розкрив усю сітку одразу; generic T inferred as string (SetStateAction); SVG-лінія не «малює себе» (stroke-dasharray); цифри застигли на 0 у фоновій вкладці (requestAnimationFrame). Triggers - \"живі підказки\", \"дровер\", \"липка шапка\", \"анімації графіків\", \"оптимістичне збереження\", \"React.lazy\", \"скелетон\", \"місяць в URL\".",
      "triggers": [
       "живі підказки",
       "дровер",
@@ -893,6 +893,38 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.8",
+   "date": "2026-08-19",
+   "title": "",
+   "items": [
+    "Removed all brand assets from the repository: the 26 logo files (13 PNG, 13 SVG) that shipped with the theme skill are gone. The skill keeps the registration mechanics and now expects you to drop your own `logo_full_light.png` / `logo_full_dark.png` / `logo_icon_*.png` into `assets/logos/`; missing files are skipped instead of crashing the script.",
+    "Renamed two skills to neutral names: `pbi-naftogaz-theme` -> `pbi-corporate-theme` (pbi-design-language 0.1.2), `naftogaz-data-entry-app` -> `kpi-data-entry-app` (project-bootstrap 0.1.3). Theme files and the `name` inside them follow: `corporate-classic.json`, \"Corporate Classic\". The palettes themselves are unchanged.",
+    "Rationale: an MIT-licensed public repository represents that the author may license everything in it under those terms (GitHub ToS D.6), and no one can grant that over someone else's trademark. Shipping the mechanics without the marks removes the representation without losing the skill."
+   ]
+  },
+  {
+   "version": "0.1.7",
+   "date": "2026-08-19",
+   "title": "",
+   "items": [
+    "Verified the gate checker on real Linux (Ubuntu 24.04, WSL2, python 3.12), not just by reading the code: same output and same exit code as Windows on the same PBIP repo.",
+    "Fix found by that run: `pbir.py` (powerbi-bookmarks 0.1.4 / powerbi-visuals 0.1.2) assumed CRLF line endings, so `verify_roundtrip` reported a false mismatch on any LF checkout and the report gate failed with \"edits were not made through pbir.py\". It now reads the convention from the file and preserves it. Windows output is byte-identical to before.",
+    "`check_gates.py`: the BPA warning no longer tells non-Windows users to set `$env:TE_PATH`.",
+    "Site: the requirements note now states what was actually run where."
+   ]
+  },
+  {
+   "version": "0.1.6",
+   "date": "2026-08-19",
+   "title": "",
+   "items": [
+    "`pbip-bootstrap` (pbip-devops → 0.1.2): gate checker ported from PowerShell to python (`scripts/check_gates.py`, stdlib only, python 3.9+), so gates run on macOS and Linux too. Output was compared line by line with the PowerShell version on a live PBIP repo; exit codes match. Only the BPA step stays Windows-bound (Tabular Editor) and now degrades to a WARN instead of failing. `check-gates.ps1` stays in place for projects that already hook it.",
+    "`react-ux-mechanics` (project-bootstrap → 0.1.2): tooltip value rule, reveal granularity, calmer hover, rich tooltips with explicit comparisons.",
+    "`data-storytelling` (report-storytelling → 0.1.2): sharper trigger boundary.",
+    "Site: section band replaces the sticky sidebar, per-plugin descriptions on every card, plugin picks highlight their card, new \"Що потрібно системі\" section covering Windows / macOS / Linux."
+   ]
+  },
   {
    "version": "0.1.5",
    "date": "2026-08-18",

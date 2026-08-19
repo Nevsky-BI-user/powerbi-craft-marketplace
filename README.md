@@ -2,7 +2,7 @@
 
 Craft skills for building Power BI / Fabric reports with Claude Code: per-visual
 recipes, report UX, design language, quality gates, DAX, PBIP git lifecycle,
-data storytelling — grown and battle-tested on real Naftogaz reporting projects.
+data storytelling — grown and battle-tested on real enterprise reporting projects.
 
 **Catalog site**: https://nevsky-bi-user.github.io/powerbi-craft-marketplace/ —
 browse every skill with copy-ready install commands, install-everything blocks
@@ -23,7 +23,7 @@ claude plugin install pbi-visuals@powerbi-craft
 |---|---|---|
 | `pbi-visuals` | 13 | one skill per visual type + shared report.json mechanics |
 | `pbi-report-ux` | 10 | layout, navigation, slicers/panels, drillthrough, tooltips, mobile, bookmarks |
-| `pbi-design-language` | 7 | design tokens, typography, colour accessibility, CF, theme.json, icons, Naftogaz theme |
+| `pbi-design-language` | 7 | design tokens, typography, colour accessibility, CF, theme.json, icons, corporate themes |
 | `pbi-quality` | 4 | chart-choice strategy, evidence-gated review, approval-gated redesign, manual test cases |
 | `report-storytelling` | 2 | what a page asserts: message titles, comparison bases; Ukrainian UI-string grammar |
 | `dax-craft` | 4 | DAX measures, SVG measures, Deneb/Vega-Lite, DAX regression tests |

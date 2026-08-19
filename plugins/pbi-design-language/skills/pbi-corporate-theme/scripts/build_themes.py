@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Генерує 4 теми Нафтогаз з master-theme.json (pbi-theme-json).
+"""Генерує 4 корпоративні теми з master-theme.json (pbi-theme-json).
 
 Світлі палітри: заміна бренд-хексів + явне встановлення dataColors/semantic.
 Темна: контекстний обхід — fontColor-властивості лишаються світлими,
@@ -15,27 +15,27 @@ SKILL = Path(__file__).resolve().parent.parent
 MASTER = SKILL.parent / "pbi-theme-json" / "assets" / "master-theme.json"
 OUT = SKILL / "assets" / "themes"
 
-NAVY = "#0C375E"       # основний бренд-колір Нафтогазу (logo-color-uk.svg)
-AZURE = "#00A1DF"      # історичний блакитний Нафтогазу
+NAVY = "#0C375E"       # основний бренд-колір (навій)
+AZURE = "#00A1DF"      # акцентний блакитний
 
 # --- світлі палітри: явні слоти + структурна заміна навію -------------------
 LIGHT_PALETTES = {
     "classic": dict(
-        name="Naftogaz Classic",
+        name="Corporate Classic",
         dataColors=[NAVY, AZURE, "#F2A900", "#2B9348", "#D64550",
                     "#41648C", "#7FC5EA", "#8F6A00"],
         accent=AZURE, hyperlink=AZURE, visitedHyperlink="#41648C",
         neutral="#F2A900",
     ),
     "energy": dict(
-        name="Naftogaz Energy",
+        name="Corporate Energy",
         dataColors=[NAVY, "#FFD500", "#0057B7", AZURE, "#2B9348",
                     "#D64550", "#41648C", "#B08900"],
         accent="#0057B7", hyperlink="#0057B7", visitedHyperlink="#41648C",
         neutral="#FFD500",
     ),
     "flame": dict(
-        name="Naftogaz Flame",
+        name="Corporate Flame",
         dataColors=[NAVY, AZURE, "#0E7490", "#38BDF8", "#155E75",
                     "#5B7C99", "#7DD3FC", "#0369A1"],
         accent=AZURE, hyperlink=AZURE, visitedHyperlink="#5B7C99",
@@ -45,7 +45,7 @@ LIGHT_PALETTES = {
 
 # --- темна палітра ----------------------------------------------------------
 DARK = dict(
-    name="Naftogaz Dark",
+    name="Corporate Dark",
     canvas="#0E1F33",      # полотно сторінки
     outspace="#0A1826",    # поза полотном
     surface="#14293F",     # фон візуалів
@@ -152,7 +152,7 @@ def main():
     themes = {k: build_light(k, p) for k, p in LIGHT_PALETTES.items()}
     themes["dark"] = build_dark()
     for key, theme in themes.items():
-        path = OUT / f"naftogaz-{key}.json"
+        path = OUT / f"corporate-{key}.json"
         path.write_text(json.dumps(theme, ensure_ascii=False, indent=2),
                         encoding="utf-8")
         print(f"{path.name}: dataColors={theme['dataColors'][:3]}...")

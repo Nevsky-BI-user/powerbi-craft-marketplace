@@ -1,7 +1,7 @@
 {
   "name": "pbi-design-language",
-  "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, Naftogaz brand theme.",
-  "version": "0.1.1",
+  "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
+  "version": "0.1.2",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }

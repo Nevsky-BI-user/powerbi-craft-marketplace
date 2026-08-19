@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.8 — 2026-08-19
+
+- Removed all brand assets from the repository: the 26 logo files (13 PNG,
+  13 SVG) that shipped with the theme skill are gone. The skill keeps the
+  registration mechanics and now expects you to drop your own
+  `logo_full_light.png` / `logo_full_dark.png` / `logo_icon_*.png` into
+  `assets/logos/`; missing files are skipped instead of crashing the script.
+- Renamed two skills to neutral names: `pbi-naftogaz-theme` ->
+  `pbi-corporate-theme` (pbi-design-language 0.1.2), `naftogaz-data-entry-app`
+  -> `kpi-data-entry-app` (project-bootstrap 0.1.3). Theme files and the
+  `name` inside them follow: `corporate-classic.json`, "Corporate Classic".
+  The palettes themselves are unchanged.
+- Rationale: an MIT-licensed public repository represents that the author may
+  license everything in it under those terms (GitHub ToS D.6), and no one can
+  grant that over someone else's trademark. Shipping the mechanics without the
+  marks removes the representation without losing the skill.
+
 ## 0.1.7 — 2026-08-19
 
 - Verified the gate checker on real Linux (Ubuntu 24.04, WSL2, python 3.12), not

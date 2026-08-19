@@ -1,9 +1,9 @@
 ---
-name: naftogaz-data-entry-app
-description: Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with Naftogaz branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - "система внесення даних", "внесення показників", "план факт прогноз", "операційний моніторинг", "data entry app Naftogaz", "довідник показників з Excel".
+name: kpi-data-entry-app
+description: Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with corporate branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - "система внесення даних", "внесення показників", "план факт прогноз", "операційний моніторинг", "data entry app", "довідник показників з Excel".
 ---
 
-# Система внесення показників (Нафтогаз)
+# Система внесення показників (план/факт/прогноз)
 
 ## Крок 0 — палітра. Завжди питати (AskUserQuestion, не вгадувати)
 
@@ -90,4 +90,4 @@ sync-changed, батьки перед дітьми, чанки по 8, idempoten
 
 `<еталонний репозиторій>` (catalog.ts, entryWindow.ts, EntryPage.tsx,
 seed/parse_dictionary.py, seed/build_structure.py, docs/metric-structure-analysis.md).
-Розгортання платформи — скіл [[rayfin-bootstrap]]. Power BI-тема того ж бренду — pbi-naftogaz-theme.
+Розгортання платформи — скіл [[rayfin-bootstrap]]. Power BI-тема тієї ж палітри — pbi-corporate-theme.

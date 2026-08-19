@@ -34,7 +34,7 @@ state a finding, does every number carry a base?). Write diagnoses with
 priorities (критично/бажано/косметика) to `audit/report.md`. Diagnoses
 only - no solutions, no code.
 
-**2. Theme first.** Apply the brand theme (`pbi-naftogaz-theme`,
+**2. Theme first.** Apply the brand theme (`pbi-corporate-theme`,
 `modifying-theme-json`). Before/after screenshots. The user decides which
 pages theme alone already fixes.
 

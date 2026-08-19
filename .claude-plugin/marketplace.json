@@ -20,8 +20,8 @@
     {
       "name": "pbi-design-language",
       "source": "./plugins/pbi-design-language",
-      "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, Naftogaz brand theme.",
-      "version": "0.1.1"
+      "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
+      "version": "0.1.2"
     },
     {
       "name": "pbi-quality",
@@ -56,8 +56,8 @@
     {
       "name": "project-bootstrap",
       "source": "./plugins/project-bootstrap",
-      "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, Naftogaz-branded data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
-      "version": "0.1.2"
+      "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
+      "version": "0.1.3"
     }
   ]
 }

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Застосовує тему Нафтогаз до PBIP-звіту (PBIR enhanced).
+"""Застосовує корпоративну тему до PBIP-звіту (PBIR enhanced).
 
 Копіює тему й логотипи в RegisteredResources, оновлює themeCollection
 та resourcePackages у definition/report.json. Старі теми не видаляє —
 лише перемикає посилання customTheme.
 
 Запуск:
-  python apply_naftogaz_theme.py "<шлях до X.Report|X.pbip|папки>" --palette classic
-  python apply_naftogaz_theme.py "<шлях>" --palette dark --no-logos
+  python apply_corporate_theme.py "<шлях до X.Report|X.pbip|папки>" --palette classic
+  python apply_corporate_theme.py "<шлях>" --palette dark --no-logos
 """
 import argparse
 import json
@@ -17,8 +17,8 @@ from pathlib import Path
 
 SKILL = Path(__file__).resolve().parent.parent
 PALETTES = ("classic", "energy", "flame", "dark")
-LOGOS = ("naftogaz_logo_full_light.png", "naftogaz_logo_full_dark.png",
-         "naftogaz_logo_icon_light.png", "naftogaz_logo_icon_dark.png")
+LOGOS = ("logo_full_light.png", "logo_full_dark.png",
+         "logo_icon_light.png", "logo_icon_dark.png")
 
 
 def find_report_dir(p: Path) -> Path:
@@ -48,7 +48,7 @@ def main():
     args = ap.parse_args()
 
     rep = find_report_dir(Path(args.report))
-    theme_src = SKILL / "assets" / "themes" / f"naftogaz-{args.palette}.json"
+    theme_src = SKILL / "assets" / "themes" / f"corporate-{args.palette}.json"
     theme_name = theme_src.name
     rr = rep / "StaticResources" / "RegisteredResources"
     rr.mkdir(parents=True, exist_ok=True)
@@ -59,9 +59,14 @@ def main():
     # 1. Файли: тема + логотипи
     shutil.copy2(theme_src, rr / theme_name)
     copied = [theme_name]
+    present = []
     if not args.no_logos:
         for logo in LOGOS:
-            shutil.copy2(SKILL / "assets" / "logos" / logo, rr / logo)
+            src = SKILL / "assets" / "logos" / logo
+            if not src.exists():
+                continue  # логотипи не входять у комплект — кладе користувач
+            shutil.copy2(src, rr / logo)
+            present.append(logo)
             copied.append(logo)
 
     # 2. themeCollection: зберегти reportVersionAtImport від попередньої теми
@@ -85,10 +90,9 @@ def main():
     if theme_name not in have:
         items.append({"name": theme_name, "path": theme_name,
                       "type": "CustomTheme"})
-    if not args.no_logos:
-        for logo in LOGOS:
-            if logo not in have:
-                items.append({"name": logo, "path": logo, "type": "Image"})
+    for logo in present:
+        if logo not in have:
+            items.append({"name": logo, "path": logo, "type": "Image"})
 
     report_json.write_text(json.dumps(cfg, ensure_ascii=False, indent=2),
                            encoding="utf-8")

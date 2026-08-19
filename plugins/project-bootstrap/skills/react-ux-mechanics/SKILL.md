@@ -119,5 +119,5 @@ Segmented,CopyButton,ErrorBoundary,MetricDrawer}.tsx`,
 patch), `src/lib/summaryText.ts` (зведення).
 
 Платформа Rayfin/Fabric — [[rayfin-bootstrap]]; система внесення показників і
-палітри — [[naftogaz-data-entry-app]]; шаблонні українські рядки —
+палітри — [[kpi-data-entry-app]]; шаблонні українські рядки —
 [[ukrainian-ui-copy]]; заявка сторінки й бази порівняння — [[data-storytelling]].
