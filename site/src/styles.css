@@ -209,12 +209,13 @@ button.chip.open { border: 1.5px solid var(--accent); font-weight: 600; }
 .badge.g-goblin { background: var(--g-goblin-bg); color: var(--g-goblin-text); }
 .badge.g-standalone { background: var(--g-standalone-bg); color: var(--g-standalone-text); }
 
-.tabs { display: flex; gap: 8px; margin: 8px 0; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
 button.tab {
   background: var(--card2); color: var(--text2); border: 1px solid var(--border);
   border-radius: 20px; padding: 6px 16px; font-size: 14px; cursor: pointer; font-family: inherit;
 }
 button.tab.active { background: var(--chip-bg); color: var(--chip-text); border-color: var(--chip-border); font-weight: 600; }
+.tabs .or { align-self: center; color: var(--muted); font-size: 13px; }
 
 .steps { padding-left: 22px; }
 .steps li { margin: 6px 0; }

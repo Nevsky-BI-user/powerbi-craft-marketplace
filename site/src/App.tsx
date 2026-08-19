@@ -48,7 +48,7 @@ const SECTION_INFO: Record<string, { icon: string; title: string; desc: string }
   "install-all": {
     icon: "⚡",
     title: "Встановити все",
-    desc: "Скрипт для термінала або промпт для агента, і весь powerbi-craft ставиться за раз.",
+    desc: "Скрипт для термінала або той самий набір промптом для агента — на вибір, одним заходом.",
   },
   requirements: {
     icon: "🖥️",
@@ -400,7 +400,7 @@ export default function App() {
             return st ? <StandaloneSection group={st} /> : null;
           })()}
 
-          <InstallAll catalog={catalog} />
+          <InstallAll catalog={catalog} inventory={inventory} />
           <Requirements />
           <HowTo catalog={catalog} />
           <WhatsNew entries={catalog.changelog} />
