@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.7 — 2026-08-19
+
+- Verified the gate checker on real Linux (Ubuntu 24.04, WSL2, python 3.12), not
+  just by reading the code: same output and same exit code as Windows on the same
+  PBIP repo.
+- Fix found by that run: `pbir.py` (powerbi-bookmarks 0.1.4 / powerbi-visuals
+  0.1.2) assumed CRLF line endings, so `verify_roundtrip` reported a false
+  mismatch on any LF checkout and the report gate failed with "edits were not made
+  through pbir.py". It now reads the convention from the file and preserves it.
+  Windows output is byte-identical to before.
+- `check_gates.py`: the BPA warning no longer tells non-Windows users to set
+  `$env:TE_PATH`.
+- Site: the requirements note now states what was actually run where.
+
 ## 0.1.6 — 2026-08-19
 
 - `pbip-bootstrap` (pbip-devops → 0.1.2): gate checker ported from PowerShell to

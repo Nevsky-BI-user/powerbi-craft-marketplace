@@ -45,6 +45,27 @@ def _dumps(obj, indent):
     return re.sub(r'"' + RAW + r'(.*?)' + END + r'"', r'\1', s)
 
 
+CRLF = '\r\n'
+LF = '\n'
+
+
+def _eol(path):
+    """Newline convention of the file on disk.
+
+    Power BI Desktop writes CRLF, but a checkout on Linux/macOS (or with
+    core.autocrlf=false) holds LF. Hardcoding CRLF made verify_roundtrip()
+    report a false mismatch there, so the convention is taken from the file.
+    """
+    try:
+        with open(path, 'rb') as f:
+            head = f.read(65536)
+    except OSError:
+        return CRLF
+    if b'\r\n' in head:
+        return CRLF
+    return LF if b'\n' in head else CRLF
+
+
 def load(path=None):
     path = path or PATH
     with open(path, 'rb') as f:
@@ -53,7 +74,8 @@ def load(path=None):
 
 def save(obj, path=None):
     path = path or PATH
-    s = _dumps(obj, indent=2).replace('\r\n', '\n').replace('\n', '\r\n')
+    eol = _eol(path)
+    s = _dumps(obj, indent=2).replace(CRLF, LF).replace(LF, eol)
     with open(path, 'wb') as f:
         f.write(s.encode('utf-8'))
 
@@ -72,7 +94,7 @@ def verify_roundtrip(path):
     """Sanity check: load+save reproduces the file byte-for-byte."""
     with open(path, 'rb') as f:
         orig = f.read()
-    new = _dumps(load(path), indent=2).replace('\r\n', '\n').replace('\n', '\r\n').encode('utf-8')
+    new = _dumps(load(path), indent=2).replace(CRLF, LF).replace(LF, _eol(path)).encode('utf-8')
     return orig == new
 
 

@@ -377,7 +377,7 @@ def main() -> int:
 
         if not te.exists():
             add_warn("BPA пропущено: TabularEditor.exe не знайдено "
-                     "(встанови Tabular Editor 2 або задай $env:TE_PATH).")
+                     "(встанови Tabular Editor 2 або задай змінну TE_PATH).")
         elif not rules.exists():
             add_warn("BPA пропущено: файл правил не знайдено (очікується "
                      "scripts/bpa-rules.json або "
