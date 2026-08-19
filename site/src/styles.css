@@ -327,3 +327,22 @@ button.chip.bandchip[data-tip]::after { bottom: auto; top: calc(100% + 8px); }
   .topnav .navrow::-webkit-scrollbar { display: none; }
   .topnav .navrow button { flex-shrink: 0; }
 }
+
+/* Один блок = одна команда: усередині блоку скіли розкладені по підкатегоріях */
+.subgroup { margin-top: 8px; }
+.subgroup:first-of-type { margin-top: 0; }
+.sublabel {
+  margin: 0 0 5px; font-size: 12px; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.sublabel span { font-weight: 400; color: var(--muted); letter-spacing: 0; text-transform: none; }
+
+/* Нарізки того самого набору, які не потрібні для повного покриття */
+details.alt-bundles { margin: 10px 0 0; }
+details.alt-bundles > summary {
+  cursor: pointer; font-size: 13.5px; color: var(--accent); padding: 4px 0;
+}
+details.alt-bundles .meta { font-size: 13px; color: var(--muted); margin: 6px 0 10px; max-width: 680px; }
+.alt-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 8px; }
+.alt-row .meta { flex: 0 0 220px; margin: 0; font-size: 13px; color: var(--text2); }
+.alt-row .copyrow { flex: 1 1 320px; }

@@ -35,8 +35,8 @@ function skillPrompt(plugin: string, skill: string, repo: string): string {
   );
 }
 
-function SkillCard(props: { plugin: Plugin; skill: Skill; repo: string; mpName: string }) {
-  const { plugin, skill, repo, mpName } = props;
+function SkillCard(props: { plugin: Plugin; skill: Skill; repo: string }) {
+  const { plugin, skill, repo } = props;
   return (
     <div className="skillcard" id={skill.name}>
       <h3>
@@ -50,11 +50,6 @@ function SkillCard(props: { plugin: Plugin; skill: Skill; repo: string; mpName: 
       {skill.triggers.length > 0 && (
         <p className="triggers">Тригери: {skill.triggers.map((t) => `«${t}»`).join(", ")}</p>
       )}
-      <CopyRow
-        text={`claude plugin install ${plugin.name}@${mpName}`}
-        kind="plugin"
-        item={plugin.name}
-      />
       <details>
         <summary>Лише цей скіл, без плагіна — промпт для Claude Code</summary>
         <CopyRow text={skillPrompt(plugin.name, skill.name, repo)} kind="skill-prompt" item={skill.name} />
@@ -105,7 +100,7 @@ export function PluginSection(props: {
           </button>
         ))}
       </div>
-      {open && <SkillCard plugin={plugin} skill={open} repo={repo} mpName={mpName} />}
+      {open && <SkillCard plugin={plugin} skill={open} repo={repo} />}
     </section>
   );
 }

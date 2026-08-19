@@ -4,7 +4,7 @@ import inventoryJson from "./inventory.json";
 import type { Catalog, Inventory, Plugin } from "./types";
 import { CopyButton } from "./components/Copy";
 import { PluginSection, PLUGIN_ICONS, pluralSkills } from "./components/PluginSection";
-import { GroupSection, StandaloneSection, GROUP_LABELS, filterInvGroup } from "./components/InventorySection";
+import { GroupSection, StandaloneSection, GROUP_LABELS, filterInvGroup, coverPlugins } from "./components/InventorySection";
 import { InstallAll } from "./components/InstallAll";
 import { Requirements } from "./components/Requirements";
 import { HowTo } from "./components/HowTo";
@@ -254,7 +254,7 @@ export default function App() {
             anchor: `src-${s.id}`,
             tip: `${pluralSkills(s.skills.length)}${s.repo ? ` · github.com/${s.repo}` : ""}`,
           }))
-        : (filteredGroup?.plugins ?? []).map((p) => ({
+        : coverPlugins(filteredGroup?.plugins ?? [], activeGroup?.repo?.split("/").pop()).chosen.map((p) => ({
             label: p.name,
             anchor: `mp-${activeSection}-${p.name}`,
             tip: p.short,

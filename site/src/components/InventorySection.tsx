@@ -38,6 +38,84 @@ export function filterInvGroup(group: InvGroup, q: string): InvGroup {
   return { ...group, plugins, sources, skillCount: count, uniqueCount: unique.size };
 }
 
+/** Один блок = одна команда терміналу.
+ *
+ *  Деякі джерела (Microsoft) пакують той самий набір скілів у кілька плагінів,
+ *  що перекриваються: 46 скілів розкладені по 6 плагінах, 42 з них повторюються
+ *  до пʼяти разів. Показувати шість карток із шістьма командами означає шість
+ *  разів показати одне й те саме. Тому беремо мінімальний набір плагінів, який
+ *  покриває всі скіли (жадібне покриття), а решту нарізок ховаємо в деталі.
+ *
+ *  Там, де плагіни не перетинаються (Anthropic, Kurt Buhler), повертає їх усі —
+ *  кожен зі своєю командою, як і було. */
+export function coverPlugins(
+  plugins: InvPlugin[],
+  preferName?: string,
+): { chosen: InvPlugin[]; rest: InvPlugin[] } {
+  const distinct = new Set(plugins.flatMap((p) => p.skills.map((s) => s.name)));
+  const sum = plugins.reduce((n, p) => n + p.skills.length, 0);
+  if (sum === distinct.size) return { chosen: plugins, rest: [] };
+
+  const covered = new Set<string>();
+  const pool = [...plugins];
+  const chosen: InvPlugin[] = [];
+  const gain = (p: InvPlugin) => p.skills.filter((s) => !covered.has(s.name)).length;
+  // за однакового покриття виграє плагін, названий як сам репозиторій:
+  // «skills-for-fabric» упізнаваніший за рівний йому «fabric-skills»
+  const rank = (p: InvPlugin) => (p.name === preferName ? 0 : 1);
+  while (covered.size < distinct.size && pool.length) {
+    pool.sort((a, b) => gain(b) - gain(a) || rank(a) - rank(b) || a.name.localeCompare(b.name));
+    const best = pool.shift()!;
+    if (gain(best) === 0) break;
+    best.skills.forEach((s) => covered.add(s.name));
+    chosen.push(best);
+  }
+  const takenNames = new Set(chosen.map((p) => p.name));
+  return { chosen, rest: plugins.filter((p) => !takenNames.has(p.name)) };
+}
+
+/** Підкатегорія скіла за його іменем: набори Microsoft називають скіли
+ *  <тема>-<роль>-cli, тож роль читається з імені й ділить довгий список на
+ *  осмислені купки. Порожній рядок = категорії немає. */
+const CATEGORY_LABELS: Record<string, string> = {
+  authoring: "Авторинг",
+  consumption: "Споживання",
+  operations: "Операції",
+  migration: "Міграції",
+};
+
+function categoryOf(name: string): string {
+  if (name.startsWith("powerbi-")) return "Power BI";
+  const parts = name.split("-");
+  const last = parts[parts.length - 1] === "cli" ? parts[parts.length - 2] : parts[parts.length - 1];
+  return CATEGORY_LABELS[last] ?? "";
+}
+
+type Cluster = { label: string; skills: InvSkill[] };
+
+/** Розбивка скілів плагіна по підкатегоріях. Дрібні купки зливаються в «Решту»;
+ *  якщо осмислених категорій менше двох, повертає один безіменний блок. */
+export function clusterSkills(skills: InvSkill[]): Cluster[] {
+  if (skills.length < 10) return [{ label: "", skills }];
+  const byCat = new Map<string, InvSkill[]>();
+  for (const s of skills) {
+    const c = categoryOf(s.name);
+    if (!c) continue;
+    const list = byCat.get(c) ?? [];
+    list.push(s);
+    byCat.set(c, list);
+  }
+  const named = [...byCat.entries()].filter(([, list]) => list.length >= 3);
+  if (named.length < 2) return [{ label: "", skills }];
+  const takenNames = new Set(named.flatMap(([, list]) => list.map((s) => s.name)));
+  const rest = skills.filter((s) => !takenNames.has(s.name));
+  const clusters: Cluster[] = named
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([label, list]) => ({ label, skills: list }));
+  if (rest.length) clusters.push({ label: "Решта", skills: rest });
+  return clusters;
+}
+
 function noSourcePrompt(name: string, desc: string): string {
   return (
     `Встанови скіл Claude Code «${name}» (${desc}). Канонічного репозиторію немає: ` +
@@ -58,15 +136,16 @@ function standalonePrompt(name: string, repo: string, dir: string | null): strin
   );
 }
 
-function MarketSkillCard(props: { skill: InvSkill; group: InvGroup; plugin: InvPlugin }) {
-  const { skill, group, plugin } = props;
+/** Картка скіла всередині плагіна: команда встановлення НЕ дублюється —
+ *  вона одна на весь блок, зверху. Тут лише те, що стосується самого скіла. */
+function MarketSkillCard(props: { skill: InvSkill; plugin: InvPlugin }) {
+  const { skill, plugin } = props;
   return (
     <div className="skillcard">
       <h3>
-        {skill.name} <span className="meta">· плагін {plugin.name}</span>
+        {skill.name} <span className="meta">· входить у {plugin.name}</span>
       </h3>
       {skillTip(skill) && <p className="desc">{skillTip(skill)}</p>}
-      <CopyRow text={plugin.installCmd} kind="plugin" item={`${group.group}:${plugin.name}`} />
     </div>
   );
 }
@@ -77,38 +156,23 @@ function StandaloneSkillCard(props: { skill: InvSkill; source: InvSource }) {
     <div className="skillcard">
       <h3>{skill.name}</h3>
       {skillTip(skill) && <p className="desc">{skillTip(skill)}</p>}
-      {source.repo ? (
-        <>
-          <p className="meta" style={{ margin: "0 0 8px" }}>
-            Джерело:{" "}
-            <a href={`https://github.com/${source.repo}`} target="_blank" rel="noreferrer">
-              {source.repo}
-            </a>
-          </p>
-          {source.marketplace ? (
-            <>
-              <CopyRow
-                text={`claude plugin marketplace add ${source.repo}`}
-                kind="marketplace"
-                item={`standalone:${source.id}`}
-              />
-              <p className="meta" style={{ margin: "8px 0 0" }}>
-                Цей репозиторій — теж маркетплейс: підключіть його, наберіть <code>/plugin</code> і
-                виберіть плагін із цим скілом.
-              </p>
-            </>
-          ) : source.dir !== null ? (
-            <details open>
-              <summary>Встановити цей скіл — промпт для Claude Code</summary>
-              <CopyRow
-                text={standalonePrompt(skill.name, source.repo, source.dir)}
-                kind="skill-prompt"
-                item={`standalone:${skill.name}`}
-              />
-            </details>
-          ) : null}
-        </>
-      ) : (
+      {source.repo && source.marketplace && (
+        <p className="meta" style={{ margin: 0 }}>
+          Ставиться командою підключення маркетплейсу вище, далі <code>/plugin</code> і вибрати
+          плагін із цим скілом.
+        </p>
+      )}
+      {source.repo && !source.marketplace && source.dir !== null && (
+        <details open>
+          <summary>Промпт для Claude Code — забрати цей скіл</summary>
+          <CopyRow
+            text={standalonePrompt(skill.name, source.repo, source.dir)}
+            kind="skill-prompt"
+            item={`standalone:${skill.name}`}
+          />
+        </details>
+      )}
+      {!source.repo && (
         <details open>
           <summary>Промпт для Claude Code — знайти або відтворити цей скіл</summary>
           <CopyRow
@@ -122,47 +186,58 @@ function StandaloneSkillCard(props: { skill: InvSkill; source: InvSource }) {
   );
 }
 
-function ChipGrid<T>(props: {
-  entries: { key: string; skill: InvSkill; payload: T }[];
+/** Чіпи скілів із підкатегоріями; відкрита картка одна на весь блок. */
+function SkillChips<T>(props: {
+  clusters: Cluster[];
+  payload: T;
   groupClass: string;
   trackPrefix: string;
   renderCard: (payload: T, skill: InvSkill) => ReactNode;
 }) {
-  const { entries, groupClass, trackPrefix, renderCard } = props;
+  const { clusters, payload, groupClass, trackPrefix, renderCard } = props;
   const [open, setOpen] = useState<string | null>(null);
-  const openEntry = entries.find((e) => e.key === open) ?? null;
+  const openSkill = clusters.flatMap((c) => c.skills).find((s) => s.name === open) ?? null;
   return (
     <>
-      <div className="chips">
-        {entries.map(({ key, skill }) => (
-          <button
-            key={key}
-            className={`chip ${groupClass}${open === key ? " open" : ""}`}
-            aria-expanded={open === key}
-            data-tip={skillTip(skill) || undefined}
-            onClick={() => {
-              const next = open === key ? null : key;
-              setOpen(next);
-              if (next) track("skill-view", `${trackPrefix}:${skill.name}`);
-            }}
-          >
-            {skill.name}
-          </button>
-        ))}
-      </div>
-      {openEntry && renderCard(openEntry.payload, openEntry.skill)}
+      {clusters.map((c, i) => (
+        <div className="subgroup" key={c.label || `c${i}`}>
+          {c.label && (
+            <p className="sublabel">
+              {c.label} <span>· {c.skills.length}</span>
+            </p>
+          )}
+          <div className="chips">
+            {c.skills.map((skill) => (
+              <button
+                key={skill.name}
+                className={`chip ${groupClass}${open === skill.name ? " open" : ""}`}
+                aria-expanded={open === skill.name}
+                data-tip={skillTip(skill) || undefined}
+                onClick={() => {
+                  const next = open === skill.name ? null : skill.name;
+                  setOpen(next);
+                  if (next) track("skill-view", `${trackPrefix}:${skill.name}`);
+                }}
+              >
+                {skill.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+      {openSkill && renderCard(payload, openSkill)}
     </>
   );
 }
 
-/** Розділ маркетплейс-групи (Anthropic / Microsoft / Kurt Buhler) — уже відфільтрованої.
- *  Кожен плагін — окрема картка з описом, командою і власним якорем mp-<група>-<плагін>. */
+/** Розділ маркетплейс-групи (Anthropic / Microsoft / Kurt Buhler) — уже відфільтрованої. */
 export function GroupSection(props: { group: InvGroup }) {
   const { group } = props;
   if (group.skillCount === 0) return null;
+  const { chosen, rest } = coverPlugins(group.plugins, group.repo?.split("/").pop());
   const counts =
-    group.uniqueCount !== group.skillCount
-      ? `${pluralSkills(group.skillCount)} у ${group.plugins.length} плагінах (${group.uniqueCount} унікальних: набори перекриваються)`
+    rest.length > 0
+      ? `${pluralSkills(group.uniqueCount)}; джерело пакує їх у ${group.plugins.length} наборів, що перекриваються — нижче ${chosen.length === 1 ? "одна команда" : `${chosen.length} команди`}, що дають усе`
       : `${pluralSkills(group.skillCount)} у ${group.plugins.length} плагінах`;
   return (
     <section id={group.group}>
@@ -191,13 +266,13 @@ export function GroupSection(props: { group: InvGroup }) {
       {group.addCmd && (
         <>
           <p className="section-intro">
-            Спершу підключіть маркетплейс (один раз), далі беріть команди з карток плагінів:
+            Спершу підключіть маркетплейс (один раз), далі беріть команди з карток нижче:
           </p>
           <CopyRow text={group.addCmd} kind="marketplace" item={group.group} />
         </>
       )}
       <div className="cards-grid">
-        {group.plugins.map((p) => (
+        {chosen.map((p) => (
           <div className={`plugin inv-${group.group}`} id={`mp-${group.group}-${p.name}`} key={p.name}>
             <div className="plugin-head">
               <h3>{p.name}</h3>
@@ -205,17 +280,34 @@ export function GroupSection(props: { group: InvGroup }) {
             </div>
             {p.short && <p className="plugin-desc">{p.short}</p>}
             <CopyRow text={p.installCmd} kind="plugin" item={`${group.group}:${p.name}`} />
-            <ChipGrid
-              entries={p.skills.map((s) => ({ key: s.name, skill: s, payload: p }))}
+            <SkillChips
+              clusters={clusterSkills(p.skills)}
+              payload={p}
               groupClass={`g-${group.group}`}
               trackPrefix={group.group}
-              renderCard={(plugin, skill) => (
-                <MarketSkillCard skill={skill} group={group} plugin={plugin} />
-              )}
+              renderCard={(plugin, skill) => <MarketSkillCard skill={skill} plugin={plugin} />}
             />
           </div>
         ))}
       </div>
+      {rest.length > 0 && (
+        <details className="alt-bundles">
+          <summary>Ті самі скіли іншими нарізками ({rest.length})</summary>
+          <p className="meta">
+            Джерело публікує кілька плагінів, що перекриваються: ті самі скіли лежать одразу в
+            кількох. Команди вище дають усі {group.uniqueCount}. Ці — підмножини, беріть, якщо
+            потрібен саме вужчий зріз.
+          </p>
+          {rest.map((p) => (
+            <div className="alt-row" key={p.name}>
+              <span className="meta">
+                {p.name} · {pluralSkills(p.skills.length)}
+              </span>
+              <CopyRow text={p.installCmd} kind="plugin" item={`${group.group}:${p.name}`} />
+            </div>
+          ))}
+        </details>
+      )}
     </section>
   );
 }
@@ -238,33 +330,34 @@ export function StandaloneSection(props: { group: InvGroup }) {
         його в Claude Code, і той знайде або відтворить скіл сам.
       </p>
       <div className="cards-grid">
-      {sources.map((src) => (
-        <div className="plugin inv-standalone" key={src.id} id={`src-${src.id}`}>
-          <div className="plugin-head">
-            <h3>{src.title}</h3>
-            <span className="tagline">{pluralSkills(src.skills.length)}</span>
-            {src.repo && (
-              <a href={`https://github.com/${src.repo}`} target="_blank" rel="noreferrer">
-                github.com/{src.repo}
-              </a>
+        {sources.map((src) => (
+          <div className="plugin inv-standalone" key={src.id} id={`src-${src.id}`}>
+            <div className="plugin-head">
+              <h3>{src.title}</h3>
+              <span className="tagline">{pluralSkills(src.skills.length)}</span>
+              {src.repo && (
+                <a href={`https://github.com/${src.repo}`} target="_blank" rel="noreferrer">
+                  github.com/{src.repo}
+                </a>
+              )}
+            </div>
+            {src.note && <p className="plugin-desc">{src.note}</p>}
+            {src.repo && src.marketplace && (
+              <CopyRow
+                text={`claude plugin marketplace add ${src.repo}`}
+                kind="marketplace"
+                item={`standalone:${src.id}`}
+              />
             )}
-          </div>
-          {src.note && <p className="plugin-desc">{src.note}</p>}
-          {src.repo && src.marketplace && (
-            <CopyRow
-              text={`claude plugin marketplace add ${src.repo}`}
-              kind="marketplace"
-              item={`standalone:${src.id}`}
+            <SkillChips
+              clusters={clusterSkills(src.skills)}
+              payload={src}
+              groupClass="g-standalone"
+              trackPrefix="standalone"
+              renderCard={(source, skill) => <StandaloneSkillCard skill={skill} source={source} />}
             />
-          )}
-          <ChipGrid
-            entries={src.skills.map((s) => ({ key: s.name, skill: s, payload: src }))}
-            groupClass="g-standalone"
-            trackPrefix="standalone"
-            renderCard={(source, skill) => <StandaloneSkillCard skill={skill} source={source} />}
-          />
-        </div>
-      ))}
+          </div>
+        ))}
       </div>
     </section>
   );
