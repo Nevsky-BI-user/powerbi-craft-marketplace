@@ -3,15 +3,14 @@
 ## 0.1.9 — 2026-08-19
 
 - Took the project specifics out of the skills. Every skill was written against
-  one production report and carried its internal name (`PDP`, 42 mentions across
-  19 files) plus internal task codes (`BRIEF F1–F12`). The measurements stay —
-  they are what makes the guidance credible — but they are now attributed to
-  "a production report" / "an audited report" instead of a named one.
-- Fixed 27 dead references. Skills pointed at `docs/research/theme-visuals.md`
-  and `docs/research/pdp-design-audit.md`, which are not part of the package —
-  anyone installing the plugin followed a link to nothing. They now name the
-  source in prose, and `DESIGN-TOKENS.md` resolves to the shipped
-  `pbi-design-system` skill.
+  one production report and carried its internal name (42 mentions across 19
+  files) plus internal task codes. The measurements stay — they are what makes
+  the guidance credible — but they are now attributed to "a production report"
+  / "an audited report" instead of a named one.
+- Fixed 27 dead references. Skills pointed at internal research documents that
+  are not part of the package, so anyone installing the plugin followed a link
+  to nothing. The source is now named in prose, and the design-tokens document
+  resolves to the shipped `pbi-design-system` skill.
 - Versions: dax-craft 0.1.2, pbi-design-language 0.1.3,
   pbi-quality 0.1.2, pbi-report-ux 0.1.6,
   pbi-visuals 0.1.3.
