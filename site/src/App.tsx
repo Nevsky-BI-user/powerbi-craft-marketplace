@@ -99,6 +99,7 @@ export default function App() {
   const [showTop, setShowTop] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const navLineRef = useRef<HTMLDivElement>(null);
 
   // Висота липкої навігації в --navh: від неї залежать відступ якорів
   // (scroll-margin-top) і поріг, за яким розділ вважається активним
@@ -138,8 +139,13 @@ export default function App() {
   // у вбудованих/емульованих переглядачах): останній розділ, чий верх зайшов під навігацію
   useEffect(() => {
     const compute = () => {
-      const navH = navRef.current?.getBoundingClientRect().height ?? 128;
-      const line = navH + 42;
+      // Поріг рахуємо від СТАБІЛЬНОЇ частини навігації (navline), не від усього
+      // nav: повна висота включає плашку розділу, чия висота сама залежить від
+      // активного розділу. Поріг від неї + scroll anchoring браузера = вічний
+      // цикл перемикань на межі розділів (плашка «блимала» на місці).
+      // 140 ≈ відступи навігації + типова плашка + запас.
+      const navLineH = navLineRef.current?.getBoundingClientRect().height ?? 34;
+      const line = navLineH + 140;
       let current = SECTION_IDS[0];
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
@@ -273,7 +279,7 @@ export default function App() {
       </header>
 
       <nav className="topnav" aria-label="Розділи каталогу" ref={navRef}>
-        <div className="navline">
+        <div className="navline" ref={navLineRef}>
           <div className="navrow">
             {navItems.map((n) => {
               const count = groupCount(n.id);
