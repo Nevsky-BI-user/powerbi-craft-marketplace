@@ -1,7 +1,7 @@
 # Filter Panel as a Bookmark-Toggled Overlay — Reference
 
 Ground truth for every JSON block below: the Desktop-emitted PBIR **enhanced** report
-`PDP.Report` (schema `visualContainer/2.10.0`, `bookmark/2.1.0`), page `37d8618c987d51132762`,
+`the source report` (schema `visualContainer/2.10.0`, `bookmark/2.1.0`), page `37d8618c987d51132762`,
 group `2159afacf1398140e3aa` (`displayName: "Filter Pannel"`). Nothing here is written from memory.
 Where a value was not observed in that report it is called out as unknown — do not invent it.
 
@@ -636,7 +636,7 @@ bookmarks and only a group.
 
 #### Why ground truth did not protect against this
 
-The pattern in this file was lifted from `PDP.Report`, whose `bookmarks.json` holds **26 items and
+The pattern in this file was lifted from a production report, whose `bookmarks.json` holds **26 items and
 all 26 are groups** (`{'children','displayName','name'}`). The leaf form does not physically occur
 in that report, so it could neither be copied from it nor noticed as missing.
 

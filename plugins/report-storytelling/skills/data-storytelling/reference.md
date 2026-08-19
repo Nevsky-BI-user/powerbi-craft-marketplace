@@ -91,8 +91,8 @@ axis. Scenario abbreviations are substitutable if documented; the **fills are no
 - Colour by good/bad business impact, not by driver identity; no colour available → red becomes
   dark grey, green light grey; for CVD readers green becomes blue-green.
 
-**Naftogaz mapping**: факт=AC · план=PL · прогноз=FC · минулий рік=PY. When **plan is the only
-base the model supports** — the current Rayfin case — say so on the page and add a second
+**Scenario mapping (UA)**: факт=AC · план=PL · прогноз=FC · минулий рік=PY. When **plan is the only
+base the model supports** — a common case in operational reporting — say so on the page and add a second
 reference that costs nothing: rank within the Group, or the prior month. Adding a *new metric*
 is the expensive answer; adding a *base* is the cheap one.
 

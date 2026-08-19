@@ -7,11 +7,17 @@
   registration mechanics and now expects you to drop your own
   `logo_full_light.png` / `logo_full_dark.png` / `logo_icon_*.png` into
   `assets/logos/`; missing files are skipped instead of crashing the script.
-- Renamed two skills to neutral names: `pbi-naftogaz-theme` ->
-  `pbi-corporate-theme` (pbi-design-language 0.1.2), `naftogaz-data-entry-app`
-  -> `kpi-data-entry-app` (project-bootstrap 0.1.3). Theme files and the
-  `name` inside them follow: `corporate-classic.json`, "Corporate Classic".
-  The palettes themselves are unchanged.
+- Renamed two skills to neutral names: the theme skill is now
+  `pbi-corporate-theme` (pbi-design-language 0.1.2) and the data-entry
+  blueprint is now `kpi-data-entry-app` (project-bootstrap 0.1.3). Theme
+  files and the `name` inside them follow: `corporate-classic.json`,
+  "Corporate Classic". The palettes themselves are unchanged. If you
+  installed 0.1.7, reinstall the two plugins to pick up the new folders.
+- Second pass over every remaining brand string, this time case-insensitively:
+  a Tailwind theme comment in `HoverTip.tsx`, a colour fallback comment in
+  `animations.css`, a scenario-mapping heading in `data-storytelling`, and the
+  name of the source report in `pbi-filter-panel-bookmark`. All now generic
+  (pbi-report-ux 0.1.5, report-storytelling 0.1.3, project-bootstrap 0.1.4).
 - Rationale: an MIT-licensed public repository represents that the author may
   license everything in it under those terms (GitHub ToS D.6), and no one can
   grant that over someone else's trademark. Shipping the mechanics without the

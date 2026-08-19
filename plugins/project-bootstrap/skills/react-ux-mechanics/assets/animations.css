@@ -93,7 +93,7 @@
   }
 
   /* Підсвітка рядка, до якого привів deep-link (?focus=…): спалах згасає.
-     Токен --color-azure-soft — зі своєї теми; fallback — блакить Naftogaz. */
+     Токен --color-azure-soft — зі своєї теми; fallback — корпоративна блакить. */
   .row-flash {
     animation: row-flash 2.4s ease;
   }

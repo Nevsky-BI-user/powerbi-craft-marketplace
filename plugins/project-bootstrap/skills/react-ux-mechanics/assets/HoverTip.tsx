@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 /**
  * Портований компонент (react-ux-mechanics). Залежності: лише react/react-dom.
  * Класи-токени теми (border-line, bg-card, text-navy, text-ink-soft, text-ok,
- * text-crit, text-warn-ink, .num) — з Tailwind-теми Naftogaz; в іншому проєкті
+ * text-crit, text-warn-ink, .num) — з Tailwind-теми проєкту; в іншому проєкті
  * перейменувати під свою тему.
  *
  * ПРАВИЛО ДОДАНОЇ ЦІННОСТІ: підказка існує лише тоді, коли додає щось, чого

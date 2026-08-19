@@ -1,7 +1,7 @@
 {
   "name": "project-bootstrap",
   "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }
