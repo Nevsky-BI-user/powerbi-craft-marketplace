@@ -165,7 +165,7 @@ export function agentPrompt(cat: Catalog, inv: Inventory, scope: Scope): string 
 
 export function InstallAll(props: { catalog: Catalog; inventory: Inventory }) {
   const { catalog, inventory } = props;
-  const [scope, setScope] = useState<Scope>("craft");
+  const [scope, setScope] = useState<Scope>("all");
   const [tab, setTab] = useState<"term" | "prompt">("term");
   const { repos, manual } = standaloneSources(catalog, inventory);
   const loose = repos.reduce((n, s) => n + s.skills.length, 0);
@@ -178,13 +178,13 @@ export function InstallAll(props: { catalog: Catalog; inventory: Inventory }) {
     <section id="install-all">
       <h2>Встановити все одразу</h2>
       <div className="tabs" role="group" aria-label="Обсяг встановлення">
-        <button className={scope === "craft" ? "tab active" : "tab"}
-          aria-pressed={scope === "craft"} onClick={() => setScope("craft")}>
-          Тільки powerbi-craft · {pluralSkills(catalog.totals.skills)}
-        </button>
         <button className={scope === "all" ? "tab active" : "tab"}
           aria-pressed={scope === "all"} onClick={() => setScope("all")}>
           Усе з цієї сторінки · {pluralSkills(totalSkills(catalog, inventory))}
+        </button>
+        <button className={scope === "craft" ? "tab active" : "tab"}
+          aria-pressed={scope === "craft"} onClick={() => setScope("craft")}>
+          Тільки powerbi-craft · {pluralSkills(catalog.totals.skills)}
         </button>
       </div>
       <p style={{ color: "var(--text2)", fontSize: 14 }}>
