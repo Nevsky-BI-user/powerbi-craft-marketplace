@@ -77,29 +77,45 @@ body {
 /* Розкладка карток: гнучкі рядки замість фіксованих колонок.
    Сітка auto-fill лишала порожню колонку, коли карток у рядку менше, ніж
    треків (два блоки Microsoft на три колонки — третина екрана порожня).
-   Тут картки розтягуються на всю доступну ширину, а рядок рівняється по
-   верхньому краю, щоб коротка картка не роздувалась до висоти сусідньої. */
+   Тут картки розтягуються на всю доступну ширину, а картки одного рядка
+   рівняються по висоті (stretch) — так ряд читається як рівний блок. */
 .cards-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  align-items: flex-start;
-  margin: 14px 0;
+  gap: 10px;
+  align-items: stretch;
+  margin: 10px 0;
 }
 .cards-grid .plugin { margin: 0; display: flex; flex-direction: column; flex: 1 1 min(400px, 100%); min-width: 0; }
-/* Плагін від 10 скілів займає рядок цілком: чіпи лягають у 2–3 ряди замість десяти */
-.cards-grid .plugin.wide { flex-basis: 100%; }
-.cards-grid .plugin .chips { align-content: flex-start; }
+/* Плагін від 10 скілів займає рядок цілком: чіпи лягають у 2–3 ряди замість десяти.
+   Усередині широкої картки опис і команда стають поруч: інакше короткий опис
+   лишав пів рядка порожнім, а команда — ще один. */
+.cards-grid .plugin.wide {
+  flex-basis: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 480px);
+  column-gap: 16px;
+  row-gap: 6px;
+  align-items: start;
+}
+.cards-grid .plugin.wide > .plugin-head,
+.cards-grid .plugin.wide > .chips,
+.cards-grid .plugin.wide > .subgroup,
+.cards-grid .plugin.wide > .skillcard,
+.cards-grid .plugin.wide > details { grid-column: 1 / -1; }
+.cards-grid .plugin.wide > .plugin-desc { grid-column: 1; grid-row: 2; margin: 0; align-self: center; }
+.cards-grid .plugin.wide > .copyrow { grid-column: 2; grid-row: 2; margin: 0; }
+.cards-grid .plugin .chips { align-content: flex-start; margin-top: auto; }
 .picon { font-size: 18px; line-height: 1; }
 
 a { color: var(--accent); }
 
 h1 { font-size: 28px; font-weight: 600; margin: 0 0 4px; }
-h2 { font-size: 21px; font-weight: 600; margin: 40px 0 12px; }
+h2 { font-size: 21px; font-weight: 600; margin: 20px 0 8px; }
 h3 { font-size: 16px; font-weight: 600; margin: 0; }
 
-.hero { padding-top: 40px; }
-.hero p.sub { color: var(--text2); margin: 0 0 20px; max-width: 640px; }
+.hero { padding-top: 24px; }
+.hero p.sub { color: var(--text2); margin: 0 0 12px; max-width: 1080px; }
 
 .metrics { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
 .metric {
@@ -112,9 +128,9 @@ h3 { font-size: 16px; font-weight: 600; margin: 0; }
 .copyrow {
   display: flex; align-items: center; gap: 8px;
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-  padding: 9px 12px; font-family: var(--mono); font-size: 13.5px;
+  padding: 7px 11px; font-family: var(--mono); font-size: 13.5px;
 }
-.copyrow code { flex: 1; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+.copyrow code { flex: 0 1 auto; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
 .copyrow.block { align-items: flex-start; }
 .copyrow.block pre { flex: 1; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.6; }
 
@@ -137,12 +153,12 @@ button.copybtn.done { background: var(--ok-bg); color: var(--ok-text); border-co
 
 .plugin {
   background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-  padding: 18px 20px; margin: 14px 0;
+  padding: 12px 14px; margin: 10px 0;
 }
 .plugin-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
 .plugin-head .tagline { color: var(--muted); font-size: 13.5px; }
-.plugin-desc { color: var(--text2); font-size: 14px; margin: 6px 0 10px; }
-.plugin .copyrow { margin: 10px 0 12px; }
+.plugin-desc { color: var(--text2); font-size: 14px; margin: 4px 0 8px; }
+.plugin .copyrow { margin: 8px 0 8px; }
 
 .badge {
   font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
@@ -153,11 +169,11 @@ button.copybtn.done { background: var(--ok-bg); color: var(--ok-text); border-co
 .badge.agent { background: var(--ok-bg); color: var(--ok-text); }
 .badge.pop { background: var(--pop-bg); color: var(--pop-text); }
 
-.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
 button.chip {
   background: var(--chip-bg); color: var(--chip-text);
   border: 1px solid transparent; border-radius: 20px;
-  padding: 4px 13px; font-size: 13.5px; cursor: pointer; font-family: inherit;
+  padding: 3px 11px; font-size: 13px; cursor: pointer; font-family: inherit;
   display: inline-flex; align-items: center; gap: 5px;
 }
 button.chip:hover { border-color: var(--chip-border); }
@@ -165,11 +181,11 @@ button.chip.open { border: 1.5px solid var(--accent); font-weight: 600; }
 
 .skillcard {
   background: var(--card2); border: 1px solid var(--border); border-radius: 12px;
-  padding: 14px 16px; margin-top: 10px;
+  padding: 12px 14px; margin-top: 8px;
 }
 .skillcard .meta { font-size: 12.5px; color: var(--muted); }
-.skillcard .desc { font-size: 14px; color: var(--text2); margin: 6px 0 8px; }
-.skillcard .triggers { font-size: 12.5px; color: var(--muted); margin: 0 0 12px; }
+.skillcard .desc { font-size: 13.5px; color: var(--text2); margin: 4px 0 6px; }
+.skillcard .triggers { font-size: 12.5px; color: var(--muted); margin: 0 0 8px; }
 .skillcard .copyrow { background: var(--card); }
 .skillcard details { margin-top: 10px; }
 .skillcard summary { cursor: pointer; font-size: 13px; color: var(--accent); }
@@ -185,7 +201,7 @@ button.chip.open { border: 1.5px solid var(--accent); font-weight: 600; }
 .badge.g-goblin { background: var(--g-goblin-bg); color: var(--g-goblin-text); }
 .badge.g-standalone { background: var(--g-standalone-bg); color: var(--g-standalone-text); }
 
-.tabs { display: flex; gap: 8px; margin: 12px 0; }
+.tabs { display: flex; gap: 8px; margin: 8px 0; }
 button.tab {
   background: var(--card2); color: var(--text2); border: 1px solid var(--border);
   border-radius: 20px; padding: 6px 16px; font-size: 14px; cursor: pointer; font-family: inherit;
@@ -193,14 +209,14 @@ button.tab {
 button.tab.active { background: var(--chip-bg); color: var(--chip-text); border-color: var(--chip-border); font-weight: 600; }
 
 .steps { padding-left: 22px; }
-.steps li { margin: 10px 0; }
+.steps li { margin: 6px 0; }
 .steps .copyrow { margin-top: 6px; }
 .note {
   background: var(--card); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0;
-  padding: 10px 14px; font-size: 14px; color: var(--text2); margin: 12px 0;
+  padding: 9px 13px; font-size: 13.5px; color: var(--text2); margin: 8px 0;
 }
 
-.release { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin: 10px 0; }
+.release { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; margin: 8px 0; }
 .release .date { color: var(--muted); font-size: 13px; }
 .release ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; color: var(--text2); }
 
@@ -258,15 +274,15 @@ button.chip.bandchip { padding: 2px 10px; font-size: 12.5px; }
   .flash { animation: none; box-shadow: 0 0 0 3px rgb(83 74 183 / 26%); border-color: var(--accent); }
 }
 
-.section-intro { color: var(--text2); font-size: 14px; margin: 0 0 12px; max-width: 680px; }
+.section-intro { color: var(--text2); font-size: 13.5px; margin: 0 0 6px; max-width: 1080px; }
 
 /* «Що потрібно системі»: три картки в ряд, на вузькому — в колонку */
 .reqgrid {
-  display: grid; gap: 12px; margin: 14px 0;
+  display: grid; gap: 10px; margin: 10px 0;
   grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 }
 .reqcard {
-  background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 15px;
 }
 .reqcard h3 { font-size: 14.5px; margin: 0 0 6px; }
 .reqcard p { margin: 0; font-size: 13.5px; color: var(--text2); }
@@ -278,6 +294,11 @@ button.chip.bandchip { padding: 2px 10px; font-size: 12.5px; }
 /* Вузькі екрани: смуга розділу лишається, але без опису й команди —
    на телефоні цінні саме назва групи та перелік плагінів. */
 @media (max-width: 900px) {
+  /* на вузькому екрані широка картка знову стає стовпчиком:
+     колонка під команду (мін. 300px) поруч з описом просто не влізе */
+  .cards-grid .plugin.wide { display: flex; flex-direction: column; }
+  .cards-grid .plugin.wide > .plugin-desc { margin: 4px 0 8px; }
+  .cards-grid .plugin.wide > .copyrow { margin: 8px 0; }
   .topnav .search { flex: 1 1 100%; }
   .sectionband { padding: 8px 10px; gap: 9px; }
   .sectionband .band-desc { display: none; }
@@ -335,10 +356,10 @@ button.chip.bandchip[data-tip]::after { bottom: auto; top: calc(100% + 8px); }
 }
 
 /* Один блок = одна команда: усередині блоку скіли розкладені по підкатегоріях */
-.subgroup { margin-top: 8px; }
+.subgroup { margin-top: 6px; }
 .subgroup:first-of-type { margin-top: 0; }
 .sublabel {
-  margin: 0 0 5px; font-size: 12px; font-weight: 600; color: var(--text2);
+  margin: 0 0 4px; font-size: 12px; font-weight: 600; color: var(--text2);
   text-transform: uppercase; letter-spacing: 0.3px;
 }
 .sublabel span { font-weight: 400; color: var(--muted); letter-spacing: 0; text-transform: none; }
