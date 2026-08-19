@@ -73,16 +73,29 @@ export function terminalScript(cat: Catalog, inv: Inventory, scope: Scope): stri
   return out.join("\n") + "\n";
 }
 
+/** Звірка з уже встановленим — те, чого не вміє термінальний скрипт: агент
+ *  бачить середовище користувача, тож перед встановленням шукає перекриття
+ *  і питає, що робити з кожним дублем. */
+const DEDUPE_STEP =
+  `Перш ніж щось ставити, звір список із тим, що в мене вже є: подивись claude plugin list ` +
+  `і теки в ~/.claude/skills. Якщо скіл, який збираєшся поставити, вже стоїть — окремою текою ` +
+  `чи в складі іншого плагіна (та сама назва або явно те саме призначення за description ` +
+  `у SKILL.md) — не встановлюй мовчки поруч. Покажи мені кожну таку пару (що вже стоїть, ` +
+  `що прийде, чим відрізняються) і спитай, що робити: змерджити в один (перенести мої ` +
+  `локальні доповнення й прибрати зайву копію), залишити обидва чи замінити старе новим. ` +
+  `Зроби, як я виберу, і лише потім став решту.`;
+
 function craftPrompt(cat: Catalog): string {
   const names = cat.plugins.map((p) => p.name).join(", ");
   return (
     `Підключи маркетплейс Claude Code плагінів і встанови всі його плагіни:\n` +
     `1. Виконай: claude plugin marketplace add ${cat.marketplace.repo}\n` +
-    `2. Встанови всі плагіни (кількість: ${cat.plugins.length}): ${names} — ` +
+    `2. ${DEDUPE_STEP}\n` +
+    `3. Встанови всі плагіни (кількість: ${cat.plugins.length}): ${names} — ` +
     `кожен командою claude plugin install <назва>@${cat.marketplace.name}\n` +
-    `3. Перевір командою claude plugin list, що зʼявились усі (${cat.plugins.length} шт.) і мають статус enabled.\n` +
-    `4. Скіли з різних плагінів посилаються один на одного, тому потрібен повний набір — не пропускай плагіни.\n` +
-    `5. Наприкінці нагадай мені вручну увімкнути автооновлення: /plugin → Marketplaces → ` +
+    `4. Перевір командою claude plugin list, що зʼявились усі (${cat.plugins.length} шт.) і мають статус enabled.\n` +
+    `5. Скіли з різних плагінів посилаються один на одного, тому потрібен повний набір — не пропускай плагіни.\n` +
+    `6. Наприкінці нагадай мені вручну увімкнути автооновлення: /plugin → Marketplaces → ` +
     `${cat.marketplace.name} → Enable auto-update (для сторонніх маркетплейсів воно вимкнене за замовчуванням).`
   );
 }
@@ -90,6 +103,7 @@ function craftPrompt(cat: Catalog): string {
 function fullPrompt(cat: Catalog, inv: Inventory): string {
   const { markets, repos } = standaloneSources(cat, inv);
   const steps: string[] = [
+    DEDUPE_STEP,
     `Підключи маркетплейс ${cat.marketplace.repo} і встанови всі ${cat.plugins.length} плагінів ` +
       `(${cat.plugins.map((p) => p.name).join(", ")}) командами ` +
       `claude plugin install <назва>@${cat.marketplace.name}.`,
@@ -187,9 +201,10 @@ export function InstallAll(props: { catalog: Catalog; inventory: Inventory }) {
         )}
       </p>
       <p className="note">
-        Термінал і промпт — два способи зробити те саме, а не два кроки. Оберіть зручніший:
-        вставити команди в термінал або дати промпт агентові прямо в Claude Code, і він
-        виконає їх сам.
+        Термінал і промпт — два способи зробити те саме, а не два кроки, оберіть один.
+        Термінал простіший: вставили рядки — все поставилось як є. Промпт для агента
+        розумніший: перш ніж ставити, він звірить набір із уже встановленим у вас і про
+        кожен дубль спитає, що робити — змерджити, залишити обидва чи замінити.
       </p>
       <div className="tabs" role="group" aria-label="Спосіб встановлення">
         <button className={tab === "term" ? "tab active" : "tab"}
