@@ -173,6 +173,15 @@ SKILL_SOURCE = {
 }
 
 
+# Джерела, дописані скриптом scripts/add_skill.py, живуть окремим файлом —
+# щоб автоматика не редагувала цей код і не ламала його на півслові.
+OVERLAY = os.path.join(ROOT, "scripts", "skill_sources.json")
+if os.path.exists(OVERLAY):
+    _ov = json.load(io.open(OVERLAY, encoding="utf-8"))
+    SOURCE_META.update(_ov.get("sources", {}))
+    SKILL_SOURCE.update(_ov.get("skills", {}))
+
+
 def frontmatter(path):
     t = io.open(path, encoding="utf-8", errors="replace").read()
     m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n", t, re.S)
