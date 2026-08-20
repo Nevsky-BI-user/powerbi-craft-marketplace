@@ -111,7 +111,7 @@ fab api -A powerbi "groups/$WS_ID/datasets/$MODEL_ID/Default.UpdateParameters" -
       "newValue": "newserver.database.windows.net"
     },
     {
-      "name": "DatabaseName", 
+      "name": "DatabaseName",
       "newValue": "newdatabase"
     }
   ]

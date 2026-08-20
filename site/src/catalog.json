@@ -819,7 +819,7 @@
   },
   {
    "name": "project-bootstrap",
-   "version": "0.1.4",
+   "version": "0.1.5",
    "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
    "tagline": "старт проєктів",
    "hasHooks": false,
@@ -893,6 +893,16 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.10",
+   "date": "2026-08-20",
+   "title": "",
+   "items": [
+    "Скіли тепер публікуються з майстер-копій одним скриптом (`scripts/sync_from_local.py`): він показує дрейф, переносить локальну версію в репо і дорогою знеособлює локальні шляхи, а на залишках конкретики зупиняється, не доводячи до CI.",
+    "Довʼїхали правки, що жили лише в майстер-копіях: `rayfin-bootstrap` — розділ про обовʼязковий `docs/architecture.md` з переліком того, що в ньому має бути, і команди огляду живого бекенду; `react-ux-mechanics` — три граблі друку в PDF (повторена шапка таблиці не малює вміст форм-контролів, перевірка фіксу лише на живій сторінці, суцільне `break-inside: avoid` роздуває документ).",
+    "Версії: project-bootstrap 0.1.5."
+   ]
+  },
   {
    "version": "0.1.9",
    "date": "2026-08-19",

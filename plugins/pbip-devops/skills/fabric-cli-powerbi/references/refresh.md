@@ -172,7 +172,7 @@ fab api -A powerbi "groups/$WS_ID/datasets/$MODEL_ID/refreshes" -X post -i '{"ty
 while true; do
   STATUS=$(fab api -A powerbi "groups/$WS_ID/datasets/$MODEL_ID/refreshes?\$top=1" -q "value[0].status")
   echo "Status: $STATUS"
-  
+
   case $STATUS in
     "Completed") echo "Refresh successful"; exit 0 ;;
     "Failed") echo "Refresh failed"; exit 1 ;;
