@@ -1,7 +1,7 @@
 {
   "name": "azure-ops",
   "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }
