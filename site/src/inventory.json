@@ -1,5 +1,5 @@
 {
- "snapshotDate": "2026-08-18",
+ "snapshotDate": "2026-08-20",
  "groups": [
   {
    "group": "anthropic",
@@ -1609,6 +1609,21 @@
      ]
     },
     {
+     "id": "microsoftdocs",
+     "title": "Microsoft — Agent-Skills (Azure)",
+     "repo": "MicrosoftDocs/Agent-Skills",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Понад 200 скілів Microsoft по сервісах Azure, зібраних із Microsoft Learn. Репо є і маркетплейсом (плагін azure-agent-skills ставить усі одразу), але зазвичай потрібен один-два — тому нижче промпт на окремий скіл. Azure DevOps у парі з офіційним MCP-сервером @azure-devops/mcp керує організацією напряму: пайплайни, робочі елементи, PR.",
+     "skills": [
+      {
+       "name": "azure-devops",
+       "short": "Expert knowledge for Azure DevOps development including troubleshooting, best practices, decision making, architecture & design patterns, limits & quotas, secur…",
+       "shortUk": "Експертні знання Azure DevOps: пайплайни, агентські пули, робочі елементи, Analytics/OData для Power BI; в парі з Azure DevOps MCP керує організацією напряму"
+      }
+     ]
+    },
+    {
      "id": "shadcn",
      "title": "shadcn/ui",
      "repo": "shadcn-ui/ui",
@@ -1665,12 +1680,17 @@
        "name": "model-orchestration",
        "short": "Use when a multi-step task can be split so a stronger model plans and cheaper models execute — dispatching exec-haiku / exec-sonnet / exec-opus executors or a f…",
        "shortUk": "Розбиває багатокрокову задачу так, щоб сильна модель планувала, а дешевші моделі виконували — виконавці haiku/sonnet/opus"
+      },
+      {
+       "name": "token-economy",
+       "short": "Use when starting heavy multi-hour work, reviewing why a session got expensive, or when the user asks to reduce Claude Code costs. Playbook grounded in measured…",
+       "shortUk": "Плейбук економії токенів: де саме течуть витрати у довгій сесії й чим їх скорочувати — прицільне читання, дешеві субагенти, робота з контекстом"
       }
      ]
     }
    ],
-   "skillCount": 53,
-   "uniqueCount": 53
+   "skillCount": 55,
+   "uniqueCount": 55
   }
  ]
 }

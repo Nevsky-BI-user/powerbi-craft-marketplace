@@ -88,6 +88,15 @@ SOURCE_META = {
         "dir": "skills", "marketplace": False,
         "note": "Монорепозиторій shadcn/ui; містить власний скіл для роботи з компонентами.",
     },
+    "microsoftdocs": {
+        "title": "Microsoft — Agent-Skills (Azure)", "repo": "MicrosoftDocs/Agent-Skills",
+        "dir": "skills", "marketplace": False,
+        "note": "Понад 200 скілів Microsoft по сервісах Azure, зібраних із Microsoft Learn. "
+                "Репо є і маркетплейсом (плагін azure-agent-skills ставить усі одразу), "
+                "але зазвичай потрібен один-два — тому нижче промпт на окремий скіл. "
+                "Azure DevOps у парі з офіційним MCP-сервером @azure-devops/mcp керує "
+                "організацією напряму: пайплайни, робочі елементи, PR.",
+    },
     "awesome-copilot": {
         "title": "GitHub — awesome-copilot", "repo": "github/awesome-copilot",
         "dir": "skills", "marketplace": False,
@@ -155,6 +164,7 @@ SKILL_SOURCE = {
     "fact-checker": "daymade",
     "shadcn": "shadcn",
     "power-bi-dax-optimization": "awesome-copilot",
+    "azure-devops": "microsoftdocs",
     "web-design-guidelines": "vercel",
     "graphify": "local",
     "model-orchestration": "local",
