@@ -751,7 +751,7 @@
   },
   {
    "name": "azure-ops",
-   "version": "0.2.2",
+   "version": "0.2.3",
    "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
    "tagline": "хмара довкола",
    "hasHooks": false,
@@ -952,6 +952,15 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.14",
+   "date": "2026-08-21",
+   "title": "",
+   "items": [
+    "ado-hygiene-inspection після першого живого прогону: перевірка порожніх годин застосовується лише до задач і багів, бо час обліковується на них, а порожнє поле в історії чи фічі — норма (інакше прогін давав девʼять хибних порушень). Коли сторінка конвенцій є, але порога для конкретної перевірки в ній немає, скіл бере дефолт із позначкою і окремим рядком пропонує внести поріг або прибрати перевірку.",
+    "Версії: azure-ops 0.2.3."
+   ]
+  },
   {
    "version": "0.1.13",
    "date": "2026-08-20",

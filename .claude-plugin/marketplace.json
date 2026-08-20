@@ -51,7 +51,7 @@
       "name": "azure-ops",
       "source": "./plugins/azure-ops",
       "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
-      "version": "0.2.2"
+      "version": "0.2.3"
     },
     {
       "name": "project-bootstrap",
