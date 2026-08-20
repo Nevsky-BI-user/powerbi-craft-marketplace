@@ -6,7 +6,7 @@
  },
  "totals": {
   "plugins": 9,
-  "skills": 52
+  "skills": 56
  },
  "plugins": [
   {
@@ -751,12 +751,71 @@
   },
   {
    "name": "azure-ops",
-   "version": "0.1.1",
-   "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC.",
+   "version": "0.2.0",
+   "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
    "tagline": "хмара довкола",
    "hasHooks": false,
    "agents": [],
    "skills": [
+    {
+     "name": "ado-hygiene-inspection",
+     "short": "Use when running a periodic hygiene inspection of an Azure DevOps project — stale work items, unlinked PRs, naming violations, unlogged time, stale docs.",
+     "shortUk": "Read-only інспекція гігієни проєкту Azure DevOps: залежані елементи, PR без звʼязки, теги поза словником, застарілі документи",
+     "description": "Use when running a periodic hygiene inspection of an Azure DevOps project — stale work items, unlinked PRs, naming violations, unlogged time, stale docs. Triggers: 'інспекція гігієни', 'тижнева інспекція', 'перевір хвости', 'hygiene check', 'audit the backlog', 'weekly inspection'.",
+     "triggers": [
+      "інспекція гігієни",
+      "тижнева інспекція",
+      "перевір хвости",
+      "hygiene check",
+      "audit the backlog",
+      "weekly inspection"
+     ]
+    },
+    {
+     "name": "ado-pr-flow",
+     "short": "Use when creating or completing a pull request in Azure DevOps repos — merging a feature branch, PR review flow.",
+     "shortUk": "Веде pull request в Azure DevOps від валідації імені гілки до злиття за класом гілки, не обходячи жодного гейта ревʼю",
+     "description": "Use when creating or completing a pull request in Azure DevOps repos — merging a feature branch, PR review flow. Triggers: 'створи PR', 'замерж', 'заверши пул-реквест', 'злий гілку', 'create pull request', 'merge the branch', 'complete PR'.",
+     "triggers": [
+      "створи PR",
+      "замерж",
+      "заверши пул-реквест",
+      "злий гілку",
+      "create pull request",
+      "merge the branch",
+      "complete PR"
+     ]
+    },
+    {
+     "name": "ado-wi-close",
+     "short": "Use when closing or completing an Azure DevOps work item — task, bug, user story.",
+     "shortUk": "Закриває робочий елемент Azure DevOps одним ритуалом: фактичні години, коментар-підсумок і лише потім стан",
+     "description": "Use when closing or completing an Azure DevOps work item — task, bug, user story. Triggers: 'закрий задачу', 'закрий баг', 'задача готова', 'я все доробив', 'заверши #N', 'close the task', 'mark as done'.",
+     "triggers": [
+      "закрий задачу",
+      "закрий баг",
+      "задача готова",
+      "я все доробив",
+      "заверши #N",
+      "close the task",
+      "mark as done"
+     ]
+    },
+    {
+     "name": "ado-wi-new",
+     "short": "Use when creating Azure DevOps work items — bug, task, user story, feature — in a project that keeps team conventions on a wiki page.",
+     "shortUk": "Заводить робочі елементи Azure DevOps за конвенціями проєкту з вікі: теги лише зі словника, привʼязка до батька та поточного спринту",
+     "description": "Use when creating Azure DevOps work items — bug, task, user story, feature — in a project that keeps team conventions on a wiki page. Triggers: 'заведи баг', 'створи задачу', 'нова фіча', 'заведи стору', 'create work item', 'file a bug', 'log a task'.",
+     "triggers": [
+      "заведи баг",
+      "створи задачу",
+      "нова фіча",
+      "заведи стору",
+      "create work item",
+      "file a bug",
+      "log a task"
+     ]
+    },
     {
      "name": "azure-cost",
      "short": "Azure cost management: query costs, forecast spending, optimize to reduce waste.",
@@ -893,6 +952,15 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.11",
+   "date": "2026-08-20",
+   "title": "",
+   "items": [
+    "Чотири нові скіли устрою Azure DevOps у плагіні azure-ops — універсальні, правила проєкту читають з вікі-сторінки «Конвенції» під час виконання: ado-wi-new (робочі елементи за конвенціями: теги зі словника, батько, поточний спринт), ado-wi-close (ритуал «закрив — залогуй»: години, підсумок, і лише потім стан), ado-pr-flow (PR від валідації імені гілки до злиття за класом гілки; без політик на target не мержить без явної згоди), ado-hygiene-inspection (read-only інспекція гігієни: хвости, PR без звʼязки, теги поза словником, застарілі документи).",
+    "Версії: azure-ops 0.2.0."
+   ]
+  },
   {
    "version": "0.1.10",
    "date": "2026-08-20",
