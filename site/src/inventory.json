@@ -1312,6 +1312,21 @@
      "note": "Офіційний репозиторій скілів Anthropic, опублікований і як маркетплейс плагінів.",
      "skills": [
       {
+       "name": "claude-api",
+       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
+       "shortUk": "Будує, налагоджує й оптимізує застосунки на Claude API/Anthropic SDK, включно з кешуванням підказок"
+      },
+      {
+       "name": "template-skill",
+       "short": "Replace with description of the skill and when Claude should use it.",
+       "shortUk": "Заміни описом скіла й умовами, коли Claude має його застосовувати"
+      },
+      {
+       "name": "webapp-testing",
+       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
+       "shortUk": "Тестує вебзастосунок у браузері — сценарії, перевірка поведінки"
+      },
+      {
        "name": "algorithmic-art",
        "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…",
        "shortUk": "Малює алгоритмічне мистецтво на p5.js із детермінованою випадковістю й інтерактивними параметрами"
@@ -1327,24 +1342,14 @@
        "shortUk": "Малює візуальне мистецтво в PNG і PDF за принципами дизайну — постери, ілюстрації, документи"
       },
       {
-       "name": "claude-api",
-       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
-       "shortUk": "Будує, налагоджує й оптимізує застосунки на Claude API/Anthropic SDK, включно з кешуванням підказок"
-      },
-      {
        "name": "doc-coauthoring",
        "short": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs,…",
        "shortUk": "Веде користувача через спільне написання документації, пропозицій і технічних специфікацій крок за кроком"
       },
       {
        "name": "docx",
-       "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word doc…",
+       "short": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files) or Word templates (.dotx files). Triggers include: any …",
        "shortUk": "Створює, читає й редагує документи Word (.docx)"
-      },
-      {
-       "name": "frontend-design",
-       "short": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making ch…",
-       "shortUk": "Дає настанови для виразного, продуманого візуального дизайну при побудові чи переробці UI — естетика, типографіка, обґрунтовані рішення"
       },
       {
        "name": "internal-comms",
@@ -1363,7 +1368,7 @@
       },
       {
        "name": "pptx",
-       "short": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea…",
+       "short": "Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentat…",
        "shortUk": "Створює, читає й редагує презентації PowerPoint (.pptx)"
       },
       {
@@ -1377,11 +1382,6 @@
        "shortUk": "Створює анімовані GIF, оптимізовані для Slack"
       },
       {
-       "name": "template-skill",
-       "short": "Replace with description of the skill and when Claude should use it.",
-       "shortUk": "Заміни описом скіла й умовами, коли Claude має його застосовувати"
-      },
-      {
        "name": "theme-factory",
        "short": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fo…",
        "shortUk": "Стилізує артефакти темою — слайди, документи, звіти, HTML-сторінки, з 10 готовими темами"
@@ -1392,94 +1392,9 @@
        "shortUk": "Будує веб-артефакти — самодостатні HTML-сторінки для показу користувачу"
       },
       {
-       "name": "webapp-testing",
-       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
-       "shortUk": "Тестує вебзастосунок у браузері — сценарії, перевірка поведінки"
-      },
-      {
        "name": "xlsx",
        "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…",
        "shortUk": "Створює, читає й редагує файли Excel (.xlsx)"
-      }
-     ]
-    },
-    {
-     "id": "superpowers",
-     "title": "Superpowers (Jesse Vincent)",
-     "repo": "obra/superpowers",
-     "dir": "skills",
-     "marketplace": true,
-     "note": "Дисципліна розробки: TDD, планування, ревʼю, git worktree, субагенти.",
-     "skills": [
-      {
-       "name": "brainstorming",
-       "short": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirem…",
-       "shortUk": "З'ясовує намір користувача, вимоги й дизайн перед будь-якою творчою роботою над функціоналом"
-      },
-      {
-       "name": "dispatching-parallel-agents",
-       "short": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-       "shortUk": "Запускає кілька незалежних задач паралельними агентами, коли між ними нема спільного стану чи послідовних залежностей"
-      },
-      {
-       "name": "executing-plans",
-       "short": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-       "shortUk": "Виконує письмовий план реалізації в окремій сесії з контрольними точками для рев'ю"
-      },
-      {
-       "name": "finishing-a-development-branch",
-       "short": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting stru…",
-       "shortUk": "Допомагає вирішити, як інтегрувати завершену розробку, коли реалізація готова й усі тести пройдені"
-      },
-      {
-       "name": "receiving-code-review",
-       "short": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical …",
-       "shortUk": "Допомагає технічно оцінити фідбек код-рев'ю перед його впровадженням"
-      },
-      {
-       "name": "requesting-code-review",
-       "short": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-       "shortUk": "Перевіряє відповідність виконаної роботи вимогам перед мерджем"
-      },
-      {
-       "name": "subagent-driven-development",
-       "short": "Use when executing implementation plans with independent tasks in the current session",
-       "shortUk": "Виконує план реалізації з незалежними задачами в поточній сесії через субагентів"
-      },
-      {
-       "name": "systematic-debugging",
-       "short": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-       "shortUk": "Допомагає знайти причину бага чи дивної поведінки перед тим, як пропонувати виправлення"
-      },
-      {
-       "name": "test-driven-development",
-       "short": "Use when implementing any feature or bugfix, before writing implementation code",
-       "shortUk": "Допомагає писати тести перед кодом реалізації — при будь-якій фічі чи фіксі бага"
-      },
-      {
-       "name": "using-git-worktrees",
-       "short": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via n…",
-       "shortUk": "Веде кілька git worktree одночасно — паралельні гілки в окремих теках"
-      },
-      {
-       "name": "using-superpowers",
-       "short": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
-       "shortUk": "Шукає й підключає потрібні скіли на початку розмови, перш ніж відповісти"
-      },
-      {
-       "name": "verification-before-completion",
-       "short": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output be…",
-       "shortUk": "Перевіряє результат роботи перед тим, як вважати задачу завершеною"
-      },
-      {
-       "name": "writing-plans",
-       "short": "Use when you have a spec or requirements for a multi-step task, before touching code",
-       "shortUk": "Пише письмовий план реалізації перед тим, як братися за код"
-      },
-      {
-       "name": "writing-skills",
-       "short": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-       "shortUk": "Створює й перевіряє нові скіли перед публікацією"
       }
      ]
     },
@@ -1689,8 +1604,8 @@
      ]
     }
    ],
-   "skillCount": 55,
-   "uniqueCount": 55
+   "skillCount": 40,
+   "uniqueCount": 40
   }
  ]
 }

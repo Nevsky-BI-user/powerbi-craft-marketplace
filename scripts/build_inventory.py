@@ -251,13 +251,28 @@ for mp_name, meta in MP_META.items():
         "uniqueCount": len(unique),
     }
 
-# 3. Окремі скіли ~/.claude/skills поза powerbi-craft — за джерелами
+# 3. Окремі скіли поза powerbi-craft — за джерелами.
+#    Крім ~/.claude/skills беремо й бандл, який застосунок розгортає з акаунта
+#    claude.ai: тек для цих скілів локально вже нема (дублі прибрані 2026-08-20),
+#    але в середовищі вони є, і на сайті лишаються під своїм публічним джерелом —
+#    саме звідти їх ставить читач. Скіли самого застосунку (setup-cowork, morning
+#    тощо) не показуємо: їх нізвідки поставити, вони приходять із застосунком.
+APPDATA = os.environ.get("APPDATA", "")
+app_bundle = glob.glob(os.path.join(
+    APPDATA, "Claude", "local-agent-mode-sessions", "skills-plugin",
+    "*", "*", "skills", "*", "SKILL.md")) if APPDATA else []
+
 by_source = {sid: [] for sid in SOURCE_META}
 unmapped = []
-for sk in sorted(glob.glob(os.path.join(CLAUDE, "skills", "*", "SKILL.md"))):
+seen_names = set()
+for sk in sorted(glob.glob(os.path.join(CLAUDE, "skills", "*", "SKILL.md"))) + sorted(app_bundle):
     name = os.path.basename(os.path.dirname(sk))
-    if name in own:
+    if name in own or name in seen_names:
         continue
+    from_app = not sk.startswith(CLAUDE)
+    if from_app and name not in SKILL_SOURCE:
+        continue
+    seen_names.add(name)
     d = frontmatter(sk)
     if d is None:
         continue
