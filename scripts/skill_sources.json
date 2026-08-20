@@ -1,6 +1,39 @@
 {
  "skills": {
-  "token-economy": "local"
+  "emil-design-eng": "emilkowalski",
+  "find-skills": "vercel-labs",
+  "humanizer": "blader",
+  "token-economy": "local",
+  "youtube-transcript": "michalparkola"
  },
- "sources": {}
+ "sources": {
+  "blader": {
+   "dir": "",
+   "marketplace": false,
+   "note": "Один скіл-редактор: прибирає з тексту ознаки згенерованого ШІ.",
+   "repo": "blader/humanizer",
+   "title": "blader / humanizer"
+  },
+  "emilkowalski": {
+   "dir": "skills",
+   "marketplace": false,
+   "note": "Скіли дизайн-інженера: полірування інтерфейсу, анімації, непомітні деталі, від яких залежить відчуття якості.",
+   "repo": "emilkowalski/skills",
+   "title": "Emil Kowalski — skills"
+  },
+  "michalparkola": {
+   "dir": "",
+   "marketplace": false,
+   "note": "Скіли, що витягують матеріал із зовнішніх джерел: статті, PDF, транскрипти відео з YouTube.",
+   "repo": "michalparkola/tapestry-skills",
+   "title": "Michal Parkola — tapestry-skills"
+  },
+  "vercel-labs": {
+   "dir": "skills",
+   "marketplace": false,
+   "note": "Репозиторій інструмента npx skills — того самого, що ставить окремі скіли з чужих репозиторіїв; сам він теж постачається скілом-пошуковиком.",
+   "repo": "vercel-labs/skills",
+   "title": "Vercel Labs — skills"
+  }
+ }
 }

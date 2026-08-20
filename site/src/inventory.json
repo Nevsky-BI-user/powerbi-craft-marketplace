@@ -1312,21 +1312,6 @@
      "note": "Офіційний репозиторій скілів Anthropic, опублікований і як маркетплейс плагінів.",
      "skills": [
       {
-       "name": "claude-api",
-       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
-       "shortUk": "Будує, налагоджує й оптимізує застосунки на Claude API/Anthropic SDK, включно з кешуванням підказок"
-      },
-      {
-       "name": "template-skill",
-       "short": "Replace with description of the skill and when Claude should use it.",
-       "shortUk": "Заміни описом скіла й умовами, коли Claude має його застосовувати"
-      },
-      {
-       "name": "webapp-testing",
-       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
-       "shortUk": "Тестує вебзастосунок у браузері — сценарії, перевірка поведінки"
-      },
-      {
        "name": "algorithmic-art",
        "short": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generati…",
        "shortUk": "Малює алгоритмічне мистецтво на p5.js із детермінованою випадковістю й інтерактивними параметрами"
@@ -1340,6 +1325,11 @@
        "name": "canvas-design",
        "short": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, d…",
        "shortUk": "Малює візуальне мистецтво в PNG і PDF за принципами дизайну — постери, ілюстрації, документи"
+      },
+      {
+       "name": "claude-api",
+       "short": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API…",
+       "shortUk": "Будує, налагоджує й оптимізує застосунки на Claude API/Anthropic SDK, включно з кешуванням підказок"
       },
       {
        "name": "doc-coauthoring",
@@ -1372,14 +1362,14 @@
        "shortUk": "Створює, читає й редагує презентації PowerPoint (.pptx)"
       },
       {
-       "name": "skill-creator",
-       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…",
-       "shortUk": "Створює нові скіли, редагує й покращує наявні, вимірює їхню ефективність"
-      },
-      {
        "name": "slack-gif-creator",
        "short": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request a…",
        "shortUk": "Створює анімовані GIF, оптимізовані для Slack"
+      },
+      {
+       "name": "template-skill",
+       "short": "Replace with description of the skill and when Claude should use it.",
+       "shortUk": "Заміни описом скіла й умовами, коли Claude має його застосовувати"
       },
       {
        "name": "theme-factory",
@@ -1392,9 +1382,19 @@
        "shortUk": "Будує веб-артефакти — самодостатні HTML-сторінки для показу користувачу"
       },
       {
+       "name": "webapp-testing",
+       "short": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br…",
+       "shortUk": "Тестує вебзастосунок у браузері — сценарії, перевірка поведінки"
+      },
+      {
        "name": "xlsx",
        "short": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xl…",
        "shortUk": "Створює, читає й редагує файли Excel (.xlsx)"
+      },
+      {
+       "name": "skill-creator",
+       "short": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an e…",
+       "shortUk": "Створює нові скіли, редагує й покращує наявні, вимірює їхню ефективність"
       }
      ]
     },
@@ -1509,6 +1509,21 @@
      ]
     },
     {
+     "id": "blader",
+     "title": "blader / humanizer",
+     "repo": "blader/humanizer",
+     "dir": "",
+     "marketplace": false,
+     "note": "Один скіл-редактор: прибирає з тексту ознаки згенерованого ШІ.",
+     "skills": [
+      {
+       "name": "humanizer",
+       "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…",
+       "shortUk": "Прибирає ознаки згенерованого ШІ тексту, роблячи його природнішим і людянішим"
+      }
+     ]
+    },
+    {
      "id": "daymade",
      "title": "daymade / claude-code-skills",
      "repo": "daymade/claude-code-skills",
@@ -1520,6 +1535,36 @@
        "name": "fact-checker",
        "short": "Verifies factual claims in documents using web search and official sources, then proposes corrections with user confirmation. Use when the user asks to fact-che…",
        "shortUk": "Перевіряє факти в документах через веб-пошук і офіційні джерела та пропонує виправлення на підтвердження користувача"
+      }
+     ]
+    },
+    {
+     "id": "emilkowalski",
+     "title": "Emil Kowalski — skills",
+     "repo": "emilkowalski/skills",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Скіли дизайн-інженера: полірування інтерфейсу, анімації, непомітні деталі, від яких залежить відчуття якості.",
+     "skills": [
+      {
+       "name": "emil-design-eng",
+       "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
+       "shortUk": "Передає філософію Еміла Ковальскі про полірування UI, дизайн компонентів, анімації й непомітні деталі якісного софту"
+      }
+     ]
+    },
+    {
+     "id": "michalparkola",
+     "title": "Michal Parkola — tapestry-skills",
+     "repo": "michalparkola/tapestry-skills",
+     "dir": "",
+     "marketplace": false,
+     "note": "Скіли, що витягують матеріал із зовнішніх джерел: статті, PDF, транскрипти відео з YouTube.",
+     "skills": [
+      {
+       "name": "youtube-transcript",
+       "short": "Download YouTube video transcripts when user provides a YouTube URL or asks to download/get/fetch a transcript from YouTube. Also use when user wants to transcr…",
+       "shortUk": "Завантажує транскрипт відео з YouTube за посиланням — субтитри, які далі можна читати як текст"
       }
      ]
     },
@@ -1569,27 +1614,32 @@
      ]
     },
     {
+     "id": "vercel-labs",
+     "title": "Vercel Labs — skills",
+     "repo": "vercel-labs/skills",
+     "dir": "skills",
+     "marketplace": false,
+     "note": "Репозиторій інструмента npx skills — того самого, що ставить окремі скіли з чужих репозиторіїв; сам він теж постачається скілом-пошуковиком.",
+     "skills": [
+      {
+       "name": "find-skills",
+       "short": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express int…",
+       "shortUk": "Шукає й ставить скіли під задачу, коли користувач питає «як зробити X» або «чи є скіл для X»"
+      }
+     ]
+    },
+    {
      "id": "local",
      "title": "Без канонічного джерела",
      "repo": null,
      "dir": null,
      "marketplace": false,
-     "note": "У цих скілів немає канонічного репозиторію (для emil-design-eng і humanizer у мережі лише дзеркала без явного автора). На картці кожного є промпт: скопіюйте його в Claude Code, і той знайде або відтворить скіл сам.",
+     "note": "Ці скіли написані під власний робочий процес і публічного репозиторію не мають. На картці кожного є промпт: скопіюйте його в Claude Code, і той знайде щось подібне або відтворить скіл за описом.",
      "skills": [
-      {
-       "name": "emil-design-eng",
-       "short": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
-       "shortUk": "Передає філософію Еміла Ковальскі про полірування UI, дизайн компонентів, анімації й непомітні деталі якісного софту"
-      },
       {
        "name": "graphify",
        "short": "Use for any question about a codebase, its architecture, file relationships, or project content — especially when graphify-out/ exists, where the question shoul…",
        "shortUk": "Перетворює будь-який вхід (код, документи, статті) на персистентний граф знань із god nodes і виявленням спільнот"
-      },
-      {
-       "name": "humanizer",
-       "short": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's compreh…",
-       "shortUk": "Прибирає ознаки згенерованого ШІ тексту, роблячи його природнішим і людянішим"
       },
       {
        "name": "model-orchestration",
@@ -1604,8 +1654,8 @@
      ]
     }
    ],
-   "skillCount": 40,
-   "uniqueCount": 40
+   "skillCount": 42,
+   "uniqueCount": 42
   }
  ]
 }
