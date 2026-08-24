@@ -751,7 +751,7 @@
   },
   {
    "name": "azure-ops",
-   "version": "0.2.3",
+   "version": "0.2.4",
    "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
    "tagline": "хмара довкола",
    "hasHooks": false,
@@ -952,6 +952,16 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.15",
+   "date": "2026-08-21",
+   "title": "",
+   "items": [
+    "Порядок став явним: робочий елемент заводиться ДО роботи — до першого рядка коду, до тестів, до виправлення бага, — а не оформлюється заднім числом, коли години вже вигадуються, а причина забута. Гілка йде від номера наявного елемента, PR кріпиться до нього ж.",
+    "ado-wi-close додав крок перед верифікацією: якщо робота змінила продукт, опис поточного стану має це відображати. Змін не було — так і сказати, документацію не чіпати.",
+    "Версії: azure-ops 0.2.4."
+   ]
+  },
   {
    "version": "0.1.14",
    "date": "2026-08-21",
