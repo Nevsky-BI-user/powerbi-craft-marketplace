@@ -24,6 +24,7 @@ TAGLINES = {
     "dax-craft": "обчислення й кодові візуали",
     "pbip-devops": "git-цикл PBIP",
     "azure-ops": "хмара довкола",
+    "agent-craft": "як ганяти агентів",
     "project-bootstrap": "старт проєктів",
 }
 

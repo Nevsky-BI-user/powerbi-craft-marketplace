@@ -45,6 +45,27 @@ for p in glob.glob(os.path.join(ROOT, "plugins", "*", "skills", "*", "SKILL.md")
     if d["name"] != dirname:
         err(f"{rel}: name «{d['name']}» != тека «{dirname}»")
 
+# A2. фронтматтер кожного агента (та сама «мовчазна» відмова рантайму, що й у
+# скілів: двокрапка в description ламає YAML, і агент просто не завантажується)
+for p in glob.glob(os.path.join(ROOT, "plugins", "*", "agents", "*.md")):
+    rel = os.path.relpath(p, ROOT)
+    t = io.open(p, encoding="utf-8").read()
+    m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n", t, re.S)
+    if not m:
+        err(f"{rel}: немає YAML-фронтматтера")
+        continue
+    try:
+        d = yaml.safe_load(m.group(1))
+    except Exception as e:
+        err(f"{rel}: YAML битий ({str(e).splitlines()[0]})")
+        continue
+    if not isinstance(d, dict) or not d.get("name") or not d.get("description"):
+        err(f"{rel}: фронтматтер без name/description")
+        continue
+    stem = os.path.splitext(os.path.basename(p))[0]
+    if d["name"] != stem:
+        err(f"{rel}: name «{d['name']}» != файл «{stem}»")
+
 # B. санітизація текстових файлів плагінів
 FORBIDDEN = [
     (re.compile(r"C:[\\/]+Users[\\/]+HEAVY", re.I), "локальний шлях C:\\Users\\HEAVY_METAL"),
