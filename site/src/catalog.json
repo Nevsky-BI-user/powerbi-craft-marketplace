@@ -751,7 +751,7 @@
   },
   {
    "name": "azure-ops",
-   "version": "0.2.4",
+   "version": "0.2.5",
    "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
    "tagline": "хмара довкола",
    "hasHooks": false,
@@ -952,6 +952,15 @@
   }
  ],
  "changelog": [
+  {
+   "version": "0.1.16",
+   "date": "2026-08-24",
+   "title": "",
+   "items": [
+    "ado-wi-new більше не наполягає, що елемент має існувати до роботи. На практиці оформлення посеред роботи збиває з думки, і команда відсунула його на окремий вечірній прохід. Скіл тепер байдужий до моменту: важать повні поля, відсутність дублікатів і години, пораховані за слідом, а не написані приблизно.",
+    "Версії: azure-ops 0.2.5."
+   ]
+  },
   {
    "version": "0.1.15",
    "date": "2026-08-21",
