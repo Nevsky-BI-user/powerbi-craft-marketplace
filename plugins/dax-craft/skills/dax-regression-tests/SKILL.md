@@ -1,6 +1,6 @@
 ---
 name: dax-regression-tests
-description: Use when the user wants automated regression tests for DAX measures of a semantic model - a suite that proves key measures still compute correctly after model changes, runnable against Power BI Desktop's local instance or a Fabric/Power BI workspace. Covers test taxonomy (invariants over golden values), frozen-slice golden discipline, diff-driven test selection, and honest generated-vs-executed reporting. Do NOT trigger for authoring measures (use dax-measures), human-language QA checklists (use manual-test-cases), one-off post-deploy verification (use pbip-deploy), or DAX performance tuning (use power-bi-dax-optimization). Defaults - tests/dax/*.dax + baseline/golden_values.json committed, results git-ignored. Triggers - 'DAX regression tests', 'measure regression', 'golden values', 'регресійні тести мір', 'регресія DAX', 'тести для мір', 'перевірити що міри не поламались', 'автотести моделі'.
+description: Use when the user wants automated regression tests for DAX measures of a semantic model - a suite that proves key measures still compute correctly after model changes, runnable against Power BI Desktop's local instance or a Fabric/Power BI workspace. Covers test taxonomy (invariants over golden values), frozen-slice golden discipline, diff-driven test selection, and honest generated-vs-executed reporting. Do NOT trigger for authoring measures (use dax-measures), human-language QA checklists (use manual-test-cases), one-off post-deploy verification (use pbip-deploy), or DAX performance tuning (use dax-optimization). Defaults - tests/dax/*.dax + baseline/golden_values.json committed, results git-ignored. Triggers - 'DAX regression tests', 'measure regression', 'golden values', 'регресійні тести мір', 'регресія DAX', 'тести для мір', 'перевірити що міри не поламались', 'автотести моделі'.
 ---
 
 # DAX measure regression tests
@@ -19,7 +19,7 @@ frozen slices that data refreshes cannot move.
 
 - "Зроби регресійні тести для мір", after-change verification gates, CI for a semantic model.
 - NOT for: measure authoring (`dax-measures`), manual QA (`manual-test-cases`),
-  deploy-time checks (`pbip-deploy`), performance (`power-bi-dax-optimization`).
+  deploy-time checks (`pbip-deploy`), performance (`dax-optimization`).
 
 ## Pre-flight (mandatory)
 

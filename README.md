@@ -26,7 +26,7 @@ claude plugin install pbi-visuals@powerbi-craft
 | `pbi-design-language` | 7 | design tokens, typography, colour accessibility, CF, theme.json, icons, corporate themes |
 | `pbi-quality` | 4 | chart-choice strategy, evidence-gated review, approval-gated redesign, manual test cases |
 | `report-storytelling` | 2 | what a page asserts: message titles, comparison bases; Ukrainian UI-string grammar |
-| `dax-craft` | 4 | DAX measures, SVG measures, Deneb/Vega-Lite, DAX regression tests |
+| `dax-craft` | 6 | DAX measures, performance tuning, pre-measure grilling, SVG measures, Deneb/Vega-Lite, DAX regression tests |
 | `pbip-devops` | 5 | PBIP scaffold, deploy, PR review, release notes, Fabric CLI |
 | `azure-ops` | 3 | cost, diagnostics, RBAC |
 | `project-bootstrap` | 4 | CLAUDE.md bootstrap, Rayfin platform bootstrap, data-entry app blueprint, React SPA UX baseline |

@@ -1,17 +1,21 @@
 ---
 name: dax-svg
 description: >
-  Use this skill whenever the user asks to create, edit, debug, or optimize SVG visualizations
-  written as DAX measures in Power BI. This includes: SVG bar charts, radar/spider charts,
-  badge/indicator measures, Gaussian overlays, heatmaps, sparklines, progress rings,
-  bullet charts, lollipop charts, waffle charts, or any other SVG-based visual element
-  rendered via DAX CONCATENATE/CONCATENATEX inside an Image measure in Power BI.
-  Also trigger when the user asks about SVG viewBox, coordinate systems, scaling,
-  color encoding, conditional formatting via SVG, or when they mention
-  "SVG measure", "SVG міра", "SVG в DAX", "Image measure", or want a visual element
-  that Power BI native visuals cannot produce. Trigger even if the user just says
-  "намалюй", "візуалізуй", "зроби chart в DAX", or shows existing SVG DAX code with issues.
-  Always output the FULL measure text — never abbreviate, never use "..." or "// rest unchanged".
+  Use this skill when the user wants a micro-visual rendered INSIDE a Power BI
+  table/matrix cell via an Image URL measure — SVG written in DAX. Covers:
+  sparklines (спарклайн), in-cell bar charts, progress rings, bullet charts,
+  badges/indicators, heatmap cells, waffle, lollipop, radar,
+  Gaussian overlays; viewBox, coordinates, scaling, escaping,
+  color encoding. Trigger on: "SVG", "SVG міра",
+  "SVG в DAX", "Image measure", "намалюй в таблиці", "спарклайн",
+  "графік в комірці", "міні-графік", "зроби chart в DAX", existing
+  SVG DAX code with issues — and whenever the requested visual lives in a
+  table/matrix cell, even if the user never says "SVG". Do NOT trigger for:
+  standalone charts on the report canvas (use deneb-vegalite); plain numeric/text
+  measures (use dax-measures); slow-measure tuning (use dax-optimization);
+  PNG icons (use icon-set-manager). Bare "намалюй"/"візуалізуй" with no
+  cell/table context → prefer deneb-vegalite or ask.
+  Always output the FULL measure text — never abbreviate.
 ---
 
 # DAX SVG Skill
@@ -22,7 +26,8 @@ The output is always a complete, copy-paste-ready DAX measure.
 ## When to Use
 
 - SVG visuals written as DAX Image measures: bar charts, sparklines, badges/indicators, progress rings, radar, bullet/waffle/lollipop charts, heatmap cells, Gaussian overlays.
-- NOT for: plain DAX measures/KPIs → `dax-measures`; Deneb/Vega-Lite specs → `deneb-vegalite`; PNG icons → `icon-set-manager`; choosing which visual answers the question → `pbi-visualization-strategy`.
+- The routing axis is **cell vs canvas**: a visual inside a table/matrix cell → this skill; a standalone visual on the report canvas → `deneb-vegalite`.
+- NOT for: plain DAX measures/KPIs → `dax-measures`; Deneb/Vega-Lite specs → `deneb-vegalite`; slow-measure tuning → `dax-optimization`; PNG icons → `icon-set-manager`; choosing which visual answers the question → `pbi-visualization-strategy`.
 
 ## Critical Rule: Full Output
 

@@ -1,7 +1,20 @@
 ---
 name: deneb-vegalite
 description: >
-  Use this skill whenever the user asks to create, edit, debug, or optimize Deneb visuals in Power BI using Vega-Lite or Vega JSON specifications. This includes bar charts, column charts, line charts, area charts, scatter plots, heatmaps, bullet charts, waterfall charts, KPI cards, small multiples, layered visuals, faceted views, conditional formatting, cross-filtering, tooltip configuration, or any Vega-Lite/Vega JSON code for the Deneb custom visual. Also trigger when the user mentions "Deneb", "Vega-Lite", "Vega", "Deneb spec", __selected__, pbiFormat, config tab, params, transforms, encoding channels, mark types, or shows existing Deneb JSON with issues. Trigger even for "зроби Deneb chart", "напиши Vega-Lite spec", "Deneb візуал". Always output FULL JSON — never abbreviate. Output Specification and Config as separate blocks.
+  Use this skill when the user wants a STANDALONE chart visual on the Power BI
+  report canvas built with the Deneb custom visual (Vega-Lite or Vega JSON).
+  Covers: bar/column, line, area, scatter, waterfall, heatmap visuals, small
+  multiples, layered views, KPI cards, cross-filtering (__selected__),
+  pbiFormat, tooltips, transforms, params, config tab. Trigger on: "Deneb", "Vega-Lite", "Vega", "Deneb spec",
+  "Deneb візуал", "зроби Deneb chart", "напиши Vega-Lite spec",
+  "кастомний візуал", existing Deneb JSON with issues — and any Power BI chart
+  request NOT inside a table/matrix cell, especially when native visuals can't
+  do it ("намалюй waterfall", "зроби графік", small multiples). Do NOT trigger
+  for: in-cell visuals — sparkline/спарклайн, bars, badges inside a table
+  (use dax-svg); the DAX measures feeding the visual (use dax-measures);
+  slow measures (use dax-optimization); native visual JSON in report.json
+  (use powerbi-visuals). Always output FULL JSON.
+  Output Specification and Config as separate blocks.
 ---
 
 # Deneb Vega-Lite Skill
@@ -16,7 +29,8 @@ limits (certified, no external data, 10k row limit) → reference.md §1.
 ## When to Use / NOT for
 
 - Any Deneb visual work: new specs, edits, debugging, conditional formatting, cross-filtering, tooltips, Config tab.
-- NOT for: DAX measures → `dax-measures`; SVG-in-measure visuals → `dax-svg`; native visual JSON in report.json → `powerbi-visuals`; which chart answers the question → `pbi-visualization-strategy`.
+- The routing axis is **cell vs canvas**: a standalone visual on the report canvas → this skill; a visual inside a table/matrix cell → `dax-svg`.
+- NOT for: DAX measures → `dax-measures`; SVG-in-measure visuals → `dax-svg`; slow-measure tuning → `dax-optimization`; native visual JSON in report.json → `powerbi-visuals`; which chart answers the question → `pbi-visualization-strategy`.
 
 ## Critical Rule: Full Output
 

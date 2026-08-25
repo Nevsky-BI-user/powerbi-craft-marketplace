@@ -40,7 +40,7 @@ Context header = DAX measure with `SELECTEDVALUE` fallback — same pattern as `
 
 ## Performance budget
 
-Every hover fires every query on the page. Keep ≤3 visuals, measures cheap (`power-bi-dax-optimization`), no maps/AI visuals/high-cardinality tables. Reuse ONE generic tooltip page instead of per-chart clones.
+Every hover fires every query on the page. Keep ≤3 visuals, measures cheap (`dax-optimization`), no maps/AI visuals/high-cardinality tables. Reuse ONE generic tooltip page instead of per-chart clones.
 
 ## Common Mistakes
 
