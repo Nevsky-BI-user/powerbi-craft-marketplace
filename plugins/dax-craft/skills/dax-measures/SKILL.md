@@ -1,14 +1,20 @@
 ---
 name: dax-measures
 description: >
-  Use this skill whenever the user asks to create, edit, debug, or optimize DAX measures
-  in Power BI. Covers: CALCULATE, time intelligence (YTD, PY, YoY), dynamic format strings
-  (""""&FORMAT pattern), KPI, ranking, running totals, % of total, semi-additive measures,
-  TREATAS, Top N, ABC analysis, moving averages, iterators (SUMX, AVERAGEX, COUNTX),
+  Use this skill whenever the user asks to create, edit, or debug the LOGIC of DAX
+  measures in Power BI — output is a numeric/text value, not a drawing. Covers:
+  CALCULATE, time intelligence (YTD, PY, YoY), dynamic format strings (""""&FORMAT),
+  KPI values, ranking, running totals, % of total, semi-additive measures,
+  TREATAS, Top N, ABC, moving averages, iterators (SUMX, AVERAGEX, COUNTX),
   SWITCH logic, context transition, filter manipulation. Trigger on: "DAX", "міра",
-  "measure", "CALCULATE", "format string", "динамічне форматування", "напиши міру",
-  "зроби розрахунок", "порахуй в DAX", "додай KPI", or any DAX code shown with issues.
-  Do NOT trigger for SVG visuals (use dax-svg) or Deneb specs (use deneb-vegalite).
+  "measure", "напиши міру", "зроби міру", "порахуй в DAX", "додай KPI",
+  "динамічне форматування", "неправильний результат",
+  "BLANK замість нуля", or DAX code with wrong results. Do NOT trigger when:
+  the user wants a DRAWN visual — спарклайн or chart in a table cell
+  (use dax-svg), standalone chart visual (use deneb-vegalite); the measure
+  is SLOW or needs a readability refactor — "оптимізуй", "гальмує",
+  "читабельніше", "refactor" (use dax-optimization);
+  іконки/icons (use icon-set-manager).
   Always output FULL measure — never abbreviate or use "...".
 ---
 
@@ -22,8 +28,8 @@ Pattern library → [reference.md](reference.md); extended recipes → `referenc
 
 ## When to Use
 
-- Creating, editing, debugging, or optimizing any DAX measure: CALCULATE, time intelligence, dynamic format strings, KPI, ranking, iterators, semi-additive, TREATAS.
-- NOT for: SVG visuals rendered from DAX → `dax-svg`; Deneb/Vega-Lite specs → `deneb-vegalite`.
+- Creating, editing, or debugging the logic of any DAX measure: CALCULATE, time intelligence, dynamic format strings, KPI, ranking, iterators, semi-additive, TREATAS.
+- NOT for: SVG visuals rendered from DAX → `dax-svg`; Deneb/Vega-Lite specs → `deneb-vegalite`; a measure that is CORRECT but SLOW (performance tuning) → `dax-optimization`; PNG icons → `icon-set-manager`.
 
 ## Critical Rule: Full Output
 
@@ -69,6 +75,6 @@ Every measure output must be:
 | Filter not applied | ALL/REMOVEFILTERS too broad | Narrow to specific column |
 | Circular dependency | Measure references itself via table | Split into separate measures |
 | LOOKUPVALUE fails after Append | Trailing spaces / type mismatch | TRIM columns, check types |
-| Slow measure | Nested iterators or large FILTER | Rewrite with CALCULATE + KEEPFILTERS |
+| Slow measure | Nested iterators or large FILTER | Hand off to `dax-optimization` (diagnose first, then rewrite) |
 | Dynamic format shows raw string | Missing `""""` prefix | Add `""""&` before FORMAT |
 | Dynamic format shows "Δ 0" | Value measure = 0, but should be real value | OR: use `""""&FORMAT` pattern with actual source measure in FORMAT |

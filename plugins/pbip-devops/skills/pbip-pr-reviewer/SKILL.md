@@ -1,15 +1,17 @@
 ---
 name: pbip-pr-reviewer
 description: |
-  Виконує детальний review pull request'у у Power BI PBIP-репозиторії.
-  Використовувати, коли користувач:
-  - просить "review PR", "ревью пул-реквесту", "проаналізуй зміни"
-  - має зачекаутений PR-branch у поточній директорії
-  - хоче перевірку diff між гілкою і main
-  Skill категоризує зміни (model / DAX / visuals / config / noise),
-  виконує deep review DAX-мір на anti-patterns і performance, перевіряє
-  структурні зміни моделі (relationships, RLS, calc groups), і генерує
-  structured markdown report з recommended vote.
+  Виконує детальний review pull request'у у Power BI PBIP-репозиторії
+  (TMDL + Report JSON). Trigger on: "review PR", "ревью PR", "ревью цього PR",
+  "ревью пул-реквесту", "проаналізуй зміни в моделі/звіті", "перевір diff
+  з main" — КОЛИ поточна директорія містить PBIP-артефакти: *.pbip, *.pbir,
+  *.pbism, *.tmdl, .SemanticModel/, .Report/. Skill категоризує зміни
+  (model / DAX / visuals / config / noise), виконує deep review DAX-мір на
+  anti-patterns і performance, перевіряє структурні зміни моделі
+  (relationships, RLS, calc groups), і генерує structured markdown report
+  з recommended vote. Do NOT trigger: для PR у репозиторіях без PBIP-файлів
+  (use built-in code-review); для оптимізації окремої міри поза PR
+  (use dax-optimization); для написання нових мір (use dax-measures).
 ---
 
 # PBIP Pull Request Reviewer
@@ -23,9 +25,11 @@ switch). Команда `git` доступна. Файли PBIP читаютьс
 
 ## Коли використовувати / NOT for
 
-- "Review PR", "ревью пул-реквесту", "проаналізуй зміни" — diff PR-гілки проти main.
-- NOT for: написання/виправлення DAX → `dax-measures`; редагування visuals →
-  `powerbi-visuals`; деплой → `pbip-deploy`; release notes → `pbip-release-notes`.
+- "Review PR", "ревью пул-реквесту", "проаналізуй зміни" — diff PR-гілки проти main
+  у репозиторії з PBIP-артефактами (*.pbip, *.pbir, *.pbism, *.tmdl, .SemanticModel/, .Report/).
+- NOT for: PR без PBIP-файлів → вбудований `code-review`; написання/виправлення DAX →
+  `dax-measures`; оптимізація повільної міри поза PR → `dax-optimization`;
+  редагування visuals → `powerbi-visuals`; деплой → `pbip-deploy`; release notes → `pbip-release-notes`.
 
 ## Обмеження
 

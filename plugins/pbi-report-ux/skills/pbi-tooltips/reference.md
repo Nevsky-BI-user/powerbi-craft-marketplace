@@ -88,7 +88,7 @@ the page itself, or expose it via a drill-through (`pbi-drillthrough`).
 | FitToPage left on | Tooltip rescales to fit the hover popup, text blurs | ActualSize (Legacy int `3` / enhanced string `"ActualSize"`) |
 | Full 1280×720 page reused as a tooltip | Covers the source chart entirely | 320×240 … 550×500 (or the report's established profile) |
 | Critical info only in tooltip | Touch/keyboard users never see it | Duplicate on page, or `pbi-drillthrough` |
-| 4+ visuals, heavy measures on the tooltip page | Every hover fires all queries — laggy report | ≤3 visuals; `power-bi-dax-optimization` |
+| 4+ visuals, heavy measures on the tooltip page | Every hover fires all queries — laggy report | ≤3 visuals; `dax-optimization` |
 | Slicers/buttons on tooltip page | A tooltip cannot be interacted with | Remove — read-only content only |
 | Tooltip page visible in nav | Users land on a broken mini page | Hide (Legacy `"visibility": 1` / enhanced `"HiddenInViewMode"`) |
 | Text under 8 pt to cram in content | Unreadable at hover size | Cut content — one question per tooltip |
@@ -101,6 +101,6 @@ the page itself, or expose it via a drill-through (`pbi-drillthrough`).
 
 - `powerbi-visuals` — general wiring mechanics, `visualHeader`/`displayOption` JSON; per-visual report-page tooltip canon — see the binding section above.
 - `pbi-drillthrough` — right-click detail pages; shares the `SELECTEDVALUE` context-header pattern.
-- `dax-measures` — tooltip measure conventions; `power-bi-dax-optimization` — keeping them cheap.
+- `dax-measures` — tooltip measure conventions; `dax-optimization` — keeping them cheap.
 - `dax-svg` / `deneb-vegalite` — sparkline-grade vs richer detail visuals inside a tooltip.
 - `pbi-theme-json` — generating/editing the theme's `visualTooltip` common card.
