@@ -30,7 +30,7 @@ claude plugin install pbi-visuals@powerbi-craft
 | `pbip-devops` | 5 | PBIP scaffold, deploy, PR review, release notes, Fabric CLI |
 | `azure-ops` | 7 | cost, diagnostics, RBAC, Azure DevOps rituals (work items, PRs, hygiene) |
 | `project-bootstrap` | 4 | CLAUDE.md bootstrap, Rayfin platform bootstrap, data-entry app blueprint, React SPA UX baseline |
-| `agent-craft` | 1 | Model orchestration: strong plans, cheap executes; exec-haiku/sonnet/opus + verify-skeptic agents |
+| `agent-craft` | 2 | Model orchestration + plain-language reporting (UA); exec-haiku/sonnet/opus + verify-skeptic agents |
 
 ## Це один організм / One organism
 
@@ -71,7 +71,8 @@ automatically on your machine after installation:
 - `agent-craft` ships four agents: `exec-haiku` / `exec-sonnet` / `exec-opus` —
   brief-driven executors that CAN edit files within the brief's boundaries
   (tools: Read, Glob, Grep, Edit, Write, Bash) — and `verify-skeptic`, a
-  read-only adversarial verifier (`model: inherit`).
+  read-only adversarial verifier (`model: inherit`). All four write their
+  reports under the plain-language rules of the `plain-report` skill.
 
 ## Conventions
 
