@@ -120,6 +120,7 @@
  "pbir-format": "Пояснює формат PBIR — схеми JSON для visual.json, виразів, тем, умовного форматування, bookmarks",
  "pdf": "Читає, витягує текст/таблиці, об'єднує чи інакше опрацьовує PDF-файли",
  "pipeline-migration": "Мігрує пайплайни Synapse Data Factory у Microsoft Fabric Data Factory",
+ "plain-report": "Пише звіти й інструкції простою українською — одна думка на речення, активний стан, числа з базою порівняння, словник замін кальок",
  "power-bi-dax-optimization": "Оптимізує DAX-формули Power BI за продуктивністю, читабельністю й супроводжуваністю",
  "power-query": "Створює, перевіряє й тестує вирази Power Query M у партиціях семантичної моделі",
  "powerbi-bookmarks": "Безпечно редагує bookmarks і видимість візуалів у report.json Power BI PBIR-Legacy",
