@@ -44,6 +44,11 @@ for p in glob.glob(os.path.join(ROOT, "plugins", "*", "skills", "*", "SKILL.md")
     dirname = os.path.basename(os.path.dirname(p))
     if d["name"] != dirname:
         err(f"{rel}: name «{d['name']}» != тека «{dirname}»")
+    desc = str(d["description"])
+    if len(desc) > 1024:
+        err(f"{rel}: description {len(desc)} символів > 1024 — роутер обріже опис")
+    if not re.search(r"\b(do not|not for)\b", desc, re.I):
+        err(f"{rel}: description без межі «Do NOT …» — роутер не знає, кому віддати суміжний запит")
 
 # A2. фронтматтер кожного агента (та сама «мовчазна» відмова рантайму, що й у
 # скілів: двокрапка в description ламає YAML, і агент просто не завантажується)
