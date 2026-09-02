@@ -120,8 +120,8 @@ explicitly (e.g. `'0'` or a dash literal), matching the model's own blank-handli
 The incident: an agent "unified" 7 KPI cards by eye and reported success; an independent audit
 diffed each card's `vcObjects`/`objects` against the etalon (`e27a80`) and found missing
 `fillCustom`/`padding`/`layout` settings, and a color literally written to the wrong object
-dictionary (never rendered). Full record: `docs/audits/task5-audit.md` D4/D5; evidence script:
-`docs/audits/evidence-scripts/da08_cards_diff.py`.
+dictionary (never rendered). Full record: internal audit task #5, findings D4/D5 (audit notes and the diff script are not
+shipped with the marketplace).
 
 **Do this instead, for every card you touch, before reporting done:**
 

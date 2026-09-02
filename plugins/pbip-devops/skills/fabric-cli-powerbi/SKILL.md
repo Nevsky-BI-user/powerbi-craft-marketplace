@@ -1,6 +1,6 @@
 ---
 name: fabric-cli-powerbi
-description: Use Fabric CLI for Power BI operations — semantic models, reports, DAX queries, refresh, gateways. Activate when users work with Power BI items, need to refresh datasets, execute DAX, manage reports, or troubleshoot refresh failures.
+description: Use Fabric CLI (fab) for Power BI operations — semantic models, reports, DAX queries, refresh, gateways, report export/rebind/definition update. Triggers - 'fab', 'Fabric CLI', 'онови модель', 'запусти refresh', 'оновлення датасету впало', 'виконай DAX через fab', 'експортуй звіт у PNG/PDF', 'перепривʼяжи звіт', 'refresh dataset', 'execute DAX', 'export report', 'rebind report'. Do NOT trigger for - the deploy approval gate, blast radius and report-only PBIR deploy rules (pbip-deploy), PR review (pbip-pr-reviewer), Azure cost or RBAC (azure-cost, azure-rbac), generic fab auth/navigation (external fabric-cli-core).
 ---
 
 # Fabric CLI Power BI Operations

@@ -10,14 +10,14 @@ resolve in `pbi-design-system`.
 
 | Key | Format-pane name | Verified in |
 |---|---|---|
-| `pieChart` | Pie chart | theme-visuals §5 |
-| `donutChart` | Donut chart | theme-visuals §5 |
-| `treemap` | Treemap | theme-visuals §5 |
-| `barChart` / `columnChart` | **Stacked** bar / column (default variant) | theme-visuals §5 |
-| `hundredPercentStackedBarChart` / `hundredPercentStackedColumnChart` | 100% stacked bar / column | theme-visuals §5 |
-| `stackedAreaChart` / `hundredPercentStackedAreaChart` | Stacked / 100% stacked area | theme-visuals §5 |
+| `pieChart` | Pie chart | pbi-theme-json/references/theme-visuals.md §5 |
+| `donutChart` | Donut chart | pbi-theme-json/references/theme-visuals.md §5 |
+| `treemap` | Treemap | pbi-theme-json/references/theme-visuals.md §5 |
+| `barChart` / `columnChart` | **Stacked** bar / column (default variant) | pbi-theme-json/references/theme-visuals.md §5 |
+| `hundredPercentStackedBarChart` / `hundredPercentStackedColumnChart` | 100% stacked bar / column | pbi-theme-json/references/theme-visuals.md §5 |
+| `stackedAreaChart` / `hundredPercentStackedAreaChart` | Stacked / 100% stacked area | pbi-theme-json/references/theme-visuals.md §5 |
 
-**Naming traps** (theme-visuals §5): `donut` → `donutChart`; `pie` → `pieChart`. Never `matrix`
+**Naming traps** (pbi-theme-json/references/theme-visuals.md §5): `donut` → `donutChart`; `pie` → `pieChart`. Never `matrix`
 or `table` for anything here — irrelevant to this skill but a common nearby slip.
 
 **`$id` selector trap (per-category color override).** The `$id` discriminator inside a
@@ -37,7 +37,7 @@ It is **NOT** a per-category override mechanism for `dataPoint` (no `$id` field 
 showing category/value/percent, per-slice options) remain **unconfirmed** here — read their
 exact card/property names from a ground-truth visual or the schema before emitting any
 `objects`/`visualStyles` JSON. The global `"*"` defaults (background, border, title,
-dropShadow — theme-visuals §6.1) apply to these three keys like any other visual.
+dropShadow — pbi-theme-json/references/theme-visuals.md §6.1) apply to these three keys like any other visual.
 
 ## 2. Category limit and the "Other" bucket
 
@@ -97,7 +97,7 @@ it here. This skill's job is only the *upstream* decision:
 
 ## 5. Waffle-style alternative
 
-- **Not a native Power BI visual** (theme-visuals §5, "Names that do NOT exist"): `waffleChart`
+- **Not a native Power BI visual** (pbi-theme-json/references/theme-visuals.md §5, "Names that do NOT exist"): `waffleChart`
   is a custom/AppSource visual, themed only by its registered GUID-suffixed key
   (e.g. `"deneb7E15AEF80B9E4D4F8E12924291ECE89A"`) if built in Deneb, or its own vendor key if
   an AppSource visual — never assume `waffleChart` as a literal theme key.

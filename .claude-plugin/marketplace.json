@@ -9,61 +9,61 @@
       "name": "pbi-visuals",
       "source": "./plugins/pbi-visuals",
       "description": "Per-visual craft for Power BI PBIP reports: charts, tables, cards, maps, AI visuals — plus the shared report.json mechanics (powerbi-visuals).",
-      "version": "0.1.3"
+      "version": "0.1.4"
     },
     {
       "name": "pbi-report-ux",
       "source": "./plugins/pbi-report-ux",
       "description": "Page-level UX of a Power BI report: layout, navigation, slicers and filter panels, drillthrough, tooltips, mobile — plus bookmark/visibility mechanics.",
-      "version": "0.1.7"
+      "version": "0.2.0"
     },
     {
       "name": "pbi-design-language",
       "source": "./plugins/pbi-design-language",
       "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
-      "version": "0.1.4"
+      "version": "0.1.5"
     },
     {
       "name": "pbi-quality",
       "source": "./plugins/pbi-quality",
       "description": "Whether the report is right: chart choice strategy, evidence-gated design review, approval-gated redesign process, human-language test cases.",
-      "version": "0.1.2"
+      "version": "0.1.3"
     },
     {
       "name": "report-storytelling",
       "source": "./plugins/report-storytelling",
       "description": "What a report page ASSERTS: message-first headlines, comparison bases, annotation, honesty ledger — plus Ukrainian grammar of code-assembled UI strings.",
-      "version": "0.1.3"
+      "version": "0.2.0"
     },
     {
       "name": "dax-craft",
       "source": "./plugins/dax-craft",
       "description": "The calculation language and code-rendered visuals: DAX measures, performance tuning, pre-measure grilling, SVG measures, Deneb/Vega-Lite specs, automated DAX regression tests.",
-      "version": "0.2.0"
+      "version": "0.2.1"
     },
     {
       "name": "pbip-devops",
       "source": "./plugins/pbip-devops",
       "description": "Git lifecycle of a PBIP project: scaffolding, deploy, PR review, release notes for business users, Fabric CLI operations.",
-      "version": "0.1.3"
+      "version": "0.1.4"
     },
     {
       "name": "azure-ops",
       "source": "./plugins/azure-ops",
       "description": "Azure operations adjacent to BI work: cost analysis, diagnostics, RBAC, and Azure DevOps delivery rituals (work items, pull requests, hygiene inspection).",
-      "version": "0.2.5"
+      "version": "0.2.6"
     },
     {
       "name": "project-bootstrap",
       "source": "./plugins/project-bootstrap",
       "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
-      "version": "0.1.5"
+      "version": "0.1.6"
     },
     {
       "name": "agent-craft",
       "source": "./plugins/agent-craft",
       "description": "How to run agents well: model orchestration (strong plans, cheap executes, scripts replace models), executor subagents with brief discipline, an adversarial verifier for pre-publish checks, and plain-language rules for Ukrainian user-facing reports.",
-      "version": "0.2.0"
+      "version": "0.2.1"
     }
   ]
 }

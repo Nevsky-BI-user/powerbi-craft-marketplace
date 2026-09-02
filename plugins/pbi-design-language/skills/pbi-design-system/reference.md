@@ -306,7 +306,7 @@ order; decorative shapes at low `z`.
 
 | Token | Value | Rule |
 |---|---|---|
-| `shape/radius` | **8 px** | ONE radius per report. cardVisual in THEME: `layout.rectangleRoundedCurve: 8` (master-theme + theme-visuals §6.6); in per-visual report.json `objects` that report uses `shapeCustomRectangle.rectangleRoundedCurve`; others: `border.radius: 8` |
+| `shape/radius` | **8 px** | ONE radius per report. cardVisual in THEME: `layout.rectangleRoundedCurve: 8` (master-theme + pbi-theme-json/references/theme-visuals.md §6.6); in per-visual report.json `objects` that report uses `shapeCustomRectangle.rectangleRoundedCurve`; others: `border.radius: 8` |
 | `shape/border` | 1 px `color/border` | Default card delimiter |
 | `shape/shadow` | **none** | Flat design. Border OR shadow, never both |
 | `shape/shadow-optional` | outer, `#000000` @ 88 % transparency, blur 10, distance 2, angle 90° | Only when card sits on a white page and border is insufficient |

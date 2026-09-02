@@ -9,7 +9,7 @@ Companion to `SKILL.md`. Names below are verified against the theme-schema intro
 
 - Theme-level sentiment keys `good`/`neutral`/`bad` and divergent gradient stops
   `maximum`/`center`/`minimum`/`null` exist at theme top level and feed CF color pickers
-  (theme-visuals §2.1).
+  (pbi-theme-json/references/theme-visuals.md §2.1).
 - DAX "Field value" CF accepts a **named theme color string** returned by a measure. The
   divergent names differ between the theme JSON and the DAX reference:
 
@@ -22,10 +22,10 @@ Companion to `SKILL.md`. Names below are verified against the theme-schema intro
   | `good`, `bad`, `background`, `tableAccent`, … | same name in DAX |
 
 - Gradient fills support `fillRule` with `linearGradient2`/`linearGradient3` "where the
-  property supports them" (theme-visuals §4, verified schema fact).
+  property supports them" (pbi-theme-json/references/theme-visuals.md §4, verified schema fact).
 - **CF rules themselves cannot be themed** — the theme only supplies gradient endpoint
   colors and defaults; per-column/per-visual rule thresholds live in the visual's own
-  `objects`, not in `theme.json` (theme-visuals §7, pitfall 11).
+  `objects`, not in `theme.json` (pbi-theme-json/references/theme-visuals.md §7, pitfall 11).
 
 **Not verified in this repo's research — do not invent, read from a ground-truth CF'd
 visual in the target report or delegate to `powerbi-visuals`:** the exact placement and
@@ -92,7 +92,7 @@ exceptions, cross-measure comparisons) rather than a single stepped scale.
 - Status/direction glyphs (▲▼, RAG dot, check/x) as PNG assets come from
   `icon-set-manager` (brand `#063E61`, 64 px default, transparent background).
 - Legacy theme `icons` array (pre-2019 built-in CF icon sets) still parses but is rarely
-  used today (theme-visuals §1) — prefer PNG icon + measure-driven CF color over it for
+  used today (pbi-theme-json/references/theme-visuals.md §1) — prefer PNG icon + measure-driven CF color over it for
   visual consistency with the rest of the report.
 - Accessibility: icon is never the only signal — pair with the colored value and/or a
   text label; set alt text on the visual (`altText`/`altTextColumns` per visual type).

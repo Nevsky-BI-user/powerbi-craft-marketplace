@@ -72,6 +72,42 @@ az account get-access-token --resource https://api.fabric.microsoft.com --query 
 Deploy the **model before the report** when the report depends on new objects, otherwise the
 report lands pointing at fields that do not exist yet.
 
+### §4.2 Report-only PBIR (enhanced) deploy
+
+- **Parts** = every file under `definition/**` (pages, visuals, bookmarks, `report.json`,
+  `version.json`), `StaticResources/**`, `definition.pbir` and, with `updateMetadata=true`,
+  `.platform` — each as `{"path": "...", "payload": "<base64>", "payloadType": "InlineBase64"}`.
+- **`definition.pbir` must use `byConnection`** for a REST deploy: the API cannot resolve a
+  `byPath` reference to a sibling folder. Convert before deploying (verify the exact rejection
+  message against https://learn.microsoft.com/rest/api/fabric/articles/item-management/definitions/report-definition).
+- **RegisteredResources round-trip caveat.** While PBIR is in preview, `report.json`
+  `resourcePackages` entries "don't support editing"; a newly added icon or theme may not survive
+  `updateDefinition` → `getDefinition`. After deploying, `getDefinition` and diff
+  `resourcePackages[]` and `StaticResources/RegisteredResources/` against the local tree; a missing
+  item means the resource must be added through Desktop first.
+- PBIR and PBIR-Legacy are mutually exclusive per report: never post Legacy `report.json` parts
+  into a report that already carries `definition/`.
+
+### §4.3 Navigation smoke test (after any nav, bookmark or button change)
+
+Rendering cannot be inspected headlessly, but every page can be **exported** — a page that
+fails to render fails to export.
+
+```bash
+# one PNG per visible page; pageName = definition/pages/<folder> name
+fab api -A powerbi "groups/$WS_ID/reports/$REPORT_ID/ExportTo" -X post -i '{
+  "format": "PNG",
+  "powerBIReportConfiguration": { "pages": [ { "pageName": "'"$PAGE"'" } ] } }'
+# poll exports/{exportId}, then GET .../exports/{exportId}/file → assert size > 0 per page
+```
+
+Checklist: every visible page exports; the exported image of each page shows the menu (open
+one or two by eye); `pbir_schema_validate.py` and the hook are clean on the local tree
+(`pbi-report-ux/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py <X.Report>`); optional
+pre-deploy acceptance — `powerbi-report-author validate <.Report>` from Microsoft
+skills-for-fabric. Fallback when ExportTo is unavailable (Pro workspace, preview limits): name
+page → tab → visual for the user to click through.
+
 ## §5. Rollback
 
 Keep the previous definition retrievable before overwriting (`GET .../getDefinition` to a file,

@@ -1,6 +1,6 @@
 ---
 name: pbi-navigation-variants
-description: Use when the user wants to see several navigation options for a Power BI report and pick one before anything is built - the skill inventories the report's pages, renders PNG previews of 7 canonical navigation variants on the report's own canvas sizes and theme, lets the user choose exactly one, then builds the chosen menu on every visible page. Do NOT trigger for styling an already-chosen navigation (use pbi-navigation-tabs), bookmark/visibility mechanics (use powerbi-bookmarks), or visual JSON mechanics (use powerbi-visuals). Defaults - 7 variants V1-V7, PNG previews via scripts/render_nav_previews.py, choice via AskUserQuestion, implementation only after an explicit single choice. Triggers - 'варіанти навігації', 'кілька варіантів меню', 'дай обрати навігацію', 'навігаційне меню на всіх сторінках', 'navigation variants', 'nav menu options', 'зроби варіанти і я оберу', 'меню для звіту'.
+description: Use when the user wants to see several navigation options for a Power BI report and pick one before anything is built - the skill inventories the report's pages, renders PNG previews of 7 canonical navigation variants on the report's own canvas sizes and theme, lets the user choose exactly one, then builds the chosen menu on every visible page. Do NOT trigger for styling an already-chosen navigation or navigator JSON (use pbi-navigation-tabs), bookmark files and scope (use powerbi-bookmarks), button/action JSON (use pbi-buttons-actions), or Legacy visual JSON (use powerbi-visuals). Defaults - 7 variants V1-V7, previews via scripts/render_nav_previews.py, choice via AskUserQuestion, build via scripts/build_nav.py only after one explicit choice. Triggers - 'варіанти навігації', 'кілька варіантів меню', 'дай обрати навігацію', 'навігаційне меню на всіх сторінках', 'меню на кожній сторінці', 'navigation variants', 'nav menu options', 'зроби варіанти і я оберу', 'обрати навігацію з варіантів'.
 ---
 
 # Navigation in variants — render, choose, build everywhere
@@ -104,9 +104,14 @@ deliver PNGs + table and **stop**: implementing without an explicit choice is fo
    current page carries the *selected* state on that page (each page's menu differs in
    exactly that one state); consistent z-order and tabOrder.
 3. Hidden pages get no menu; drillthrough pages keep their back-button pattern instead.
-4. Mechanics by name: buttons/JSON → `powerbi-visuals`; overlay show/hide + bookmark
-   scope → `powerbi-bookmarks` (panel pattern → `pbi-filter-panel-bookmark`); state
-   styling and nav UX rules → `pbi-navigation-tabs`; tokens → `pbi-design-system`.
+4. Build with `scripts/build_nav.py --report <X.Report> --config cfg.json --apply` (same
+   config as the previews; V1/V2/V3/V6/V7 emitted, V4/V5 documented as manual) — it writes
+   one navigation group per visible page, adapts geometry per canvas size, marks the own
+   page as selected and prints a coverage report; see reference.md.
+5. Mechanics by name: button/action JSON → `pbi-buttons-actions`; navigator JSON and
+   state styling → `pbi-navigation-tabs`; overlay show/hide + bookmark scope →
+   `powerbi-bookmarks` (panel pattern → `pbi-filter-panel-bookmark`); icons →
+   `icon-set-manager` policy; tokens → `pbi-design-system`; Legacy → `powerbi-visuals`.
 
 ## Common Mistakes
 

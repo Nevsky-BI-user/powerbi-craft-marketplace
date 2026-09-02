@@ -85,7 +85,7 @@ Shape serialization law (incident І-14) applies unchanged; see §4.
 
 The antipattern being replaced is one narrow column of slicers, each with its own scrollbar.
 What replaces it is not a hand-tuned rectangle: **the panel is a pure function of its filters.**
-Every number below is produced by `docs/audits/evidence-scripts/filter_panel_layout.py`
+Every number below is produced by `scripts/filter_panel_layout.py`
 (`layout()` returns the boxes, `check()` returns the invariant violations).
 
 Synthesised from four independent designs and their reviews (workflow `wf_6a300216-8f7`).
@@ -346,7 +346,7 @@ I15 checks the container wrap.
 ### §3.9 Worked examples
 
 Every value below is the actual stdout of `evidence-scripts/filter_panel_layout.py`
-(`cd docs/audits/evidence-scripts && python filter_panel_layout.py`) — none of it is hand-computed;
+(`python scripts/filter_panel_layout.py` in this skill folder) — none of it is hand-computed;
 where this document and the script would ever disagree, the script wins (§3, opening paragraph).
 Captions `Clear all` / `Default` / `Apply and close` / `Close`; opener 120x48 at `y 84`.
 
@@ -697,11 +697,11 @@ A hand-written structural validator (JSON parses, names unique, cross-references
 substitute. In incident І-22 the broken `bookmarks.json` was valid JSON with correct cross-references
 and passed every structural check; only the schema knew that `items[]` is a two-variant anyOf.
 
-Ready-made script — `docs/audits/evidence-scripts/pbir_schema_validate.py` in this repo:
+Ready-made script — `plugins/pbi-report-ux/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py` in this repo:
 
 ```bash
 pip install jsonschema referencing
-python docs/audits/evidence-scripts/pbir_schema_validate.py "<path>/<Name>.Report/definition"
+python plugins/pbi-report-ux/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py "<path>/<Name>.Report/definition"
 ```
 
 It walks `definition/*.json`, `definition/bookmarks/*.json`, `definition/pages/**` and every

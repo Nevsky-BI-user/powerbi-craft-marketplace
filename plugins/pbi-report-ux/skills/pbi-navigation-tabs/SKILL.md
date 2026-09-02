@@ -1,6 +1,6 @@
 ---
 name: pbi-navigation-tabs
-description: "Use when designing or building in-report navigation for Power BI reports: tab bars, page vs bookmark navigation choice, button states (default/hover/selected), breadcrumbs. Do NOT trigger for bookmark/visibility JSON mechanics (powerbi-bookmarks) or drill-through back button (pbi-drillthrough). Triggers - 'navigation', 'tab bar', 'tabs', 'page navigator', 'bookmark navigator', 'breadcrumb', 'навігація', 'таби', 'вкладки', 'меню звіту', 'перемикання сторінок', 'хлібні крихти'."
+description: "Use when designing or building in-report navigation for Power BI reports: tab bars, page vs bookmark navigation choice, the pageNavigator / bookmarkNavigator visual.json canon, button states (default/hover/selected), breadcrumbs. Do NOT trigger for bookmark files and scope (powerbi-bookmarks), action-button JSON and visualLink (pbi-buttons-actions), choosing between several rendered navigation variants (pbi-navigation-variants), or the drill-through back button (pbi-drillthrough). Triggers - 'navigation', 'tab bar', 'tabs', 'page navigator', 'bookmark navigator', 'breadcrumb', 'навігація', 'таби', 'вкладки', 'меню звіту', 'навігатор сторінок', 'перемикання сторінок', 'хлібні крихти', 'активна вкладка'."
 ---
 
 # Navigation & Tab Bar Design
@@ -40,9 +40,9 @@ Icon sizing, left-rail variant, breadcrumb spec, legacy grid → [reference.md](
 | No navigator fits | `actionButton` row (last resort) | → powerbi-bookmarks |
 | Hierarchy location | Breadcrumb (below) | Orientation, not switching |
 
-Theme keys: `actionButton`, `pageNavigator`, `bookmarkNavigator` (theme-visuals §5).
+Theme keys: `actionButton`, `pageNavigator`, `bookmarkNavigator` (theme schema).
 
-**pageNavigator (PBIR visual.json):** `layout.orientation` carries NO selector; schema `2.10.0`, `howCreated: "InsertVisualButton"`, `drillFilterOtherVisuals: true`. Author in Desktop, read as ground truth.
+**Navigators in PBIR (visual.json):** `pageNavigator` — `objects.layout[].properties.orientation` (`"1D"` = vertical) with NO selector; `bookmarkNavigator` — `objects.bookmarks[].properties.bookmarkGroup` + `selectedBookmark`, selected tile styled with `selector {"id":"selected"}`; schema `2.10.0`, `howCreated: "InsertVisualButton"`, `drillFilterOtherVisuals: true`. Full GT JSON, format cards and the two Microsoft limitations → reference.md §6. Buttons with actions → `pbi-buttons-actions`.
 
 ## Theme Block — Style Once (A7)
 
@@ -67,7 +67,7 @@ Same pattern styles `text`/`border`. Full 4-state block → reference.md §1.
 |---|---|---|
 | Hand-made page-switch buttons | Reinvents selected-state logic | `pageNavigator`/`bookmarkNavigator` |
 | Selected shown by color alone | Fails grayscale/colorblind | Brand fill + Semibold/underline |
-| `"$id": "press"` in theme | Not in enum, ignored | Four states only |
+| `"$id": "press"` in theme | Not in the theme enum, ignored | Theme: four ids; "On press" (Microsoft's fifth state) only per button instance → `pbi-buttons-actions` |
 | Breadcrumb as tabs in a textbox | Antipattern A10 | Separate buttons, plain text |
 | Invented bookmark/button options | Fails silently | Ground truth + powerbi-bookmarks |
 | pageNavigator state id `interaction:*`/`selection:*` | Silently kills ALL tiles | Id EXACTLY `default`/`selected` |

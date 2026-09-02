@@ -33,7 +33,7 @@ ground-truth `tableEx` — do not guess. Card values are always **arrays** of ob
 
 `ColorId` mapping used below is the THEME-file mapping (0-based straight into `dataColors`):
 `ColorId 0` = `color/brand`. Re-verify against the target theme before emitting
-(`pbi-design-system` §1.7). One deliberate divergence from the theme-visuals §6.3 / master-theme
+(`pbi-design-system` §1.7). One deliberate divergence from the pbi-theme-json/references/theme-visuals.md §6.3 / master-theme
 example: this fragment sets `alignment: "Auto"` (legal enum: Auto/Left/Center/Right) so the
 header follows each column's data alignment, where those examples use `"Left"` — a design
 choice of this skill, not a verbatim copy.

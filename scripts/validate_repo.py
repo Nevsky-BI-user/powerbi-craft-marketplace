@@ -71,6 +71,8 @@ FORBIDDEN = [
     (re.compile(r"C:[\\/]+Users[\\/]+HEAVY", re.I), "локальний шлях C:\\Users\\HEAVY_METAL"),
     (re.compile(r"HEAVY_METAL"), "імʼя локального користувача"),
     (re.compile(r"C:[\\/]+github[\\/]+(?!icons|<)", re.I), "локальний шлях C:\\github"),
+    (re.compile(r"C:[\\/]+PROJECTS", re.I), "локальний шлях C:\\PROJECTS"),
+    (re.compile(r"docs[\\/]audits[\\/]"), "посилання на приватну теку docs/audits"),
 ]
 for p in glob.glob(os.path.join(ROOT, "plugins", "**", "*.*"), recursive=True):
     if not p.endswith((".md", ".json", ".yaml", ".yml", ".txt", ".sh", ".py")):

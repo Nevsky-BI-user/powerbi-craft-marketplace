@@ -8,12 +8,12 @@ memory. Tokens (`color/*`, `ramp/*`) resolve in `pbi-design-system`.
 
 | Key | Format-pane name | Verified? |
 |---|---|---|
-| `gauge` | Gauge | Yes — key confirmed (theme-visuals §5, "Shape & part-to-whole charts"); no per-visual card names verified in our research |
-| `kpi` | KPI | Yes — key confirmed (theme-visuals §5, "Cards, KPI, tables"); no per-visual card names verified |
-| `cardVisual` | Card (new) | Yes — 44 cards; `value`, `label`, `layout` fully verified (theme-visuals §6.6); also has `referenceLabel`, `referenceLabelTitle`, `referenceLabelValue`, `referenceLabelDetail`, `referenceLabelLayout`, `accentBar` (named, sub-properties NOT enumerated in our research) |
+| `gauge` | Gauge | Yes — key confirmed (pbi-theme-json/references/theme-visuals.md §5, "Shape & part-to-whole charts"); no per-visual card names verified in our research |
+| `kpi` | KPI | Yes — key confirmed (pbi-theme-json/references/theme-visuals.md §5, "Cards, KPI, tables"); no per-visual card names verified |
+| `cardVisual` | Card (new) | Yes — 44 cards; `value`, `label`, `layout` fully verified (pbi-theme-json/references/theme-visuals.md §6.6); also has `referenceLabel`, `referenceLabelTitle`, `referenceLabelValue`, `referenceLabelDetail`, `referenceLabelLayout`, `accentBar` (named, sub-properties NOT enumerated in our research) |
 
 **No native `progressBar` / `progressRing` visual key exists** — confirmed absent from the
-complete visual-type list (theme-visuals §5). Do not theme or reference one; a progress
+complete visual-type list (pbi-theme-json/references/theme-visuals.md §5). Do not theme or reference one; a progress
 bar/ring is either a `dax-svg` DAX-measure image, or a `cardVisual` with a `referenceLabel`.
 
 For `gauge` and `kpi`: their card names (`indicator`, axis min/max/target properties, trend
@@ -102,7 +102,7 @@ Checklist before emitting a `gauge` (all must hold):
 
 ## 6. Verified `cardVisual` fragment to extend for reference-label progress
 
-Base card (theme-visuals §6.6, verified) — extend with `referenceLabel` for a target/goal
+Base card (pbi-theme-json/references/theme-visuals.md §6.6, verified) — extend with `referenceLabel` for a target/goal
 line once its exact sub-properties are confirmed from a ground-truth visual or schema:
 
 ```json
@@ -120,14 +120,14 @@ line once its exact sub-properties are confirmed from a ground-truth visual or s
 }
 ```
 
-`referenceLabel*` cards exist on `cardVisual` (confirmed by name in theme-visuals §6.6) for
+`referenceLabel*` cards exist on `cardVisual` (confirmed by name in pbi-theme-json/references/theme-visuals.md §6.6) for
 showing the target/goal alongside the value — read their exact sub-properties from a
 ground-truth `cardVisual` with a reference label already configured, or from the schema
 file, before emitting JSON. JSON mechanics (adding/binding the card) →
 `powerbi-visuals`.
 
 **Caveat on the base-card fragment above:** it is copied verbatim from an observed
-production report (theme-visuals §6.6) to prove the JSON *shape* — its `fontFamily: "DIN"`
+production report (pbi-theme-json/references/theme-visuals.md §6.6) to prove the JSON *shape* — its `fontFamily: "DIN"`
 and `value.fontSize: 24` are that report's drift, not canonical tokens (`pbi-design-system` §2:
 Segoe UI only, never an external font stack; the pt ramp is 28/18/14/12/10/9, so 24 isn't
 on it). In new work, swap `fontFamily` to `"Segoe UI"`/`"Segoe UI Semibold"` and

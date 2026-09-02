@@ -1,6 +1,6 @@
 ---
 name: pbip-deploy
-description: Use when publishing a PBIP project (semantic model and/or report) to a Fabric or Power BI workspace, or when deciding whether a change is ready to publish - covers the approval gate, report-to-model reference integrity, deterministic-output checks, REST deploy mechanics, and post-deploy verification that looks at data rather than job status. Do NOT trigger for local report edits (powerbi-visuals, pbir-format), TMDL authoring (tmdl), or workspace administration. Triggers - 'deploy', 'publish', 'залити', 'опублікувати', 'updateDefinition', 'deploy-fabric', 'викласти звіт', 'публікація моделі'.
+description: Use when publishing a PBIP project (semantic model and/or report, PBIR enhanced or Legacy) to a Fabric or Power BI workspace, or when deciding whether a change is ready to publish - covers the approval gate, report-to-model reference integrity, deterministic-output checks, REST deploy mechanics incl. report-only PBIR parts and the RegisteredResources caveat, and post-deploy verification that looks at data (and exports every page after a navigation change) rather than job status. Do NOT trigger for local report edits (powerbi-visuals; external powerbi-report-authoring), TMDL authoring (external tmdl skill), Fabric CLI day-to-day operations (fabric-cli-powerbi), or workspace administration. Triggers - 'deploy', 'publish', 'залити', 'опублікувати', 'updateDefinition', 'deploy-fabric', 'викласти звіт', 'публікація моделі', 'опублікуй дашборд'.
 ---
 
 # Deploying a PBIP project
@@ -16,9 +16,10 @@ different actions with different prices.
 ## When to Use
 
 - Publishing a PBIP semantic model or report, or deciding whether a change is ready to publish.
-- NOT for — related skills instead. Report edits: `powerbi-visuals`, `pbip:pbir-format`.
-  Model edits: `tmdl`, `dax-measures`. Pre-merge diff review: `pbip-pr-reviewer`.
-  Design sign-off: `pbi-report-review`.
+- NOT for — related skills instead. Report edits: `powerbi-visuals` (Legacy), the external
+  `powerbi-report-authoring` (Microsoft skills-for-fabric, PBIR). Model edits: external `tmdl`
+  skill, `dax-measures`. Pre-merge diff review: `pbip-pr-reviewer`. Design sign-off:
+  `pbi-report-review`.
 
 ## The approval gate — non-negotiable
 
@@ -45,8 +46,8 @@ what stays unpublished, what symptom the user sees until it ships, and the exact
 | 1 Reference integrity | Probe every report measure/column against the **live** model — existence AND value | reference.md §2 |
 | 2 Local verification | Schema check; audit produced files; generator determinism; dependant inventory | reference.md §3 |
 | 3 Blast radius | State it plainly, then wait for a yes | below |
-| 4 Deploy | Token then REST; model before report | reference.md §4 |
-| 5 Post-deploy | Re-probe references; check data, not job status | below |
+| 4 Deploy | Token then REST; model before report; report-only PBIR parts + `byConnection` + RegisteredResources caveat | reference.md §4, §4.2 |
+| 5 Post-deploy | Re-probe references; check data, not job status; after a nav/bookmark change export every page (PNG smoke test) | below, reference.md §4.3 |
 
 Rollback path (know it *before* deploying) → reference.md §5.
 Environment traps (curl vs `Invoke-WebRequest`, JSON arrays, UTF-8 BOM) → reference.md §6.
@@ -70,8 +71,12 @@ Then wait for a yes. Do not bundle the question with other work.
 - [ ] Check values, not just success: row counts, a known aggregate, min/max of the key.
 - [ ] For incremental loads, run twice: the first run creates, the second exercises the `MERGE`
       branch that would otherwise fail unobserved the next day. Assert zero duplicates by key.
-- [ ] Report-side rendering cannot be verified headlessly. Say so, and name page → tab → visual
-      for the user to check.
+- [ ] Report-side rendering cannot be verified headlessly — but every page can be **exported**:
+      after a navigation, bookmark or button change run the PNG smoke test (reference.md §4.3):
+      one `ExportTo` per visible page, every file > 0 bytes. Then name page → tab → visual for
+      the user to check by eye.
+- [ ] After a report-only PBIR deploy: `getDefinition` and diff `resourcePackages` — a new icon
+      or theme that vanished must be added through Desktop (preview limitation, §4.2).
 
 ## Common mistakes
 
