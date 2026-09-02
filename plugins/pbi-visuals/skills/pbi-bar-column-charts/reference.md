@@ -30,12 +30,12 @@ Chart-specific cards for `barChart` (from schema; beyond the 16 common cards):
 `zoom`, `ribbonBands`, `smallMultiplesLayout`, `xAxisReferenceLine`,
 `y1AxisReferenceLine`, `error`, `annotationTemplate`.
 
-**Card sets differ per key** — the list above is `barChart`'s only (theme-visuals scopes it
+**Card sets differ per key** — the list above is `barChart`'s only (pbi-theme-json/references/theme-visuals.md scopes it
 so). Schema-verified for the clustered variants: `clusteredBarChart`/`clusteredColumnChart`
 have `referenceLine`, `layout`, `subheader`, `trend` but NO `totals` and NO `ribbonBands`.
 Verify the exact card against the schema for the specific key before theming it.
 
-Properties verified in theme-visuals §6.2:
+Properties verified in pbi-theme-json/references/theme-visuals.md §6.2:
 
 | Card | Verified properties |
 |---|---|

@@ -178,6 +178,23 @@ fab api -A powerbi "groups/$WS_ID/reports/$REPORT_ID/UpdateReportContent" -X pos
 }'
 ```
 
+### Update Report Definition (PBIR project files → Fabric)
+
+Deploying the PBIR files of a `.Report` folder is an **item definition update** on the Fabric
+API, not a Power BI REST call — approval gate, part encoding, the `byConnection` requirement
+and the RegisteredResources caveat live in `pbip-deploy` (reference.md §4, §4.2):
+
+```bash
+# parts: definition/** + StaticResources/** + definition.pbir, each InlineBase64
+fab api -A fabric "workspaces/$WS_ID/reports/$REPORT_ID/updateDefinition" -X post -i @definition.json
+# verify the -A value and the long-running-operation polling in `fab api --help` before relying on it
+```
+
+### Navigation smoke test after deploy
+
+Export one PNG per visible page (`ExportTo` above, `"format": "PNG"`, `pages: [{pageName}]`) —
+a page that fails to render fails to export. Full checklist → `pbip-deploy` reference.md §4.3.
+
 ## Delete Report
 
 ```bash

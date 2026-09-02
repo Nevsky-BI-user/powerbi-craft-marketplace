@@ -1,6 +1,6 @@
 ---
 name: pbi-matrix
-description: Use when creating or restyling Matrix (pivotTable) visuals in Power BI PBIP reports (PBIR-Legacy or enhanced) - hierarchies, stepped/outline/tabular layout, drill-expand icons, subtotal vs grand-total styling, heatmap CF, sparklines. Do NOT trigger for flat tables (pbi-tables), CF semantics (pbi-conditional-formatting), drill-through pages (pbi-drillthrough), JSON mechanics (powerbi-visuals). Triggers - 'матриця', 'зведена таблиця', 'ієрархія', 'проміжні підсумки', 'теплова карта'.
+description: Use when creating or restyling Matrix (pivotTable) visuals in Power BI PBIP reports (PBIR-Legacy or enhanced) - hierarchies, stepped/outline/tabular layout, drill-expand icons, subtotal vs grand-total styling, heatmap CF, sparklines. Do NOT trigger for flat tables (pbi-tables), CF semantics incl. a heat map's colour rules — 'теплова карта' (pbi-conditional-formatting), drill-through pages (pbi-drillthrough), JSON mechanics (powerbi-visuals). Triggers - 'матриця', 'зведена таблиця', 'ієрархія', 'проміжні підсумки', 'matrix visual', 'pivot table'.
 ---
 
 # Power BI Matrix (pivotTable)

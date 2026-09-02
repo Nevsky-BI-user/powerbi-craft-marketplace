@@ -65,12 +65,17 @@ for p in glob.glob(os.path.join(ROOT, "plugins", "*", "agents", "*.md")):
     stem = os.path.splitext(os.path.basename(p))[0]
     if d["name"] != stem:
         err(f"{rel}: name «{d['name']}» != файл «{stem}»")
+    if len(str(d["description"])) > 1024:
+        err(f"{rel}: description {len(str(d['description']))} символів > 1024 — роутер обріже опис")
 
 # B. санітизація текстових файлів плагінів
 FORBIDDEN = [
     (re.compile(r"C:[\\/]+Users[\\/]+HEAVY", re.I), "локальний шлях C:\\Users\\HEAVY_METAL"),
     (re.compile(r"HEAVY_METAL"), "імʼя локального користувача"),
     (re.compile(r"C:[\\/]+github[\\/]+(?!icons|<)", re.I), "локальний шлях C:\\github"),
+    (re.compile(r"C:[\\/]+PROJECTS", re.I), "локальний шлях C:\\PROJECTS"),
+    (re.compile(r"docs[\\/]audits[\\/]"), "посилання на приватну теку docs/audits"),
+    (re.compile(r"Burnout|\bwf_[0-9a-f]{6}"), "внутрішня назва звіту або id воркфлоу"),
 ]
 for p in glob.glob(os.path.join(ROOT, "plugins", "**", "*.*"), recursive=True):
     if not p.endswith((".md", ".json", ".yaml", ".yml", ".txt", ".sh", ".py")):

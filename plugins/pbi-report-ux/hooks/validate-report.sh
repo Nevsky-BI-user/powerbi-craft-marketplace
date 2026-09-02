@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# PostToolUse: stdin = hook JSON. Діє лише на report.json.
+# PostToolUse: stdin = hook JSON. Діє на файли звіту Power BI обох форматів:
+# report.json (Legacy) і PBIR enhanced — *.bookmark.json, bookmarks.json,
+# visual.json, page.json, pages.json.
 # Вимикач: POWERBI_CRAFT_HOOKS=0. Без python — тихий пас.
 set -u
 [ "${POWERBI_CRAFT_HOOKS:-1}" = "0" ] && exit 0
@@ -9,7 +11,7 @@ if [ -z "${f:-}" ]; then
   f=$(printf '%s' "$payload" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
 fi
 case "${f:-}" in
-  *report.json) ;;
+  *report.json|*.bookmark.json|*/bookmarks.json|*/visual.json|*/page.json|*/pages.json) ;;
   *) exit 0 ;;
 esac
 # python: звичайний -> python3 -> Windows-лаунчер py -3

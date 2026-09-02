@@ -1,6 +1,6 @@
 ---
 name: kpi-data-entry-app
-description: Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with corporate branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - "система внесення даних", "внесення показників", "план факт прогноз", "операційний моніторинг", "data entry app", "довідник показників з Excel".
+description: Use when building a metric/KPI data-entry web app (план/факт/прогноз, операційні показники) with corporate branding — on Rayfin/Fabric or any React stack. Covers theme selection, Excel dictionary parsing, entry windows, computation model. Triggers - "система внесення даних", "внесення показників", "план факт прогноз", "операційний моніторинг", "data entry app", "довідник показників з Excel". Do NOT trigger for scaffolding or deploying the Rayfin platform itself (rayfin-bootstrap), React UX mechanics like drawers/tooltips/skeletons (react-ux-mechanics), Power BI reports (pbi-* skills), CLAUDE.md for a repo (claude-md-bootstrap).
 ---
 
 # Система внесення показників (план/факт/прогноз)

@@ -1,6 +1,6 @@
 ---
 name: fabric-cli-powerbi
-description: Use Fabric CLI for Power BI operations — semantic models, reports, DAX queries, refresh, gateways. Activate when users work with Power BI items, need to refresh datasets, execute DAX, manage reports, or troubleshoot refresh failures.
+description: Use Fabric CLI (fab) for Power BI operations — semantic models, reports, DAX queries, refresh, gateways, report export/rebind/definition update. Triggers - 'fab', 'Fabric CLI', 'онови модель', 'запусти refresh', 'оновлення датасету впало', 'виконай DAX через fab', 'експортуй звіт у PNG/PDF', 'перепривʼяжи звіт', 'refresh dataset', 'execute DAX', 'export report', 'rebind report'. Do NOT trigger for - the deploy approval gate, blast radius and report-only PBIR deploy rules (pbip-deploy), PR review (pbip-pr-reviewer), Azure cost or RBAC (azure-cost, azure-rbac), generic fab auth/navigation (external fabric-cli-core).
 ---
 
 # Fabric CLI Power BI Operations
@@ -20,11 +20,14 @@ Activate automatically when tasks involve:
 - Gateway and data source configuration
 - TMDL (Tabular Model Definition Language) operations
 
-NOT for foundational `fab` CLI usage (auth, navigation, generic commands) — that is `fabric-cli-core`.
+NOT for foundational `fab` CLI usage (auth, navigation, generic commands) — that is the
+external `fabric-cli-core` skill (Microsoft skills-for-fabric); it is not part of this
+marketplace.
 
 ## Prerequisites
 
-- Load `fabric-cli-core` skill first for foundational CLI guidance
+- If the external `fabric-cli-core` skill is installed, load it first; otherwise the
+  essentials are `fab auth login`, `fab auth status`, `fab ls`, `fab --help`
 - User must be authenticated: `fab auth status`
 - Appropriate workspace permissions for target items
 

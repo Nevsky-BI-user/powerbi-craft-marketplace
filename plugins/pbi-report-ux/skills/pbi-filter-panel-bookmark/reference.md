@@ -85,10 +85,10 @@ Shape serialization law (incident І-14) applies unchanged; see §4.
 
 The antipattern being replaced is one narrow column of slicers, each with its own scrollbar.
 What replaces it is not a hand-tuned rectangle: **the panel is a pure function of its filters.**
-Every number below is produced by `docs/audits/evidence-scripts/filter_panel_layout.py`
+Every number below is produced by `scripts/filter_panel_layout.py`
 (`layout()` returns the boxes, `check()` returns the invariant violations).
 
-Synthesised from four independent designs and their reviews (workflow `wf_6a300216-8f7`).
+Synthesised from four independent designs and their reviews.
 The four defects the reviewers found in the winning design are fixed here and marked D1-D4.
 A second round of corrections, marked **C1-C4**, came from an actual render of the generated
 panel rather than review: each is a measured boundary (a clipped caption, a collapsed slicer, an
@@ -345,8 +345,8 @@ I15 checks the container wrap.
 
 ### §3.9 Worked examples
 
-Every value below is the actual stdout of `evidence-scripts/filter_panel_layout.py`
-(`cd docs/audits/evidence-scripts && python filter_panel_layout.py`) — none of it is hand-computed;
+Every value below is the actual stdout of `scripts/filter_panel_layout.py`
+(`python scripts/filter_panel_layout.py` in this skill folder) — none of it is hand-computed;
 where this document and the script would ever disagree, the script wins (§3, opening paragraph).
 Captions `Clear all` / `Default` / `Apply and close` / `Close`; opener 120x48 at `y 84`.
 
@@ -510,7 +510,7 @@ after filters, e.g. "Застосувати вибір (10 134)":
 ```json
 "text": { "expr": { "Measure": {
   "Expression": { "SourceRef": { "Entity": "_Measures" } },
-  "Property": "AC.Burnout_risk.Застосувати вибір" } } }
+  "Property": "Panel.Застосувати вибір" } } }
 ```
 
 Set it on both the `default` and `hover` entries, otherwise the caption changes on hover.
@@ -522,7 +522,7 @@ Set it on both the `default` and `hover` entries, otherwise the caption changes 
 ```json
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
-  "displayName": "Burnout.Filters_OFF",
+  "displayName": "Panel.Filters_OFF",
   "name": "d22896067aa203f59ba6",
   "options": {
     "applyOnlyToTargetVisuals": true,
@@ -603,7 +603,7 @@ for Desktop. But *how* you list it is not free-form: schema `bookmarksMetadata/1
   "items": [
     { "name": "<loneBookmarkId>" },
     { "name": "<anotherLoneBookmarkId>" },
-    { "name": "e56e247b6f21deb6be50", "displayName": "AC.Burnout_risk.Slicer_Pannel",
+    { "name": "e56e247b6f21deb6be50", "displayName": "Panel.Slicer_Group",
       "children": ["111bc5e067518804b279", "a3e3d5a533cc32f58606", "d22896067aa203f59ba6", "9dbbce1ddc5aeedff7a5"] }
   ] }
 ```
@@ -630,7 +630,7 @@ property `children` missing* (fails the group variant) / *therefore the value is
 errors for one mistake is the signature of a failed `anyOf`, not of three separate problems.
 
 **Where the human-readable name lives:** in `displayName` **inside `<id>.bookmark.json`** (see the
-`"displayName": "Burnout.Filters_OFF"` at the top of §5). `bookmarks.json` is an index and an
+`"displayName": "Panel.Filters_OFF"` at the top of §5). `bookmarks.json` is an index and an
 ordering/grouping structure, not a label store. A `displayName` in the index names a *group* of
 bookmarks and only a group.
 
@@ -697,37 +697,31 @@ A hand-written structural validator (JSON parses, names unique, cross-references
 substitute. In incident І-22 the broken `bookmarks.json` was valid JSON with correct cross-references
 and passed every structural check; only the schema knew that `items[]` is a two-variant anyOf.
 
-Ready-made script — `docs/audits/evidence-scripts/pbir_schema_validate.py` in this repo:
+Ready-made script — `plugins/pbi-report-ux/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py` in this repo:
 
 ```bash
-pip install jsonschema referencing
-python docs/audits/evidence-scripts/pbir_schema_validate.py "<path>/<Name>.Report/definition"
+pip install jsonschema
+python plugins/pbi-report-ux/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py "<path>/<Name>.Report"
 ```
 
-It walks `definition/*.json`, `definition/bookmarks/*.json`, `definition/pages/**` and every
-`visuals/*/visual.json`; for each file it reads `doc['$schema']`, fetches that schema (disk cache),
-and runs `jsonschema.Draft202012Validator(...).iter_errors(doc)` with a `referencing` `Registry` so
-remote `$ref`s resolve. It prints the JSON pointer and message for each error and a per-schema
-tally at the end.
+Scope: `definition/bookmarks/*.bookmark.json` and `bookmarks.json`. Each file is validated against the
+schema named in its own `$schema` (fetched once, cached on disk; `--no-net` or an offline machine
+falls back to the built-in structural checks and says so), then cross-checked: every name in the
+index has a file and every file is in the index, `items[]` is leaf or group (the І-22 anyOf), every
+id touched in `explorationState` is inside `targetVisualNames` when `applyOnlyToTargetVisuals` is
+on, `display.mode` is in the enum. One line per error, exit 1 on any error. Pass the `.Report`
+folder (a trailing `/definition` is tolerated); a folder without `definition/` fails fast instead
+of printing a false OK.
 
-**Published-schema gaps.** Some versions Desktop writes are not served publicly and 404:
+The script deliberately stops at bookmarks: some schema versions Desktop writes for the rest of the
+report are not published (`visualContainer/2.10.0` returns 404), so a whole-report schema pass
+would have to substitute versions and explain spurious `/$schema` errors. For `definition/report.json`,
+`pages/**` and every `visuals/*/visual.json` use Microsoft's `powerbi-report-author validate <.Report>`
+(skills-for-fabric, external) plus this plugin's PostToolUse hook `hooks/check_report.py`, which
+resolves button targets and the serialization law on every edit.
 
-| Declared by Desktop | Public status | Handling |
-|---|---|---|
-| `visualContainer/2.10.0` | 404 | validate against `visualContainer/2.9.0` |
-| `visualContainerMobileState/2.5.0` | 404 | validate against the newest published version |
-
-Substitutions live in the script's `FALLBACK` dict (`{'visualContainer/2.10.0':
-'visualContainer/2.9.0'}` today) — add a mapping there when a new 404 shows up, rather than skipping
-the file. A skipped file is an unchecked file.
-
-The fallback schema pins `$schema` to its own `const`, so it reports one spurious error at pointer
-`/$schema`. That error comes from the substitution, not from your file — filter it out (the script
-does). Everything else in the file is still checked.
-
-The run that confirmed the І-22 fix: **312 files, 0 errors.** A clean run is not proof the panel
-works — it is proof the report will open. Rendering, hover and click behaviour stay unverifiable
-headless (§8.2).
+A clean run is not proof the panel works — it is proof the report will open. Rendering, hover and
+click behaviour stay unverifiable headless (§8.2).
 
 ### §8.2 Checklist
 

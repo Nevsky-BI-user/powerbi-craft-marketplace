@@ -1,6 +1,6 @@
 ---
 name: pbi-slicers-filter-panel
-description: Use when adding or restyling Power BI slicers or building a filter panel - choosing slicer type (dropdown/list/button-tile/between/text), unifying sizes and styles, a bookmark-toggled panel, clear-all button, or showing applied filters. Do NOT trigger for bookmark mechanics (powerbi-bookmarks), visual JSON edits (powerbi-visuals), or theme generation (pbi-theme-json). Triggers - 'slicer', 'filter panel', 'зріз', 'слайсер', 'панель фільтрів', 'скинути фільтри', 'застосовані фільтри'
+description: Use when adding or restyling Power BI slicers or building a permanent filter panel - choosing slicer type (dropdown/list/button-tile/between/text), unifying sizes and styles, clear-all button, or showing applied filters. Do NOT trigger for a collapsible overlay panel that hides behind a filter button (pbi-filter-panel-bookmark), bookmark mechanics (powerbi-bookmarks), visual JSON edits (powerbi-visuals), or theme generation (pbi-theme-json). Triggers - 'slicer', 'filter panel', 'зріз', 'слайсер', 'панель фільтрів', 'скинути фільтри', 'застосовані фільтри', 'тип слайсера'
 ---
 
 # Slicers & Filter Panel

@@ -49,6 +49,14 @@ switch). Команда `git` доступна. Файли PBIP читаютьс
    groups → reference.md §2.
 5. **Visual review** — структурні зміни в JSON сторінок, без координат
    → reference.md §3.
+5b. **Bookmarks / navigation review** (якщо PR торкає `definition/bookmarks/**`
+   або кнопки/навігатори): кожна нова букмарка зареєстрована в `bookmarks.json`
+   у правильній формі (leaf `{name}` / group `{name,displayName,children}`);
+   братні букмарки симетричні (`targetVisualNames`, `suppressData`); кожен
+   `visualLink` резолвиться в реальну сторінку/букмарку; кожна видима сторінка
+   досяжна з меню. Механічно: прогнати
+   `python <pbi-report-ux>/skills/powerbi-bookmarks/scripts/pbir_schema_validate.py <X.Report>`
+   і вставити вивід у Flags.
 6. **Noise filtering** — Зміни в `diagramLayout.json` ігнорувати. Якщо весь
    PR — це тільки diagramLayout, згадати у Flags.
 7. **Output** — За замовчуванням зберегти у `./review.md`. Якщо користувач
@@ -68,8 +76,9 @@ git diff main...HEAD --name-only  # список файлів
 | **Model (structural)** | `relationships.tmdl`, `model.tmdl`, `roles/*.tmdl`, `cultures/*.tmdl`, `perspectives/*.tmdl` |
 | **DAX measures** | `tables/*.tmdl` — секції `measure`, `column` calculated |
 | **Calculation groups** | `tables/*Calculations*.tmdl` |
-| **Visuals** | `*.Report/definition/pages/*.json`, `theme.json` |
-| **Config** | `*.pbip`, `*.pbism`, `*.pbir`, `definition.pbism` |
+| **Visuals** | `*.Report/definition/pages/**/*.json` (page.json, visuals/*/visual.json), `theme.json` |
+| **Bookmarks / navigation** | `*.Report/definition/bookmarks/**` (`*.bookmark.json`, `bookmarks.json`), `visual.json` з `actionButton` / `pageNavigator` / `bookmarkNavigator`, `definition/report.json` → `resourcePackages` |
+| **Config** | `*.pbip`, `*.pbism`, `*.pbir` (зміна `byPath` ↔ `byConnection` = HIGH), `definition.pbism` |
 | **Noise (ignore)** | `diagramLayout.json`, `.pbi/localSettings.json` |
 
 ## Принципи review (обов'язкові)

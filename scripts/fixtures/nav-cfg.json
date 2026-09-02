@@ -1,0 +1,12 @@
+{
+  "variant": "V1",
+  "pages": [
+    {"name": "Огляд", "width": 1280, "height": 720},
+    {"name": "Показники", "width": 1440, "height": 675}
+  ],
+  "hero_page": "Огляд",
+  "palette": {"primary": "#063E61", "text": "#333333", "hover": "#E6ECEF"},
+  "selected_style": "S1",
+  "icons": "none",
+  "groups": [{"name": "Основне", "pages": ["Огляд", "Показники"]}]
+}

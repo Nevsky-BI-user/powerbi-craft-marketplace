@@ -1,6 +1,6 @@
 ---
 name: ado-wi-new
-description: "Use when creating Azure DevOps work items — bug, task, user story, feature — in a project that keeps team conventions on a wiki page. Triggers: 'заведи баг', 'створи задачу', 'нова фіча', 'заведи стору', 'create work item', 'file a bug', 'log a task'."
+description: "Use when creating Azure DevOps work items — bug, task, user story, feature — in a project that keeps team conventions on a wiki page. Triggers: 'заведи баг', 'створи задачу', 'нова фіча', 'заведи стору', 'create work item', 'file a bug', 'log a task'. Do NOT trigger for: closing or completing items (ado-wi-close), pull requests (ado-pr-flow), backlog audits (ado-hygiene-inspection), GitHub issues outside Azure DevOps."
 ---
 
 # Нові робочі елементи за конвенціями проєкту

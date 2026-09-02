@@ -83,7 +83,7 @@ Any `MISMATCH` line is an open bug — report it even when it's outside the task
 scope, and even when `isHidden` visibility itself looks correct (that was exactly the case
 in the incident below: display was fixed, `suppressData` wasn't).
 
-## 3. Worked case — task #5 (`docs/audits/task5-audit.md`)
+## 3. Worked case — task #5 (internal audit record, not shipped)
 
 Task: (1) fix a bookmark so one subtab doesn't leak onto others; (2) "very deeply rework
 the design, listing every possible improvement." Agent reported success 9/9, self-defined.

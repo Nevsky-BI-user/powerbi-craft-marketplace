@@ -36,9 +36,9 @@ below. Covers PBIP (PBIR-Legacy/enhanced) and TMDL.
 |Chart choice|native visual fits the question|`pbi-visualization-strategy`|
 |Narrative/claim|title states a finding not a subject; every number carries a base; one "so what" per page|`data-storytelling`|
 |Tables/matrix|`tableEx`/`pivotTable` (not legacy); zebra|`pbi-tables` (tableEx), `pbi-matrix` (pivotTable)|
-|Nav/slicers/states|default/hover/selected/disabled distinct, no `press`|`pbi-navigation-tabs` (tabs), `pbi-slicers-filter-panel` (slicers)|
+|Nav/slicers/states|default/hover/selected distinct; every visible page reachable; own page selected|`pbi-navigation-tabs` (tabs, navigators), `pbi-buttons-actions` (button JSON), `pbi-slicers-filter-panel` (slicers)|
 |Tooltips/drillthrough|context header, canvas size|`pbi-tooltips`, `pbi-drillthrough`|
-|Bookmarks/visibility|symmetry check below|`powerbi-bookmarks`|
+|Bookmarks/visibility|symmetry check below (both formats)|`powerbi-bookmarks`|
 |Bindings|`queryRef` resolves to a real measure|model file|
 |A11y|`tabOrder`, alt text, hit ≥24px|`pbi-design-system`|
 
@@ -57,7 +57,10 @@ Compare siblings as a SET, not one at a time: `isHidden` fixed alone while a pee
 |`tvn` — `options.targetVisualNames` length|same count|
 |`options.suppressData`|identical boolean (mixed = bug)|
 
-Any mismatch is a bug, even outside scope (script: `reference.md` §2).
+Any mismatch is a bug, even outside scope (Legacy script: `reference.md` §2; PBIR enhanced:
+siblings are the `children` of one group in `definition/bookmarks/bookmarks.json`, each read from
+its own `<name>.bookmark.json` — run `powerbi-bookmarks/scripts/pbir_schema_validate.py <X.Report>`
+and quote its output as the evidence).
 
 ## Evidence & acceptance discipline
 

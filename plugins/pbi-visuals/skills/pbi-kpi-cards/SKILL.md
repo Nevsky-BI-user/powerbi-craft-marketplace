@@ -16,7 +16,7 @@ A KPI card is one number absorbed in under a second — but only if every card s
 
 Before writing JSON: detect PBIR-Legacy vs enhanced, read a real same-type card from the target report as parity template, verify every `queryRef` against the TMDL model.
 
-REQUIRED SUB-SKILL: `powerbi-visuals` (cloning, GUID, object wrapping). Delta measures → `dax-measures`; sparkline → `dax-svg`; icons → `icon-set-manager`; tokens → `pbi-design-system`; label wording and naming the comparison base in words («−3 п.п. до червня», not «−3%») → `data-storytelling`.
+REQUIRED SUB-SKILL: `powerbi-visuals` (cloning, GUID, object wrapping). Delta measures → `dax-measures`; sparkline → `dax-svg`; icons → `icon-set-manager`; tokens → `pbi-design-system`; label wording and naming the comparison base in words («−3 в. п. до червня», not «−3%») → `data-storytelling`.
 
 ## Quick Reference
 

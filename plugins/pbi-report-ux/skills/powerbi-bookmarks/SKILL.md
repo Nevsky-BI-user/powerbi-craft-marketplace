@@ -1,65 +1,119 @@
 ---
 name: powerbi-bookmarks
-description: Safely edit Power BI PBIR-Legacy report.json bookmarks and visual visibility — tab switching, group isolation, show/hide visuals, drill-through pages. Use when adding a visual/group that must appear only on one tab, fixing "block doesn't show on its tab" / "block leaks onto other tabs", wiring tab navigation, or any report.json bookmark/visibility edit. Covers the critical options.targetVisualNames scope gotcha, the visualContainerGroups/visualContainers isHidden model, and byte-faithful editing of report.json.
+description: >
+  Bookmarks and visual visibility in Power BI reports, both formats — PBIR
+  enhanced (definition/bookmarks/*.bookmark.json + bookmarks.json) first,
+  PBIR-Legacy report.json as appendix: tab switching inside a page, group
+  isolation, show/hide visuals and groups, captured filters that must survive
+  a click, bookmark groups for navigators, the options/targetVisualNames scope
+  gotcha, bookmarks.json anyOf, schema validation. Trigger on: "закладки",
+  "букмарки", "букмарка", "стан сторінки", "перемикання виглядів",
+  "сховати групу", "показати/сховати візуали", "перемикання станів на одній сторінці",
+  "bookmark", "bookmarks.json", "tab isolation", "block leaks onto other
+  tabs", "bookmark group". Do NOT trigger for: a collapsible slicer panel end
+  to end (pbi-filter-panel-bookmark); button and action-link JSON
+  (pbi-buttons-actions); tab-bar design, states and navigator visuals
+  (pbi-navigation-tabs); choosing a navigation variant
+  (pbi-navigation-variants); Legacy visual creation or field binding
+  (powerbi-visuals).
 ---
 
-# Power BI bookmarks & visibility (PBIR-Legacy report.json)
+# Power BI bookmarks & visibility — PBIR first, Legacy appendix
 
 ## Overview
 
-Editing bookmarks by hand in `report.json` is fragile. This skill encodes the mental model and the **one gotcha that breaks everything**, plus a byte-faithful editing harness. The harness is `pbir.py` in this skill folder; depth — visibility model, filter captures, tab isolation, diagnostics — lives in [reference.md](reference.md).
+A bookmark is a saved page state plus a scope (`options`). Two things break
+most reports: an id touched in the state but absent from the scope (silently
+ignored), and a `bookmarks.json` item that is neither a leaf nor a group (the
+report does not open). This skill owns the bookmark files and the visibility
+model; depth per format: PBIR → `references/pbir-bookmarks.md`, Legacy →
+`reference.md` (+ byte-faithful harness `pbir.py`).
 
 ## When to Use
 
-- Any PBIR-Legacy `report.json` bookmark/visibility edit: tab switching, group isolation, show/hide visuals, hidden filters that must survive tab clicks, placeholders, z-order.
-- NOT for: creating/styling visuals or binding fields → `powerbi-visuals`; PBIR **enhanced** filter-panel bookmark pairs → `pbi-filter-panel-bookmark`; tab-bar design and button states → `pbi-navigation-tabs`.
+- Show/hide a visual or group per tab, isolate a block to one tab, keep a
+  hidden filter alive across tab clicks, author a bookmark group for a
+  navigator, register a new bookmark, fix "block leaks onto other tabs".
+- NOT for: the slicer overlay panel as a whole (`pbi-filter-panel-bookmark`),
+  wiring buttons (`pbi-buttons-actions`), nav design (`pbi-navigation-tabs`).
 
-## ⚠️ THE #1 GOTCHA — `options.targetVisualNames`
+## Pre-flight — detect the format
 
-Every bookmark has:
+| Evidence | Format | Files you edit |
+|---|---|---|
+| `definition/pages/` exists (`definition/bookmarks/` appears only with the first bookmark) | **PBIR enhanced** | `<id>.bookmark.json`, `bookmarks.json`, `visual.json` |
+| single `report.json` with `sections[]` and stringified `config` | PBIR-Legacy | `report.json` via `pbir.py` |
+
+Never mix: the formats are mutually exclusive per report.
+
+## ⚠️ THE #1 GOTCHA — `options.targetVisualNames` (both formats)
+
 ```json
-"options": { "targetVisualNames": ["id1","id2",...], "applyOnlyToTargetVisuals": true, "suppressData": true }
+"options": { "applyOnlyToTargetVisuals": true, "targetVisualNames": ["<groupId>", "…"], "suppressData": true }
 ```
-When `applyOnlyToTargetVisuals: true`, the bookmark **applies its captured visibility ONLY to visuals/groups whose id is in `targetVisualNames`.** Anything not in that list is left untouched.
 
-**Consequence:** if you add a new visual or group and set its `isHidden` inside `explorationState`, **it is silently ignored** unless you ALSO add its id to `options.targetVisualNames`. The visual then falls back to its own config default (`singleVisualGroup.isHidden` / `display.mode`).
+With `applyOnlyToTargetVisuals: true` the bookmark applies its captured state
+**only** to ids in `targetVisualNames`. An id you set in `explorationState`
+but forgot to list is silently ignored — the tab looks empty and nothing
+errors. **Rule: any id you touch in the state MUST be in that bookmark's
+`targetVisualNames`; the group's own id goes first.** Generate the list from
+the files (`references/pbir-bookmarks.md` §3), never by hand.
 
-> Symptom: "I set the group visible in the Навч bookmark but the tab is empty." → the group id is missing from `targetVisualNames`.
+## PBIR enhanced — the six laws
 
-**Rule: any id you touch in `explorationState` MUST also be in that bookmark's `options.targetVisualNames`.**
+1. Group visibility lives **only** in `explorationState.sections.<page>.visualContainerGroups.<id>.isHidden`;
+   a single visual hides with `visualContainers.<id>.singleVisual.display.mode: "hidden"`
+   (enum: `maximize | spotlight | elevation | hidden`).
+2. `options` are four switches: `applyOnlyToTargetVisuals`, `suppressData`
+   (display-only — tab clicks must not reset the reader's slicers),
+   `suppressDisplay` (data-only — "reset filters"), `suppressActiveSection`
+   (don't switch page). Both suppress flags together = a bookmark that does nothing.
+3. `bookmarks.json` items are **exactly** `{"name"}` (leaf) or
+   `{"name","displayName","children"}` (group). A leaf with `displayName`
+   breaks the report (incident І-22). The label lives inside the bookmark file.
+4. A `.bookmark.json` not listed in `bookmarks.json` does not exist for Desktop.
+5. Captured filters are a payload per targeted visual: adding a filter to a
+   visual means patching the captured card in every bookmark that targets it.
+6. The schema is the gate: `python scripts/pbir_schema_validate.py <X.Report>`
+   before Desktop; the plugin hook runs the cheap subset on every edit.
 
-## Non-negotiable rules
+## Legacy (`report.json`) — non-negotiable rules
 
-- **Hidden filters**: after adding/changing a filter on a visual, patch the captured card in EVERY bookmark whose `targetVisualNames` contains that visual — copy the body from the live card, never retype it. A clean live diff proves nothing about surviving a tab click → reference.md §2.
-- **Filters and visibility are ONE payload** per targeted visual: you cannot add a visual to `targetVisualNames` just to control its filter — its captured `display` state starts applying too → reference.md §2.
-- **Editing**: never naïve `json.load`→`dump` (float/CRLF/BOM normalization = thousands of diff lines). Always use `pbir.py` → reference.md §5.
-- **Geometry is stored TWICE**: never assign it by hand — use `pbir.set_position(...)`; any acceptance check MUST read `cfg['layouts'][0]['position']`, never the 2-decimal mirror → reference.md §7.
-- **Property placement**: never invent one — Desktop's save-linter silently strips wrong placements. Copy a working instance from report.json, or have the user toggle it in Desktop and read the diff → reference.md §8.
-- **Power BI Desktop**: close WITHOUT saving before editing, reopen after — it caches bookmark state and will overwrite your JSON on save.
+- Never naïve `json.load`→`dump` (float/CRLF/BOM normalisation = thousands of
+  diff lines) — always `pbir.py` → `reference.md` §5.
+- Geometry is stored twice — use `pbir.set_position(...)`; acceptance reads
+  `cfg['layouts'][0]['position']` → `reference.md` §7.
+- Property placement: copy a working instance, never invent → `reference.md` §8.
+- Close Power BI Desktop **without saving** before editing, reopen after.
 
 ## Symptom → cause
 
 | Symptom | Cause / fix |
 |---|---|
-| New block never shows on its tab (tab empty) | group id missing from `options.targetVisualNames` of that bookmark |
-| Block leaks onto other tabs | other tab bookmarks don't hide it: add `isHidden:true` **and** the id to their `targetVisualNames` |
-| ONE visual (e.g. a title) leaks onto every tab while the rest isolate fine | that visual lost its `parentGroupName` (often when a container was rebuilt) → it's now a top-level orphan, not covered by the group's bookmark cascade. Restore `parentGroupName` to put it back in the group |
-| Block covered by "В розробці" / blank box | a higher-`z` placeholder is shown; hide it in that bookmark or raise block `z` |
-| Whole `report.json` diff is huge after a 1-line edit | didn't use byte-faithful save (float/CRLF/BOM normalization) |
-| Moved/resized a visual, committed, **canvas unchanged** | wrote only the container mirror (`vc['x']…`) and not `cfg['layouts'][0]['position']` — see reference.md §7 |
-| Edit doesn't appear in Desktop | Desktop was open during edit — close WITHOUT saving, reopen |
-| Hidden filter works on page load, gone after clicking a tab | bookmarks that target the visual replay a captured card with no `filter` body (or no card) — patch every such capture, see "A new filter on a visual dies on the first tab click" (reference.md §2) |
+| New block never shows on its tab | group id missing from that bookmark's `targetVisualNames` |
+| Block leaks onto other tabs | other tabs' bookmarks don't hide it: `isHidden:true` **and** the id in their list |
+| One visual leaks while the rest isolate | it lost `parentGroupName` — restore it |
+| Report won't open after adding a bookmark | `bookmarks.json` item is a leaf with `displayName`, or a group missing `children` |
+| Button click does nothing | bookmark not indexed, or scope excludes the touched ids |
+| Tab click resets the reader's slicers | tab bookmarks lack `suppressData: true` |
+| Hidden filter dies on first tab click | captured card not patched in bookmarks that target the visual |
+| Edit doesn't appear in Desktop | Desktop was open — close without saving, reopen |
 
-## Workflow checklist
+## Workflow
 
-1. Back up `report.json` → `report.json.bak` before first edit.
-2. Make the edit with `pbir.py`; keep ids unique (20-hex).
-3. For **every** bookmark you touch: set `explorationState` state **and** add the id to `options.targetVisualNames`.
-3b. If the change is a **filter** on a visual, patch the captured card in every bookmark that already targets that visual (see the filter gotcha) — a clean live diff does not mean the filter survives a click. → reference.md §2
-4. Validate: JSON reloads, diff localized, run the diagnostic snippet (all touched ids `inTarget=True`). Snippet → reference.md §6
-5. **Close Power BI Desktop WITHOUT saving**, then reopen `.pbip` (Desktop caches bookmark state and will overwrite your JSON on save).
-6. Verify tab switching both ways (block shows on its tab, hidden on others).
+1. Detect format; back up the files you will touch.
+2. PBIR: write `<id>.bookmark.json` (state + `options`), register it in
+   `bookmarks.json` in the right shape, wire the button
+   (`pbi-buttons-actions`). Legacy: `pbir.py`, ids unique 20-hex.
+3. For **every** bookmark you touch: state **and** `targetVisualNames`.
+4. Validate: `pbir_schema_validate.py` (PBIR) / diagnostic snippet (Legacy).
+5. Reopen Desktop; verify the switch both ways on every affected tab.
 
-## Reference map ([reference.md](reference.md))
+## Reference map
 
-§1 where bookmarks live + the visibility model (`explorationState`) · §2 captured filters (bookmark shape ≠ live; ghost scrubbing; the card-patch rule and its corollary) · §3 tab-isolation pattern (adding a new tab, steps 1–4) · §4 placeholders («В розробці») and z-order · §5 byte-faithful editing with `pbir.py` · §6 diagnostic snippet + filter variant · §7 geometry stored twice · §8 visual-property placement (linter strips) · §9 related (project CLAUDE.md, measure-driven SVG visuals).
+- `references/pbir-bookmarks.md` — §1 files · §2 bookmark file · §3 options ↔ UI
+  · §4 `bookmarks.json` anyOf and І-22 · §5 groups · §6 the four panel
+  bookmarks · §7 verification · §8 sources.
+- `reference.md` (Legacy) — §1 visibility model · §2 captured filters · §3 tab
+  isolation · §4 placeholders/z-order · §5 `pbir.py` · §6 diagnostics ·
+  §7 geometry twice · §8 property placement.

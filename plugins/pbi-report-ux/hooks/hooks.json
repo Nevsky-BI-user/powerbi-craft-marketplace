@@ -1,5 +1,5 @@
 {
-  "description": "After any Edit/Write inside *.Report/, re-parses report.json (outer JSON, nested config strings) and checks sibling-bookmark symmetry (targetVisualNames count, suppressData). Silent when clean; exits 2 with a message when broken. Skips silently if python is unavailable.",
+  "description": "After any Edit or Write inside *.Report/, checks the touched report file: Legacy report.json (outer JSON, nested config strings, sibling-bookmark symmetry) and PBIR enhanced files (*.bookmark.json scope vs targetVisualNames, bookmarks.json leaf/group shapes, visual.json action links resolving to real pages/bookmarks, serialization law). Silent when clean; exits 2 with a message when broken. Skips silently if python is unavailable.",
   "hooks": {
     "PostToolUse": [
       {
@@ -10,6 +10,12 @@
             "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/validate-report.sh\"",
             "timeout": 15,
             "if": "Edit(**/*.Report/**)"
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/validate-report.sh\"",
+            "timeout": 15,
+            "if": "Write(**/*.Report/**)"
           }
         ]
       }

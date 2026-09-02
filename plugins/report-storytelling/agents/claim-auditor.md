@@ -14,7 +14,7 @@ otherwise the embedded tests below are self-sufficient. Apply them mechanically:
 |---|---|
 | Title | contains a finite verb AND a number or named entity — a dimension name is a FAIL |
 | Every number | at least one comparison base named in words («−14% до плану», not «−14%») |
-| Ratio differences | expressed in п.п., never % of a % |
+| Ratio differences | expressed in в. п., never % of a % |
 | Ranking | sort key = the plotted quantity, not display_order and not alphabetical |
 | Default state | opens on what the claim is about, not the first catalogue row |
 | Disclosure | caveats sit AT the affected number, not in the smallest text |

@@ -66,4 +66,4 @@ JSON snippets, left-rail variant, legacy profile → **reference.md**.
 | Divider shapes for grouping | Ink instead of space | Widen gap 8px; group visuals |
 | z/tabOrder left default | Wrong paint / reader order | z bands + tabOrder by reading order |
 | Only top-level x/y updated (Legacy) | Desktop reads `layouts[0].position` | Sync via `powerbi-visuals`, not Tabular Editor |
-| Divider/rectangle keyed `basicShape` | Deprecated 2021 → silent no-op (F2: `visualStyles` accepts arbitrary keys — theme-visuals §7 п.2) | Use `shape`; verify against `theme-visuals.md` §5 |
+| Divider/rectangle keyed `basicShape` | Deprecated 2021 → silent no-op (F2: `visualStyles` accepts arbitrary keys — pbi-theme-json/references/theme-visuals.md §7 п.2) | Use `shape`; verify against `theme-visuals.md` §5 |
