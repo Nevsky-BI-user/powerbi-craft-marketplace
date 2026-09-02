@@ -143,8 +143,10 @@ back into `report.json` byte-faithfully (mechanics/pitfalls of editing the `conf
 
 Same `themeCollection` concept lives in `definition/report.json`; the theme file sits under
 `definition/StaticResources/RegisteredResources/`. The exact `resourcePackages`/registration
-array shape is enhanced-schema-specific and not verified in `theme-visuals.md` — confirm the
-precise field names with the `pbir-format` or `pbip` skill before hand-editing.
+array shape is enhanced-schema-specific — confirm the precise field names against the
+PBIR schema (`https://github.com/microsoft/json-schemas/tree/main/fabric/item/report/definition`)
+or the external `pbir-format` / `pbip` skills (Microsoft skills-for-fabric, data-goblin) before
+hand-editing.
 
 ## 5. Rebranding: token replace-map
 

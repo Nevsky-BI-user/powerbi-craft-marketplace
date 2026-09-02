@@ -1,6 +1,6 @@
 ---
 name: ado-wi-close
-description: "Use when closing or completing an Azure DevOps work item — task, bug, user story. Triggers: 'закрий задачу', 'закрий баг', 'задача готова', 'я все доробив', 'заверши #N', 'close the task', 'mark as done'."
+description: "Use when closing or completing an Azure DevOps work item — task, bug, user story. Triggers: 'закрий задачу', 'закрий баг', 'задача готова', 'я все доробив', 'заверши #N', 'close the task', 'mark as done'. Do NOT trigger for: creating work items (ado-wi-new), completing a pull request (ado-pr-flow), periodic backlog audits (ado-hygiene-inspection)."
 ---
 
 # Закриття елемента: «закрив — залогуй»

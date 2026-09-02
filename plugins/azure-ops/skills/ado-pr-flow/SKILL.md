@@ -1,6 +1,6 @@
 ---
 name: ado-pr-flow
-description: "Use when creating or completing a pull request in Azure DevOps repos — merging a feature branch, PR review flow. Triggers: 'створи PR', 'замерж', 'заверши пул-реквест', 'злий гілку', 'create pull request', 'merge the branch', 'complete PR'."
+description: "Use when creating or completing a pull request in Azure DevOps repos — merging a feature branch, PR review flow. Triggers: 'створи PR', 'замерж', 'заверши пул-реквест', 'злий гілку', 'create pull request', 'merge the branch', 'complete PR'. Do NOT trigger for: GitHub pull requests outside Azure DevOps (use the repo's own PR skill or git tooling), creating or closing work items (ado-wi-new, ado-wi-close), backlog hygiene (ado-hygiene-inspection)."
 ---
 
 # PR: створення і злиття за класом гілки

@@ -1,6 +1,6 @@
 ---
 name: rayfin-bootstrap
-description: Use when scaffolding, linking, recovering, or deploying a Rayfin project (Microsoft Fabric Apps preview, AppBackend + SQLDatabase items) — new app, lost-source recovery against a deployed item, local dev setup, or when hitting OperationNotSupportedForItem, AADSTS50057, or accidental-deploy risks. Triggers - "rayfin", "Fabric App", "AppBackend", "розгорни райфін", "перенеси середовище розробки", "fabricapps.net".
+description: Use when scaffolding, linking, recovering, or deploying a Rayfin project (Microsoft Fabric Apps preview, AppBackend + SQLDatabase items) — new app, lost-source recovery against a deployed item, local dev setup, or when hitting OperationNotSupportedForItem, AADSTS50057, or accidental-deploy risks. Triggers - "rayfin", "Fabric App", "AppBackend", "розгорни райфін", "перенеси середовище розробки", "fabricapps.net". Do NOT trigger for designing the data-entry app itself — screens, dictionaries, computation model (kpi-data-entry-app), React UX mechanics (react-ux-mechanics), Power BI items via Fabric CLI (fabric-cli-powerbi), PBIP repos (pbip-bootstrap).
 ---
 
 # Rayfin bootstrap (Fabric Apps)

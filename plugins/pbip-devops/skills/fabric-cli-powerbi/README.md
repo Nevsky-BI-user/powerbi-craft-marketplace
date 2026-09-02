@@ -13,7 +13,7 @@ Load this skill when:
 
 ## Prerequisites
 
-- Load `fabric-cli-core` skill first
+- Load the external `fabric-cli-core` skill first if installed (Microsoft skills-for-fabric; not part of this marketplace)
 - User authenticated via `fab auth login`
 - Access to workspace containing Power BI items
 

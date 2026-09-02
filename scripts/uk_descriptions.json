@@ -24,6 +24,7 @@
  "claude-md-bootstrap": "Створює CLAUDE.md для нового чи наявного репозиторію з робочими правилами, визначеними за файлами проєкту",
  "connect-pbid": "Підключається до локального інстансу Analysis Services Power BI Desktop через TOM і ADOMD.NET у PowerShell",
  "create-pbi-report": "Крок за кроком будує повний звіт Power BI з нуля через CLI pbir — модель, сторінки, тема, візуали",
+ "dashboard-copy": "Пише підписи дашборда діловою українською і перекладає BI/HR/фінансові терміни для нетехнічного читача — словник 86 термінів, формати CLDR, довідка",
  "data-storytelling": "Перевіряє, що саме стверджує сторінка звіту — заголовок, база порівняння, висновок",
  "databricks-migration": "Переносить ноутбуки й задачі Databricks у Microsoft Fabric за таблицею заміни dbutils на notebookutils",
  "dataflows-authoring-cli": "Створює й оновлює Fabric Dataflows Gen2 через REST API — будує mashup.pq і queryMetadata",

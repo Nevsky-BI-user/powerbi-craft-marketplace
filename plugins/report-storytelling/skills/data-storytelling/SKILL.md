@@ -53,7 +53,7 @@ palettes/contrast (`pbi-color-accessibility`), layout math (`pbi-page-layout`), 
 | Disclosure | distortions flagged AT the number | caveat is not the smallest text on the page |
 | Page order | one change per step (period OR measure OR entity OR grain) | diff page N→N+1 = exactly one changed thing |
 | Close | a named action and an owner, or «дій не потрібно» | the last block on the page is not another chart |
-| Number framing | base named in words · ratio variance in п.п. · explicit sign, «н/д» over a negative base · counts carry their denominator · truncated axis stated in words, never a break marker | full IBCS notation ref. §3 |
+| Number framing | base named in words · ratio variance in в. п. · explicit sign, «н/д» over a negative base · counts carry their denominator · truncated axis stated in words, never a break marker | full IBCS notation ref. §3 |
 
 Frameworks, IBCS notation, annotation catalogue, uncertainty, alt text, Power BI mechanics,
 worked critique, and the myth registry → **reference.md**.
@@ -76,12 +76,13 @@ the shape, not the gallery. No comparison word → the visual is decoration.
 | Mistake | Why bad | Correct |
 |---|---|---|
 | Title names the dimension | Reader must re-derive the "so what" | Finding in the title, dimension in the subtitle |
-| Bare KPI number | A value is not a finding | «94% · −3 п.п. до червня» |
+| Bare KPI number | A value is not a finding | «94% · −3 в. п. до червня» |
 | Rows in catalogue order | A ranking that does not rank | Sort by the plotted quantity |
 | Hint explains mechanics only | Teaches reading, not what happened | Mechanics + one finding sentence |
 | Caveat in the smallest text | The distortion travels, the disclosure doesn't | Flag at the affected number |
 | Highlight with no annotation | Colour without a claim reads as decoration | The focus triad ships whole (ref. §4) |
 | Invented composite as the hero | «точність до плану» is not a business quantity | A real quantity, or define it inline |
+| «Темп зростання» used for «темп приросту» | 110% and +10% are the same fact; the claim doubles or halves depending on the word | зростання = ratio to base (110%), приріст = ratio − 100% (+10%); base lexicon in ref. §9 |
 | Causal verb over correlational evidence | "driven by" asserts a design you don't have | Hedge, or show the decomposition |
 | "Tell a story" as acceptance criterion | Unfalsifiable — five incompatible meanings in the literature | Claim + evidence + ordering + how much the reader may re-cut |
 | Tooltip/annotation repeats the visible label or value | Duplication asserts nothing — reader hovers and learns nothing («ніякої цінності») | Tooltip only adds what the page does NOT show (comparison, full truncated name, why-good/bad); else no tooltip |

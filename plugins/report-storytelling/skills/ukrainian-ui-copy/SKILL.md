@@ -1,6 +1,6 @@
 ---
 name: ukrainian-ui-copy
-description: Use when code ASSEMBLES Ukrainian text - template strings with months, counts or entity names, labels after prepositions, plural forms after a number, % vs п.п. Catches «з червень», «1 підприємств», «−3%» for a points difference. Do NOT trigger for number/date FORMATS in Power BI visuals (pbi-typography), what a headline should assert (data-storytelling), de-AI-ing prose (humanizer), or translating documents. Triggers - 'відмінк', 'з червень', 'неправильно склеївся рядок', 'множина після числа', 'п.п. чи відсотки', 'український текст в інтерфейсі', 'ukrainian ui text', 'plural ukrainian'.
+description: Use when code ASSEMBLES Ukrainian text - template strings with months, counts or entity names, labels after prepositions, plural forms after a number, % vs в. п. Catches «з червень», «1 підприємств», «−3%» for a points difference. Do NOT trigger for number/date FORMATS in Power BI visuals (pbi-typography), what a headline should assert (data-storytelling), de-AI-ing prose (humanizer), or translating documents. Triggers - 'відмінк', 'з червень', 'неправильно склеївся рядок', 'множина після числа', 'в. п. чи відсотки', 'український текст в інтерфейсі', 'ukrainian ui text', 'plural ukrainian'.
 ---
 
 # Ukrainian UI copy — граматика рядків, які збирає код
@@ -31,8 +31,11 @@ description: Use when code ASSEMBLES Ukrainian text - template strings with mont
 | «у …», «в …» | **місцевий**: у липні | |
 | «з …» (разом із) | **орудний**: з червнем | |
 | Множина після числа | три форми, за останніми цифрами | 1 / 2 / 5 / 11 / 21 дають різні гілки |
-| Різниця двох відсотків | **п.п.**, не % | «−3 п.п. до червня», не «−3%» |
+| Різниця двох відсотків | **в. п.**, не % | «−3 в. п. до червня», не «−3%» |
 | Назва в лапках | не відмінювати всередині лапок | «по ГК "Промінь Енергія"» |
+| Число ↔ одиниця / `млн` / `грн` | **нерозривний пробіл** U+00A0, інакше пара розривається на межі рядка | у шаблоні `\u00A0`, не звичайний пробіл |
+| Формат числа | лише `Intl.NumberFormat('uk-UA')` / `toLocaleString('uk-UA')`; ручні заміни крапки на кому заборонені | тести очікують U+00A0 між розрядами |
+| Скорочення місяця на осі | з CLDR і з крапкою: `січ.`, `лют.`, `бер.`, `квіт.`, `трав.`, `черв.`, `лип.`, `серп.`, `вер.`, `жовт.`, `лист.`, `груд.` | немає вигаданих «Січ», «Лип» |
 | Перевірка лише `tsc` + тестами | граматика не типізується | відкрити превʼю і прочитати очима |
 
 ## Відмінки місяців (повна таблиця)
@@ -45,6 +48,9 @@ description: Use when code ASSEMBLES Ukrainian text - template strings with mont
 ```
 
 Тримати їх масивами поруч (`MONTH_FULL`, `MONTH_GEN`, …), а не схиляти на льоту.
+Це не довільна таблиця, а розрізнення CLDR: `stand-alone` (називний — вісь,
+слайсер, заголовок) проти `format` (родовий — усередині дати, після
+прийменника). Повні CLDR-формати чисел і дат — `dashboard-copy/references/uk-formats.md`.
 
 ## Множина після числа
 
@@ -73,7 +79,7 @@ export function plural(n: number, one: string, few: string, many: string): strin
 стало: `Найбільше розривів: ${MONTH_FULL[i]} — …`               ✓
 ```
 
-Там, де прийменник несе зміст («−3 п.п. **до червня**»), беріть `MONTH_GEN`.
+Там, де прийменник несе зміст («−3 в. п. **до червня**»), беріть `MONTH_GEN`.
 
 ## Common Mistakes
 
@@ -81,7 +87,7 @@ export function plural(n: number, one: string, few: string, many: string): strin
 |---|---|---|
 | `${MONTH_FULL[i]}` після прийменника | «до червень» — читач бачить недбалість у першому ж рядку | `MONTH_GEN[i]` або перефразувати |
 | `${n} підприємств` без гілок | «1 підприємств» | `plural(n, …)` |
-| «−3%» для різниці відсотків | читач множить різницю ще раз на базу | «−3 п.п.» |
+| «−3%» для різниці відсотків | читач множить різницю ще раз на базу | «−3 в. п.» |
 | Схиляння назви в лапках | «ГК "Променю Енергія"» — юридична назва змінена | лапки лишаються недоторканими |
 | Термін-синонім «на льоту» | «підрозділ» замість «підприємство» = інший обʼєкт | глосарій проєкту, один термін на поняття |
 | «Зелений tsc = готово» | відмінок і множина не типізуються | прочитати рядок у превʼю |
@@ -89,5 +95,5 @@ export function plural(n: number, one: string, few: string, many: string): strin
 ## Verify before done
 
 Перелічити ВСІ шаблонні рядки в зміні → кожен прийменник має свій відмінок →
-множина перевірена на 1/2/5/11/21 → різниці відсотків у п.п. → сторінка
+множина перевірена на 1/2/5/11/21 → різниці відсотків у в. п. → сторінка
 відкрита в превʼю і прочитана очима, а не лише зібрана компілятором.

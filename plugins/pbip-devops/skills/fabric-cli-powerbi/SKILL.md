@@ -20,11 +20,14 @@ Activate automatically when tasks involve:
 - Gateway and data source configuration
 - TMDL (Tabular Model Definition Language) operations
 
-NOT for foundational `fab` CLI usage (auth, navigation, generic commands) — that is `fabric-cli-core`.
+NOT for foundational `fab` CLI usage (auth, navigation, generic commands) — that is the
+external `fabric-cli-core` skill (Microsoft skills-for-fabric); it is not part of this
+marketplace.
 
 ## Prerequisites
 
-- Load `fabric-cli-core` skill first for foundational CLI guidance
+- If the external `fabric-cli-core` skill is installed, load it first; otherwise the
+  essentials are `fab auth login`, `fab auth status`, `fab ls`, `fab --help`
 - User must be authenticated: `fab auth status`
 - Appropriate workspace permissions for target items
 

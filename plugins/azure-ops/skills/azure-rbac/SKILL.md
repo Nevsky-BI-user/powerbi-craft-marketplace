@@ -1,6 +1,6 @@
 ---
 name: azure-rbac
-description: "Helps users find the right Azure RBAC role for an identity with least privilege access, then generate CLI commands and Bicep code to assign it. Also provides guidance on permissions required to grant roles. WHEN: bicep for role assignment, what role should I assign, least privilege role, RBAC role for, role to read blobs, role for managed identity, custom role definition, assign role to identity, what role do I need to grant access, permissions to assign roles."
+description: "Helps users find the right Azure RBAC role for an identity with least privilege access, then generate CLI commands and Bicep code to assign it. Also provides guidance on permissions required to grant roles. WHEN: bicep for role assignment, what role should I assign, least privilege role, RBAC role for, role to read blobs, role for managed identity, custom role definition, assign role to identity, what role do I need to grant access, permissions to assign roles. DO NOT USE FOR: cost questions (azure-cost), production troubleshooting (azure-diagnostics), Power BI workspace or dataset permissions via Fabric CLI (fabric-cli-powerbi)."
 license: MIT
 metadata:
   author: Microsoft

@@ -1,6 +1,6 @@
 ---
 name: pbi-design-system
-description: Use when choosing any design value for a Power BI report element in a PBIP project - colors, typography, spacing, grid, radius, interactive states, WCAG contrast - or when auditing a page/report for design-system compliance. Do NOT trigger for visual JSON mechanics (powerbi-visuals) or theme.json generation (pbi-theme-json). Triggers - 'design system', 'design tokens', 'дизайн-система', 'токени дизайну', 'кольори звіту', 'сітка', 'відступи', 'типографіка', 'єдиний стиль', 'чек-лист дизайну'.
+description: Use when choosing any design value for a Power BI report element in a PBIP project - colors, typography, spacing, grid, radius, interactive states, WCAG contrast - or when auditing a page/report for design-system compliance. Do NOT trigger for visual JSON mechanics (powerbi-visuals), theme.json generation (pbi-theme-json), or fonts/sizes/number formats of a specific element incl. 'типографіка' (pbi-typography). Triggers - 'design system', 'design tokens', 'дизайн-система', 'токени дизайну', 'кольори звіту', 'сітка', 'відступи', 'єдиний стиль', 'чек-лист дизайну'.
 ---
 
 # Power BI Design System

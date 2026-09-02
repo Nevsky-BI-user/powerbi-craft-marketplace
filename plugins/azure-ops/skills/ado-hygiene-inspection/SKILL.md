@@ -1,6 +1,6 @@
 ---
 name: ado-hygiene-inspection
-description: "Use when running a periodic hygiene inspection of an Azure DevOps project — stale work items, unlinked PRs, naming violations, unlogged time, stale docs. Triggers: 'інспекція гігієни', 'тижнева інспекція', 'перевір хвости', 'hygiene check', 'audit the backlog', 'weekly inspection'."
+description: "Use when running a periodic hygiene inspection of an Azure DevOps project — stale work items, unlinked PRs, naming violations, unlogged time, stale docs. Triggers: 'інспекція гігієни', 'тижнева інспекція', 'перевір хвости', 'hygiene check', 'audit the backlog', 'weekly inspection'. Do NOT trigger for: creating a single work item (ado-wi-new), closing one (ado-wi-close), creating or completing a PR (ado-pr-flow)."
 ---
 
 # Періодична інспекція гігієни

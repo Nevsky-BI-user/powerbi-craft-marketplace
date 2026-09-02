@@ -85,7 +85,7 @@ axis. Scenario abbreviations are substitutable if documented; the **fills are no
 - Positive variances carry an explicit `+`. One negative format (`-123` **or** `(123)`) per report.
 - Absolute-variance bars share **width and scale** with the base bars; relative variances are
   thin **pins**, not full-width bars.
-- Variance of a percentage measure is in **percentage points**: 50% − 40% = **+10 п.п.**, never «+10%».
+- Variance of a percentage measure is in **percentage points**: 50% − 40% = **+10 в. п.**, never «+10%».
 - Relative variance is «н/д» when the reference is negative (AC 30 vs PL −30 → −200% is meaningless).
 - Data labels sit **outside** the element, on the side of the increase direction.
 - Colour by good/bad business impact, not by driver identity; no colour available → red becomes
@@ -263,6 +263,10 @@ This section owns only **what the words say**; contrast, palettes and colour-not
   screen readers cannot read Power BI report tooltips, and hover is unreachable by keyboard.
 - Provide a human-readable data table (Chartability marks its absence critical) and keep text at
   reading grade ≤9.
+- **Headline in a textbox, not baked into the visual's image.** Text living inside a chart
+  image (rendered title, source line) fails WCAG 1.4.5 and cannot be read or resized — the UK
+  Government Analysis Function makes this a hard rule for published charts
+  (https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/).
 
 ---
 
@@ -271,16 +275,38 @@ This section owns only **what the words say**; contrast, palettes and colour-not
 - **Glossary discipline**: внесення · показник · **підприємство** (не «підрозділ») · вікно
   внесення · тотал/складові. Term drift between pages reads as *different metrics* to a business
   audience.
-- **Граматика склеєних рядків — `ukrainian-ui-copy`.** Claim-рядок «−1,1 п.п. до червня»
+- **Граматика склеєних рядків — `ukrainian-ui-copy`.** Claim-рядок «−1,1 в. п. до червня»
   вимагає родового відмінка, «5 підприємств» — правильної форми множини; ні те, ні інше не
   ловиться компілятором. Цей скіл вирішує, ЩО стверджує рядок; той — чи він граматичний.
-- **п.п. vs %** — every time (see §3).
+- **в. п. vs %** — every time (see §3).
 - **One unit vocabulary per page.** «12,4 млн» in the title and «12.4M» on the axis read as two
   different numbers to a business audience. The format strings, decimal/date conventions and the
   **Default format string locale** pin are `pbi-typography`'s (`reference.md` §3) — this skill only
   requires that whatever is chosen there is used consistently across the page and in the claim.
 - A translated metric **label** without a translated **definition** is the commonest source of
   silent metric disagreement in bilingual reporting.
+
+### §9.1 Ukrainian lexicon of comparison bases (fixed words — do not paraphrase)
+
+| Base / framing | Write | Not |
+|---|---|---|
+| plan vs actual | **план-факт**; «до плану», «відхилення від плану» | «план vs факт» |
+| variance of two ratios | «−3 в. п. до плану» | «−3%» |
+| year-to-date | **з початку року** | «YTD» (only where width forces it) |
+| month-/quarter-to-date | з початку місяця / кварталу | |
+| cumulative / running total | **наростаючим підсумком** | «кумулятивно» |
+| year-over-year | до торішнього (р/р); name the base in words once per page | «YoY» alone |
+| month-over-month | до попереднього місяця | «MoM» |
+| growth rate vs increment | **темп зростання** = ratio to base (110%); **темп приросту** = ratio − 100% (+10%) | mixing the two — the claim silently doubles or halves |
+| share | **частка** | «доля» |
+| median of the group | медіана Групи (explain once: half below, half above) | |
+| forecast | прогноз; «прогноз на кінець року» | «форкаст» |
+| run-rate | у перерахунку на рік | «ран-рейт» |
+
+Sources: НБУ Інфляційний звіт (в. п.), ABM Cloud «план-факт», «Показники рядів
+динаміки» (buklib.net), НП(С)БО 1 line names; full EN→UA glossary —
+`dashboard-copy/references/glossary-en-ua.md`; number/date formats —
+`dashboard-copy/references/uk-formats.md`.
 
 ---
 
@@ -327,7 +353,7 @@ This section owns only **what the words say**; contrast, palettes and colour-not
 | # | Now | Claim-form rewrite |
 |---|---|---|
 | 1 | `AnalyticsOverviewPage.tsx:107` — h1 «Аналітика Групи» | «Липень: 5 з 8 підприємств у межах плану; ГРМУ −14% — найбільший розрив» (topic moves to the subtitle) |
-| 2 | `:161` StatTile «Точність по Групі» = `94%` | «94% · −3 п.п. до червня» — a value is not a finding |
+| 2 | `:161` StatTile «Точність по Групі» = `94%` | «94% · −3 в. п. до червня» — a value is not a finding |
 | 3 | `:166` StatTile «Показників із відхиленням >10%» = `37` | «37 із 214 (17%) · місяць тому 22» — count + denominator + direction |
 | 4 | `:175` Section «Точність до плану по підприємствах», bars in catalogue order | sort by accuracy desc; title names the takeaway; worst rows separated |
 | 5 | `:189` «Карта року» hint explains how to read a cell | mechanics **plus** the finding: «червона смуга лютий–березень — усі три ГРМУ одночасно» |

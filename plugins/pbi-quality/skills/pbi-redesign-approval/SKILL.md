@@ -45,13 +45,16 @@ only, zero CDN/external resources; canvas at the exact page size (e.g.
 Power BI can implement - native visuals with their real formatting options
 (no CSS effects PBI cannot do); realistic fake data with the page's actual
 field names; label every block with its visual type (card, matrix,
-clusteredBarChart...). Content per `pbi-report-design`, `pbi-page-layout`
-and `data-storytelling` - the real headline text goes into the mockup,
+clusteredBarChart...). Content per `pbi-design-system`, `pbi-visualization-strategy`,
+`pbi-page-layout` and `data-storytelling` (plus the external `pbi-report-design`
+canon if installed) - the real headline text goes into the mockup,
 never lorem «Заголовок». Iterate until the user approves. No report code
 before mockup approval.
 
-**4. Build page-by-page.** Implement ONE approved page (`pbir-cli` /
-`pbir-format`), then `pbir desktop reload` + screenshot to
+**4. Build page-by-page.** Implement ONE approved page (PBIR file mechanics:
+Microsoft `powerbi-report-authoring` from skills-for-fabric, or the external
+`pbir-cli` / `pbir-format` skills if installed; navigation and bookmarks per
+`pbi-navigation-tabs` / `powerbi-bookmarks`), then `pbir desktop reload` + screenshot to
 `shots/<page>/vN.png`, commit `redesign(<page>): vN`, then STOP and wait
 for the verdict. Never begin the next page without a ЗАТВЕРДЖЕНО row for
 the current one.

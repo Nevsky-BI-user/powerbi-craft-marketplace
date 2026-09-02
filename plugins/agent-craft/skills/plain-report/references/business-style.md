@@ -60,6 +60,17 @@
    перших рядках.
 5. Інструкції — за Google і STE: наказовий спосіб, один крок — одна дія.
 
+## Українські джерела простої мови
+
+- Дія.Освіта, курс «Простою мовою про складне» (Мінцифри, МКСК, ПРООН):
+  зрозуміла публічна комунікація — одна думка на речення, знайомі слова,
+  активні дієслова. https://osvita.diia.gov.ua/courses/plain-language-for-complex-topics
+- НАДС, «Письмова комунікація публічних службовців: проста мова та легке
+  читання». https://pdp.nacs.gov.ua/courses/pysmova-komunikatsiia-publichnykh-sluzhbovtsiv-prosta-mova-ta-lehke-chytannia
+- ISO 24495-1:2023 «Plain language» — міжнародна норма з чотирма принципами.
+  https://www.iso.org/standard/78907.html
+- Український правопис 2019 (чинна норма): «проєкт», апостроф, фемінітиви.
+
 ## Джерела
 
 - The Economist Style Guide (Profile Books; настанови редакції The Economist).
