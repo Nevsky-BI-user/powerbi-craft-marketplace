@@ -2,6 +2,8 @@
 """Validate PBIR (enhanced) bookmarks of a .Report folder: schema + references.
 
 usage: python pbir_schema_validate.py <path/to/X.Report> [--no-net]
+       (a trailing /definition is tolerated; flags may come in any order;
+        a folder without definition/ fails with exit 1 instead of a false OK)
 
 1. Every definition/bookmarks/*.bookmark.json and bookmarks.json is validated
    against the $schema URL it declares (needs `pip install jsonschema`; with
@@ -99,8 +101,17 @@ def main(argv):
     if not argv or argv[0] in ("-h", "--help"):
         print(__doc__)
         return 0
-    report_dir = argv[0]
+    paths = [a for a in argv if not a.startswith("--")]
+    if not paths:
+        print(__doc__)
+        return 1
+    report_dir = os.path.normpath(paths[0])
+    if os.path.basename(report_dir) == "definition":
+        report_dir = os.path.dirname(report_dir)
     use_net = "--no-net" not in argv
+    if not os.path.isdir(os.path.join(report_dir, "definition")):
+        print(f"FAIL: {report_dir} не схожий на PBIR enhanced .Report (немає теки definition/)")
+        return 1
     bdir = os.path.join(report_dir, "definition", "bookmarks")
     errors, warns, notes = [], [], []
     if not os.path.isdir(bdir):

@@ -44,7 +44,8 @@ python scripts/build_nav.py --report <X.Report> --config cfg.json [--variant V1]
 Записано файлів: 42; хук check_report.py: усі чисті
 ```
 
-Acceptance: every visible page has exactly one `Selected`; no overlaps (or the overlapping visuals
+Acceptance: every visible page has exactly one `Selected` per menu row (V7: one in the group
+row and one in the page row); no overlaps (or the overlapping visuals
 are moved down by the strip height); `pbir_schema_validate.py` clean; Desktop reload shows the
 menu on every page and the click lands on the right page.
 

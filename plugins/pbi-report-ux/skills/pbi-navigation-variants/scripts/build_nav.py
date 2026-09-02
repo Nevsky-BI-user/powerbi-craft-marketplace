@@ -90,7 +90,7 @@ def geometry(variant, w, h, n, overrides):
     if variant in ("V1", "V7"):
         gap = g.get("gap", 8)
         item_w = g.get("item_w") or min(200, max(96, (w - 48 - gap * (n - 1)) // max(n, 1)))
-        return {"group": (g.get("x", 24), g.get("y", 8), item_w * n + gap * (n - 1), g.get("h", 32) + (28 if variant == "V7" else 0)),
+        return {"group": (g.get("x", 24), g.get("y", 8), item_w * n + gap * (n - 1), g.get("h", 32) + (36 if variant == "V7" else 0)),
                 "item": (item_w, g.get("h", 32)), "gap": gap, "dir": "h"}
     if variant == "V2":
         return {"group": (0, 0, g.get("w", 240), h), "item": (g.get("item_w", 208), g.get("h", 32)),
@@ -164,7 +164,7 @@ def main():
     ap.add_argument("--config", required=True)
     ap.add_argument("--variant")
     ap.add_argument("--apply", action="store_true")
-    ap.add_argument("--out", default="nav_coverage.md")
+    ap.add_argument("--out", help="файл звіту покриття (типово nav_coverage.md при --apply; dry-run без --out лише друкує)")
     a = ap.parse_args()
 
     cfg = load(a.config)
@@ -291,7 +291,8 @@ def main():
                         bad += 1; md.append(f"- hook: {name}: {r.stderr.strip()[:200]}")
         md.append(f"\nЗаписано файлів: {written}; хук check_report.py: {'усі чисті' if bad == 0 else f'{bad} з помилками'}")
     text = "\n".join(md) + "\n"
-    io.open(a.out, "w", encoding="utf-8", newline="\n").write(text)
+    if a.apply or a.out:
+        io.open(a.out or "nav_coverage.md", "w", encoding="utf-8", newline="\n").write(text)
     print(text)
     return 0
 

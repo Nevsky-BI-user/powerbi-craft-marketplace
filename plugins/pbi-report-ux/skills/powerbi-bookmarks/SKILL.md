@@ -8,7 +8,7 @@ description: >
   a click, bookmark groups for navigators, the options/targetVisualNames scope
   gotcha, bookmarks.json anyOf, schema validation. Trigger on: "закладки",
   "букмарки", "букмарка", "стан сторінки", "перемикання виглядів",
-  "сховати групу", "показати/сховати візуали", "вкладки на одній сторінці",
+  "сховати групу", "показати/сховати візуали", "перемикання станів на одній сторінці",
   "bookmark", "bookmarks.json", "tab isolation", "block leaks onto other
   tabs", "bookmark group". Do NOT trigger for: a collapsible slicer panel end
   to end (pbi-filter-panel-bookmark); button and action-link JSON
@@ -41,7 +41,7 @@ model; depth per format: PBIR → `references/pbir-bookmarks.md`, Legacy →
 
 | Evidence | Format | Files you edit |
 |---|---|---|
-| `definition/bookmarks/` exists, `definition.pbir` version ≥ 4.0 | **PBIR enhanced** | `<id>.bookmark.json`, `bookmarks.json`, `visual.json` |
+| `definition/pages/` exists (`definition/bookmarks/` appears only with the first bookmark) | **PBIR enhanced** | `<id>.bookmark.json`, `bookmarks.json`, `visual.json` |
 | single `report.json` with `sections[]` and stringified `config` | PBIR-Legacy | `report.json` via `pbir.py` |
 
 Never mix: the formats are mutually exclusive per report.

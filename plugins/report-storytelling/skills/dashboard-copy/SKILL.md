@@ -81,7 +81,7 @@ description: >
 
 ## Довідники
 
-- `references/glossary-en-ua.md` — 86 термінів EN→UA у 4 групах (BI-інтерфейс,
+- `references/glossary-en-ua.md` — 115 термінів EN→UA у 4 групах (BI-інтерфейс,
   статистика, фінанси, HR) із позначкою, звідки переклад, і помилками самої
   Microsoft UA («змінне середнє», «регресивний аналіз»).
 - `references/uk-formats.md` — числа, дати, назви місяців за CLDR uk.

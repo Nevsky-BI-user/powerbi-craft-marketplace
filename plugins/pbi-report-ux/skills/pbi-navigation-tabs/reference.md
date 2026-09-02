@@ -116,10 +116,11 @@ Format cards beyond ordinary buttons: **Grid layout** (horizontal / vertical / g
 bookmark*) for the bookmark navigator. Theme keys are the same strings: `visualStyles.pageNavigator`,
 `visualStyles.bookmarkNavigator` (validate against the theme schema).
 
-Limitations (docs): only **one active bookmark per report** — two navigators over groups that control
-overlapping settings show a misleading active tile; the bookmark navigator's selected state **is not
-reflected in exports** (PDF/PPTX); custom PNG icons cannot be placed on navigator tiles (use an
-`actionButton` row → `pbi-buttons-actions` when icons are required). Selector ids on navigators are
+Limitations (docs, button-navigators page): only **one active bookmark per report** — two navigators
+over groups that control overlapping settings show a misleading active tile; the bookmark navigator's
+selected state **is not reflected in exports** (PDF/PPTX). Observed, not in docs: custom PNG icons
+cannot be placed on navigator tiles (use an `actionButton` row → `pbi-buttons-actions` when icons are
+required). Selector ids on navigators are
 exactly `default` / `hover` / `selected` — `interaction:*` or `selection:*` silently kills all tiles.
 
 Repos: https://github.com/dalvadev/hakuwinay · https://github.com/Rede-DSBR/DocPBI2 ·

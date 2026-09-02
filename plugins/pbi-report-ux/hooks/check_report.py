@@ -16,8 +16,11 @@ PBIR enhanced (definition/…):
      навігатори: selector id лише default/hover/selected/disabled.
   6. page.json / pages.json / definition/report.json — парсяться.
 
-Мовчить, коли все чисто. exit 2 + повідомлення в stderr — Claude отримує
-фідбек і лагодить одразу. Попередження друкуються, але не блокують.
+Мовчить, коли все чисто. Будь-яка знахідка — exit 2 + текст у stderr: для
+PostToolUse exit 2 не блокує, але лише так Claude бачить повідомлення (stderr
+при exit 0 іде тільки в debug-лог). « - » — помилка, лагодь; « ! » —
+попередження, перевір, чи так задумано. Крива структура (список замість
+обʼєкта тощо) — теж exit 2 з поясненням, а не трейсбек.
 """
 import glob
 import io
@@ -130,6 +133,9 @@ def check_bookmark(doc, root):
     rel = os.path.basename(path)
     if "$schema" not in doc:
         problems.append(f"{rel}: немає $schema — Desktop не відкриє файл")
+    for key in ("name", "displayName", "explorationState"):
+        if key not in doc:
+            problems.append(f"{rel}: немає обовʼязкового ключа «{key}» (schema bookmark/2.1.0)")
     opts = doc.get("options") or {}
     if opts.get("suppressData") and opts.get("suppressDisplay"):
         warns.append(f"{rel}: suppressData і suppressDisplay разом — букмарка нічого не робить")
@@ -204,12 +210,17 @@ def check_visual(doc, root):
         for key in ("navigationSection", "drillthroughSection"):
             if key in props:
                 target = literal(props[key])
+                if target is None:
+                    warns.append(f"{rel}: {key} задано мірою (fx) — ціль перевір вручну")
+                    continue
                 if pages is not None and target not in pages:
                     problems.append(f"{rel}: {key} «{target}» не є name жодної сторінки в definition/pages "
                                     f"(displayName замість name?)")
         if "bookmark" in props:
             target = literal(props["bookmark"])
-            if bms is not None and target not in bms:
+            if target is None:
+                warns.append(f"{rel}: bookmark задано мірою (fx) — ціль перевір вручну")
+            elif bms is not None and target not in bms:
                 problems.append(f"{rel}: bookmark «{target}» не має файлу definition/bookmarks/{target}.bookmark.json")
         if t == "PageNavigation" and "navigationSection" not in props:
             problems.append(f"{rel}: PageNavigation без navigationSection")
@@ -225,8 +236,7 @@ def check_visual(doc, root):
             sel = (e or {}).get("selector")
             if set(props.keys()) == {"show"} and sel:
                 warns.append(f"{rel}: objects.{card}: show із селектором — Desktop скине картку (закон серіалізації)")
-            elif props and "show" not in props and not sel and vtype in ("actionButton", "shape", "image",
-                                                                            "pageNavigator", "bookmarkNavigator"):
+            elif props and "show" not in props and not sel and vtype in ("actionButton", "shape", "image"):
                 warns.append(f"{rel}: objects.{card}: значення без selector — Desktop скине картку")
             sid = (sel or {}).get("id") if isinstance(sel, dict) else None
             if vtype in ("pageNavigator", "bookmarkNavigator") and sid and sid not in NAV_SELECTORS:
@@ -247,21 +257,28 @@ except Exception as e:  # noqa
 
 base = os.path.basename(path)
 root = report_root(path)
-if base.endswith(".bookmark.json"):
-    check_bookmark(doc, root)
-elif base == "bookmarks.json":
-    check_bookmarks_index(doc, root)
-elif base == "visual.json":
-    check_visual(doc, root)
-elif base.endswith("report.json") and isinstance(doc.get("sections"), list):
-    check_legacy(doc)
-# page.json / pages.json / definition/report.json: parse-only
+try:
+    if not isinstance(doc, dict):
+        raise TypeError(f"корінь файлу — {type(doc).__name__}, а не обʼєкт")
+    if base.endswith(".bookmark.json"):
+        check_bookmark(doc, root)
+    elif base == "bookmarks.json":
+        check_bookmarks_index(doc, root)
+    elif base == "visual.json":
+        check_visual(doc, root)
+    elif base.endswith("report.json") and isinstance(doc.get("sections"), list):
+        check_legacy(doc)
+    # page.json / pages.json / definition/report.json: parse-only
+except Exception as e:  # noqa
+    print(f"{base}: структура не така, як очікує хук ({type(e).__name__}: {e}) — Desktop такий файл не відкриє",
+          file=sys.stderr)
+    sys.exit(2)
 
-for w in warns:
-    print(" ! " + w, file=sys.stderr)
-if problems:
+if problems or warns:
     print("Перевірка звіту (hook pbi-report-ux):", file=sys.stderr)
     for p in problems:
         print(" - " + p, file=sys.stderr)
+    for w in warns:
+        print(" ! " + w, file=sys.stderr)
     sys.exit(2)
 sys.exit(0)

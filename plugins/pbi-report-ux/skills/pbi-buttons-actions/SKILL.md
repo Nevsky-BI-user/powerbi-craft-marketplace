@@ -6,14 +6,15 @@ description: >
   drillthrough, clear/apply all slicers, web URL), the five button states,
   icon + label anatomy with images from RegisteredResources, and the
   serialization law that makes Desktop drop a card. Trigger on: "кнопка
-  переходу", "кнопка на сторінку", "кнопка назад", "кнопка з іконкою", "дія
+  переходу", "кнопка на сторінку", "json кнопки назад", "кнопка з іконкою", "дія
   кнопки", "кнопка скинути фільтри", "кнопка застосувати", "стани кнопки",
   "action button", "button action", "page navigation button", "back button
   json", "visualLink". Do NOT trigger for: navigator visuals and tab-bar design
   (pbi-navigation-tabs); bookmark files and scope (powerbi-bookmarks); finding
   or generating the icon PNG (icon-set-manager); registering resources and
   header imagery (pbi-headers-icons-imagery); Legacy report.json buttons
-  (powerbi-visuals); the drillthrough page itself (pbi-drillthrough).
+  (powerbi-visuals); the drillthrough page and its back-button design,
+  "кнопка назад" (pbi-drillthrough).
 ---
 
 # Buttons & actions (PBIR `actionButton`)
@@ -38,6 +39,7 @@ per-action snippets live in `references/action-button.md`.
 | Apply all slicers | `'ApplyAllSlicers'` | none | docs — verify literal in Desktop |
 | Web URL | `'WebUrl'` | `url` | docs — verify key in Desktop |
 | Q&A | `'QnA'` | none | docs — verify |
+| Data function (Fabric user data function) | — | — | docs only, no JSON seen — capture from Desktop before use |
 
 All literals are written as `{"expr":{"Literal":{"Value":"'PageNavigation'"}}}` —
 single quotes inside the string. `show` toggles the action (`true`/`false`).

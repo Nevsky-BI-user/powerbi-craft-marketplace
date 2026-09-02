@@ -86,6 +86,7 @@ inline where the skill quotes it.
 |---|---|---|
 | `powerbi-report-authoring`, `powerbi-report-design`, `powerbi-report-planning` | Microsoft `skills-for-fabric` (MIT) | raw PBIR file mechanics, validation (`powerbi-report-author validate <.Report>`), Desktop reload |
 | `fabric-cli-core` | Microsoft `skills-for-fabric` | generic `fab` auth and navigation |
+| `theme-factory` | Anthropic public skills | palette and theme generation for non-Power-BI targets (named as a boundary by pbi-theme-json, pbi-corporate-theme, pbi-color-accessibility) |
 | `pbir-format`, `pbir-cli`, `pbip`, `tmdl` | external Power BI agentic skill sets (e.g. data-goblin) | PBIR schema walkthroughs, PBIP renames, TMDL authoring |
 | `pbi-report-design`, `humanizer`, `web-design-guidelines` | author's local library / community skills | report design canon, de-AI-ing prose, a11y checklists |
 

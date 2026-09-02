@@ -33,7 +33,7 @@ claim marked GT was read from a real file, every claim marked *schema* from the
 ```json
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
-  "displayName": "Burnout.Filters_OFF",
+  "displayName": "Panel.Filters_OFF",
   "name": "d22896067aa203f59ba6",
   "options": {
     "applyOnlyToTargetVisuals": true,
@@ -119,7 +119,7 @@ Source: https://learn.microsoft.com/power-bi/create-reports/desktop-bookmarks
 { "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
   "items": [
     { "name": "<loneBookmarkId>" },
-    { "name": "e56e247b6f21deb6be50", "displayName": "AC.Burnout_risk.Slicer_Pannel",
+    { "name": "e56e247b6f21deb6be50", "displayName": "Panel.Slicer_Group",
       "children": ["111bc5e067518804b279", "a3e3d5a533cc32f58606", "d22896067aa203f59ba6", "9dbbce1ddc5aeedff7a5"] }
   ] }
 ```
