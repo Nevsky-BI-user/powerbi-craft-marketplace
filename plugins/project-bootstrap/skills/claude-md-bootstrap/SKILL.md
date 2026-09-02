@@ -109,6 +109,24 @@ ETL CLI on Python 3.11 (typer + pandas + SQLAlchemy). Domain: <one line>.
 | Asking what files already show | Recon first; skip answered questions |
 | Transient fact hidden in a parenthesis / aside | Same month test — drop the aside, keep only the durable part |
 
+## Guards and hooks — lessons from live sessions (2026-08/09)
+
+A rule that lives only in prose gets broken. Every row below was broken at least once
+before it became a hook, a deny-list entry or a CI check — write it into
+`.claude/settings.json`, `.claude/hooks/` and CI, not only into CLAUDE.md.
+
+| What went wrong | Rule |
+|---|---|
+| Hook entry carried `"if": "Edit(**/*.Report/**)"` next to matcher `Edit\|Write` — the hook never saw a `Write` | `if` narrows the hook to ONE tool; use two entries, or drop `if` and filter the path inside the script |
+| Warning printed with `exit 0` — the model never saw it | Anything the agent must read exits 2 (or returns `permissionDecision: "ask"`); `exit 0` + stderr is invisible |
+| Guard regex missed `commit -am"msg"` and `-m x -a`, let `git add ./` through; a suffix glob matched unrelated files | Test every hook with a case matrix (command → expected exit) before wiring it; anchor paths, not suffixes |
+| A repo hook blocked `cd ../other-repo && git add -A` typed from this repo | Scope guards by cwd and a leading `cd`; the message names which repo blocked and why |
+| `git add -A` in a public repo staged a private file; heredoc `commit && push` chains were refused by the permission classifier | Stage explicit paths only; multi-line messages via `git commit -F <file>`; push as a separate command |
+| A template README told newcomers to run the command that deploys to production | Deploy commands are denied twice — `permissions.deny` and a PreToolUse hook — and README names the safe command |
+| CLAUDE.md cited seven global skills that do not exist in cloud sessions | Vendor the critical ones into `.claude/skills/`, or write a one-line inline fallback next to each mention |
+| "Current state" grew into a 60-line changelog; a count ("45 skills") went stale within a week | Keep it ≤10 lines, rotate older items into `docs/release-history.md` in the same commit; link listings instead of counting |
+| A rule contradicted the code it governed ("NEVER mock data" vs spec fixtures; "no fixed heights" vs the component) | Put the carve-out into the rule the moment the exception is legitimate — a rule that is always broken teaches agents to ignore rules |
+
 ## Verify before done
 
 - [ ] Every command in the file was executed in this session, or carries `# not verified`.
@@ -118,3 +136,5 @@ ETL CLI on Python 3.11 (typer + pandas + SQLAlchemy). Domain: <one line>.
 - [ ] Month test passes for every line.
 - [ ] No silent overwrite; merge decisions were the user's.
 - [ ] File ≤ ~60 lines; if longer — move detail to `docs/` and link it.
+- [ ] Every hook under `.claude/hooks/` ran green against its case matrix in this session;
+      no `git add -A` / `git add .` advice anywhere in the file.
