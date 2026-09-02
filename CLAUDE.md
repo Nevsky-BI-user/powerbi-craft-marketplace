@@ -18,6 +18,9 @@ scripts/add_skill.py              ставить зовнішній скіл і 
 scripts/sync_from_local.py        публікує власні скіли з ~/.claude/skills у plugins/
 scripts/uk_descriptions.json      українські підказки скілів для сайту
 scripts/validate_repo.py          перевірка репо (той самий скрипт, що й у CI)
+CONTRIBUTING.md                   правила для зовнішніх PR: інваріанти CI, санітизація, ліцензія
+.claude/commands/add-skill.md     /add-skill — ритуал «Додати скіл, який кинув користувач» як команда
+.claude/commands/release.md       /release — «Оновити власний скіл» + версії в обох маніфестах, CHANGELOG, uk_descriptions.json, README, валідатор
 site/src/                         React+Vite сайт; components/InstallAll.tsx — блок «Встановити все»
 ```
 

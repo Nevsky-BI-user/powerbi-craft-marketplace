@@ -102,6 +102,10 @@ files, we own bookmarks, buttons, navigators, icons and design decisions.
   so it cannot creep back in.
 - Ukrainian + English triggers throughout.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md): how to propose a skill, the CI invariants that reject a PR, and the maintainer commands `/add-skill` and `/release`.
+
 ## License
 
 MIT (see LICENSE).
