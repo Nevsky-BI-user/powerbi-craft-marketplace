@@ -253,7 +253,7 @@ elif base == "bookmarks.json":
     check_bookmarks_index(doc, root)
 elif base == "visual.json":
     check_visual(doc, root)
-elif base == "report.json" and isinstance(doc.get("sections"), list):
+elif base.endswith("report.json") and isinstance(doc.get("sections"), list):
     check_legacy(doc)
 # page.json / pages.json / definition/report.json: parse-only
 
