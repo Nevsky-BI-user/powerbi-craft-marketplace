@@ -51,6 +51,9 @@ description: Use when code ASSEMBLES Ukrainian text - template strings with mont
 Це не довільна таблиця, а розрізнення CLDR: `stand-alone` (називний — вісь,
 слайсер, заголовок) проти `format` (родовий — усередині дати, після
 прийменника). Повні CLDR-формати чисел і дат — `dashboard-copy/references/uk-formats.md`.
+Назви сутностей, етапів і статусів, які склеює код («Угоду закрито», «Звернення
+призупинено»), беремо з доменних словників `dashboard-copy/references/domains/`
+— цей скіл відповідає за відмінок і число, а не за вибір слова.
 
 ## Множина після числа
 

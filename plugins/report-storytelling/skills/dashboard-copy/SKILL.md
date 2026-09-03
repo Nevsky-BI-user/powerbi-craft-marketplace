@@ -1,20 +1,18 @@
 ---
 name: dashboard-copy
 description: >
-  Business Ukrainian for every text a dashboard user reads, and the EN→UA
-  translation of BI/finance/HR terms for non-technical readers — KPI card
-  labels, chart titles and subtitles, axis and legend titles, hints, nav and
-  button labels, help/glossary pages, dashboard descriptions. Ships a sourced
-  86-term glossary (Microsoft UA, НП(С)БО, Держстат, НБУ) and CLDR number/date
-  formats. Trigger on: "підписи дашборда", "перейменуй показники", "назви
-  KPI", "як буде українською headcount", "переклади термін", "бізнес-мова
-  дашборда", "глосарій показників", "додай довідку", "незрозумілі назви
-  метрик", "dashboard labels", "translate BI term", "help page". Do NOT
-  trigger for: what a page ASSERTS — headline claims, comparison bases
-  (data-storytelling); grammar of strings assembled by code — cases, plurals
-  (ukrainian-ui-copy); number/date formats inside Power BI visuals
-  (pbi-typography); reports or summaries written to the user (plain-report);
-  simplifying a Power BI page's visuals (pbi-redesign-approval).
+  Business Ukrainian for every text a dashboard, report or CRM/service app user reads, and the
+  EN→UA translation of domain terms — KPI labels, chart titles and subtitles, axis and legend
+  titles, stage and status names, buttons, empty states, help and glossary pages. Ships
+  sourced glossaries: core BI/stats/finance/HR plus seven domain files (sales & CRM,
+  marketing, finance, HR, retail, supply chain, service desk) and CLDR number/date formats.
+  Trigger on: «підписи дашборда», «назви KPI», «переклади термін», «бізнес-мова», «глосарій
+  показників», «назви етапів», «статуси звернень», «CRM українською», «додай довідку»,
+  "dashboard labels", "CRM stage names", "help page". Do NOT trigger for: what a page ASSERTS
+  — headline claims, comparison bases (data-storytelling); grammar of strings assembled by
+  code — cases, plurals (ukrainian-ui-copy); number/date formats in Power BI visuals (pbi-
+  typography); reports written to the user (plain-report); simplifying a page's visuals (pbi-
+  redesign-approval).
 ---
 
 # Dashboard Copy — бізнес-мова текстів дашборда
@@ -96,9 +94,48 @@ description: >
 - [ ] Регістр sentence case, без крапок у кінці, «ялинки», «в. п.»?
 - [ ] Числа — з `Intl.NumberFormat('uk-UA')`, не з ручним форматуванням?
 - [ ] Довідка покриває всі показники, які видно на екрані?
+- [ ] Кожен доменний термін узятий зі свого файла `references/domains/`,
+      а не перекладений на місці?
 - [ ] Для кожного числового підпису є проба min/max запиту, і одна назва показника
       має одну шкалу в усьому застосунку?
 - [ ] Опис кожного графіка читається як alt-текст: тип + дані + навіщо?
+
+## Доменні словники — беремо термін звідси, не з памʼяті
+
+Сім файлів у `references/domains/`, у кожному понад сто термінів із підписом
+українською, одиницею та приміткою про пастку; наприкінці кожного — таблиця
+«не пиши / пиши» з кальками саме цього домену.
+
+| Файл | Що покриває |
+|---|---|
+| `domains/sales-crm.md` | CRM-застосунок і звітність продажів: сутності, етапи угоди, категорії прогнозу, показники портфеля, кнопки |
+| `domains/marketing.md` | канали, кампанії, атрибуція, вартість залучення, розсилки, A/B-тести |
+| `domains/finance.md` | статті звітності за НП(С)БО 1, бюджет і план-факт, ліквідність, грошові потоки |
+| `domains/hr.md` | чисельність і рух персоналу, підбір, оплата праці, оцінювання, залученість |
+| `domains/retail-ecommerce.md` | товарна ієрархія, кошик, ціни й акції, онлайн-вітрина, запаси, доставка, повернення |
+| `domains/supply-operations.md` | закупівлі, склад, транспорт, виробництво, якість, обладнання, охорона праці |
+| `domains/service-support.md` | звернення, черги, статуси, рівень обслуговування, задоволеність |
+
+Порядок пошуку терміна: доменний файл → `references/glossary-en-ua.md` (BI,
+статистика, фінанси, HR) → правило 1 (ділове слово, не технічне ім’я). Немає
+ніде — питаємо замовника, як це називають у нього, і дописуємо в доменний файл
+тим самим комітом.
+
+**Однакове англійське слово в різних доменах — різний підпис**, і це навмисно;
+у файлах такі місця мають уточнення в дужках і перехресне посилання:
+
+| Слово | Домен → підпис |
+|---|---|
+| revenue | фінанси → «Чистий дохід» (стаття звітності) · продажі → «Дохід» |
+| promotion | роздріб → «Акція» · HR → «Підвищення» |
+| article | роздріб → «Артикул» · сервіс → «Стаття бази знань» |
+| availability / downtime | виробництво → «Готовність», «Простій» · сервіс → «Доступність», «Недоступність» |
+| backlog | сервіс → «Черга звернень» · логістика → «Черга замовлень» |
+| MTTR | сервіс → хвилини · виробництво → години |
+| new | лід «Новий» · угода «Нова» · звернення «Нове» — рід за сутністю |
+
+Решта термінів має рівно один підпис у всіх файлах; це перевіряється порівнянням
+першої колонки таблиць між доменами.
 
 ## Довідники
 
@@ -106,3 +143,6 @@ description: >
   статистика, фінанси, HR) із позначкою, звідки переклад, і помилками самої
   Microsoft UA («змінне середнє», «регресивний аналіз»).
 - `references/uk-formats.md` — числа, дати, назви місяців за CLDR uk.
+- `references/domains/*.md` — сім доменних словників, разом понад 800 термінів
+  із одиницями: продажі й CRM, маркетинг, фінанси, HR, роздріб, логістика й
+  виробництво, сервіс і підтримка.
