@@ -37,7 +37,7 @@ npx @microsoft/rayfin-cli init --template blankapp --workspace-id <ws-guid> --it
 | `npx rayfin up staticapp deploy` | лише фронт |
 | `npx rayfin up status --json` | стан |
 | `rayfin env --framework vite` | генерує .env.local (ставити в predev/prebuild) |
-| `rayfin up --dry-run --verbose` | діф проти remote — джерело істини; рядок «Create in My Workspace» у dry-run оманливий, реальний деплой оновлює привʼязаний item |
+| `rayfin up --dry-run --verbose` | діф проти remote — джерело істини; рядок «Create in My Workspace» у dry-run оманливий, реальний деплой оновлює привʼязаний item — але лише за наявності `rayfin/.deployments.json` (див. «Ціль деплою») |
 
 ## НЕБЕЗПЕКА: npm run dev деплоїть
 
@@ -49,6 +49,27 @@ npx @microsoft/rayfin-cli init --template blankapp --workspace-id <ws-guid> --it
 
 і в bootstrap-коді: MODE==='demo' → DemoAuth + MockData, нуль звернень до бекенду.
 `--strictPort` обовʼязково: деплой перезаписує .env.local і може змінити порт.
+
+## Ціль деплою: без запису деплою `rayfin up` створює дублікат
+
+`rayfin/.deployments.json` (у gitignore) — єдине, що привʼязує `rayfin up` до
+живого item. Немає запису → CLI не оновлює застосунок, а **створює новий** у
+«My Workspace». Типові випадки: свіжий worktree, клон на іншій машині, хмарна
+сесія.
+
+1. Перед будь-яким `rayfin up*` — STOP-перевірка: `rayfin/.deployments.json`
+   існує і містить id воркспейсу застосунку (id зафіксувати в CLAUDE.md
+   проєкту і грепати саме його). Інакше не деплоїти, а скопіювати
+   `rayfin/.deployments.json`, `rayfin/.env` і `.env.local` з головної теки.
+2. `--dry-run` — не діагностика цілі: «Workspace: "My Workspace" (default)» і
+   «Create Rayfin item» друкуються і тоді, коли деплой іде правильно.
+3. Хмарна сесія (Claude Code on the web) деплоїти не може: немає запису
+   деплою і немає інтерактивного `rayfin login`. Не пробувати — віддати
+   користувачу чотири команди: `git pull`, `npx rayfin login`, `npx rayfin up`,
+   `npx rayfin up status`.
+4. Захист подвійний: `permissions.deny` на `rayfin up` і `npm run dev` **і**
+   PreToolUse-хук з exit 2 — deny-список не бачить `npm run rayfin:up` чи
+   `npx rayfin deploy`, хук читає команду цілком.
 
 ## Мультитенантність: AADSTS50057 і ctid
 

@@ -1,7 +1,7 @@
 {
   "name": "agent-craft",
   "description": "How to run agents well: model orchestration (strong plans, cheap executes, scripts replace models), executor subagents with brief discipline, an adversarial verifier for pre-publish checks, and plain-language rules for Ukrainian user-facing reports.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Vitaliy Korinevskiy"
   }
