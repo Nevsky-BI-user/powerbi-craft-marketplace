@@ -88,6 +88,14 @@ the shape, not the gallery. No comparison word → the visual is decoration.
 | Tooltip/annotation repeats the visible label or value | Duplication asserts nothing — reader hovers and learns nothing («ніякої цінності») | Tooltip only adds what the page does NOT show (comparison, full truncated name, why-good/bad); else no tooltip |
 | Same top-N shown twice side by side (chips above the very table) | Two encodings of one claim compete for attention | One encoding per claim per viewport; the second becomes navigation or dies |
 
+## Wording is not this skill's
+
+Which noun a metric, stage or status gets in Ukrainian — «Чисельність, осіб»,
+«Закрито успішно», «Час першої відповіді» — comes from [[dashboard-copy]] and its
+domain glossaries (`references/domains/`: sales & CRM, marketing, finance, HR,
+retail, supply chain, service desk). This skill owns what the page ASSERTS and
+against which base; it never invents a term on the spot.
+
 ## Verify before done
 
 Claim recomputed from a named measure/query → every page title contains a verb → every number

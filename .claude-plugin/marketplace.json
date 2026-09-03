@@ -33,7 +33,7 @@
       "name": "report-storytelling",
       "source": "./plugins/report-storytelling",
       "description": "What a report page ASSERTS: message-first headlines, comparison bases, annotation, honesty ledger — plus Ukrainian grammar of code-assembled UI strings.",
-      "version": "0.2.1"
+      "version": "0.2.2"
     },
     {
       "name": "dax-craft",
@@ -57,7 +57,7 @@
       "name": "project-bootstrap",
       "source": "./plugins/project-bootstrap",
       "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
-      "version": "0.1.7"
+      "version": "0.1.8"
     },
     {
       "name": "agent-craft",
