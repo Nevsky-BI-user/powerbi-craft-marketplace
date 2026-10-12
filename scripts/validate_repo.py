@@ -3,7 +3,9 @@
 Ловить класи багів, які вже стріляли в цьому репозиторії:
   A. Битий YAML-фронтматтер SKILL.md (рантайм губить його МОВЧКИ) — v0.1.0
      відвантажив 4 такі скіли.
-  B. Локальні шляхи/імена в копіях (C:\\Users, C:\\github, HEAVY_METAL).
+  B. Локальні шляхи/імена в копіях (C:\\Users, C:\\github, HEAVY_METAL) і шляхи
+     хмарної пісочниці агента: тека браузерів Playwright, тека Node з номером
+     версії, робоча тека сесії.
   C. CRLF у *.sh (bash на Windows-checkout падає на \\r).
   D. Розсинхрон версій plugin.json <-> marketplace.json.
   E. Плагін заявляє скіл, якого нема на диску (і навпаки).
@@ -81,9 +83,17 @@ FORBIDDEN = [
     (re.compile(r"C:[\\/]+PROJECTS", re.I), "локальний шлях C:\\PROJECTS"),
     (re.compile(r"docs[\\/]audits[\\/]"), "посилання на приватну теку docs/audits"),
     (re.compile(r"Burnout|\bwf_[0-9a-f]{6}"), "внутрішня назва звіту або id воркфлоу"),
+    # Шляхи пісочниці, у якій агент писав і перевіряв скрипти: браузери Playwright,
+    # Node з номером версії і робоча тека сесії. Скрипти беруть їх зі змінних
+    # оточення (CHROME_PATH, NODE_PATH), а не з коду. Літера в [] не дає самому
+    # валідатору містити шлях буквально, тож git grep по репо лишається чистим.
+    (re.compile(r"/op[t]/pw[-]browsers"), "шлях пісочниці агента: тека браузерів Playwright (бери CHROME_PATH)"),
+    (re.compile(r"/op[t]/node\d+\b"), "шлях пісочниці агента: тека Node з номером версії (бери NODE_PATH)"),
+    (re.compile(r"/tm[p]/claude-"), "шлях пісочниці агента: робоча тека сесії"),
 ]
 for p in glob.glob(os.path.join(ROOT, "plugins", "**", "*.*"), recursive=True):
-    if not p.endswith((".md", ".json", ".yaml", ".yml", ".txt", ".sh", ".py")):
+    if not p.endswith((".md", ".json", ".yaml", ".yml", ".txt", ".sh", ".py",
+                       ".mjs", ".js", ".html")):
         continue
     rel = os.path.relpath(p, ROOT)
     try:

@@ -1,6 +1,6 @@
 ---
 name: pbi-typography
-description: Use when choosing or fixing fonts, sizes, title/label styling, callouts, or number display formats (K/M/%, Ukrainian тис./млн) in Power BI PBIP reports (PBIR-Legacy or enhanced). Do NOT trigger for theme.json generation (pbi-theme-json), visual JSON mechanics (powerbi-visuals), DAX measures (dax-measures), or what a title/callout should SAY (data-storytelling). Defaults - Segoe UI, ramp 28/18/14/12/10/9 pt, floor 8 pt. Triggers - 'font', 'text size', 'number format', 'типографіка', 'шрифт', 'розмір тексту', 'формат чисел', 'тис/млн'.
+description: Use when choosing or fixing fonts, sizes, title/label styling, callouts, or number display formats (K/M/%, Ukrainian тис./млн) in Power BI PBIP reports (PBIR-Legacy or enhanced). Do NOT trigger for theme.json generation (pbi-theme-json), visual JSON mechanics (powerbi-visuals), DAX measures (dax-measures), what a title/callout should SAY (data-storytelling), or slide decks or a projection type scale (slide-design). Defaults - Segoe UI, ramp 28/18/14/12/10/9 pt, floor 8 pt. Triggers - 'font', 'text size', 'number format', 'типографіка', 'шрифт', 'розмір тексту', 'формат чисел', 'тис/млн'.
 ---
 
 # Power BI Typography

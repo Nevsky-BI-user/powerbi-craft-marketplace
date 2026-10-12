@@ -1,6 +1,6 @@
 ---
 name: ukrainian-ui-copy
-description: Use when code ASSEMBLES Ukrainian text - template strings with months, counts or entity names, labels after prepositions, plural forms after a number, % vs в. п. Catches «з червень», «1 підприємств», «−3%» for a points difference. Do NOT trigger for number/date FORMATS in Power BI visuals (pbi-typography), what a headline should assert (data-storytelling), de-AI-ing prose (humanizer), or translating documents. Triggers - 'відмінк', 'з червень', 'неправильно склеївся рядок', 'множина після числа', 'в. п. чи відсотки', 'український текст в інтерфейсі', 'ukrainian ui text', 'plural ukrainian'.
+description: Use when code ASSEMBLES Ukrainian text - template strings with months, counts or entity names, labels after prepositions, plural forms after a number, % vs в. п. Catches «з червень», «1 підприємств», «−3%» for a points difference. Do NOT trigger for number/date FORMATS in Power BI visuals (pbi-typography), what a headline should assert (data-storytelling), the wording or translation of a KPI, chart or button label (dashboard-copy), de-AI-ing prose (humanizer), or translating documents. Triggers - 'відмінк', 'з червень', 'неправильно склеївся рядок', 'множина після числа', 'в. п. чи відсотки', 'український текст в інтерфейсі', 'ukrainian ui text', 'plural ukrainian'.
 ---
 
 # Ukrainian UI copy — граматика рядків, які збирає код
@@ -100,3 +100,6 @@ export function plural(n: number, one: string, few: string, many: string): strin
 Перелічити ВСІ шаблонні рядки в зміні → кожен прийменник має свій відмінок →
 множина перевірена на 1/2/5/11/21 → різниці відсотків у в. п. → сторінка
 відкрита в превʼю і прочитана очима, а не лише зібрана компілятором.
+
+Згенеровані скриптом слайди (HTML-дек, pptxgenjs) збирають ті самі рядки: NBSP між
+числом і одиницею, `plural()` для «слайд N» і лічильників (`html-deck`, `deck-storyline`).

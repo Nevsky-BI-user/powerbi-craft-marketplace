@@ -1,0 +1,232 @@
+{
+  "schema": "deck-tokens/1",
+  "meta": {
+    "name": "neutral example",
+    "note": "Sample values; ratios computed with the pbi-color-accessibility reference.md §1 formula. deck_lint.py --tokens recomputes every pair and fails on any pair below its class minimum.",
+    "canvases": ["960x540pt", "1280x720px"]
+  },
+  "fonts": {
+    "sans": {
+      "family": "Inter",
+      "fallback": ["Arial", "Arimo", "Liberation Sans", "sans-serif"],
+      "weights": [400, 600],
+      "license": "OFL",
+      "cyrillic": true
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "fallback": ["Courier New", "Cousine", "Liberation Mono", "monospace"],
+      "weights": [400],
+      "license": "OFL",
+      "cyrillic": true
+    },
+    "pptx": {"sans": "Arial", "mono": "Courier New"}
+  },
+  "type": {
+    "talk": {
+      "pt": {
+        "divider": 54,
+        "title": 36,
+        "hero": 60,
+        "card_heading": 27,
+        "body": 20,
+        "label": 18,
+        "eyebrow": 14,
+        "code": 18,
+        "code_hero": 24,
+        "footer": 10
+      },
+      "px": {
+        "divider": 72,
+        "title": 48,
+        "hero": 80,
+        "card_heading": 36,
+        "body": 28,
+        "label": 24,
+        "eyebrow": 20,
+        "code": 24,
+        "code_hero": 32,
+        "footer": 16
+      }
+    },
+    "reading": {
+      "pt": {"title": 30, "card_heading": 21, "dek": 18, "body": 15, "small": 12, "eyebrow": 12, "code": 12, "footer": 9},
+      "px": {"title": 40, "card_heading": 28, "dek": 24, "body": 20, "small": 16, "eyebrow": 16, "code": 16, "footer": 12}
+    },
+    "weights": {"title": 600, "body": 400, "emphasis": 600},
+    "line_height": {"title": 1.15, "body": 1.35, "code": 1.4},
+    "note": "Two scales for two canvases, not conversions of each other: pt for 960x540 pt engines (pptx), px for the 1280x720 HTML canvas. px values are multiples of 4, so each prints at whole pt (px x 0.75). css: --fs-<role> (underscore becomes hyphen) on :root for talk and on [data-mode=\"reading\"] for reading."
+  },
+  "geometry": {
+    "pt": {
+      "canvas": [960, 540],
+      "margin": 36,
+      "footer_edge": 18,
+      "decoration_clear": 16,
+      "eyebrow_box": {"x": 36, "y": 36, "w": 840, "h": 18},
+      "title_box": {"x": 36, "y": 60, "w": 888, "h": 45, "size": 36, "weight": 600, "align": "left", "lines": 1},
+      "content_box": {"x": 36, "y": 120, "w": 888, "h": 366},
+      "page_number": {"anchor": "bottom-right", "right": 924, "baseline_from_bottom": 18, "size": 10},
+      "brand_corner": {"corner": "top-right", "w": 60, "h": 60}
+    },
+    "px": {
+      "canvas": [1280, 720],
+      "margin": 48,
+      "footer_edge": 24,
+      "decoration_clear": 22,
+      "eyebrow_box": {"x": 48, "y": 48, "w": 1120, "h": 24},
+      "title_box": {"x": 48, "y": 80, "w": 1184, "h": 60, "size": 48, "weight": 600, "align": "left", "lines": 1},
+      "content_box": {"x": 48, "y": 160, "w": 1184, "h": 488},
+      "page_number": {"anchor": "bottom-right", "right": 1232, "baseline_from_bottom": 24, "size": 16},
+      "brand_corner": {"corner": "top-right", "w": 80, "h": 80}
+    },
+    "grid": {
+      "columns": 12,
+      "pt": {"col": 52, "gutter": 24},
+      "px": {"col": 69.33, "gutter": 32},
+      "split": {"text": 0.4, "media": 0.6}
+    }
+  },
+  "families": {
+    "light": {"role": "content slides", "archetypes": "everything not listed under dark"},
+    "dark": {"role": "title and dividers", "archetypes": ["title", "divider", "demo-divider", "appendix-divider"]}
+  },
+  "themes": {
+    "light": {
+      "colors": {
+        "surface": "#FFFFFF",
+        "surface-2": "#E6ECF1",
+        "ink": "#0D1A24",
+        "ink-2": "#41586A",
+        "line": "#7A8B97",
+        "accent-fill": "#F2C811",
+        "on-accent": "#0D1A24",
+        "accent-text": "#7A5F00",
+        "link": "#00668F",
+        "header-fill": "#0B6E99",
+        "header-ink": "#FFFFFF",
+        "dim": "#A9B6C0",
+        "hl": "#CC4410",
+        "hl-ink": "#FFFFFF"
+      },
+      "pairs": [
+        {"fg": "ink", "bg": "surface", "class": "body", "ratio": 17.64},
+        {"fg": "ink-2", "bg": "surface", "class": "body", "ratio": 7.42},
+        {"fg": "ink", "bg": "surface-2", "class": "body", "ratio": 14.81},
+        {"fg": "ink-2", "bg": "surface-2", "class": "body", "ratio": 6.23},
+        {"fg": "accent-text", "bg": "surface", "class": "body", "ratio": 6.06},
+        {"fg": "accent-text", "bg": "surface-2", "class": "body", "ratio": 5.09},
+        {"fg": "on-accent", "bg": "accent-fill", "class": "body", "ratio": 10.96},
+        {"fg": "link", "bg": "surface", "class": "body", "ratio": 6.37},
+        {"fg": "header-ink", "bg": "header-fill", "class": "header", "ratio": 5.67},
+        {"fg": "line", "bg": "surface", "class": "ui", "ratio": 3.52},
+        {"fg": "surface-2", "bg": "surface", "class": "card", "ratio": 1.19},
+        {"fg": "ink", "bg": "surface", "class": "active", "ratio": 17.64},
+        {"fg": "dim", "bg": "surface", "class": "dim", "ratio": 2.07},
+        {"fg": "hl-ink", "bg": "hl", "class": "body", "ratio": 4.77},
+        {"fg": "hl", "bg": "surface", "class": "ui", "ratio": 4.77}
+      ]
+    },
+    "dark": {
+      "colors": {
+        "surface": "#0F1B26",
+        "surface-2": "#1B2C3B",
+        "ink": "#E3ECF2",
+        "ink-2": "#9DB2C0",
+        "line": "#5A7386",
+        "accent-fill": "#F2C811",
+        "on-accent": "#0D1A24",
+        "accent-text": "#F2C811",
+        "link": "#5CC8FF",
+        "header-fill": "#0B6E99",
+        "header-ink": "#FFFFFF",
+        "dim": "#384E5F",
+        "hl": "#CC4410",
+        "hl-ink": "#FFFFFF"
+      },
+      "pairs": [
+        {"fg": "ink", "bg": "surface", "class": "body", "ratio": 14.56},
+        {"fg": "ink-2", "bg": "surface", "class": "body", "ratio": 7.94},
+        {"fg": "ink", "bg": "surface-2", "class": "body", "ratio": 11.94},
+        {"fg": "ink-2", "bg": "surface-2", "class": "body", "ratio": 6.51},
+        {"fg": "accent-text", "bg": "surface", "class": "body", "ratio": 10.83},
+        {"fg": "accent-text", "bg": "surface-2", "class": "body", "ratio": 8.87},
+        {"fg": "on-accent", "bg": "accent-fill", "class": "body", "ratio": 10.96},
+        {"fg": "link", "bg": "surface", "class": "body", "ratio": 9.26},
+        {"fg": "header-ink", "bg": "header-fill", "class": "header", "ratio": 5.67},
+        {"fg": "line", "bg": "surface", "class": "ui", "ratio": 3.51},
+        {"fg": "surface-2", "bg": "surface", "class": "card", "ratio": 1.22},
+        {"fg": "ink", "bg": "surface", "class": "active", "ratio": 14.56},
+        {"fg": "dim", "bg": "surface", "class": "dim", "ratio": 2.01},
+        {"fg": "hl-ink", "bg": "hl", "class": "body", "ratio": 4.77},
+        {"fg": "hl", "bg": "surface", "class": "ui", "ratio": 3.65},
+        {"fg": "hl", "bg": "void", "class": "ui", "ratio": 3.88}
+      ]
+    }
+  },
+  "void": {
+    "note": "always-dark code and diagram surfaces, identical in both themes",
+    "colors": {"void": "#0A1420", "void-ink": "#DDE8EF", "void-ink-2": "#9BBBCE", "void-accent": "#F2C811"},
+    "pairs": [
+      {"fg": "void-ink", "bg": "void", "class": "body", "ratio": 14.87},
+      {"fg": "void-ink-2", "bg": "void", "class": "body", "ratio": 9.17},
+      {"fg": "void-accent", "bg": "void", "class": "body", "ratio": 11.51}
+    ]
+  },
+  "status": {
+    "note": "one pill component; fills identical in both themes",
+    "colors": {
+      "ga-fill": "#1F7A50",
+      "ga-ink": "#FFFFFF",
+      "preview-fill": "#D7EAF6",
+      "preview-ink": "#0B4F70",
+      "planned-fill": "#E3E8EC",
+      "planned-ink": "#41586A"
+    },
+    "pairs": [
+      {"fg": "ga-ink", "bg": "ga-fill", "class": "status", "ratio": 5.31},
+      {"fg": "preview-ink", "bg": "preview-fill", "class": "status", "ratio": 7.18},
+      {"fg": "planned-ink", "bg": "planned-fill", "class": "status", "ratio": 6.02}
+    ],
+    "labels": {"ga": "Доступно", "preview": "Тестування", "planned": "Заплановано"}
+  },
+  "meaning": {
+    "accent-fill": "the one element the claim names; fill only, never text on a light surface",
+    "accent-text": "accent as text (eyebrow emphasis, key term)",
+    "link": "links, collected on the close slide",
+    "dim": "context in a zoom build (C6, about 2:1 by design)",
+    "hl": "screenshot highlight and number badges (S3), nowhere else",
+    "ga-fill": "available now",
+    "preview-fill": "in testing",
+    "planned-fill": "planned, with an as-of date"
+  },
+  "icons": {
+    "risk": "triangle-alert",
+    "vault": "lock",
+    "restore": "rotate-ccw",
+    "inventory": "list-check",
+    "transfer": "arrow-right-left",
+    "cleanup": "trash"
+  },
+  "components": {
+    "pill": {"size_pt": 14, "size_px": 20, "casing": "sentence", "nowrap": true},
+    "demo_marker": {"label": "Демо", "fill": "accent-fill", "ink": "on-accent"},
+    "card": {"fill": "surface-2", "border_pt": 0, "radius_px": 12, "shadow": false},
+    "highlight": {"stroke_pt": 3, "color": "hl", "badge_ink": "hl-ink", "note": "used nowhere else in the deck (S3); badge digits are a body pair"}
+  },
+  "css": {
+    "note": "each role becomes --<role> on :root (light) and :root[data-theme=\"dark\"]; void and status roles are global; the full block is in references/visual-system.md §9",
+    "example": {"--surface": "#FFFFFF", "--accent-fill": "#F2C811", "--accent-text": "#7A5F00", "--fs-title": "48px"}
+  },
+  "pptx_theme": {
+    "dk1": "ink",
+    "lt1": "surface",
+    "dk2": "ink-2",
+    "lt2": "surface-2",
+    "accent1": "accent-fill",
+    "accent2": "accent-text",
+    "accent3": "header-fill",
+    "hlink": "link",
+    "folHlink": "link"
+  }
+}

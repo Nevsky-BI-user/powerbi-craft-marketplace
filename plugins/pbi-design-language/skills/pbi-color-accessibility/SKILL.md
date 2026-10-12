@@ -1,6 +1,6 @@
 ---
 name: pbi-color-accessibility
-description: Use when assigning or auditing colors in a Power BI report - semantic roles (good/bad/warning), WCAG contrast for text/data pairs, colorblind-safe palettes, sequential/diverging heatmap or choropleth scales, PBIR-Legacy/enhanced. Do NOT trigger for CF thresholds (pbi-conditional-formatting), theme.json (pbi-theme-json), visual JSON mechanics (powerbi-visuals). Triggers - 'color contrast', 'WCAG', 'colorblind', 'heatmap colors', 'доступність кольору', 'контраст', 'дальтонізм', 'кольорова шкала'.
+description: Use when assigning or auditing colors in a Power BI report - semantic roles (good/bad/warning), WCAG contrast for text/data pairs, colorblind-safe palettes, sequential/diverging heatmap or choropleth scales, PBIR-Legacy/enhanced. Do NOT trigger for CF thresholds (pbi-conditional-formatting), theme.json (pbi-theme-json), visual JSON mechanics (powerbi-visuals), slide-deck audits (deck-review, which reuses §1). Triggers - 'color contrast', 'WCAG', 'colorblind', 'heatmap colors', 'доступність кольору', 'контраст', 'дальтонізм', 'кольорова шкала'.
 ---
 
 # Power BI Color & Accessibility

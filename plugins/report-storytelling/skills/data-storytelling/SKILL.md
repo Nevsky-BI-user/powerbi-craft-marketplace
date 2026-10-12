@@ -1,6 +1,6 @@
 ---
 name: data-storytelling
-description: Use when deciding or auditing what a report or dashboard page ASSERTS - headline wording (finding vs subject), the comparison base behind every number, annotation, page order, audience, the 'so what'. Power BI and web dashboards. Do NOT trigger for chart choice (pbi-visualization-strategy), fonts/number formats (pbi-typography), colour roles (pbi-color-accessibility), grid math (pbi-page-layout), design QA scoring (pbi-report-review). Triggers - 'сторітелінг', 'наратив звіту', 'висновок сторінки', 'що каже ця сторінка', 'заголовок не про те', 'число без бази', 'so what', 'data storytelling', 'action title'.
+description: Use when deciding or auditing what a report or dashboard page ASSERTS - headline wording (finding vs subject), the comparison base behind every number, annotation, page order, audience, the 'so what'. Power BI and web dashboards. Do NOT trigger for chart choice (pbi-visualization-strategy), fonts/number formats (pbi-typography), colour roles (pbi-color-accessibility), grid math (pbi-page-layout), design QA scoring (pbi-report-review), slide-deck arc, talk timing or slide titles in a deck (deck-storyline). Triggers - 'сторітелінг', 'наратив звіту', 'висновок сторінки', 'що каже ця сторінка', 'заголовок не про те', 'число без бази', 'so what', 'data storytelling', 'action title'.
 ---
 
 # Data Storytelling — the claim, not the pixels
@@ -26,7 +26,8 @@ Liu & Karahalios 2018/2019).
 
 **NOT for:** which chart (`pbi-visualization-strategy`), fonts/number formats (`pbi-typography`),
 palettes/contrast (`pbi-color-accessibility`), layout math (`pbi-page-layout`), card properties
-(`pbi-kpi-cards`), machine-written prose (`pbi-ai-visuals`), design QA (`pbi-report-review`).
+(`pbi-kpi-cards`), machine-written prose (`pbi-ai-visuals`), design QA (`pbi-report-review`),
+deck arc and slide titles (`deck-storyline`).
 
 ## Pre-flight (before any wording)
 

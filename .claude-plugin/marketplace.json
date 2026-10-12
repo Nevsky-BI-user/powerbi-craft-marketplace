@@ -21,19 +21,19 @@
       "name": "pbi-design-language",
       "source": "./plugins/pbi-design-language",
       "description": "How a Power BI report looks: design tokens, typography, colour accessibility, conditional formatting, theme.json, icon pipeline, ready corporate themes.",
-      "version": "0.1.5"
+      "version": "0.1.6"
     },
     {
       "name": "pbi-quality",
       "source": "./plugins/pbi-quality",
       "description": "Whether the report is right: chart choice strategy, evidence-gated design review, approval-gated redesign process, human-language test cases.",
-      "version": "0.1.3"
+      "version": "0.1.4"
     },
     {
       "name": "report-storytelling",
       "source": "./plugins/report-storytelling",
       "description": "What a report page ASSERTS: message-first headlines, comparison bases, annotation, honesty ledger — plus Ukrainian grammar of code-assembled UI strings.",
-      "version": "0.2.2"
+      "version": "0.2.3"
     },
     {
       "name": "dax-craft",
@@ -57,13 +57,19 @@
       "name": "project-bootstrap",
       "source": "./plugins/project-bootstrap",
       "description": "Standing up projects from zero: CLAUDE.md bootstrap for any repo, Rayfin (Fabric Apps) platform bootstrap, KPI data-entry app blueprint, React SPA UX baseline (tooltips, sticky headers, animations, optimistic saves).",
-      "version": "0.1.8"
+      "version": "0.1.9"
     },
     {
       "name": "agent-craft",
       "source": "./plugins/agent-craft",
       "description": "How to run agents well: model orchestration (strong plans, cheap executes, scripts replace models), executor subagents with brief discipline, an adversarial verifier for pre-publish checks, and plain-language rules for Ukrainian user-facing reports.",
-      "version": "0.2.2"
+      "version": "0.2.3"
+    },
+    {
+      "name": "deck-craft",
+      "source": "./plugins/deck-craft",
+      "description": "Presentations that work in the room and in the PDF: talk storyline with a machine-readable deck plan, engine-neutral slide design (archetypes, projection type scale, contrast token pairs, screenshots), a self-contained offline HTML deck engine, and measurable deck review with render and lint scripts plus a read-only deck-reviewer agent. Ukrainian + English.",
+      "version": "0.1.0"
     }
   ]
 }

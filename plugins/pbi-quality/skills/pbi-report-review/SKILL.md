@@ -1,6 +1,6 @@
 ---
 name: pbi-report-review
-description: Use when auditing a Power BI report page's design before reporting a redesign as done, or verifying a bookmark fix holds page-wide. Symptoms - self-graded acceptance criteria, a narrow diff claimed as a "deep" redesign, a bookmark fix touching only one sibling. Do NOT trigger for diff/code review (pbip-pr-reviewer) or usage/perf audits (reports:review-report). Triggers - 'дизайн рев'ю', 'перевір дизайн', 'аудит сторінки', 'акцептанс', 'симетрія букмарок', 'це дійсно готово?'.
+description: Use when auditing a Power BI report page's design before reporting a redesign as done, or verifying a bookmark fix holds page-wide. Symptoms - self-graded acceptance criteria, a narrow diff claimed as a "deep" redesign, a bookmark fix touching only one sibling. Do NOT trigger for diff/code review (pbip-pr-reviewer), usage/perf audits (reports:review-report) or slide decks (deck-review). Triggers - 'дизайн рев'ю', 'перевір дизайн', 'аудит сторінки', 'акцептанс', 'симетрія букмарок', 'це дійсно готово?'.
 ---
 
 # Power BI Report Design Review
@@ -16,7 +16,7 @@ below. Covers PBIP (PBIR-Legacy/enhanced) and TMDL.
 - Before reporting a design task ("deep"/"глибоко") as done.
 - After any bookmark/visibility fix, to confirm the whole page, not just the fixed tab.
 - Not for: diffs (pbip-pr-reviewer), usage/perf (reports:review-report), single-element fixes
-  (below), a11y checklists (web-design-guidelines).
+  (below), a11y checklists (web-design-guidelines), slide decks (deck-review).
 
 ## Pre-flight (mandatory — nothing is judged before this exists)
 

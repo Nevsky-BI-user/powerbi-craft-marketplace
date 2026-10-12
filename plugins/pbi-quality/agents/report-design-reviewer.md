@@ -1,6 +1,6 @@
 ---
 name: report-design-reviewer
-description: Independent, read-only design review of a Power BI report page — evidence-gated scoring across layout, typography, colour, chart choice, narrative/claim, bookmarks. Dispatch after a redesign is claimed "done", or when a self-graded review needs fresh eyes. Returns a report; never edits.
+description: Independent, read-only design review of a Power BI report page, evidence-gated scoring across layout, typography, colour, chart choice, narrative/claim, bookmarks. Dispatch after a redesign is claimed "done", or when a self-graded review needs fresh eyes. Returns a report; never edits. Not for slide decks (deck-reviewer). A direct request to check a page's design loads the pbi-report-review skill first; this agent is the independent second pass on top of it.
 tools: Read, Grep, Glob
 model: sonnet
 ---

@@ -1,0 +1,277 @@
+{
+ "schema": "deck-expected/1",
+ "note": "seeded.html plants the defects listed per slide (one or more, each of a different check); clean.html is the same deck without them",
+ "html": [
+  {
+   "check": "D1",
+   "slide": 4,
+   "severity": "критично",
+   "seed": "four long steps push a talk slide above words_hard"
+  },
+  {
+   "check": "Y1",
+   "slide": 5,
+   "severity": "критично",
+   "seed": "caption at 16 px (12 pt), below the talk floor"
+  },
+  {
+   "check": "H5",
+   "slide": 6,
+   "severity": "критично",
+   "seed": "SVG box taller than its viewBox, a label sits in the letterbox band"
+  },
+  {
+   "check": "G5",
+   "slide": 8,
+   "severity": "бажано",
+   "seed": "equal-height cards pin a 15 pt detail with margin-top:auto, leaving dead space inside two cards"
+  },
+  {
+   "check": "H7",
+   "slide": 8,
+   "severity": "бажано",
+   "seed": "a descendant rule with padding and a border reaches a span nested in the card detail"
+  },
+  {
+   "check": "Y6",
+   "slide": 9,
+   "severity": "критично",
+   "seed": "eyebrow uppercased in mono: Cyrillic with digits"
+  },
+  {
+   "check": "K1",
+   "slide": 10,
+   "severity": "бажано",
+   "seed": "page number element removed"
+  },
+  {
+   "check": "S1",
+   "slide": 12,
+   "severity": "критично",
+   "seed": "screenshot declares 12 px UI text, effective size about 4.4 pt"
+  },
+  {
+   "check": "T11",
+   "slide": 13,
+   "severity": "критично",
+   "seed": "two steps share their first five words"
+  },
+  {
+   "check": "N2",
+   "slide": 14,
+   "severity": "бажано",
+   "seed": "divider without its n/N marker"
+  },
+  {
+   "check": "T4",
+   "slide": 15,
+   "severity": "бажано",
+   "seed": "the title starts with a series label repeated on slide 16"
+  },
+  {
+   "check": "V7",
+   "slide": 15,
+   "severity": "критично",
+   "seed": "curly quotes in code"
+  },
+  {
+   "check": "H4",
+   "slide": 16,
+   "severity": "критично",
+   "seed": "code clipped by its frame (white-space: pre)"
+  },
+  {
+   "check": "T4",
+   "slide": 16,
+   "severity": "бажано",
+   "seed": "the title starts with a series label repeated on slide 15"
+  },
+  {
+   "check": "C2",
+   "slide": 17,
+   "severity": "критично",
+   "seed": "table header white on #4A90C2, 3.47:1"
+  },
+  {
+   "check": "N13",
+   "slide": 17,
+   "severity": "бажано",
+   "seed": "the eyebrow part label differs from the slide's part title"
+  },
+  {
+   "check": "C1",
+   "slide": 18,
+   "severity": "критично",
+   "seed": "body text in the accent fill #F2C811 on white, 1.61:1"
+  },
+  {
+   "check": "P1",
+   "slide": 19,
+   "severity": "критично",
+   "seed": "an image whose data URI carries an unescaped #, so it never loads"
+  },
+  {
+   "check": "V4",
+   "slide": 19,
+   "severity": "критично",
+   "seed": "live text positioned off the canvas"
+  },
+  {
+   "check": "S6",
+   "slide": 20,
+   "severity": "критично",
+   "seed": "slide without a title"
+  },
+  {
+   "check": "H3",
+   "slide": 21,
+   "severity": "критично",
+   "seed": "diagram runs past the bottom margin"
+  },
+  {
+   "check": "H5",
+   "slide": 21,
+   "severity": "критично",
+   "seed": "an SVG label drawn over another label"
+  },
+  {
+   "check": "H8",
+   "slide": 22,
+   "severity": "критично",
+   "seed": "unfilled data-todo slot"
+  },
+  {
+   "check": "G2",
+   "slide": 23,
+   "severity": "бажано",
+   "seed": "label 8 px from the right edge"
+  },
+  {
+   "check": "T3",
+   "slide": 24,
+   "severity": "бажано",
+   "seed": "title over the character budget, two lines"
+  },
+  {
+   "check": "T3",
+   "slide": 24,
+   "severity": "косметика",
+   "seed": "a dek whose last line is one word"
+  },
+  {
+   "check": "P2",
+   "slide": null,
+   "severity": "критично",
+   "seed": "the loop is not finished while any критично remains"
+  }
+ ],
+ "pdf": [
+  {
+   "check": "D1",
+   "slide": 4,
+   "severity": "критично",
+   "seed": "four long steps push a talk slide above words_hard"
+  },
+  {
+   "check": "Y1",
+   "slide": 5,
+   "severity": "критично",
+   "seed": "caption at 16 px (12 pt), below the talk floor"
+  },
+  {
+   "check": "Y6",
+   "slide": 9,
+   "severity": "критично",
+   "seed": "eyebrow uppercased in mono: Cyrillic with digits"
+  },
+  {
+   "check": "K1",
+   "slide": 10,
+   "severity": "бажано",
+   "seed": "page number element removed"
+  },
+  {
+   "check": "S1",
+   "slide": 12,
+   "severity": "критично",
+   "seed": "screenshot declares 12 px UI text, effective size about 4.4 pt"
+  },
+  {
+   "check": "T11",
+   "slide": 13,
+   "severity": "критично",
+   "seed": "two steps share their first five words"
+  },
+  {
+   "check": "N2",
+   "slide": 14,
+   "severity": "бажано",
+   "seed": "divider without its n/N marker"
+  },
+  {
+   "check": "T4",
+   "slide": 15,
+   "severity": "бажано",
+   "seed": "the title starts with a series label repeated on slide 16"
+  },
+  {
+   "check": "V7",
+   "slide": 15,
+   "severity": "критично",
+   "seed": "curly quotes in code"
+  },
+  {
+   "check": "T4",
+   "slide": 16,
+   "severity": "бажано",
+   "seed": "the title starts with a series label repeated on slide 15"
+  },
+  {
+   "check": "C1",
+   "slide": 18,
+   "severity": "критично",
+   "seed": "body text in the accent fill #F2C811 on white, 1.61:1"
+  },
+  {
+   "check": "G2",
+   "slide": 23,
+   "severity": "бажано",
+   "seed": "label 8 px from the right edge"
+  },
+  {
+   "check": "T3",
+   "slide": 24,
+   "severity": "бажано",
+   "seed": "title over the character budget, two lines"
+  },
+  {
+   "check": "P2",
+   "slide": null,
+   "severity": "критично",
+   "seed": "the loop is not finished while any критично remains"
+  }
+ ],
+ "plan": [
+  {
+   "check": "T3",
+   "slide": 24,
+   "severity": "бажано",
+   "seed": "plan title over the character budget"
+  }
+ ],
+ "clean_noise": {
+  "note": "checks allowed to fire on clean.html (known lint noise, never критично); any other finding there fails the selftest",
+  "html": {
+   "Y1": "engine labels (n/N on dividers, progress strip) are measured as body text at 15 pt",
+   "G5": "card padding compared on glyph boxes, so line half-leading reads as extra bottom space; sparse spokes with 15 pt labels",
+   "G7": "the terminal header border counts as a second nesting level",
+   "D2": "the 15 pt terminal title (role code) sets the smallest size of a code-step slide"
+  },
+  "pdf": {
+   "Y1": "no roles in a PDF: eyebrow, n/N and progress labels at 15 pt count as body text",
+   "G5": "no roles in a PDF: 15 pt labels count as body text on sparse slides",
+   "D2": "no roles in a PDF: the 15 pt eyebrow sets the smallest size of every content slide",
+   "K2": "the pixel family key splits one background by luminance class (a large dark board makes a slide mid)"
+  }
+ }
+}

@@ -408,4 +408,6 @@ anatomy → `pbi-kpi-cards` · tooltips (incl. canvas sizing) → `pbi-tooltips`
 `pbi-drillthrough` · bookmark/visibility mechanics → `powerbi-bookmarks` · navigators and tab bars
 → `pbi-navigation-tabs` · dual-axis / combo justification → `pbi-combo-charts` · machine prose →
 `pbi-ai-visuals` · scoring a finished page → `pbi-report-review` · approval gates →
-`pbi-redesign-approval` · non-BI charts in code/artifacts → the bundled `dataviz` skill.
+`pbi-redesign-approval` · non-BI charts in code/artifacts → the bundled `dataviz` skill · talk
+decks → `deck-storyline` (reuses §1 as the storyboard, §2 title tests, §5 one change per step) ·
+deck QA → `deck-review`.

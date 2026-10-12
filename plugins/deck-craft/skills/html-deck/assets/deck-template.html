@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Шаблон html-deck</title>
+<script>/* theme before first paint (H6): no flash of the wrong theme */try{var t=localStorage.getItem('deck-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+/* html-deck template. Tokens equal slide-design assets/tokens.example.json (deck-tokens/1).
+   Light roles on :root, dark roles on :root[data-theme="dark"], void and status roles global,
+   type roles --fs-<role> in px: talk on :root, reading on [data-mode="reading"].
+   Colour values live in five blocks; change them together: light (:root), dark (:root[data-theme="dark"]),
+   its prefers-color-scheme copy, the dark family (.slide.a-title and the dividers) and the light copy in
+   @media print. deck_lint.py --tokens rates only :root and :root[data-theme="dark"]. */
+:root{
+  --surface:#FFFFFF; --surface-2:#E6ECF1; --ink:#0D1A24; --ink-2:#41586A; --line:#7A8B97;
+  --accent-fill:#F2C811; --on-accent:#0D1A24; --accent-text:#7A5F00; --link:#00668F;
+  --header-fill:#0B6E99; --header-ink:#FFFFFF; --dim:#A9B6C0;
+  --void:#0A1420; --void-ink:#DDE8EF; --void-ink-2:#9BBBCE; --void-accent:#F2C811;
+  --ga-fill:#1F7A50; --ga-ink:#FFFFFF; --preview-fill:#D7EAF6; --preview-ink:#0B4F70;
+  --planned-fill:#E3E8EC; --planned-ink:#41586A;
+  --fs-divider:72px; --fs-title:48px; --fs-hero:80px; --fs-card-heading:36px; --fs-body:28px;
+  --fs-label:24px; --fs-eyebrow:20px; --fs-code:24px; --fs-code-hero:32px; --fs-footer:16px;
+  --font-sans:Arial, Arimo, "Liberation Sans", sans-serif;
+  --font-mono:"Courier New", Cousine, "Liberation Mono", monospace;
+  --hl:#CC4410; --hl-ink:#FFFFFF; --todo:#B0006A; --backdrop:#C9D3DB; --backdrop-ink:#0D1A24;
+  --bar:40px; --gutter:14px;
+}
+:root[data-theme="dark"]{
+  --surface:#0F1B26; --surface-2:#1B2C3B; --ink:#E3ECF2; --ink-2:#9DB2C0; --line:#5A7386;
+  --accent-fill:#F2C811; --on-accent:#0D1A24; --accent-text:#F2C811; --link:#5CC8FF;
+  --header-fill:#0B6E99; --header-ink:#FFFFFF; --dim:#384E5F;
+  --backdrop:#060C12; --backdrop-ink:#E3ECF2;
+}
+/* copy of the dark block for a first visit with no stored theme */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --surface:#0F1B26; --surface-2:#1B2C3B; --ink:#E3ECF2; --ink-2:#9DB2C0; --line:#5A7386;
+  --accent-fill:#F2C811; --on-accent:#0D1A24; --accent-text:#F2C811; --link:#5CC8FF;
+  --header-fill:#0B6E99; --header-ink:#FFFFFF; --dim:#384E5F;
+  --backdrop:#060C12; --backdrop-ink:#E3ECF2;
+}}
+[data-mode="reading"]{
+  --fs-title:40px; --fs-card-heading:28px; --fs-dek:24px; --fs-body:20px; --fs-small:16px;
+  --fs-eyebrow:16px; --fs-code:16px; --fs-footer:12px;
+}
+/* dark family (tokens families.dark): title and dividers stay dark in both themes; values copy the dark block */
+.slide.a-title,.slide.a-divider,.slide.a-demo-divider,.slide.a-appendix-divider{
+  --surface:#0F1B26; --surface-2:#1B2C3B; --ink:#E3ECF2; --ink-2:#9DB2C0; --line:#5A7386;
+  --accent-text:#F2C811; --link:#5CC8FF; --dim:#384E5F;
+}
+/* @font-embed:start */
+/* no embedded fonts: the metric-stable stack above is in use (H3); embed_font.py writes here */
+/* @font-embed:end */
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{overflow:hidden;background:var(--backdrop);color:var(--backdrop-ink);font-family:var(--font-sans)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* canvas: one transform, centred in the stage above the bar (H1) */
+#stage{position:fixed;inset:0 0 var(--bar) 0;overflow:hidden}
+#track{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform:translate(-50%,-50%) scale(var(--k,1));box-shadow:0 2px 24px rgba(0,0,0,.18)}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:80px 48px 72px;overflow:hidden;
+  background:var(--surface);color:var(--ink);font:400 var(--fs-body)/1.35 var(--font-sans)}
+.slide.on{display:flex}
+.slide h1,.slide h2,.slide h3,.slide p,.slide figure{margin:0}
+.slide ul,.slide ol{margin:0;padding:0;list-style:none}
+.slide a{color:var(--link);text-decoration:none}
+.slide code,.slide kbd{font-family:var(--font-mono);font-size:var(--fs-code)}
+.slide kbd{padding:0 8px;border:2px solid var(--line);border-radius:6px;font-weight:600}
+
+/* header grammar: eyebrow, title box at y=80, dek, body from y=160, page number */
+.slide>.eyebrow{position:absolute;top:48px;left:48px;right:48px;font-size:var(--fs-eyebrow);line-height:24px;color:var(--ink-2);white-space:nowrap}
+.slide>.t{font-size:var(--fs-title);line-height:60px;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+.slide>.dek{margin-top:12px;max-width:60ch;font-size:var(--fs-dek,var(--fs-body));line-height:1.3;color:var(--ink-2);text-wrap:pretty}
+.slide>.body{flex:0 1 auto;min-height:0;margin-top:20px;display:flex;flex-direction:column;gap:24px}
+/* page number: geometry.px.page_number size 16 in both modes, box bottom on the 24 px footer edge (K1, G2) */
+.slide>.pn{position:absolute;right:48px;bottom:24px;font-size:16px;line-height:1;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.slide>.notes{display:none}
+
+/* 12-column grid of the content box (69.33 px columns, 32 px gutters) and utilities: no style attributes (H7) */
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:24px;align-items:start}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}
+.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:1/-1}
+.mt-auto{margin-top:auto}.muted{color:var(--ink-2)}.strong{font-weight:600}.mono{font-family:var(--font-mono)}
+.stack{display:flex;flex-direction:column;gap:16px}
+/* .nw keeps a number group («3-2-1», «10-15») on one line: Chromium breaks after a hyphen or an en dash.
+   The engine wraps groups in titles, deks and the labels it renders; body text takes <span class="nw"> */
+.nw{white-space:nowrap}
+
+/* components, child selectors only (H7) */
+/* text cards trim the bottom padding by the last line's half-leading (about 4 px at 28 px / 1.35), so the
+   space under the glyphs matches the top padding (G5 card_pad_tol) */
+.card{background:var(--surface-2);border-radius:12px;padding:24px 24px 20px}
+.card.trap{border:2px solid var(--line)}
+.sym{font-weight:600}
+.bul>li{padding-left:28px;position:relative}
+.bul>li::before{content:"";position:absolute;left:4px;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--ink-2)}
+.cards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:32px;align-items:start}
+.cards>li{background:var(--surface-2);border-radius:12px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:10px}
+.cards>li>.nm{font-weight:600;font-size:var(--fs-card-heading);line-height:1.2}
+.cards>li>.dx{color:var(--ink-2)}
+.ic{width:40px;height:40px;flex:none;fill:none;stroke:currentColor;stroke-width:2}
+.steps{display:flex;flex-direction:column;gap:20px;counter-reset:st}
+.steps>li{display:flex;align-items:center;gap:20px;counter-increment:st}
+.steps>li::before{content:counter(st);flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--accent-fill);color:var(--on-accent);font-weight:600}
+.steps>li>.nm{font-weight:600}
+.progress,.chips{display:flex;flex-wrap:wrap;gap:12px}
+.progress>li,.chips>li,.pill,.demo-pill{display:inline-block;align-self:flex-start;white-space:nowrap;border-radius:999px;padding:4px 16px;line-height:1.3;background:var(--surface-2);color:var(--ink)}
+.pill{font-size:var(--fs-eyebrow)}
+.progress>li{font-size:var(--fs-label)}
+.chips>li{font-size:var(--fs-label)}
+.progress>li{color:var(--ink-2)}
+.progress>li.on{background:var(--accent-fill);color:var(--on-accent);font-weight:600}
+.pill.ga{background:var(--ga-fill);color:var(--ga-ink)}
+.pill.preview{background:var(--preview-fill);color:var(--preview-ink)}
+.pill.planned{background:var(--planned-fill);color:var(--planned-ink)}
+.pill.url{font-size:var(--fs-label);font-weight:600;background:var(--accent-fill);color:var(--on-accent)}
+.demo-pill{font-size:var(--fs-label);font-weight:600;background:var(--accent-fill);color:var(--on-accent)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stat{background:var(--surface-2);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.stat>.v{font-size:var(--fs-hero);font-weight:600;line-height:1}
+.stat>.m{color:var(--ink-2);font-size:var(--fs-small,var(--fs-label))}
+[data-mode="reading"] .stat>.v{font-size:var(--fs-title)}
+.tb{width:100%;border-collapse:collapse}
+.tb>thead>tr>th{padding:8px 16px;text-align:left;font-weight:600;background:var(--header-fill);color:var(--header-ink)}
+.tb>tbody>tr>td{padding:8px 16px;vertical-align:baseline;border-bottom:1px solid var(--line)}
+.tb>tbody>tr>td.m{font-family:var(--font-mono);font-size:var(--fs-code)}
+.tb.z>tbody>tr:nth-child(even){background:var(--surface-2)}
+.term{border-radius:12px;overflow:hidden;background:var(--void);color:var(--void-ink)}
+.term>.term-hd{display:flex;align-items:center;gap:12px;padding:8px 8px 0 20px}
+.term>.term-hd>.ttl{flex:1;font-size:var(--fs-eyebrow);color:var(--void-ink-2)}
+.term>.term-hd>.copy{border:0;border-radius:8px;padding:6px 14px;cursor:pointer;font:600 var(--fs-eyebrow)/1.2 var(--font-sans);background:var(--void-accent);color:var(--on-accent)}
+.term>.term-hd>.copy.done{background:var(--ga-fill);color:var(--ga-ink)}
+.term>pre,.hero-code{margin:0;padding:16px 20px 20px;font:var(--fs-code)/1.4 var(--font-mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.hero-code{font-size:var(--fs-code-hero);border-radius:12px;background:var(--void);color:var(--void-ink)}
+.board{border-radius:12px;background:var(--void);color:var(--void-ink)}
+.board>svg{display:block;width:100%;height:auto}
+.board .lb{font:400 var(--fs-body) var(--font-sans);fill:currentColor}
+.board .lb.dim{fill:var(--void-ink-2)}
+.board .lb.on{fill:var(--on-accent);font-weight:600}
+.board .bx{fill:none;stroke:var(--void-ink-2);stroke-width:3}
+.board .fx{fill:var(--accent-fill)}
+.board .ln{fill:none;stroke:var(--void-ink-2);stroke-width:3}
+.board .ah{fill:var(--void-ink-2)}
+.shot{position:relative;align-self:start}
+.shot>img{display:block;width:100%;height:auto;border-radius:8px}
+.shot>.ov{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ov .hl{fill:none;stroke:var(--hl);stroke-width:4px;vector-effect:non-scaling-stroke}
+.callouts{counter-reset:co;display:flex;flex-direction:column;gap:16px}
+.callouts>li{counter-increment:co;display:flex;gap:12px;align-items:baseline}
+.callouts>li::before{content:counter(co);flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--hl);color:var(--hl-ink);font-weight:600;font-size:var(--fs-eyebrow)}
+.fromto{display:grid;grid-template-columns:1fr 48px 1fr;gap:16px 24px;align-items:center}
+.fromto>.from{color:var(--ink-2)}
+.fromto>.to{font-weight:600}
+.equation,.flow3{display:flex;align-items:center;gap:24px}
+.equation>.op{font-size:var(--fs-hero);font-weight:600}
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.risks>li{background:var(--surface-2);border-radius:12px;padding:20px 20px 16px}
+
+/* archetype layouts (.a-<id>, the enum of deck-storyline references/deck-plan.md §6) */
+.a-title,.a-divider,.a-demo-divider,.a-appendix-divider{justify-content:center;padding-top:48px}
+.a-title>.t,.a-divider>.t,.a-demo-divider>.t,.a-appendix-divider>.t{font-size:var(--fs-divider);line-height:1.12;max-width:1040px}
+.a-title>.dek{margin-top:28px;font-size:var(--fs-body)}
+.a-title>.ctx{margin-top:36px;font-size:var(--fs-eyebrow);color:var(--ink-2)}
+.nn{margin-bottom:20px;font-size:var(--fs-label);color:var(--accent-text);font-variant-numeric:tabular-nums}
+.a-demo-divider>.demo-pill{margin-bottom:24px}
+/* thesis (slide-design archetypes.md 4): statements as full-width rows at the card heading size, lead in .nm */
+.a-thesis>.body>.cards{grid-auto-flow:row}
+.a-thesis>.body>.cards>li{display:block;font-size:var(--fs-card-heading);line-height:1.2}
+.toc>ol{display:flex;flex-direction:column;gap:12px}
+.toc>ol>li>a{display:grid;grid-template-columns:56px 1fr auto;column-gap:16px;padding:16px 24px 12px;border-radius:12px;background:var(--surface-2);color:var(--ink)}
+.toc>ol>li>a>.no{grid-row:1/3;font-weight:600;color:var(--accent-text)}
+.toc>ol>li>a>.nm{grid-column:2;font-weight:600}
+.toc>ol>li>a>.q{grid-column:2;color:var(--ink-2)}
+.toc>ol>li>a>.rg{grid-column:3;grid-row:1/3;align-self:center;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.a-photo{padding:0}
+.a-photo>.bleed{position:absolute;inset:0}
+.a-photo>.bleed>img{width:100%;height:100%;object-fit:cover}
+.a-photo>.t{position:absolute;left:48px;bottom:48px;padding:8px 20px;border-radius:8px;background:rgba(0,0,0,.64);color:#FFFFFF}
+.side,.items{display:flex;flex-direction:column;gap:20px}
+.a-close>.body{gap:28px}
+.next{font-weight:600}
+.a-cta>.body{justify-content:center;gap:28px}
+
+/* engine-generated markers */
+[data-todo]{outline:3px dashed var(--todo);outline-offset:4px;min-height:1.2em;min-width:4em}
+[data-todo]:empty::before{content:attr(data-todo);color:var(--todo);font:italic 400 20px/1.3 var(--font-sans)}
+[data-todo=""]:empty::before{content:"заповнити"}
+[data-todo]:not(:empty):not([data-todo=""])::after{content:attr(data-todo);display:block;margin-top:6px;color:var(--todo);font:italic 400 20px/1.3 var(--font-sans)}
+.ref-missing{background:var(--todo);color:#FFFFFF;padding:0 6px}
+
+/* control bar and progress: chrome, never content (excluded from words, hidden in print) */
+#prog{position:fixed;left:0;top:0;height:3px;width:0;background:var(--accent-fill);z-index:6;transition:width .18s}
+#bar{position:fixed;left:0;right:0;bottom:0;height:var(--bar);display:flex;align-items:center;gap:2px;padding:0 8px;z-index:6;
+  white-space:nowrap;overflow:hidden;background:var(--backdrop);color:var(--backdrop-ink);font:13px/1 var(--font-sans)}
+#bar>button{font:inherit;color:inherit;background:none;border:1px solid transparent;border-radius:6px;padding:6px 10px;cursor:pointer}
+#bar>button:hover{border-color:currentColor}
+#bar>.grow{flex:1}
+#pos{padding:0 6px;font-variant-numeric:tabular-nums}
+#hint{padding:0 8px;opacity:.75}
+:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+@media (max-width:980px){#hint{display:none}}
+@media (max-width:640px){#sect,#bar>[data-act="presenter"],#bar>[data-act="route"]{display:none}#bar>button{padding:6px 8px}}
+
+/* overview grid of scaled clones (O) */
+#overview{position:fixed;inset:0 0 var(--bar) 0;z-index:5;overflow:auto;padding:20px;background:var(--backdrop)}
+#overview>.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.ov-tile{position:relative;padding:0;text-align:left;border:3px solid transparent;border-radius:6px;background:none;cursor:pointer;aspect-ratio:16/9;overflow:hidden}
+.ov-tile.cur{border-color:var(--accent-fill)}
+.ov-tile>.ov-n{position:absolute;left:6px;top:6px;z-index:1;padding:2px 8px;border-radius:4px;font:600 13px/1.2 var(--font-sans);background:var(--backdrop);color:var(--backdrop-ink)}
+.ov-frame{position:absolute;left:0;top:0;width:1280px;height:720px;transform:scale(var(--s,.2));transform-origin:0 0}
+.ov-frame>.slide{display:flex}
+
+/* presenter view (S), same file opened with ?presenter */
+[data-view="presenter"]{--backdrop:#0B1118;--backdrop-ink:#E3ECF2}
+[data-view="presenter"] body{background:#0B1118;color:#E3ECF2}
+#pv{position:fixed;inset:0 0 var(--bar) 0;display:grid;grid-template-columns:62fr 38fr;grid-template-rows:64fr 36fr;gap:12px;padding:12px}
+#pv>#stage{position:relative;inset:auto;grid-area:1/1}
+#pv>section{min-height:0;overflow:auto;border-radius:8px;background:#16222E;padding:12px 16px}
+#pv h3{margin:0 0 8px;font:600 14px/1.2 var(--font-sans);color:#9BBBCE}
+#pv-next{grid-area:1/2;position:relative;overflow:hidden}
+#pv-next>.pv-box{position:relative;overflow:hidden;aspect-ratio:16/9}
+#pv-notes{grid-area:2/1;font:24px/1.45 var(--font-sans);white-space:pre-line}
+#pv-time{grid-area:2/2;font:18px/1.4 var(--font-sans)}
+#pv-time .pv-clock{margin:0;font:600 56px/1.1 var(--font-mono);font-variant-numeric:tabular-nums}
+#pv-time .late{color:#FF9B85}
+.toast{position:fixed;left:50%;bottom:calc(var(--bar) + 12px);transform:translateX(-50%);z-index:7;max-width:90vw;padding:10px 16px;border-radius:8px;background:var(--backdrop-ink);color:var(--backdrop);font:15px/1.4 var(--font-sans)}
+#pv-time button{font:inherit;color:inherit;background:#22313F;border:0;border-radius:6px;padding:6px 12px;margin-right:6px;cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* print: one slide per page of the canvas, chrome and notes hidden, light tokens forced (H4) */
+@page{size:1280px 720px;margin:0}
+@media print{
+  :root[data-theme],:root:not([data-theme]){
+    --surface:#FFFFFF; --surface-2:#E6ECF1; --ink:#0D1A24; --ink-2:#41586A; --line:#7A8B97;
+    --accent-fill:#F2C811; --on-accent:#0D1A24; --accent-text:#7A5F00; --link:#00668F;
+    --header-fill:#0B6E99; --header-ink:#FFFFFF; --dim:#A9B6C0;
+  }
+  html,body{height:auto;overflow:visible;background:none}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #stage,#pv,#pv>#stage{position:static;display:block;padding:0}
+  #track{position:static;width:1280px;height:auto;transform:none;box-shadow:none}
+  /* contain:size: an element that overflows its slide (even clipped) otherwise makes Chromium shrink every page */
+  .slide{position:relative;display:flex!important;width:1280px;height:720px;contain:size}
+  #track>.slide:not(:last-child){break-after:page}
+  #bar,#prog,#live,#overview,.toast,#pv-next,#pv-notes,#pv-time,.copy,.slide>.notes{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="prog" data-chrome aria-hidden="true"></div>
+<main id="stage">
+<div id="track">
+<!-- @slides:start -->
+<section class="slide a-title" id="title" data-archetype="title">
+  <h1 class="t">Один HTML-файл для залу і PDF</h1>
+  <p class="dek">Зберете доповідь із плану й покажете з будь-якого екрана</p>
+  <p class="ctx">Шаблон html-deck · <span data-count></span></p>
+  <aside class="notes">Підказка: титул, нічого не клікати.
+Обіцянка: за 10 хвилин шаблон покаже, як гортати, друкувати й вести доповідь.
+Позначка 0:30.</aside>
+</section>
+<section class="slide a-route" id="route" data-archetype="route">
+  <h2 class="t">Дві частини за 10&nbsp;хвилин</h2>
+  <p class="dek">Частина 1 не потребує технічної підготовки</p>
+  <div class="body"><nav class="toc" data-toc aria-label="Маршрут"></nav></div>
+  <p class="pn"></p>
+  <aside class="notes">Назвати дві частини. Діапазони слайдів рахує рушій.
+Позначка 1:00.</aside>
+</section>
+<section class="slide a-divider" id="show-divider" data-archetype="divider" data-part="show">
+  <p class="nn" data-part-n></p>
+  <h2 class="t">Як показати з будь-якого екрана?</h2>
+  <aside class="notes">Пауза. Спитати, хто показував із чужого ноутбука.
+Позначка 1:15.</aside>
+</section>
+<section class="slide a-concept" id="scale" data-archetype="concept" data-part="show">
+  <p class="eyebrow">Показ · модель</p>
+  <h2 class="t">Канва масштабується без обрізання</h2>
+  <div class="body">
+    <div class="board">
+      <svg viewBox="0 0 1184 400" role="img" aria-label="Канва 1280 на 720 пікселів множиться на коефіцієнт k і цілком вміщується в будь-який екран.">
+        <defs><marker id="ah-scale" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect class="bx" x="32" y="110" width="320" height="180" rx="12"/>
+        <text class="lb" x="192" y="192" text-anchor="middle">Канва</text>
+        <text class="lb dim" x="192" y="234" text-anchor="middle">1280×720</text>
+        <path class="ln" d="M368 200H446" marker-end="url(#ah-scale)"/>
+        <circle class="fx" cx="560" cy="200" r="96"/>
+        <text class="lb on" x="560" y="210" text-anchor="middle">× k</text>
+        <path class="ln" d="M672 200H750" marker-end="url(#ah-scale)"/>
+        <rect class="bx" x="768" y="40" width="384" height="320" rx="16"/>
+        <text class="lb" x="960" y="192" text-anchor="middle">Будь-який</text>
+        <text class="lb" x="960" y="232" text-anchor="middle">екран</text>
+      </svg>
+    </div>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Одна схема: канва, коефіцієнт, екран.
+Рамка слайда завжди цілком на екрані, від телефона до проектора.
+Перехід: «Як це виглядає для доповідача, покаже демо».
+Позначка 2:15.</aside>
+</section>
+<section class="slide a-demo-divider" id="demo" data-archetype="demo-divider" data-part="show">
+  <p class="demo-pill">Демо</p>
+  <h2 class="t">Вікно доповідача йде слідом</h2>
+  <aside class="notes">Натиснути S, перетягнути вікно доповідача на свій екран, гортати стрілками.
+Дивитися на те, що обидва вікна показують один слайд.
+Жорстка зупинка на 4:15. Якщо вікно не відкрилося, показати наступний слайд.
+Позначка 4:15.</aside>
+</section>
+<section class="slide a-demo-still" id="demo-result" data-archetype="demo-still" data-part="show">
+  <p class="eyebrow">Показ · результат</p>
+  <h2 class="t">Нотатки й таймер видно лише доповідачу</h2>
+  <div class="body">
+    <div class="g12">
+      <figure class="shot c8">
+        <img alt="Вікно доповідача: поточний слайд, наступний, нотатки й таймер" width="1600" height="900" data-ui-px="28" data-native-width="1600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%230B1118'/%3E%3Crect x='40' y='40' width='960' height='520' rx='8' fill='%23FFFFFF'/%3E%3Crect x='88' y='112' width='560' height='44' rx='4' fill='%230D1A24'/%3E%3Crect x='88' y='200' width='380' height='28' rx='4' fill='%2341586A'/%3E%3Crect x='88' y='252' width='420' height='28' rx='4' fill='%2341586A'/%3E%3Crect x='600' y='220' width='340' height='260' rx='12' fill='%23E6ECF1'/%3E%3Crect x='1040' y='40' width='520' height='292' rx='8' fill='%23E6ECF1'/%3E%3Crect x='1072' y='88' width='300' height='28' rx='4' fill='%2341586A'/%3E%3Crect x='1072' y='140' width='220' height='28' rx='4' fill='%237A8B97'/%3E%3Crect x='40' y='580' width='960' height='280' rx='8' fill='%2316222E'/%3E%3Crect x='72' y='620' width='700' height='28' rx='4' fill='%239BBBCE'/%3E%3Crect x='72' y='672' width='820' height='28' rx='4' fill='%239BBBCE'/%3E%3Crect x='72' y='724' width='600' height='28' rx='4' fill='%239BBBCE'/%3E%3Crect x='72' y='776' width='740' height='28' rx='4' fill='%239BBBCE'/%3E%3Crect x='1040' y='372' width='520' height='488' rx='8' fill='%2316222E'/%3E%3Ctext x='1300' y='620' font-family='sans-serif' font-size='120' fill='%23DDE8EF' text-anchor='middle'%3E04:15%3C/text%3E%3Crect x='1170' y='690' width='260' height='28' rx='4' fill='%239BBBCE'/%3E%3C/svg%3E">
+        <svg class="ov" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"><rect class="hl" x="32" y="572" width="976" height="296" rx="12"/></svg>
+      </figure>
+      <div class="c4 side">
+        <p class="demo-pill">Демо</p>
+        <p>Нотатки змінюються разом зі слайдом</p>
+      </div>
+    </div>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Що помітити: нотатки внизу ліворуч змінюються разом зі слайдом.
+Позначка 4:45.</aside>
+</section>
+<section class="slide a-demo-recap" id="demo-recap" data-archetype="demo-recap" data-part="show">
+  <p class="eyebrow">Показ · підсумок демо</p>
+  <h2 class="t">Три клавіші ведуть увесь показ</h2>
+  <div class="body">
+    <ol class="steps">
+      <li><span><kbd>S</kbd> відкриває вікно доповідача</span></li>
+      <li><span>Стрілки гортають обидва вікна</span></li>
+      <li><span><kbd>O</kbd> показує всі слайди</span></li>
+    </ol>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Назвати три кроки вголос. Решта клавіш у додатку.
+Перехід до друку.
+Позначка 5:15.</aside>
+</section>
+<section class="slide a-divider" id="print-divider" data-archetype="divider" data-part="print">
+  <p class="nn" data-part-n></p>
+  <h2 class="t">Що потрапляє в PDF?</h2>
+  <aside class="notes">Друга частина: PDF, який розсилають після доповіді.
+Позначка 5:30.</aside>
+</section>
+<section class="slide a-hub" id="rules" data-archetype="hub" data-part="print">
+  <p class="eyebrow">Друк · огляд</p>
+  <h2 class="t">Друк тримається на трьох правилах</h2>
+  <div class="body">
+    <ul class="cards" data-list="rules" data-render="cards">
+      <li data-item="page">Канва 1280×720 стає сторінкою</li>
+      <li data-item="clean">Кнопки, панель і нотатки сховано</li>
+      <li data-item="light">Темна тема не псує друк</li>
+    </ul>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Три картки зліва направо. Перше правило розберемо, решта очевидні.
+Позначка 6:30.</aside>
+</section>
+<section class="slide a-series-item" id="page" data-archetype="series-item" data-part="print">
+  <p class="eyebrow" data-item-n></p>
+  <h2 class="t">Кожен слайд стає окремою сторінкою</h2>
+  <div class="body">
+    <ol class="progress" data-list="rules" data-render="progress" data-current="page"></ol>
+    <ul class="stack bul">
+      <li>Сторінка дорівнює канві, без полів</li>
+      <li><span data-count></span> дають стільки ж сторінок</li>
+    </ul>
+    <div class="term">
+      <div class="term-hd"><span class="ttl">CSS</span><button type="button" class="copy">Копіювати</button></div>
+      <pre>@page { size: 1280px 720px; margin: 0 }
+.slide { break-after: page }</pre>
+    </div>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Показати рядок CSS і кнопку копіювання. У PDF кнопки немає.
+Позначка 7:30.</aside>
+</section>
+<section class="slide a-close" id="close" data-archetype="close">
+  <h2 class="t">Один файл працює в залі й у PDF</h2>
+  <div class="body">
+    <ul class="chips" data-list="parts" data-render="chips"></ul>
+    <p class="next">Наступний крок: зберіть свій план і запустіть <code>scaffold_deck.py</code></p>
+    <p>Усі клавіші: <a data-ref="keys"></a> · <span class="pill url">example.org/deck</span></p>
+  </div>
+  <p class="pn"></p>
+  <aside class="notes">Повторити дві частини. Попросити спробувати на своєму плані.
+Залишити слайд на екрані під час запитань.
+Позначка 8:00.</aside>
+</section>
+<section class="slide a-appendix-divider" id="appendix" data-archetype="appendix-divider" data-appendix data-mode="reading">
+  <h2 class="t">Додаток</h2>
+</section>
+<section class="slide a-ref-table" id="keys" data-archetype="ref-table" data-appendix data-mode="reading">
+  <p class="eyebrow">Додаток · клавіші</p>
+  <h2 class="t">8 команд керують показом</h2>
+  <p class="dek">На сенсорному екрані гортайте свайпом або торканням краю слайда</p>
+  <div class="body">
+    <table class="tb z">
+      <thead><tr><th>Клавіші</th><th>Дія</th></tr></thead>
+      <tbody>
+        <tr><td class="m">→ Пробіл PageDown N</td><td>Наступний слайд</td></tr>
+        <tr><td class="m">← PageUp P</td><td>Попередній слайд</td></tr>
+        <tr><td class="m">Home End</td><td>Перший і останній слайд</td></tr>
+        <tr><td class="m">G</td><td>Маршрут доповіді</td></tr>
+        <tr><td class="m">O</td><td>Огляд усіх слайдів</td></tr>
+        <tr><td class="m">S</td><td>Вікно доповідача з нотатками й таймером</td></tr>
+        <tr><td class="m">T</td><td>Світла або темна тема</td></tr>
+        <tr><td class="m">F</td><td>Повний екран</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="pn"></p>
+</section>
+<!-- @slides:end -->
+</div>
+</main>
+<nav id="bar" data-chrome aria-label="Керування показом">
+  <button type="button" data-act="prev" title="Попередній (← або P)" aria-label="Попередній слайд">‹</button>
+  <span id="pos"></span>
+  <button type="button" data-act="next" title="Наступний (→, пробіл або N)" aria-label="Наступний слайд">›</button>
+  <span id="sect"></span>
+  <span class="grow"></span>
+  <span id="hint">← → гортати · G маршрут · O огляд · S доповідач · T тема · F екран</span>
+  <button type="button" data-act="route" title="Маршрут (G)">Маршрут</button>
+  <button type="button" data-act="overview" title="Огляд (O)">Огляд</button>
+  <button type="button" data-act="presenter" title="Вікно доповідача (S)">Доповідач</button>
+  <button type="button" data-act="theme" title="Тема (T)">Тема</button>
+  <button type="button" data-act="full" title="Повний екран (F)">Екран</button>
+</nav>
+<div id="live" class="sr" data-chrome aria-live="polite"></div>
+<script type="application/json" id="deck-data">
+{
+  "meta": {"title": "Шаблон html-deck", "lang": "uk", "mode": "talk+appendix", "minutes": 10, "qa_minutes": 2, "dash_policy": "hyphen"},
+  "parts": [
+    {"id": "show", "title": "Показ", "question": "Як показати з будь-якого екрана?"},
+    {"id": "print", "title": "Друк", "question": "Що потрапляє в PDF?"}
+  ],
+  "lists": {
+    "rules": [
+      {"id": "page", "label": "Сторінка на слайд", "icon": null},
+      {"id": "clean", "label": "Без кнопок і нотаток", "icon": null},
+      {"id": "light", "label": "Світлі токени", "icon": null}
+    ]
+  },
+  "minutes": {"title": 0.5, "route": 0.5, "show-divider": 0.25, "scale": 1, "demo": 2, "demo-result": 0.5, "demo-recap": 0.5,
+              "print-divider": 0.25, "rules": 1, "page": 1, "close": 0.5, "appendix": 0, "keys": 0}
+}
+</script>
+<!-- archetype snippets: one per id of the enum (deck-storyline references/deck-plan.md §6), cloned by scripts/scaffold_deck.py -->
+<template data-archetype="title"><section class="slide a-title" data-archetype="title">
+  <h1 class="t" data-slot="title" data-todo></h1>
+  <p class="dek" data-slot="dek" data-todo="обіцянка: що аудиторія зможе після доповіді"></p>
+  <p class="ctx" data-slot="context" data-todo="контекст: подія, місяць, версія"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="route"><section class="slide a-route" data-archetype="route">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <p class="dek" data-slot="dek" data-todo></p>
+  <div class="body"><nav class="toc" data-toc aria-label="Маршрут"></nav></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="divider"><section class="slide a-divider" data-archetype="divider">
+  <p class="nn" data-part-n></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="thesis"><section class="slide a-thesis" data-archetype="thesis">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ul class="cards" data-slot="pillars" data-todo="2-3 твердження рядками: до 3 слів у b.nm, далі пояснення до 8 слів"></ul></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="journey"><section class="slide a-journey" data-archetype="journey">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ol class="steps" data-list="" data-render="steps" data-slot="list" data-todo="3-5 кроків із plan.lists"></ol></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="before-after"><section class="slide a-before-after" data-archetype="before-after">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><figure class="c8 board" data-shape data-slot="shape" data-todo="схема стану: одна сітка для обох кінців пари"></figure><ol class="c4 callouts" data-slot="takeaways" data-todo="до 4 висновків із номерами"></ol></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="from-to"><section class="slide a-from-to" data-archetype="from-to">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="fromto" data-slot="rows" data-todo="рядки: .from, стрілка, .to"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="concept"><section class="slide a-concept" data-archetype="concept">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="board" data-slot="diagram" data-todo="SVG: до 3 зон, один фокус"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="map"><section class="slide a-map" data-archetype="map">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="board" data-slot="diagram" data-todo="SVG: до 12 блоків .box, рівно один .hl"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="zoom"><section class="slide a-zoom" data-archetype="zoom">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="board" data-slot="diagram" data-todo="схема з map: контекст .dim, нове .reveal"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="hub"><section class="slide a-hub" data-archetype="hub">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ul class="cards" data-list="" data-render="cards" data-slot="list" data-todo="3-4 картки з plan.lists"></ul></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="feature-hero"><section class="slide a-feature-hero" data-archetype="feature-hero">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><div class="c4 stat" data-slot="hero" data-todo="одне число: .v, .l, .m з методом"></div><ul class="c8 stack" data-slot="rows" data-todo="до 3 рядків з іконками"></ul></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="feature-shot"><section class="slide a-feature-shot" data-archetype="feature-shot">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><ul class="c5 items" data-slot="items" data-todo="3-4 пункти: акцент і пояснення"></ul><figure class="c7 shot" data-slot="media" data-todo><img alt="" data-ui-px="" data-native-width=""></figure></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="equation"><section class="slide a-equation" data-archetype="equation">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="equation" data-slot="equation" data-todo="A + B = результат"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="worked-example"><section class="slide a-worked-example" data-archetype="worked-example">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><div class="c4" data-slot="input" data-todo="таблиця входу"></div><pre class="c4 hero-code" data-slot="code" data-todo="один рядок коду"></pre><div class="c4" data-slot="output" data-todo="таблиця виходу"></div></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="code-step"><section class="slide a-code-step" data-archetype="code-step">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><p data-slot="claim" data-todo="твердження кроку"></p><div class="term"><div class="term-hd"><span class="ttl"></span><button type="button" class="copy">Копіювати</button></div><pre data-slot="code" data-todo="одна команда, прямі лапки"></pre></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="annotated-shot"><section class="slide a-annotated-shot" data-archetype="annotated-shot">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><figure class="c8 shot" data-slot="media" data-todo><img alt="" data-ui-px="" data-native-width=""></figure><ol class="c4 callouts" data-slot="callouts" data-todo="до 3 виносок із номерами"></ol></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="concept-demo"><section class="slide a-concept-demo" data-archetype="concept-demo">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="board" data-slot="diagram" data-todo="вхід, перетворення, результат"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="photo"><section class="slide a-photo" data-archetype="photo">
+  <figure class="bleed" data-slot="media" data-todo><img alt=""></figure>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="demo-divider"><section class="slide a-demo-divider" data-archetype="demo-divider">
+  <p class="demo-pill">Демо</p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="demo-still"><section class="slide a-demo-still" data-archetype="demo-still">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><figure class="c8 shot" data-slot="media" data-todo><img alt="" data-ui-px="" data-native-width=""></figure><div class="c4 side"><p class="demo-pill">Демо</p><p data-slot="notice" data-todo="що помітити, до 10 слів"></p></div></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="demo-recap"><section class="slide a-demo-recap" data-archetype="demo-recap">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ol class="steps" data-slot="steps" data-todo="до 3 кроків або одне речення"></ol></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="series-item"><section class="slide a-series-item" data-archetype="series-item">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ol class="progress" data-list="" data-render="progress" data-slot="list" data-todo="рядок прогресу з plan.lists"></ol><div class="stack" data-slot="detail" data-todo="доказ цього пункту"></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="ref-table"><section class="slide a-ref-table" data-archetype="ref-table">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><table class="tb" data-slot="table" data-todo="до 8 рядків: назва моно, опис"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="compare-table"><section class="slide a-compare-table" data-archetype="compare-table">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><table class="tb" data-slot="table" data-todo="до 6 рядків і 3 колонок"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="close"><section class="slide a-close" data-archetype="close">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ul class="chips" data-list="" data-render="chips" data-slot="list" data-todo="мітки з plan.parts або plan.lists"></ul><p class="next" data-slot="next" data-todo="один наступний крок"></p><p><span class="pill url" data-slot="url" data-todo></span></p></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="cta"><section class="slide a-cta" data-archetype="cta">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><p><span class="pill url" data-slot="url" data-todo="адреса до 25 символів"></span></p><p class="next" data-slot="next" data-todo="одна дія"></p></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="kpi-wall"><section class="slide a-kpi-wall" data-archetype="kpi-wall">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="stats" data-slot="stats" data-todo="плитки .stat: .v, .l, .m"></div><p class="muted" data-slot="method" data-todo="як виміряно кожне число"></p></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="trap-card"><section class="slide a-trap-card" data-archetype="trap-card">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><div class="c7 card trap" data-slot="trap" data-todo="пастка"></div><p class="c5 card sym" data-slot="symptom" data-todo="Симптом: що побачить читач"></p></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="setup-step"><section class="slide a-setup-step" data-archetype="setup-step">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><div class="g12"><div class="c7 term"><div class="term-hd"><span class="ttl"></span><button type="button" class="copy">Копіювати</button></div><pre data-slot="code" data-todo="команди без горизонтального переповнення"></pre></div><div class="c5 stack" data-slot="side" data-todo="пояснення й пастка із симптомом"></div></div></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="glossary"><section class="slide a-glossary" data-archetype="glossary">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><table class="tb z" data-slot="table" data-todo="термін, що це насправді, чому важливо"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="matrix"><section class="slide a-matrix" data-archetype="matrix">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><table class="tb" data-slot="table" data-todo="шар, інструмент, обов’язковість, що робить"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="error-log"><section class="slide a-error-log" data-archetype="error-log">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><table class="tb z" data-slot="table" data-todo="симптом, причина, правило"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="risks"><section class="slide a-risks" data-archetype="risks">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><ul class="risks" data-slot="risks" data-todo="«заперечення» і відповідь"></ul></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="summary-card"><section class="slide a-summary-card" data-archetype="summary-card">
+  <p class="eyebrow" data-slot="eyebrow" data-todo></p>
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <div class="body"><p class="card strong" data-slot="summary" data-todo="одне речення підсумку"></p><table class="tb" data-slot="table" data-todo="посилання"></table></div>
+  <p class="pn"></p>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<template data-archetype="appendix-divider"><section class="slide a-appendix-divider" data-archetype="appendix-divider">
+  <h2 class="t" data-slot="title" data-todo></h2>
+  <aside class="notes" data-slot="notes" data-todo></aside>
+</section></template>
+<script>
+/* html-deck engine, ES2017, no dependencies, works from file://. Contract: html-deck references/engine.md.
+   Authors write sections, ids, data-part, data-archetype, empty .pn, [data-ref], nav[data-toc], [data-list] and
+   aside.notes; the engine generates every number and label from the DOM and script#deck-data. */
+(function () {
+  'use strict';
+  var d = document, root = d.documentElement;
+  var stage = d.getElementById('stage'), track = d.getElementById('track');
+  var slides = Array.prototype.filter.call(track.children, function (n) { return n.matches('section.slide'); });
+  var count = slides.length;
+  var data = {};
+  try { data = JSON.parse((d.getElementById('deck-data') || {}).textContent || '{}'); }
+  catch (e) { console.error('html-deck: script#deck-data is not valid JSON', e); }
+  var meta = data.meta || {}, lists = data.lists || {}, minutes = data.minutes || {};
+  var en = (meta.lang || root.lang) === 'en';
+  var L = en ? {
+    slide: ['slide', 'slides', 'slides'], part: ['part', 'parts', 'parts'], of: 'of', role: 'slide',
+    copy: 'Copy', copied: 'Copied', select: 'Selected, press Ctrl+C', overview: 'All slides', next: 'Next',
+    end: 'End of deck', notes: 'Notes', noNotes: 'No notes for this slide', mark: 'Mark', pause: 'Pause',
+    resume: 'Resume', reset: 'Reset', presenter: 'Presenter', blocked: 'The browser blocked the presenter window: allow pop-ups for this file.',
+    link: 'Link', noLink: 'no audience window: open this view with S from the deck'
+  } : {
+    slide: ['слайд', 'слайди', 'слайдів'], part: ['частина', 'частини', 'частин'], of: 'з', role: 'слайд',
+    copy: 'Копіювати', copied: 'Скопійовано', select: 'Виділено, натисніть Ctrl+C', overview: 'Огляд слайдів', next: 'Далі',
+    end: 'Кінець доповіді', notes: 'Нотатки', noNotes: 'Нотаток до цього слайда немає', mark: 'Позначка', pause: 'Пауза',
+    resume: 'Далі', reset: 'Скинути', presenter: 'Доповідач', blocked: 'Браузер заблокував вікно доповідача: дозвольте спливні вікна для цього файлу.',
+    link: 'Зв’язок', noLink: 'немає вікна показу: відкрийте цей вигляд клавішею S у презентації'
+  };
+  var presenter = /(^|&)presenter(=|&|$)/.test(location.search.slice(1));
+  var cur = -1, started = false, ov = null;
+  var NBSP = '\u00a0', RANGE = meta.dash_policy === 'en-dash' ? '\u2013' : '-';
+
+  /* ukrainian-ui-copy plural(): 1 слайд, 2 слайди, 5 слайдів */
+  function plural(n, f) {
+    var a = n % 10, b = n % 100;
+    if (en) return n === 1 ? f[0] : f[1];
+    if (a === 1 && b !== 11) return f[0];
+    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return f[1];
+    return f[2];
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function txt(id, v) { var e = d.getElementById(id); if (e) e.textContent = v; }
+  function toast(msg) {
+    var t = el('div', 'toast', msg); t.setAttribute('role', 'status'); t.setAttribute('data-chrome', '');
+    d.body.appendChild(t); setTimeout(function () { t.remove(); }, 5000);
+  }
+  function el(tag, cls, text) {
+    var e = d.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function own(s, sel) { return s.querySelector(':scope > ' + sel); }
+  function titleOf(s) { var t = own(s, '.t'); return t ? t.textContent.replace(/\s+/g, ' ').trim() : ''; }
+
+  /* parts: script#deck-data first, else the data-part values in document order */
+  var parts = (data.parts || []).slice();
+  if (!parts.length) slides.forEach(function (s) {
+    var p = s.getAttribute('data-part');
+    if (p && !parts.some(function (x) { return x.id === p; })) parts.push({ id: p, title: p });
+  });
+  function partIdx(s) {
+    var p = s.getAttribute('data-part');
+    for (var k = 0; k < parts.length; k++) if (parts[k].id === p) return k;
+    return -1;
+  }
+  function itemsOf(name) {
+    if (lists[name]) return lists[name];
+    if (name === 'parts') return parts.map(function (p) { return { id: p.id, label: p.title, icon: p.icon || null }; });
+    return null;
+  }
+  function icon(name) {
+    if (!name || !d.getElementById('i-' + name)) return null;
+    var ns = 'http://www.w3.org/2000/svg', s = d.createElementNS(ns, 'svg'), u = d.createElementNS(ns, 'use');
+    s.setAttribute('class', 'ic'); s.setAttribute('aria-hidden', 'true');
+    u.setAttribute('href', '#i-' + name); s.appendChild(u);
+    return s;
+  }
+
+  /* ---------- generated content (H2): numbers, part n/N, totals, TOC, refs, lists */
+  function build() {
+    var mainCount = slides.filter(function (s) { return !s.hasAttribute('data-appendix'); }).length;
+    slides.forEach(function (s, i) {
+      var a = s.getAttribute('data-archetype');
+      if (a && !s.classList.contains('a-' + a)) s.classList.add('a-' + a);
+      s.classList.remove('on');
+      s.setAttribute('role', 'group');
+      s.setAttribute('aria-roledescription', L.role);
+      s.setAttribute('aria-label', (i + 1) + ' ' + L.of + ' ' + count + ': ' + titleOf(s));
+      var pn = own(s, '.pn');
+      if (pn) pn.textContent = String(i + 1);
+      var k = partIdx(s);
+      s.querySelectorAll('[data-part-n]').forEach(function (e) { e.textContent = k >= 0 ? (k + 1) + ' / ' + parts.length : ''; });
+    });
+    d.querySelectorAll('[data-count]').forEach(function (e) {
+      var w = e.getAttribute('data-count'), n = w === 'parts' ? parts.length : w === 'main' ? mainCount : count;
+      e.textContent = n + NBSP + plural(n, w === 'parts' ? L.part : L.slide);
+    });
+    d.querySelectorAll('nav[data-toc]').forEach(function (nav) {
+      var ol = el('ol');
+      parts.forEach(function (p, k) {
+        var idx = [];
+        slides.forEach(function (s, i) { if (s.getAttribute('data-part') === p.id) idx.push(i + 1); });
+        if (!idx.length) return;
+        var a = el('a');
+        a.href = '#' + idx[0];
+        a.appendChild(el('span', 'no', String(k + 1)));
+        a.appendChild(el('span', 'nm', p.title));
+        if (p.question) a.appendChild(el('span', 'q', p.question));
+        a.appendChild(el('span', 'rg', idx.length > 1 ? idx[0] + RANGE + idx[idx.length - 1] : String(idx[0])));
+        var li = el('li'); li.appendChild(a); ol.appendChild(li);
+      });
+      nav.textContent = ''; nav.appendChild(ol);
+    });
+    d.querySelectorAll('a[data-ref]').forEach(function (a) {
+      var ids = a.getAttribute('data-ref').split(/\s+/).filter(Boolean), nums = [];
+      ids.forEach(function (id) {
+        var t = d.getElementById(id), s = t && t.closest('section.slide'), k = slides.indexOf(s);
+        if (k < 0) console.error('html-deck: data-ref "' + id + '" does not resolve to a slide');
+        else nums.push(k + 1);
+      });
+      if (nums.length !== ids.length || !nums.length) {
+        a.classList.add('ref-missing'); a.removeAttribute('href'); a.textContent = L.slide[0] + NBSP + '?';
+        return;
+      }
+      a.href = '#' + nums[0];
+      var list = nums.length === 1 ? String(nums[0]) : nums.slice(0, -1).join(', ') + (en ? ' and ' : ' і ') + nums[nums.length - 1];
+      a.textContent = (nums.length === 1 ? L.slide[0] : L.slide[1]) + NBSP + list;
+    });
+    d.querySelectorAll('#track [data-list]').forEach(function (box) {
+      var name = box.getAttribute('data-list');
+      if (!name || box.hasAttribute('data-rendered')) return;
+      var items = itemsOf(name);
+      if (!items) { box.classList.add('ref-missing'); console.error('html-deck: list "' + name + '" is not in script#deck-data'); return; }
+      var mode = box.getAttribute('data-render') || 'chips', curId = box.getAttribute('data-current');
+      var mine = {};
+      Array.prototype.forEach.call(box.children, function (c) { var k = c.getAttribute('data-item'); if (k) mine[k] = c; });
+      box.textContent = '';
+      items.forEach(function (it) {
+        var li = mine[it.id] || el('li'), detail = Array.prototype.slice.call(li.childNodes);
+        li.textContent = ''; li.setAttribute('data-item', it.id);
+        if (curId && it.id === curId) { li.classList.add('on'); li.setAttribute('aria-current', 'step'); }
+        if (mode === 'chips' || mode === 'progress') { li.textContent = it.label; box.appendChild(li); return; }
+        var ic = icon(it.icon); if (ic) li.appendChild(ic);
+        li.appendChild(el(mode === 'steps' ? 'span' : 'b', 'nm', it.label));
+        if (detail.some(function (n) { return n.textContent.trim(); })) {
+          var dx = el('span', 'dx'); detail.forEach(function (n) { dx.appendChild(n); }); li.appendChild(dx);
+        }
+        box.appendChild(li);
+      });
+      box.setAttribute('data-n', String(items.length));
+      box.setAttribute('data-rendered', '');
+    });
+    d.querySelectorAll('#track [data-item-n]').forEach(function (e) {
+      var s = e.closest('section.slide'), box = s && s.querySelector('[data-list][data-current]');
+      var items = box && itemsOf(box.getAttribute('data-list')), id = box && box.getAttribute('data-current');
+      var k = items ? items.map(function (x) { return x.id; }).indexOf(id) : -1;
+      e.textContent = k >= 0 ? (k + 1) + ' / ' + items.length + ' · ' + items[k].label : '';
+    });
+    d.querySelectorAll('#track .slide > .t, #track .slide > .dek, #track nav[data-toc] .nm, #track nav[data-toc] .q, '
+      + '#track [data-list] > li > .nm').forEach(keepGroups);
+  }
+
+  /* number groups («3-2-1», «10-15», «2024-2026») on one line: Chromium breaks after a hyphen or an en dash */
+  var GROUP = /\d+(?:[-\u2013]\d+)+/g;
+  function keepGroups(box) {
+    var w = d.createTreeWalker(box, NodeFilter.SHOW_TEXT), found = [];
+    while (w.nextNode()) if (!w.currentNode.parentNode.closest('.nw, code, kbd, svg')) found.push(w.currentNode);
+    found.forEach(function (t) {
+      var s = t.data, m, last = 0, frag = null;
+      GROUP.lastIndex = 0;
+      while ((m = GROUP.exec(s))) {
+        frag = frag || d.createDocumentFragment();
+        if (m.index > last) frag.appendChild(d.createTextNode(s.slice(last, m.index)));
+        frag.appendChild(el('span', 'nw', m[0]));
+        last = m.index + m[0].length;
+      }
+      if (!frag) return;
+      if (last < s.length) frag.appendChild(d.createTextNode(s.slice(last)));
+      t.parentNode.replaceChild(frag, t);
+    });
+  }
+
+  /* ---------- canvas fit (H1): one scale k, centred by translate in #stage, bar reserved */
+  function fit() {
+    var g = presenter ? 0 : parseFloat(getComputedStyle(root).getPropertyValue('--gutter')) || 0;
+    var w = stage.clientWidth - 2 * g, h = stage.clientHeight - 2 * g;
+    var k = Math.min(w / 1280, h / 720);
+    track.style.setProperty('--k', k > 0 && isFinite(k) ? k.toFixed(5) : '0.05');
+    stage.scrollTop = stage.scrollLeft = 0;
+    if (presenter) scaleNext();
+  }
+
+  /* ---------- navigation and history: replace for steps, push for jumps */
+  function writeHash(i, push) {
+    var h = '#' + (i + 1);
+    if (location.hash === h) return;
+    try { history[push ? 'pushState' : 'replaceState'](null, '', h); } catch (e) { /* file:// in an old browser */ }
+  }
+  function fromHash() {
+    var h = '';
+    try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) { return -1; }
+    if (!h) return -1;
+    if (/^\d+$/.test(h)) { var n = +h; return n >= 1 && n <= count ? n - 1 : -1; }
+    var t = d.getElementById(h), s = t && t.closest('section.slide');
+    return slides.indexOf(s);
+  }
+  function go(i, o) {
+    o = o || {};
+    i = Math.max(0, Math.min(count - 1, Math.round(+i) || 0));
+    var moved = i !== cur;
+    if (moved) { if (cur >= 0) slides[cur].classList.remove('on'); slides[i].classList.add('on'); cur = i; }
+    stage.scrollTop = stage.scrollLeft = 0;
+    var k = partIdx(slides[i]);
+    txt('pos', pad(i + 1) + ' / ' + pad(count));
+    txt('sect', k >= 0 ? '· ' + parts[k].title : '');
+    var pg = d.getElementById('prog'); if (pg) pg.style.width = ((i + 1) / count * 100) + '%';
+    if (!o.hash && !o.silent) writeHash(i, !!o.push);
+    if (moved && started) txt('live', slides[i].getAttribute('aria-label'));
+    if (presenter) updatePresenter();
+    if (moved && !o.remote) send({ type: 'go', i: i });
+    window.dispatchEvent(new CustomEvent('deck:change', { detail: { index: i } }));
+  }
+  function next() { go(cur + 1); }
+  function prev() { go(cur - 1); }
+  function onHash() { var k = fromHash(); if (k >= 0 && k !== cur) go(k, { hash: true }); }
+  function toRoute() {
+    var k = slides.findIndex(function (s) { return s.classList.contains('a-route') || s.querySelector('nav[data-toc]'); });
+    go(k >= 0 ? k : Math.min(1, count - 1), { push: true });
+  }
+
+  /* ---------- theme (T), stored in try/catch; the head script restores it before first paint */
+  function toggleTheme() {
+    var t = root.getAttribute('data-theme') ||
+      (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    t = t === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('deck-theme', t); } catch (e) { /* private mode */ }
+  }
+  function toggleFull() {
+    try {
+      if (d.fullscreenElement) d.exitFullscreen();
+      else if (root.requestFullscreen) root.requestFullscreen().catch(function () {});
+    } catch (e) { /* not allowed here */ }
+  }
+
+  /* ---------- clones for the overview and the next-slide preview: no ids, no notes, inert */
+  function cloneSlide(s) {
+    var c = s.cloneNode(true);
+    c.removeAttribute('id');
+    c.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
+    c.querySelectorAll('.notes').forEach(function (x) { x.remove(); });
+    c.classList.add('on'); c.setAttribute('aria-hidden', 'true');
+    return c;
+  }
+  function openOverview() {
+    if (ov) return closeOverview();
+    ov = el('div'); ov.id = 'overview'; ov.setAttribute('data-chrome', '');
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', L.overview);
+    var grid = el('div', 'ov-grid');
+    slides.forEach(function (s, k) {
+      var b = el('button', 'ov-tile' + (k === cur ? ' cur' : ''));
+      b.type = 'button'; b.setAttribute('aria-label', s.getAttribute('aria-label'));
+      var f = el('div', 'ov-frame'); f.setAttribute('inert', ''); f.appendChild(cloneSlide(s));
+      b.appendChild(el('span', 'ov-n', String(k + 1))); b.appendChild(f);
+      b.addEventListener('click', function () { closeOverview(); go(k, { push: true }); });
+      grid.appendChild(b);
+    });
+    ov.appendChild(grid); d.body.appendChild(ov);
+    scaleOverview();
+    var t = grid.children[cur]; if (t) { t.focus(); t.scrollIntoView({ block: 'nearest' }); }
+  }
+  function scaleOverview() {
+    if (!ov) return;
+    var t = ov.querySelector('.ov-tile');
+    if (t) ov.firstChild.style.setProperty('--s', (t.clientWidth / 1280).toFixed(4));
+  }
+  function closeOverview() {
+    if (!ov) return;
+    ov.remove(); ov = null;
+    var b = d.querySelector('#bar [data-act="overview"]'); if (b) b.focus();
+  }
+  function overviewKey(e) {
+    var tiles = ov.querySelectorAll('.ov-tile'), i = Array.prototype.indexOf.call(tiles, d.activeElement);
+    if (e.key === 'Escape' || e.code === 'KeyO') { e.preventDefault(); closeOverview(); return; }
+    if (i < 0) i = cur;
+    var cols = 1; while (cols < tiles.length && tiles[cols].offsetTop === tiles[0].offsetTop) cols++;
+    var j = { ArrowRight: i + 1, ArrowLeft: i - 1, ArrowDown: i + cols, ArrowUp: i - cols, Home: 0, End: tiles.length - 1 }[e.key];
+    if (j === undefined) return;
+    e.preventDefault(); tiles[Math.max(0, Math.min(tiles.length - 1, j))].focus();
+  }
+
+  /* ---------- presenter view (S) and sync: postMessage on file://, BroadcastChannel on http(s), storage fallback */
+  var KEY = 'html-deck:' + location.pathname;
+  var transport = /^https?:$/.test(location.protocol) ? ('BroadcastChannel' in window ? 'broadcast' : 'storage') : 'postMessage';
+  var peer = null, bc = null;
+  root.setAttribute('data-presenter-transport', transport);
+  function send(m) {
+    m.deck = KEY;
+    if (transport === 'postMessage') {
+      var w = presenter ? window.opener : peer;
+      if (w && !w.closed) { try { w.postMessage(m, '*'); } catch (e) { /* closed meanwhile */ } }
+    } else if (bc) bc.postMessage(m);
+    else { m.t = Date.now() + Math.random(); try { localStorage.setItem(KEY, JSON.stringify(m)); } catch (e) { /* no storage */ } }
+  }
+  function receive(m) {
+    if (!m || m.deck !== KEY) return;
+    if (m.type === 'go' && typeof m.i === 'number') go(m.i, { remote: true });
+    else if (m.type === 'hello' && !presenter) send({ type: 'go', i: cur, force: true });
+  }
+  if (transport === 'broadcast') { bc = new BroadcastChannel(KEY); bc.onmessage = function (e) { receive(e.data); }; }
+  if (transport === 'storage') window.addEventListener('storage', function (e) {
+    if (e.key === KEY && e.newValue) { try { receive(JSON.parse(e.newValue)); } catch (x) { /* foreign value */ } }
+  });
+  window.addEventListener('message', function (e) {
+    var m = e.data;
+    if (!m || m.deck !== KEY) return;
+    if (presenter) { if (e.source !== window.opener) return; } else peer = e.source;
+    receive(m);
+  });
+  function openPresenter() {
+    if (presenter) return;
+    var url = location.href.split('#')[0].split('?')[0] + '?presenter#' + (cur + 1);
+    var w = window.open(url, 'deckPresenter', 'popup,width=1280,height=800');
+    if (!w) { toast(L.blocked); return; }
+    peer = w;
+  }
+  var pv = {}, t0 = Date.now(), paused = 0, pausedAt = 0;
+  function mmss(sec) { sec = Math.max(0, Math.round(sec)); return Math.floor(sec / 60) + ':' + pad(sec % 60); }
+  function setupPresenter() {
+    root.setAttribute('data-view', 'presenter');
+    d.title = L.presenter + ': ' + d.title;
+    var box = el('div'); box.id = 'pv'; box.setAttribute('data-chrome', '');
+    box.appendChild(stage);
+    pv.next = el('section'); pv.next.id = 'pv-next'; pv.next.appendChild(el('h3', '', L.next));
+    pv.frameBox = el('div', 'pv-box'); pv.next.appendChild(pv.frameBox);
+    pv.notes = el('section'); pv.notes.id = 'pv-notes'; pv.notes.appendChild(el('h3', '', L.notes));
+    pv.body = el('div'); pv.notes.appendChild(pv.body);
+    pv.time = el('section'); pv.time.id = 'pv-time';
+    pv.clock = el('p', 'pv-clock', '0:00'); pv.mark = el('p'); pv.pos = el('p'); pv.link = el('p');
+    var bp = el('button', '', L.pause), br = el('button', '', L.reset);
+    bp.type = br.type = 'button';
+    bp.addEventListener('click', function () {
+      if (pausedAt) { paused += Date.now() - pausedAt; pausedAt = 0; bp.textContent = L.pause; }
+      else { pausedAt = Date.now(); bp.textContent = L.resume; }
+    });
+    br.addEventListener('click', function () { t0 = Date.now(); paused = 0; pausedAt = pausedAt ? Date.now() : 0; tick(); });
+    var row = el('p'); row.appendChild(bp); row.appendChild(br);
+    [pv.clock, pv.mark, pv.pos, row, pv.link].forEach(function (x) { pv.time.appendChild(x); });
+    [pv.next, pv.notes, pv.time].forEach(function (x) { box.appendChild(x); });
+    d.body.insertBefore(box, d.body.firstChild);
+    pv.link.textContent = L.link + ': ' + (window.opener || transport !== 'postMessage' ? transport : L.noLink);
+    setInterval(tick, 500);
+    setInterval(function () { send({ type: 'ping' }); }, 2000);
+  }
+  function planned(i) {
+    var m = 0;
+    for (var k = 0; k <= i; k++) m += +minutes[slides[k].id] || 0;
+    return m * 60;
+  }
+  function tick() {
+    if (!presenter) return;
+    var run = ((pausedAt || Date.now()) - t0 - paused) / 1000, plan = planned(cur);
+    pv.clock.textContent = mmss(run);
+    pv.mark.textContent = plan ? L.mark + ' ' + mmss(plan) + (meta.minutes ? ' / ' + meta.minutes + ':00' : '') : '';
+    pv.mark.className = plan && run > plan ? 'late' : '';
+  }
+  function scaleNext() {
+    var c = pv.frameBox && pv.frameBox.firstChild;
+    if (c) c.style.setProperty('--s', (pv.frameBox.clientWidth / 1280).toFixed(4));
+  }
+  function updatePresenter() {
+    pv.frameBox.textContent = '';
+    if (cur + 1 < count) {
+      var f = el('div', 'ov-frame'); f.setAttribute('inert', ''); f.appendChild(cloneSlide(slides[cur + 1]));
+      pv.frameBox.appendChild(f); scaleNext();
+    } else pv.frameBox.appendChild(el('p', '', L.end));
+    var a = own(slides[cur], 'aside.notes');
+    pv.body.textContent = '';
+    if (a && a.textContent.trim()) Array.prototype.forEach.call(a.childNodes, function (n) { pv.body.appendChild(n.cloneNode(true)); });
+    else pv.body.textContent = L.noNotes;
+    pv.pos.textContent = (cur + 1) + ' / ' + count + (titleOf(slides[cur]) ? ' · ' + titleOf(slides[cur]) : '');
+    tick();
+  }
+
+  /* ---------- copy: Clipboard API, then hidden textarea + execCommand, then select + prompt */
+  function copyFallback(text) {
+    var ta = el('textarea', 'sr'); ta.value = text; ta.setAttribute('readonly', '');
+    d.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = d.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+  }
+  d.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button.copy'), term = b && b.closest('.term');
+    var pre = term && term.querySelector('pre');
+    if (!pre) return;
+    var text = pre.textContent.replace(/\u00a0/g, ' '), label = b.getAttribute('data-label') || b.textContent || L.copy;
+    b.setAttribute('data-label', label);
+    function done(ok) {
+      if (!ok) { var r = d.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      b.textContent = ok ? L.copied : L.select; b.classList.toggle('done', ok);
+      setTimeout(function () { b.textContent = label; b.classList.remove('done'); }, 2200);
+    }
+    var p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(text) : Promise.reject();
+    p.then(function () { done(true); }, function () { done(copyFallback(text)); });
+  });
+
+  /* ---------- input: keys (by physical code, so a Cyrillic layout works), bar, click, swipe */
+  d.addEventListener('keydown', function (e) {
+    if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (ov) { overviewKey(e); return; }
+    if ((e.key === ' ' || e.key === 'Enter') && t.closest && t.closest('button, a[href]')) return;
+    var k = e.key, c = e.code, f = null;
+    if (k === 'ArrowRight' || k === 'PageDown' || c === 'KeyN' || (k === ' ' && !e.shiftKey)) f = next;
+    else if (k === 'ArrowLeft' || k === 'PageUp' || c === 'KeyP' || (k === ' ' && e.shiftKey)) f = prev;
+    else if (k === 'Home') f = function () { go(0, { push: true }); };
+    else if (k === 'End') f = function () { go(count - 1, { push: true }); };
+    else if (c === 'KeyF') f = toggleFull;
+    else if (c === 'KeyT') f = toggleTheme;
+    else if (c === 'KeyG') f = toRoute;
+    else if (c === 'KeyO') f = openOverview;
+    else if (c === 'KeyS') f = openPresenter;
+    if (!f) return;
+    e.preventDefault(); f();
+  });
+  var acts = { prev: prev, next: next, route: toRoute, overview: openOverview, presenter: openPresenter, theme: toggleTheme, full: toggleFull };
+  (d.getElementById('bar') || d).addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('#bar [data-act]'); if (b && acts[b.getAttribute('data-act')]) acts[b.getAttribute('data-act')]();
+  });
+  stage.addEventListener('click', function (e) {
+    if (e.button !== 0 || e.target.closest('a, button, input, textarea, select, label, summary, pre, code, .term, [data-nav-ignore]')) return;
+    if (String(getSelection ? getSelection() : '')) return;
+    var r = track.getBoundingClientRect();
+    if ((e.clientX - r.left) / r.width < 0.3) prev(); else next();
+  });
+  var sx = null, sy = 0;
+  stage.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; } else sx = null;
+  }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+    sx = null;
+    if (Math.abs(dx) >= 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) { if (dx < 0) next(); else prev(); }
+  }, { passive: true });
+  window.addEventListener('hashchange', onHash);
+  window.addEventListener('popstate', onHash);
+  window.addEventListener('resize', function () { fit(); scaleOverview(); });
+
+  /* ---------- API for the lint (contract: deck-review html_deck_lint.mjs) and start-up */
+  var resolveReady;
+  var ready = new Promise(function (r) { resolveReady = r; });
+  window.deck = {
+    version: 1, count: count, slides: slides, lists: lists, meta: meta, ready: ready,
+    get index() { return cur; },
+    go: function (i, o) { go(i, { push: !!(o && o.push) }); },
+    next: next, prev: prev
+  };
+  build();
+  if (presenter) setupPresenter();
+  var start = fromHash();
+  go(start >= 0 ? start : 0, { silent: true });
+  fit();
+  if (presenter) send({ type: 'hello' });
+  /* load every embedded face now, so a slide shown later never waits for its font (lint measures after 2 frames) */
+  if (d.fonts && d.fonts.forEach) d.fonts.forEach(function (f) { if (f.status === 'unloaded') f.load().catch(function () {}); });
+  var fonts = d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve();
+  Promise.race([fonts, new Promise(function (r) { setTimeout(r, 3000); })]).then(null, function () {}).then(function () {
+    fit();
+    started = true;
+    root.setAttribute('data-deck-ready', '1');
+    window.dispatchEvent(new Event('deck:ready'));
+    resolveReady();
+  });
+})();
+</script>
+</body>
+</html>

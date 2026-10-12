@@ -1,0 +1,8 @@
+{
+  "name": "deck-craft",
+  "description": "Presentations that work in the room and in the PDF: talk storyline with a machine-readable deck plan, engine-neutral slide design (archetypes, projection type scale, contrast token pairs, screenshots), a self-contained offline HTML deck engine, and measurable deck review with render and lint scripts plus a read-only deck-reviewer agent. Ukrainian + English.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Vitaliy Korinevskiy"
+  }
+}
