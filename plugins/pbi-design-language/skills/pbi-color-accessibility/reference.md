@@ -265,6 +265,9 @@ or marks that must be seen, use bright tokens only (e.g. `#34d399`, `#fcd34d`, `
 `#22d3ee`); this is the §6 rule (a mark must itself clear ≥3:1 against its adjacent color)
 applied to a dark canvas.
 
+**Slide decks:** `deck-review/scripts/deck_lint.py` implements the §1 formula; keep the sanity
+values 21.00 and 4.54 in sync.
+
 ## 11. Transparency tuned for one canvas fails on the other
 
 `fillTransparency` (and any `transparency` property) is a **percentage of transparency**, not

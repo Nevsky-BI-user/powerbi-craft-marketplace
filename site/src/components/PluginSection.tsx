@@ -20,6 +20,8 @@ export const PLUGIN_ICONS: Record<string, string> = {
   "pbip-devops": "🔀",
   "azure-ops": "☁️",
   "project-bootstrap": "🚀",
+  "agent-craft": "🤖",
+  "deck-craft": "🎤",
 };
 
 /** Опис для підказки/картки: український, якщо є, інакше оригінальний. */

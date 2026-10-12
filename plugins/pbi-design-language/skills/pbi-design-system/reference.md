@@ -215,6 +215,8 @@ Fix for any swatch under 3:1 against its OWN surface: outline glyph (`◻`/`○`
 neutral + the hex in the label. A label demonstrating a text color (`min: white text 6.18:1`
 painted `#f1f5f9`) sits on the card, not on the fill — paint it a neutral.
 
+Slide decks reuse R1-R6 for the dark divider / light content pair → `slide-design`.
+
 ---
 
 ## 2. Typography

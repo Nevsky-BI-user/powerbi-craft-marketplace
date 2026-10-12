@@ -1,6 +1,6 @@
 ---
 name: pbi-redesign-approval
-description: Use when redesigning a whole Power BI report or page set with user approval gates - the five-gate process (copy, audit, theme, mockup, page-by-page build) with a DECISIONS.md ledger, verdict grammar, and mandatory stops after every screenshot. Orchestrates other skills; owns only process and artifact formats. Do NOT trigger for single-visual tweaks or one-off formatting (use the specific pbi-* skill) or for design audits alone (use pbi-report-review). Triggers - 'редизайн', 'переробити дизайн', 'жахливий дизайн', 'новий дизайн звіту', 'затвердження дизайну', 'затверджую', 'redesign report', 'design approval', 'rework ugly report'.
+description: Use when redesigning a whole Power BI report or page set with user approval gates - the five-gate process (copy, audit, theme, mockup, page-by-page build) with a DECISIONS.md ledger, verdict grammar, and mandatory stops after every screenshot. Orchestrates other skills; owns only process and artifact formats. Do NOT trigger for single-visual tweaks or one-off formatting (use the specific pbi-* skill) or for design audits alone (use pbi-report-review) or for presentations or slide decks (deck-storyline, deck-review). Triggers - 'редизайн', 'переробити дизайн', 'жахливий дизайн', 'новий дизайн звіту', 'затвердження дизайну', 'затверджую', 'redesign report', 'design approval', 'rework ugly report'.
 ---
 
 # Redesign with approval gates
@@ -69,6 +69,9 @@ the current one.
   owner. "Done" exists nowhere else.
 - All pages approved → merge `redesign` into main only on the user's
   explicit command. Never `git push` (AGENTS law 8).
+- Slide-deck storyboards reuse this grammar by reference («затверджую
+  сторіборд vN», «правки сторіборду vN: ...»); the record is the plan's
+  `approval` field, not DECISIONS.md (`deck-storyline`, deck-plan.md §5).
 
 ## Hard rules
 

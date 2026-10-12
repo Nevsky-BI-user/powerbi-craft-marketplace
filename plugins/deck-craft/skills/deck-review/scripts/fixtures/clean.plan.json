@@ -1,0 +1,343 @@
+{
+ "schema": "deck-plan/1",
+ "title": "Бронювання переговорних",
+ "lang": "uk",
+ "mode": "talk",
+ "minutes": 35,
+ "qa_minutes": 3,
+ "canvas": "1280x720px",
+ "engine": "html",
+ "dash_policy": "hyphen",
+ "audience": "співробітники офісу, які бронюють переговорні",
+ "decision": "перейти на самостійну бронь замість листів адміністратору",
+ "promise": "Після доповіді ви бронюєте кімнату без листів адміністратору",
+ "context": "Внутрішній семінар · жовтень",
+ "parts": [
+  {
+   "id": "why",
+   "title": "Проблема",
+   "question": "Чому зустрічі зриваються?"
+  },
+  {
+   "id": "how",
+   "title": "Процес",
+   "question": "Як забронювати кімнату?"
+  },
+  {
+   "id": "rules",
+   "title": "Правила",
+   "question": "Що варто знати?"
+  }
+ ],
+ "lists": {
+  "steps": [
+   {
+    "id": "find",
+    "label": "Пошук",
+    "icon": null
+   },
+   {
+    "id": "book",
+    "label": "Бронь",
+    "icon": null
+   },
+   {
+    "id": "confirm",
+    "label": "Підтвердження",
+    "icon": null
+   }
+  ]
+ },
+ "slides": [
+  {
+   "n": 1,
+   "id": "title",
+   "archetype": "title",
+   "title": "Переговорну бронюють за хвилину",
+   "part": null,
+   "dek": "Після доповіді ви бронюєте кімнату без листів адміністратору",
+   "minutes": 0.5,
+   "notes": "Підказка: титул. Обіцянка: бронь без листів. Позначка 0:30."
+  },
+  {
+   "n": 2,
+   "id": "route",
+   "archetype": "route",
+   "title": "Три частини ведуть до першої броні",
+   "part": null,
+   "minutes": 0.5,
+   "notes": "Назвати три частини. Позначка 1:00."
+  },
+  {
+   "n": 3,
+   "id": "why",
+   "archetype": "divider",
+   "title": "Чому зустрічі зриваються?",
+   "part": "why",
+   "minutes": 0.25,
+   "notes": "Пауза. Позначка 1:15."
+  },
+  {
+   "n": 4,
+   "id": "search",
+   "archetype": "journey",
+   "title": "Пошук кімнати забирає чотири кроки",
+   "part": "why",
+   "eyebrow": "Проблема · шлях",
+   "minutes": 1.5,
+   "notes": "Пройти чотири кроки. Позначка 2:45."
+  },
+  {
+   "n": 5,
+   "id": "model",
+   "archetype": "equation",
+   "title": "Зустріч плюс кімната дає рішення",
+   "part": "why",
+   "eyebrow": "Проблема · модель",
+   "minutes": 1.5,
+   "notes": "Одна формула. Позначка 4:15."
+  },
+  {
+   "n": 6,
+   "id": "floors",
+   "archetype": "map",
+   "title": "Кімнати стоять на трьох поверхах",
+   "part": "why",
+   "eyebrow": "Проблема · карта",
+   "minutes": 1.5,
+   "notes": "Показати другий поверх. Позначка 5:45."
+  },
+  {
+   "n": 7,
+   "id": "how",
+   "archetype": "divider",
+   "title": "Як забронювати кімнату?",
+   "part": "how",
+   "minutes": 0.25,
+   "notes": "Друга частина. Позначка 6:00."
+  },
+  {
+   "n": 8,
+   "id": "flow",
+   "archetype": "hub",
+   "title": "Бронь складається з трьох кроків",
+   "part": "how",
+   "eyebrow": "Процес · огляд",
+   "list": "steps",
+   "minutes": 1.5,
+   "notes": "Три картки зліва направо. Позначка 7:30."
+  },
+  {
+   "n": 9,
+   "id": "find",
+   "archetype": "series-item",
+   "title": "Пошук показує лише вільні кімнати",
+   "part": "how",
+   "eyebrow": "1 / 3 · Пошук",
+   "series": {
+    "list": "steps",
+    "item": "find"
+   },
+   "minutes": 1.5,
+   "notes": "Фільтр бере поверх і час. Позначка 9:00."
+  },
+  {
+   "n": 10,
+   "id": "book",
+   "archetype": "series-item",
+   "title": "Бронь тримає кімнату до зустрічі",
+   "part": "how",
+   "eyebrow": "2 / 3 · Бронь",
+   "series": {
+    "list": "steps",
+    "item": "book"
+   },
+   "minutes": 1.5,
+   "notes": "Без підтвердження бронь знімається. Позначка 10:30."
+  },
+  {
+   "n": 11,
+   "id": "demo",
+   "archetype": "demo-divider",
+   "title": "Бронюємо кімнату наживо",
+   "part": "how",
+   "demo": {
+    "id": "live",
+    "role": "entrance",
+    "minutes": 2
+   },
+   "minutes": 2,
+   "notes": "Відкрити розклад і забронювати кімнату A1. Жорстка зупинка на 12:30. Позначка 12:30."
+  },
+  {
+   "n": 12,
+   "id": "result",
+   "archetype": "demo-still",
+   "title": "Бронь з’являється в календарі",
+   "part": "how",
+   "eyebrow": "Процес · результат",
+   "demo": {
+    "id": "live",
+    "role": "proof"
+   },
+   "media": [
+    {
+     "file": "calendar.png",
+     "native_px": 1600,
+     "ui_px": 28,
+     "placed_pt": 584
+    }
+   ],
+   "minutes": 0.5,
+   "notes": "Що помітити: кімната A1 зайнята. Позначка 13:00."
+  },
+  {
+   "n": 13,
+   "id": "recap",
+   "archetype": "demo-recap",
+   "title": "Три кроки закривають бронь",
+   "part": "how",
+   "eyebrow": "Процес · підсумок",
+   "demo": {
+    "id": "live",
+    "role": "exit"
+   },
+   "minutes": 1.5,
+   "notes": "Назвати три кроки вголос. Позначка 14:30."
+  },
+  {
+   "n": 14,
+   "id": "rules",
+   "archetype": "divider",
+   "title": "Що варто знати?",
+   "part": "rules",
+   "minutes": 0.25,
+   "notes": "Третя частина. Позначка 14:45."
+  },
+  {
+   "n": 15,
+   "id": "api",
+   "archetype": "code-step",
+   "title": "Один запит створює бронь",
+   "part": "rules",
+   "eyebrow": "Правила · API",
+   "minutes": 1.5,
+   "notes": "Показати запит. Позначка 16:15."
+  },
+  {
+   "n": 16,
+   "id": "cancel",
+   "archetype": "code-step",
+   "title": "Скасування теж займає один запит",
+   "part": "rules",
+   "eyebrow": "Правила · скасування",
+   "minutes": 1.5,
+   "notes": "Скасувати бронь. Позначка 17:45."
+  },
+  {
+   "n": 17,
+   "id": "sizes",
+   "archetype": "compare-table",
+   "title": "Малі кімнати бронюють частіше",
+   "part": "rules",
+   "eyebrow": "Правила · попит",
+   "minutes": 1.5,
+   "notes": "Три рядки, без деталей. Позначка 19:15."
+  },
+  {
+   "n": 18,
+   "id": "release",
+   "archetype": "concept",
+   "title": "Порожню кімнату система звільняє",
+   "part": "rules",
+   "eyebrow": "Правила · звільнення",
+   "minutes": 1.5,
+   "notes": "Без відмітки бронь зникає. Позначка 20:45."
+  },
+  {
+   "n": 19,
+   "id": "remind",
+   "archetype": "concept",
+   "title": "Нагадування приходить за день",
+   "part": "rules",
+   "eyebrow": "Правила · нагадування",
+   "minutes": 1.5,
+   "notes": "Лист із посиланням. Позначка 22:15."
+  },
+  {
+   "n": 20,
+   "id": "shift",
+   "archetype": "from-to",
+   "title": "Бронь замінює листи й дзвінки",
+   "part": "rules",
+   "eyebrow": "Правила · зміна",
+   "minutes": 1.5,
+   "notes": "Ліворуч було, праворуч стало. Позначка 23:45."
+  },
+  {
+   "n": 21,
+   "id": "levels",
+   "archetype": "concept",
+   "title": "Схема показує всі поверхи разом",
+   "part": "rules",
+   "eyebrow": "Правила · поверхи",
+   "minutes": 1.5,
+   "notes": "Одна схема на всю будівлю. Позначка 25:15."
+  },
+  {
+   "n": 22,
+   "id": "sync",
+   "archetype": "concept-demo",
+   "title": "Календар синхронізує бронь",
+   "part": "rules",
+   "eyebrow": "Правила · календар",
+   "minutes": 1.5,
+   "notes": "Зміну видно всім. Позначка 26:45."
+  },
+  {
+   "n": 23,
+   "id": "drop",
+   "archetype": "concept",
+   "title": "Скасування звільняє кімнату одразу",
+   "part": "rules",
+   "eyebrow": "Правила · скасування",
+   "minutes": 1.5,
+   "notes": "Мітка показує чернетку. Позначка 28:15."
+  },
+  {
+   "n": 24,
+   "id": "long",
+   "archetype": "concept",
+   "title": "Довгу бронь погоджує керівник",
+   "part": "rules",
+   "eyebrow": "Правила · погодження",
+   "minutes": 1.5,
+   "notes": "Запит іде керівнику. Позначка 29:45."
+  },
+  {
+   "n": 25,
+   "id": "close",
+   "archetype": "close",
+   "title": "Кімнату бронюють за хвилину без листів",
+   "part": null,
+   "minutes": 0.5,
+   "notes": "Повторити три частини. Залишити слайд під час запитань. Позначка 30:15."
+  }
+ ],
+ "close": {
+  "takeaway": "Кімнату бронюють за хвилину без листів.",
+  "recap": [
+   "Проблема",
+   "Процес",
+   "Правила"
+  ],
+  "next_step": "Забронюйте кімнату на завтра до п’ятниці",
+  "url": "example.org/rooms"
+ },
+ "approval": {
+  "version": 1,
+  "status": "approved",
+  "verdict": "затверджую сторіборд v1",
+  "date": "2026-10-01"
+ }
+}

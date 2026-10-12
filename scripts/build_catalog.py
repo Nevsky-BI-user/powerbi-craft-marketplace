@@ -26,6 +26,7 @@ TAGLINES = {
     "azure-ops": "хмара довкола",
     "agent-craft": "як ганяти агентів",
     "project-bootstrap": "старт проєктів",
+    "deck-craft": "презентації, що працюють у залі й у PDF",
 }
 
 

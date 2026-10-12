@@ -31,18 +31,19 @@ claude plugin install pbi-visuals@powerbi-craft
 | `azure-ops` | 7 | cost, diagnostics, RBAC, Azure DevOps rituals (work items, PRs, hygiene) |
 | `project-bootstrap` | 4 | CLAUDE.md bootstrap, Rayfin platform bootstrap, data-entry app blueprint, React SPA UX baseline |
 | `agent-craft` | 2 | Model orchestration + plain-language reporting (UA); exec-haiku/sonnet/opus + verify-skeptic agents |
+| `deck-craft` | 4 | talk storyline and deck plan, engine-neutral slide design, offline single-file HTML deck engine, measurable deck review with render and lint scripts; deck-reviewer agent |
 
 ## Це один організм / One organism
 
 Скіли густо посилаються один на одного через межі плагінів (понад 270
 перехресних посилань): `pbi-kpi-cards` маршрутизує формулювання в `data-storytelling`,
 міри — у `dax-measures`, токени — у `pbi-design-system`. **Рекомендовано
-ставити всі 10 плагінів.** Часткова інсталяція працює — посилання на
-невстановлений скіл просто не завантажиться, деградація мʼяка — але повну
+ставити всі 11 плагінів.** Часткова інсталяція працює: посилання на
+невстановлений скіл просто не завантажиться, деградація мʼяка, але повну
 силу дає повний набір.
 
 Skills cross-reference each other across plugin boundaries (270+ references).
-**Installing all ten plugins is recommended.** Partial installs degrade
+**Installing all eleven plugins is recommended.** Partial installs degrade
 gracefully — a reference to an absent skill simply does not load.
 
 ## Requirements
@@ -53,9 +54,15 @@ anyway) and **python 3** (`python`, `python3` or the `py` launcher — if none i
 found the hook silently does nothing). Disable hooks any time with
 `POWERBI_CRAFT_HOOKS=0`.
 
+`deck-craft` scripts (rendering and linting decks) need **Python 3** (stdlib
+only), **Node 18+ with Playwright** and a full Chromium build (`npm i playwright`,
+then `npx playwright install chromium`, or point `CHROME_PATH` at an installed
+Chrome). **LibreOffice** is used only to read positioned text runs from a PDF.
+The skills themselves work without any of this; only the measurements need it.
+
 ## Agents and hooks
 
-Beyond skills, five plugins ship extras — disclosed here because hooks run
+Beyond skills, six plugins ship extras, disclosed here because hooks run
 automatically on your machine after installation:
 
 - `pbi-report-ux` ships a **PostToolUse hook**: after any Edit or Write inside
@@ -75,6 +82,9 @@ automatically on your machine after installation:
   (tools: Read, Glob, Grep, Edit, Write, Bash) — and `verify-skeptic`, a
   read-only adversarial verifier (`model: inherit`). All four write their
   reports under the plain-language rules of the `plain-report` skill.
+- `deck-craft` ships the **`deck-reviewer` agent**: a read-only reviewer that
+  looks at the rendered slide PNGs, confirms or refutes each lint finding on the
+  pixels and lists what it could not verify. No hooks.
 
 ## External skills referenced, not shipped
 
@@ -89,6 +99,7 @@ inline where the skill quotes it.
 | `theme-factory` | Anthropic public skills | palette and theme generation for non-Power-BI targets (named as a boundary by pbi-theme-json, pbi-corporate-theme, pbi-color-accessibility) |
 | `pbir-format`, `pbir-cli`, `pbip`, `tmdl` | external Power BI agentic skill sets (e.g. data-goblin) | PBIR schema walkthroughs, PBIP renames, TMDL authoring |
 | `pbi-report-design`, `humanizer`, `web-design-guidelines` | author's local library / community skills | report design canon, de-AI-ing prose, a11y checklists |
+| `pptx`, `frontend-design`, `canvas-design`, `pdf-reading` | Anthropic public skills | `.pptx` file mechanics, visual direction for web UI, cover art, PDF rasterisation (named as boundaries by deck-craft) |
 
 Our PBIR skills are the layer **above** `powerbi-report-authoring`: it owns the
 files, we own bookmarks, buttons, navigators, icons and design decisions.
